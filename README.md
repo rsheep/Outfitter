@@ -27,7 +27,9 @@ Yes, I added those too!
 Screenshots
 -----------
 http://i.imgur.com/R0OPbMx.png
+
 http://i.imgur.com/8eEqqDa.png
+
 http://i.imgur.com/6qkyQTb.png
 
 
