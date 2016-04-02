@@ -1,4 +1,4 @@
-# Outfitter
+Outfitter
 =========
 **Outfitter** is a "World of Warcraft Addon" to easily manage you gear outfits.
 
