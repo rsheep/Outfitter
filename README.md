@@ -12,6 +12,7 @@ Hope you will enjoy it!
 > - This Addon is developed for WoW 2.4.3 (toc 20400), also known as TBC WoW 
 >
 
+
 Usage
 -----
 Just bring-out the classic `Outfitter's DropDownMenu` and you will find the "Export" submenu there.
@@ -21,6 +22,13 @@ Should be self explanatory really.
 Alternatively, type /outfitter command in your chat and you should get a nice help there, about slashcommands available.
 
 Yes, I added those too!
+
+
+Screenshots
+-----------
+http://i.imgur.com/R0OPbMx.png
+http://i.imgur.com/8eEqqDa.png
+http://i.imgur.com/6qkyQTb.png
 
 
 Donations
