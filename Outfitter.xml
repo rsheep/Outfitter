@@ -800,6 +800,15 @@
 										</Anchor>
 									</Anchors>
 								</FontString>
+								<FontString text="Outfitter_cExportOptionsExportURL" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOP">
+											<Offset>
+												<AbsDimension x="0" y="-260"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
 							</Layer>
 						</Layers>
 						<Frames>
@@ -807,7 +816,7 @@
 								<Anchors>
 									<Anchor point="TOPLEFT">
 										<Offset>
-											<AbsDimension x="15" y="-90"/>
+											<AbsDimension x="15" y="-70"/>
 										</Offset>
 									</Anchor>
 								</Anchors>
@@ -834,7 +843,7 @@
 								<Anchors>
 									<Anchor point="TOPLEFT" relativeTo="OutfitterAutoSwitch" relativePoint="BOTTOMLEFT">
 										<Offset>
-											<AbsDimension x="0" y="-10"/>
+											<AbsDimension x="0" y="-5"/>
 										</Offset>
 									</Anchor>
 								</Anchors>
@@ -936,6 +945,35 @@
 									</OnLeave>
 								</Scripts>
 							</CheckButton>
+							<EditBox name="OutfitterExportURLEditbox" inherits="InputBoxTemplate">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="OutfitterTooltipInfo" relativePoint="BOTTOMLEFT">
+										<Offset>
+											<AbsDimension x="10" y="-24"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Size>
+									<AbsDimension x="210" y="20"/>
+								</Size>
+								<Scripts>
+									<OnLoad>
+										getglobal(this:GetName()):SetAutoFocus(false)
+										getglobal(this:GetName()):SetText("")
+									</OnLoad>
+									<OnEnterPressed>
+										Outfitter:CheckExportURLEditbox(getglobal(this:GetName()):GetText())
+										getglobal(this:GetName()):ClearFocus()
+									</OnEnterPressed>
+									<OnEscapePressed>
+										Outfitter:CheckExportURLEditbox(getglobal(this:GetName()):GetText())
+										getglobal(this:GetName()):ClearFocus()
+									</OnEscapePressed>
+									<OnHide>
+										Outfitter:CheckExportURLEditbox(getglobal(this:GetName()):GetText())
+									</OnHide>
+								</Scripts>
+							</EditBox>
 						</Frames>
 						<Scripts>
 							<OnLoad>

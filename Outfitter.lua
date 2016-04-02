@@ -2,7 +2,7 @@
 -- Outfitter
 ----------------------------------------
 
-Outfitter.cContributors = {"Dridzt", "Kal_Zakath13", "Smurfy", "XMinionX", "Zanoroy"}
+Outfitter.cContributors = {"Dridzt", "Kal_Zakath13", "Smurfy", "XMinionX", "Zanoroy", "mrmr"}
 Outfitter.cFriendsAndFamily = {"Brian", "Dave", "Glenn", "Leah", "Mark", "Gian", "Jerry", "The Mighty Pol", "Forge"}
 Outfitter.cTranslators = {"Jullye (FR)", "Quetzaco (FR)", "Ekhurr (FR)", "Negwe (FR)", "Ani (DE)", "Zokrym (DE)", "Dessa (DE)", "Unknown (KR)"}
 Outfitter.cTesters = {"Whishann", "HunterZ", "docthis", "Irdx", "TigaFIN", "iceeagle", "Denrax", "rasmoe", "Katlefiya", "gtmsece", "Militis", "Casard", "saltorio", "elusif"}
@@ -2066,9 +2066,10 @@ function Outfitter:OutfitIsAmmoOnly(pOutfit)
 	return vHasAmmoItem
 end
 
-function Outfitter.ExecuteCommand(pCommand)
+function Outfitter.ExecuteCommand(pCommandLine)
 	local vCommands =
 	{
+		about = {func = Outfitter.ShowCommandAbout},
 		wear = {useOutfit = true, func = Outfitter.WearOutfit},
 		unwear = {useOutfit = true, func = Outfitter.RemoveOutfit},
 		toggle = {useOutfit = true, func = Outfitter.ToggleOutfit},
@@ -2087,60 +2088,67 @@ function Outfitter.ExecuteCommand(pCommand)
 		
 		disable = {func = Outfitter.DisableAutoChanges},
 		enable = {func = Outfitter.EnableAutoChanges},
+
+		export = {useOutfit = true, func = Outfitter.CommandExport},
+		guiexport = {useOutfit = true, func = Outfitter.CommandGUIExport},
 	}
 	
 	-- Evaluate options if the command uses them
-	
-	local vCommand = SecureCmdOptionParse(pCommand)
-	
-	if string.find(pCommand, "|h") then -- Commands which use item links don't appear to parse correctly
-		vCommand = pCommand
+	local vCommandLine
+	if string.find(pCommandLine, "|h") then -- Commands which use item links don't appear to parse correctly
+		vCommandLine = pCommandLine
 	else
-		vCommand = SecureCmdOptionParse(pCommand)
+		vCommandLine = SecureCmdOptionParse(pCommandLine)
 	end
 	
-	if not vCommand then
+	if not vCommandLine then
 		return
 	end
 	
-	--
-	
-	local vStartIndex, vEndIndex, vCommand, vParameter = string.find(vCommand, "(%w+) ?(.*)")
-	
-	if not vCommand then
+	-- Let's get the Outfitter commandline command now!
+	local vComm, tmp = vCommandLine:match('(%w+) ?(.*)')
+
+	if not vComm then
 		Outfitter:ShowCommandHelp()
 		return
 	end
+
+	-- Now, let's see if such command NEEDS an outfit and try to get it!
+	vComm = strlower(vComm)
+	local vCommInfo = vCommands[vComm]
 	
-	vCommand = strlower(vCommand)
-	
-	local vCommandInfo = vCommands[vCommand]
-	
-	if not vCommandInfo then
+	if not vCommInfo then
 		Outfitter:ShowCommandHelp()
-		Outfitter:ErrorMessage("Unknown command %s", vCommand)
+		Outfitter:ErrorMessage("Unknown command %s", vComm)
 		return
 	end
-	
+
+	local sOutfit = nil
 	local vOutfit = nil
-	local vCategoryID = nil
-	
-	if vCommandInfo.useOutfit then
-		if not vParameter then
-			Outfitter:ErrorMessage("Expected outfit name for "..vCommand.." command")
+	local vCatID = nil
+
+	if vCommInfo.useOutfit then
+		sOutfit, tmp = tmp:match('%s*<(.+)> ?%s*(.*)')
+		if not sOutfit then
+			Outfitter:ErrorMessage("Expected outfit name for ".. vComm .." command.")
+			Outfitter:ErrorMessage("  Remember to enclose the outfit name between < and >.")
 			return
 		end
-		
-		vOutfit, vCategoryID = Outfitter:FindOutfitByName(vParameter)
-		
+		vOutfit, vCatID = Outfitter:FindOutfitByName(sOutfit)
 		if not vOutfit then
-			Outfitter:ErrorMessage("Couldn't find outfit named "..vParameter)
+			Outfitter:ErrorMessage("Couldn't find outfit named '" .. sOutfit .. "'")
 			return
-		end
-		
-		vCommandInfo.func(Outfitter, vOutfit, vCategoryID)
+		end		
+	end
+
+	-- Let's get the remaining arguments
+	local vPar1, vPar2, vPar3 = tmp:match('%s*(%w*) ?%s*(%w*) ?%s*(.*)')
+
+	-- Now it's time to run the associated function and get things done
+	if vCommInfo.useOutfit then
+		vCommInfo.func(Outfitter, vOutfit, vCatID, vPar1, vPar2, vPar3)
 	else
-		vCommandInfo.func(Outfitter, vParameter)
+		vCommInfo.func(Outfitter, vPar1)
 	end
 end
 
@@ -2154,13 +2162,27 @@ function Outfitter:EnableAutoChanges()
 	Outfitter:NoteMessage(Outfitter.cAutoChangesEnabled)
 end
 
+function Outfitter:ShowCommandAbout()
+	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."   Outfitter 4.2.6 "..NORMAL_FONT_COLOR_CODE.." - by John Stephen, modded by mrmr")
+	Outfitter:NoteMessage(NORMAL_FONT_COLOR_CODE.."  A clothing and weapon management and automated equipment changes addon.")
+	Outfitter:NoteMessage(NORMAL_FONT_COLOR_CODE.."  Get this modded version (and report bugs) from: https://github.com/rsheep")
+end
+
 function Outfitter:ShowCommandHelp()
+	Outfitter:ShowCommandAbout()
+	Outfitter:NoteMessage(NORMAL_FONT_COLOR_CODE.."")
+	Outfitter:NoteMessage(NORMAL_FONT_COLOR_CODE.."    Remember to enclose every <outfit name> between quotes or doublequotes!")
+	Outfitter:NoteMessage(NORMAL_FONT_COLOR_CODE.."")
+	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter about"..NORMAL_FONT_COLOR_CODE..": Print an 'about' text")
 	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter wear <outfit name>"..NORMAL_FONT_COLOR_CODE..": Wear an outfit")
 	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter unwear <outfit name>"..NORMAL_FONT_COLOR_CODE..": Remove an outfit")
 	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter toggle <outfit name>"..NORMAL_FONT_COLOR_CODE..": Wears or removes an outfit")
 	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter reset"..NORMAL_FONT_COLOR_CODE..": Resets Outfitter, restoring default settings and outfits")
 	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter sound [on|off]"..NORMAL_FONT_COLOR_CODE..": Turns equipment sound effects off during Outfitter's gear changes")
 	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter missing"..NORMAL_FONT_COLOR_CODE..": Generates a list of items which are in your outfits but can't be found")
+	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter export <outfit name> [self|say|party|raid|guild|whispertarget]"..NORMAL_FONT_COLOR_CODE..": Export/Dump an outfit to the choosen channel")
+	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter export <outfit name> [whisper|channel] <name>"..NORMAL_FONT_COLOR_CODE..": Export/Dump an outfit to the choosen player/channel")
+	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter guiexport <outfit name> [simple|urls]"..NORMAL_FONT_COLOR_CODE..": Export/Dump an outfit to a frame for easy Copy&Paste")
 end
 
 function Outfitter.UnequipItemByName(pItemName)
@@ -2601,6 +2623,8 @@ function Outfitter:InitializeOutfitMenu(pFrame, pOutfit)
 				Outfitter:AddMenuItem(pFrame, format(Outfitter.cRebuildOutfitFormat, vStatName), "REBUILD")
 			end
 		end
+
+		Outfitter:AddSubmenuItem(pFrame, Outfitter.cExportOutfit, "EXPORT")
 		Outfitter:AddMenuItem(pFrame, Outfitter.cSetCurrentItems, "SET_CURRENT")
 		Outfitter:AddSubmenuItem(pFrame, Outfitter.cKeyBinding, "BINDING")
 		Outfitter:AddSubmenuItem(pFrame, Outfitter.cRememberVisibility, "HELMCLOAK")
@@ -2639,7 +2663,21 @@ function Outfitter:InitializeOutfitMenu(pFrame, pOutfit)
 		end
 		
 	elseif UIDROPDOWNMENU_MENU_LEVEL == 2 then
-		if UIDROPDOWNMENU_MENU_VALUE == "BANKING" then
+		if UIDROPDOWNMENU_MENU_VALUE == "EXPORT" then
+			Outfitter:AddCategoryMenuItem(Outfitter.cExportFrames)
+			Outfitter:AddMenuItem(pFrame, Outfitter.cExportSimple, "EXPORT_SIMPLE", nil, UIDROPDOWNMENU_MENU_LEVEL)
+			Outfitter:AddMenuItem(pFrame, Outfitter.cExportURLs, "EXPORT_URLS", nil, UIDROPDOWNMENU_MENU_LEVEL)
+			Outfitter:AddCategoryMenuItem(Outfitter.cExportChannel)
+			Outfitter:AddMenuItem(pFrame, Outfitter.cExportChannelSelf, "EXPORT_CHANNEL_SELF", nil, UIDROPDOWNMENU_MENU_LEVEL)
+			Outfitter:AddMenuItem(pFrame, Outfitter.cExportChannelSay, "EXPORT_CHANNEL_SAY", nil, UIDROPDOWNMENU_MENU_LEVEL)
+			Outfitter:AddMenuItem(pFrame, Outfitter.cExportChannelParty, "EXPORT_CHANNEL_PARTY", nil, UIDROPDOWNMENU_MENU_LEVEL, nil, not (GetNumPartyMembers() > 0))
+			Outfitter:AddMenuItem(pFrame, Outfitter.cExportChannelRaid, "EXPORT_CHANNEL_RAID", nil, UIDROPDOWNMENU_MENU_LEVEL, nil, not (GetNumRaidMembers() > 0))
+			Outfitter:AddMenuItem(pFrame, Outfitter.cExportChannelGuild, "EXPORT_CHANNEL_GUILD", nil, UIDROPDOWNMENU_MENU_LEVEL, nil, not IsInGuild())
+			Outfitter:AddMenuItem(pFrame, Outfitter.cExportChannelWhisperTo, "EXPORT_CHANNEL_WHISPER_TO", nil, UIDROPDOWNMENU_MENU_LEVEL)
+			Outfitter:AddMenuItem(pFrame, Outfitter.cExportChannelWhisperTarget, "EXPORT_CHANNEL_WHISPER_TARGET", nil, UIDROPDOWNMENU_MENU_LEVEL, nil, not (UnitIsPlayer("target") and UnitFactionGroup("player") == UnitFactionGroup("target")))
+			Outfitter:AddSubmenuItem(pFrame, Outfitter.cExportChannelOthers, "EXPORT_OTHERS")
+
+		elseif UIDROPDOWNMENU_MENU_VALUE == "BANKING" then
 			Outfitter:AddMenuItem(pFrame, Outfitter.cDepositToBank, "DEPOSIT", nil, UIDROPDOWNMENU_MENU_LEVEL, nil, not Outfitter.BankFrameIsOpen)
 			Outfitter:AddMenuItem(pFrame, Outfitter.cDepositUniqueToBank, "DEPOSITUNIQUE", nil, UIDROPDOWNMENU_MENU_LEVEL, nil, not Outfitter.BankFrameIsOpen)
 			Outfitter:AddMenuItem(pFrame, Outfitter.cWithdrawFromBank, "WITHDRAW", nil, UIDROPDOWNMENU_MENU_LEVEL, nil, not Outfitter.BankFrameIsOpen)
@@ -2681,6 +2719,13 @@ function Outfitter:InitializeOutfitMenu(pFrame, pOutfit)
 			end
 		end
 	elseif UIDROPDOWNMENU_MENU_LEVEL == 3 then
+		if UIDROPDOWNMENU_MENU_VALUE == "EXPORT_OTHERS" then
+			local channels={GetChannelList()}
+			for i=1,table.getn(channels)/2 do
+				Outfitter:AddMenuItem(pFrame, channels[i*2-1]..".  "..channels[i*2], "EXPORT_CHANNEL_OTHERS", nil, UIDROPDOWNMENU_MENU_LEVEL)
+			end
+
+		end
 		for _, vPresetScript in ipairs(Outfitter.PresetScripts) do
 			if not vPresetScript.Class
 			or vPresetScript.Class == Outfitter.PlayerClass then
@@ -2759,6 +2804,46 @@ function Outfitter:SetShowHotkeyMessages(pShowHotkeyMessages)
 	gOutfitter_Settings.Options.DisableHotkeyMessages = not pShowHotkeyMessages
 	
 	Outfitter:Update(false)
+end
+
+StaticPopupDialogs.OUTFITTER_CONFIRM_EXPORT_URL =
+{
+	text = TEXT(Outfitter.cExportConfirmURL),
+	button1 = TEXT(YES),
+	button2 = TEXT(NO),
+	
+	OnAccept = function(_, data2)
+		Outfitter:SetExportURLEditbox(data2)
+	end,
+	
+	OnCancel = function(data)
+		StaticPopup_Hide("OUTFITTER_CONFIRM_EXPORT_URL")
+		Outfitter:SetExportURLEditbox(data)
+	end,
+
+	OnEscapePressed = function()
+		StaticPopup_Hide("OUTFITTER_CONFIRM_EXPORT_URL")
+	end,
+
+	timeout = 0,
+	whileDead = true,
+	hideOnEscape = true,
+	hasEditBox = false,
+}
+
+function Outfitter:CheckExportURLEditbox(pExportURLEditboxContent)
+	if not (pExportURLEditboxContent == gOutfitter_Settings.Options.ExportURL) then
+		local dialog = StaticPopup_Show("OUTFITTER_CONFIRM_EXPORT_URL", gOutfitter_Settings.Options.ExportURL, pExportURLEditboxContent)
+		if dialog then
+			dialog.data = gOutfitter_Settings.Options.ExportURL
+			dialog.data2 = pExportURLEditboxContent
+		end
+	end
+end
+
+function Outfitter:SetExportURLEditbox(pExportURLEditboxContent)
+	gOutfitter_Settings.Options.ExportURL = pExportURLEditboxContent
+	OutfitterExportURLEditbox:SetText(pExportURLEditboxContent)
 end
 
 function Outfitter.MinimapDropDown_OnLoad()
@@ -3486,6 +3571,7 @@ function Outfitter:Update(pOutfitsChanged)
 		OutfitterTooltipInfo:SetChecked(not gOutfitter_Settings.Options.DisableToolTipInfo)
 		OutfitterShowHotkeyMessages:SetChecked(not gOutfitter_Settings.Options.DisableHotkeyMessages)
 		OutfitterShowOutfitBar:SetChecked(gOutfitter_Settings.OutfitBar.ShowOutfitBar)
+		OutfitterExportURLEditbox:SetText(gOutfitter_Settings.Options.ExportURL and gOutfitter_Settings.Options.ExportURL or "")
 	end
 end
 
@@ -11230,4 +11316,450 @@ function Outfitter.GetFrameEffectiveBounds(pFrame)
 	       pFrame:GetRight() * vEffectiveScale,
 	       pFrame:GetTop() * vEffectiveScale,
 	       pFrame:GetBottom() * vEffectiveScale
+end
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+local cSortedSlotNames = {
+	"HeadSlot",
+	"NeckSlot",
+	"ShoulderSlot",
+	"BackSlot",
+	"ChestSlot",
+	"ShirtSlot",
+	"TabardSlot",
+	"WristSlot",
+	"HandsSlot",
+	"WaistSlot",
+	"LegsSlot",
+	"FeetSlot",
+	"Finger0Slot",
+	"Finger1Slot",
+	"Trinket0Slot",
+	"Trinket1Slot",
+	"MainHandSlot",
+	"SecondaryHandSlot",
+	"RangedSlot",
+	"AmmoSlot",
+}
+
+local function MangleSlotNames(sSlot)
+	local class = UnitClass("player")
+	local str = sSlot
+
+	str = string.gsub(str, "Slot", "")
+	str = string.gsub(str, "Secondary", "Off")
+	str = string.gsub(str, "1", "2")
+	str = string.gsub(str, "0", "1")
+
+	if class == "Shaman" then
+		str = string.gsub(str, "Ranged", "Totem")
+	elseif class == "Paladin" then
+		str = string.gsub(str, "Ranged", "Libram")
+	elseif class == "Druid" then
+		str = string.gsub(str, "Ranged", "Idol")
+	end
+
+	return str
+end
+
+local function OutfitExportFrame()
+	local frame = getglobal("Outfitter_ExportFrame")
+
+	if frame and frame:IsFrameType("frame") then
+		frame.eb:SetText("")
+		frame.textbackup = nil
+		return frame
+	end
+
+	frame = CreateFrame("Frame", "Outfitter_ExportFrame")
+	frame:EnableMouse(true)
+	frame:EnableKeyboard(false)
+	frame:SetMovable(true)
+	frame:RegisterForDrag("LeftButton")
+	frame:SetClampedToScreen(true)
+	frame:SetFrameStrata("MEDIUM")
+	frame:SetWidth(640)
+	frame:SetHeight(304)
+	frame:SetPoint("CENTER", UIParent, "CENTER", 0, 150)
+
+	frame:SetBackdrop( {
+		bgFile = "Interface\\ChatFrame\\ChatFrameBackground",
+		edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+		edgeSize = 32,
+		insets = { left = 10, right = 10, top = 10, bottom = 10 }
+	});
+	frame:SetBackdropColor(.01, .01, .01, .31)
+
+	local fs_title = frame:CreateFontString(nil, "ARTWORK")
+	fs_title:SetPoint("TOPLEFT", frame, "TOPLEFT", 26, -16)
+	fs_title:SetFontObject("ChatFontNormal")
+	fs_title:SetTextColor(1, 1, 1, .71)
+	fs_title:SetText("Outfitter Export Frame")
+
+	frame.fs_title = fs_title
+
+	local btn_close = CreateFrame("Button", nil, frame)
+	local btn_close = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
+	btn_close:SetWidth(24)
+	btn_close:SetHeight(24)
+	btn_close:SetPoint("CENTER", frame, "TOPRIGHT", -24, -24)
+	
+	btn_close:SetScript("OnClick", function()
+		if arg1 == "LeftButton" then
+			local frame = this:GetParent()
+			if frame:IsVisible() then
+				this:SetButtonState("NORMAL")
+				frame:Hide()
+			end
+		end
+	end)
+	
+	frame.btn_close = btn_close
+
+	local eb = CreateFrame("EditBox", nil, frame)
+	eb:SetPoint("TOPLEFT", frame, "TOPLEFT", 16, -36)
+	eb:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -16, 14)
+	eb:EnableKeyboard(true)
+	eb:SetAutoFocus(false)
+	eb:SetMultiLine(true)
+	eb:SetFontObject("ChatFontSmall")
+	eb:SetBackdrop( {
+		bgFile = "Interface\\ChatFrame\\ChatFrameBackground"
+	});
+	eb:SetBackdropColor(.07, .07, .07, .77)
+	eb:SetTextColor(.91, .91, .91, .71)
+	eb:SetText("")
+	eb:ClearFocus()
+
+	frame.eb = eb
+
+	--
+	-- Frame Events
+	--
+	frame:SetScript("OnMouseDown", function()
+		if arg1 == "LeftButton" and not this.isMoving then
+			if this:IsMovable() then
+				this:SetFrameStrata("FULLSCREEN_DIALOG")
+				this:SetBackdropColor(.17, .01, .01, .31 + .17)
+				this:StartMoving()
+				this.isMoving = true
+			end
+		end
+	end)
+
+	frame:SetScript("OnMouseUp", function()
+		if arg1 == "LeftButton" and this.isMoving then
+			this:StopMovingOrSizing()
+			this:SetFrameStrata("MEDIUM")
+			this:SetBackdropColor(.01, .01, .01, .31)
+			this.isMoving = false
+		end
+	end)
+
+	frame:SetScript("OnHide", function()
+		if this.isMoving then
+			this:StopMovingOrSizing()
+			this:SetFrameStrata("MEDIUM")
+			this:SetBackdropColor(.01, .01, .01, .31)
+			this.isMoving = false
+			this.textbackup = nil
+		end
+	end)
+
+	frame.eb:SetScript("OnEscapePressed", function()
+		this:ClearFocus()
+	end)
+
+	frame.eb:SetScript("OnChar", function(self, text)
+		local backup = self:GetParent().textbackup
+
+		if text and backup then
+			self:SetText(backup)
+			self:ClearFocus()
+		end
+	end)
+
+	return frame
+end
+
+function Outfitter:ExportCurrent(pOutfit)
+	local ret = {}
+
+	for k, v in pairs( pOutfit.Items ) do
+		local item = v
+		local slot = k
+		local link = Outfitter:GenerateItemLink(item)
+		local itemstr = ""
+		if link then
+			local _, _, quality = GetItemInfo(item.Code)
+			local _, _, _, hex = GetItemQualityColor(quality)
+			itemstr = hex..link
+		else
+			itemstr = "Empty"
+		end
+
+		ret[slot] = itemstr
+	end
+
+	return ret
+end
+
+function Outfitter.OutfitMenuActions.EXPORT_SIMPLE(pOutfit)
+	local name = pOutfit.Name
+	local outfit = Outfitter:ExportCurrent(pOutfit)
+	local frame = OutfitExportFrame()
+	
+	local maxwidth = 0
+	local tmpfs = frame:CreateFontString(nil, nil, nil)
+	tmpfs:SetFontObject("ChatFontSmall")
+
+	local txtcol = tmpfs:GetTextColor()
+
+	frame.eb:Insert("Outfit: '" .. name .."'\n")
+	for _, v in pairs( cSortedSlotNames ) do
+		local slot = MangleSlotNames(v)
+		local item = outfit[v]
+
+		tmpfs:SetText(slot..":  "..item.."   ")
+		local width = tmpfs:GetWidth()
+		if width > maxwidth then maxwidth = width end
+
+		frame.eb:Insert(slot..":  "..item.."\n")
+	end
+
+	frame.textbackup = frame.eb:GetText()
+	frame:SetWidth(maxwidth+24)
+	frame:Show()
+end
+
+function Outfitter.OutfitMenuActions.EXPORT_URLS(pOutfit)
+	local name = pOutfit.Name
+	local outfit = Outfitter:ExportCurrent(pOutfit)
+	--local url = "https://www.burning-crusade.com/database/?item="
+	local url = gOutfitter_Settings.Options.ExportURL and gOutfitter_Settings.Options.ExportURL or ""
+	local frame = OutfitExportFrame()
+	
+
+	local maxwidth = 0
+	local tmpfs = frame:CreateFontString(nil, nil, nil)
+	tmpfs:SetFontObject("ChatFontSmall")
+
+	frame.eb:Insert("Outfit: '" .. name .."'\n")
+	for _, v in pairs( cSortedSlotNames ) do
+		local slot = MangleSlotNames(v)
+		local item = outfit[v]
+		local url_id = ""
+
+		if not (item == "Empty") then 
+			url_id = url..string.match(outfit[v], "|?Hitem:?(%d+)")
+		end
+
+		tmpfs:SetText(slot..":  "..item.."     "..url_id.."   ")
+		local width = tmpfs:GetWidth()
+		if width > maxwidth then maxwidth = width end
+
+		frame.eb:Insert(slot..":  "..item.."    "..url_id.."\n")
+	end
+
+	frame.textbackup = frame.eb:GetText()
+	frame:SetWidth(maxwidth+24)
+	frame:Show()
+end
+
+local function OutfitToChannel(pOutfit, sChanType, sChannel)
+	local chanType = strupper(sChanType)
+	local channel = sChannel
+	local name = pOutfit.Name
+	local outfit = Outfitter:ExportCurrent(pOutfit)
+
+	local randommark = "{rt"..math.random(1,8).."}"
+	local str = " "..randommark.." [ExportOutfit '"..pOutfit.Name.."'] "..randommark.."  "
+
+	local c = false
+	for _, v in pairs( cSortedSlotNames ) do
+		local slot = MangleSlotNames(v)
+		local item = outfit[v]
+		
+		str = str..slot..": "..item.."   "
+		if c then
+			if chanType == "SELF" then
+				DEFAULT_CHAT_FRAME:AddMessage(str)
+			else
+				SendChatMessage(str, chanType, nil, channel)
+			end
+			c = false
+			str = ""
+		else
+			c = true
+		end
+	end
+end
+
+
+function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_SELF(pOutfit)
+	local chanType = "SELF"
+	local channel = nil
+
+	OutfitToChannel(pOutfit, chanType, channel)
+end
+
+
+function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_SAY(pOutfit)
+	local chanType = "SAY"
+	local channel = nil
+
+	OutfitToChannel(pOutfit, chanType, channel)
+end
+
+function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_PARTY(pOutfit)
+	local chanType = "PARTY"
+	local channel = nil
+
+	if GetNumPartyMembers() > 0 then
+		OutfitToChannel(pOutfit, chanType, channel)	
+	else
+		if GetNumRaidMembers() > 0 then
+			Outfitter:ErrorMessage("There are no players in your party.")
+		else
+			Outfitter:ErrorMessage("You are not in a party/raid")
+		end
+	end
+end
+
+function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_RAID(pOutfit)
+	local chanType = "RAID"
+	local channel = nil
+
+	if GetNumRaidMembers() > 0 then
+		OutfitToChannel(pOutfit, chanType, channel)	
+	else
+		Outfitter:ErrorMessage("You are not in a party/raid")
+	end
+end
+
+function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_GUILD(pOutfit)
+	local chanType = "GUILD"
+	local channel = nil
+
+	if IsInGuild() then
+		OutfitToChannel(pOutfit, chanType, channel)	
+	else
+		Outfitter:ErrorMessage("You are not in a guild")
+	end
+
+end
+
+function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_OTHERS(pOutfit, pChannel)
+	local chanType = "CHANNEL"
+	local channel = nil
+
+	if pChannel then
+		channel = pChannel
+	else
+		channel = string.match(UIDropDownMenuButton_GetName(self), "(%d+)")
+	end
+	
+	if channel then
+		OutfitToChannel(pOutfit, chanType, channel)
+	else
+		Outfitter:ErrorMessage("Could not retrieve channel's index")
+	end
+end
+
+
+StaticPopupDialogs.OUTFITTER_CHOOSE_EXPORT_TARGET =
+{
+	text = TEXT(Outfitter.cExportChannelWhisperMsg),
+	button1 = TEXT(WHISPER),
+	button2 = TEXT(CANCEL),
+	
+	OnShow = function()
+		getglobal(this:GetName().."Button1"):Disable()
+		getglobal(this:GetName().."EditBox"):SetText("")
+		getglobal(this:GetName().."Button1"):Disable()
+	end,
+	
+	OnAccept = function(data)
+		local content = getglobal(this:GetParent():GetName().."EditBox"):GetText()
+		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_WHISPER_TARGET(data, content)
+	end,
+	
+	EditBoxOnEscapePressed = function()
+		StaticPopup_Hide("OUTFITTER_CHOOSE_EXPORT_TARGET")
+	end,
+
+	EditBoxOnTextChanged = function()
+		getglobal(this:GetParent():GetName().."Button1"):Enable()
+	end,
+
+	timeout = 0,
+	whileDead = true,
+	hideOnEscape = true,
+	hasEditBox = true,
+}
+
+function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_WHISPER_TO(pOutfit)
+	local chanType = "WHISPER"
+	
+	local dialog = StaticPopup_Show("OUTFITTER_CHOOSE_EXPORT_TARGET", pOutfit.Name)
+	if dialog then
+		dialog.data = pOutfit
+	end
+end
+
+function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_WHISPER_TARGET(pOutfit, pTarget)
+	local chanType = "WHISPER"
+	local channel = pTarget and pTarget or UnitName("target")
+	
+	OutfitToChannel(pOutfit, chanType, channel)
+end
+
+
+function Outfitter:CommandPlaceholder(pOutfit, pCat, pPar1, pPar2, pPar3)
+	DEFAULT_CHAT_FRAME:AddMessage("Outfitter CommandPlaceholder")
+	DEFAULT_CHAT_FRAME:AddMessage("  pOutfit: " .. (pOutfit		and "'" .. pOutfit.Name	.."'" or "nil"))
+	DEFAULT_CHAT_FRAME:AddMessage("     pCat: " .. (pCat		and "'" .. pCat			.."'" or "nil"))
+	DEFAULT_CHAT_FRAME:AddMessage("    pPar1: " .. (pPar1		and "'" .. pPar1		.."'" or "nil"))
+	DEFAULT_CHAT_FRAME:AddMessage("    pPar2: " .. (pPar2		and "'" .. pPar2		.."'" or "nil"))
+	DEFAULT_CHAT_FRAME:AddMessage("    pPar3: " .. (pPar3		and "'" .. pPar3		.."'" or "nil"))
+end
+
+function Outfitter:CommandExport(pOutfit, pCat, pPar1, pPar2, pPar3)
+	local outfit = pOutfit
+	local exptype = strupper(pPar1)
+	local channel = pPar2
+
+	if exptype == "SELF" then
+		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_SELF(outfit)
+	elseif exptype == "SAY" then
+		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_SAY(outfit)
+	elseif exptype == "PARTY" then
+		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_PARTY(outfit)
+	elseif exptype == "RAID" then
+		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_RAID(outfit)
+	elseif exptype == "GUILD" then
+		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_GUILD(outfit)
+	elseif exptype == "WHISPERTARGET" then
+		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_WHISPER_TARGET(outfit, nil)
+	elseif exptype == "WHISPER" then
+		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_WHISPER_TARGET(outfit, channel)
+	elseif exptype == "CHANNEL" then
+		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_OTHERS(outfit, channel)
+	end
+end
+
+function Outfitter:CommandGUIExport(pOutfit, pCat, pPar1, pPar2, pPar3)
+	local exptype = pPar1
+
+	exptype = strlower(exptype)
+	if exptype == "simple" then
+		Outfitter.OutfitMenuActions.EXPORT_SIMPLE(pOutfit)
+	elseif exptype == "urls" then
+		Outfitter.OutfitMenuActions.EXPORT_URLS(pOutfit)
+	else
+		Outfitter:ErrorMessage("Could not recognize the subcommand '%s'", pPar1)
+	end
 end

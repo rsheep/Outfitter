@@ -1,12 +1,15 @@
 ## Interface: 20400
 ## Author: John Stephen
 ## Title: Outfitter
-## Version: 4.2.6
+## Version: 4.2.6.mod
 ## Notes: Clothing and weapon management and automated equipment changes
 ## OptionalDeps: TankPoints
 ## RequiredDeps: 
 ## SavedVariablesPerCharacter: gOutfitter_Settings
 ## SavedVariables: gOutfitter_GlobalSettings
+## X-Mod: Outfitter-ModExport by mrmr
+## X-Website: http://github.com/rsheep/Outfitter
+## X-Date: 20160401
 
 MCDebugLib.lua
 MCSchedulerLib.lua

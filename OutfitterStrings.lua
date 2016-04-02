@@ -477,6 +477,7 @@ Outfitter.cEditScriptEllide = "Custom..."
 Outfitter.cEventsLabel = "Events:"
 Outfitter.cScriptLabel = "Script:"
 Outfitter.cSetCurrentItems = "Update to current items"
+
 Outfitter.cConfirmSetCurrentMsg = "Are you sure you want to update %s to use the currently equipped items? Note: Only slots currently enabled in the outfit will be updated -- you can turn on additional slots afterwards"
 Outfitter.cSetCurrent = "Update"
 Outfitter.cTyping = "Typing..."
@@ -536,3 +537,23 @@ Outfitter.cNoMissingItems = "No items are missing"
 
 Outfitter.cAutoChangesDisabled = "Automated changes are now disabled"
 Outfitter.cAutoChangesEnabled = "Automated changes are now enabled"
+
+Outfitter.cExportOutfit = "Export Outfit"
+Outfitter.cExportFrames = "Frames"
+Outfitter.cExportSimple = "Simple"
+Outfitter.cExportURLs = "URLs"
+Outfitter.cExportChannel = "Channel"
+Outfitter.cExportChannelSelf = "Self"
+Outfitter.cExportChannelSay = "Say"
+Outfitter.cExportChannelParty = "Party"
+Outfitter.cExportChannelRaid  = "Raid"
+Outfitter.cExportChannelGuild = "Guild"
+Outfitter.cExportChannelWhisperTo = "Whisper"
+Outfitter.cExportChannelWhisperTarget = "Whisper Target"
+Outfitter.cExportChannelOthers = "Others"
+Outfitter.cExportChannelWhisperMsg = "Type the player name to whisper the outfit '%s' to"
+
+Outfitter.cExportOptionsExportURL = "URL used for 'ExportFrame' display"
+Outfitter_cExportOptionsExportURL = Outfitter.cExportOptionsExportURL
+
+Outfitter.cExportConfirmURL = "The Export URL was changed from\n|cffdd7777%s|cffffffff\nto\n|cff7777dd%s|cffffffff\n\nDo you want to save it?"
