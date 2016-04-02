@@ -14,7 +14,7 @@ Hope you will enjoy it!
 
 Usage
 -----
-Just bring-out the classic **?**</i> `Outfitter's DropDownMenu` and you will find the "Export" submenu there.
+Just bring-out the classic `Outfitter's DropDownMenu` and you will find the "Export" submenu there.
 
 Should be self explanatory really.
 
