@@ -4,87 +4,85 @@ Outfitter.OutfitBar = {}
 
 Outfitter.OutfitBar.UniqueNameIndex = 1
 
-Outfitter.OutfitBar.cBlizzardIconPath = "Interface\\Icons\\"
-Outfitter.OutfitBar.cBlizzardIconPathLength = string.len(Outfitter.OutfitBar.cBlizzardIconPath)
-Outfitter.OutfitBar.cWildcardIconName = "INV_Misc_QuestionMark"
-Outfitter.OutfitBar.cWildcardIcon = Outfitter.OutfitBar.cBlizzardIconPath..Outfitter.OutfitBar.cWildcardIconName
+Outfitter.OutfitBar.cWildcardIcon = 134400
 
 Outfitter.OutfitBar.cDefaultScriptIcons =
 {
 	ArgentDawn = "INV_Jewelry_Talisman_07",
-	Riding = "Ability_Mount_RidingHorse",
-	Fishing = "Trade_Fishing",
-	Swimming = "Spell_Shadow_DemonBreath",
-	City = "INV_Shirt_Black_01",
-	Battleground = "Ability_Hunter_RapidKilling",
-	AB = "Ability_Hunter_RapidKilling",
-	AV = "Ability_Hunter_RapidKilling",
-	WSG = "Ability_Hunter_RapidKilling",
-	EotS = "Ability_Hunter_RapidKilling",
-	Arena = "Ability_Hunter_RapidKilling",
-	Battle = "Ability_Warrior_OffensiveStance",
-	Defensive = "Ability_Warrior_DefensiveStance",
-	Berserker = "Ability_Racial_Avatar",
-	Bear = "Ability_Racial_BearForm",
-	Cat = "Ability_Druid_CatForm",
-	Aquatic = "Ability_Druid_AquaticForm",
-	Flight = "Ability_Druid_FlightForm",
-	Travel = "Ability_Druid_TravelForm",
-	Moonkin = "Ability_Druid_TreeOfLife",
-	Tree = "Ability_Druid_TreeOfLife",
-	Prowl = "Ability_Stealth",
-	Stealth = "Ability_Stealth",
-	Shadowform = "Spell_Shadow_Shadowform",
-	GhostWolf = "Spell_Nature_SpiritWolf",
-	Monkey = "Ability_Hunter_AspectOfTheMonkey",
-	Hawk = "Spell_Nature_RavenForm",
-	Cheetah = "Ability_Mount_JungleTiger",
-	Pack = "Ability_Mount_WhiteTiger",
-	Beast = "Ability_Mount_PinkTiger",
-	Wild = "Spell_Nature_ProtectionformNature",
-	Viper = "Ability_Hunter_AspectOfTheViper",
-	Feigning = "Ability_Rogue_FeignDeath",
-	Evocate = "Spell_Nature_Purge",
-	Solo = "INV_Mask_05",
-	LOW_HEALTH = "Ability_Rogue_FeignDeath",
-	HAS_BUFF = "Spell_Fire_FlameTounge",
-	Dining = "INV_Misc_Fork&Knife",
-	Spirit = "Spell_Holy_DivineSpirit",
-	Caster = "INV_Staff_14",
-	HERBALISM = "INV_Misc_Herb_13",
-	MINING = "INV_Pick_03",
-	SKINNING = "INV_Weapon_ShortBlade_01",
-	LOCKPICKING = "INV_Misc_Key_03",
-	
-	-- Stat outfits
-	
-	FireResist = "INV_Elemental_Primal_Fire",
-	NatureResist = "Spell_Nature_ProtectionFromNature",
-	ShadowResist = "INV_Elemental_Primal_Shadow",
-	ArcaneResist = "Spell_Nature_WispSplode",
-	FrostResist = "Spell_Frost_ColdHearted",
-	
-	[Outfitter.cNakedOutfit] = "INV_Misc_CelebrationCake_01",
+	Riding = 132261,
+	Fishing = 136245,
+	Swimming = 136148,
+	City = 135022,
+	Battleground = 1376041,
+	AB = 1376041,
+	AV = 1376041,
+	WSG = 1376041,
+	EotS = 1376041,
+	Arena = 1376041,
+	Battle = 132355,
+	Defensive = 132341,
+	Berserker = 132347,
+	Bear = 132276,
+	Cat = 132115,
+	Aquatic = 132144,
+	Flight = 132144,
+	Travel = 132144,
+	Moonkin = 136096,
+	Tree = 136041,
+	Prowl = 132089,
+	Stealth = 132320,
+	Shadowform = 136200,
+	GhostWolf = 136095,
+	Cheetah = 132242,
+	Wild = 136074,
+	Feigning = 132293,
+	Evocate = 136075,
+	Solo = 132132,
+	LOW_HEALTH = 132293,
+	HAS_BUFF = 135826,
+	Dining = 134062,
+	Spirit = 135934,
+	Caster = 135157,
+	HERBALISM = 136246,
+	MINING = 134708,
+	SKINNING = 134366,
+	LOCKPICKING = 136058,
+	COOKING = 133971,
+
+	[Outfitter.cNakedOutfit] = 237360,
 }
 
 function Outfitter.OutfitBar:Construct()
-	if not gOutfitter_Settings.OutfitBar then
-		gOutfitter_Settings.OutfitBar = {}
+	self.Settings = Outfitter.Settings
+
+	if not self.Settings.OutfitBar then
+		self.Settings.OutfitBar = {}
 	end
 	
-	if not gOutfitter_Settings.OutfitBar.Position then
-		gOutfitter_Settings.OutfitBar.Position =
-		{
-			RelativePoint = "TOPLEFT",
-			x = 200,
-			y = -200,
-		}
+	-- Keep the default position handy in one place
+	self.DefaultPosition = {
+		RelativePoint = "TOPLEFT",
+		x = 200,
+		y = -200,
+	}
+
+	-- Set the default position if it's missing
+	if not self.Settings.OutfitBar.Position then
+		self.Settings.OutfitBar.Position = self.DefaultPosition
 	end
 	
 	if self.Initialized
 	or not self.CanInitialize
-	or not gOutfitter_Settings.OutfitBar.ShowOutfitBar then
+	or not self.Settings.OutfitBar.ShowOutfitBar then
 		return
+	end
+	
+	if Outfitter.LBF and not Outfitter.LBFGroup then
+		Outfitter.LBFGroup = Outfitter.LBF:Group("Outfitter")
+		Outfitter.LBF:RegisterSkinCallback("Outfitter", Outfitter.LBFSkinCallback, Outfitter)
+		if self.Settings.LBFSettings then
+			Outfitter.LBFGroup:Skin(self.Settings.LBFSettings.SkinID, self.Settings.LBFSettings.Gloss, self.Settings.LBFSettings.Backdrop, self.Settings.LBFSettings.Colors)
+		end
 	end
 	
 	self.Bars = {}
@@ -92,35 +90,43 @@ function Outfitter.OutfitBar:Construct()
 	self.DragBar1 = Outfitter.OutfitBar._DragBar:New(self)
 	self.DragBar2 = Outfitter.OutfitBar._DragBar:New(self)
 	
-	self:SetScale(gOutfitter_Settings.OutfitBar.Scale or 1) -- This also sets the position
+	self:SetScale(self.Settings.OutfitBar.Scale or 1) -- This also sets the position
 	
 	Outfitter:RegisterOutfitEvent("WEAR_OUTFIT", function () Outfitter.OutfitBar:ChangedOutfits() end)
 	Outfitter:RegisterOutfitEvent("UNWEAR_OUTFIT", function () Outfitter.OutfitBar:ChangedOutfits() end)
 	Outfitter:RegisterOutfitEvent("ADD_OUTFIT", function () Outfitter.OutfitBar:ChangedOutfits() end)
 	Outfitter:RegisterOutfitEvent("DELETE_OUTFIT", function () Outfitter.OutfitBar:ChangedOutfits() end)
 	Outfitter:RegisterOutfitEvent("EDIT_OUTFIT", function () Outfitter.OutfitBar:ChangedOutfits() end)
-	
+	Outfitter.EventLib:RegisterEvent("PET_BATTLE_OPENING_START", self.PetBattleStarted, self)
+	Outfitter.EventLib:RegisterEvent("PET_BATTLE_OVER", self.PetBattleFinished, self)
 	self.Initialized = true
 	
 	self:Show()
 end
 
 function Outfitter.OutfitBar:InitializeSettings()
-	gOutfitter_Settings.OutfitBar =
+	self.Settings = Outfitter.Settings
+	
+	self.Settings.OutfitBar =
 	{
 		ShowOutfitBar = false,
-		Position =
-		{
-			RelativePoint = "TOPLEFT",
-			x = 200,
-			y = -200,
-		},
+		Position = self.DefaultPosition
 	}
 end
 
+function Outfitter.OutfitBar:ResetPosition()
+	-- Set the position to the default
+	self.Settings.OutfitBar.Position = self.DefaultPosition
+
+	-- If the bar has been initialized then update it to reflect the new position
+	if self.Initialized then
+		self:UpdateBars2()
+	end
+end
+
 function Outfitter.OutfitBar:UpdateDragBarOrientation()
-	self.DragBar1:SetVerticalOrientation(gOutfitter_Settings.OutfitBar.Vertical)
-	self.DragBar2:SetVerticalOrientation(gOutfitter_Settings.OutfitBar.Vertical)
+	self.DragBar1:SetVerticalOrientation(self.Settings.OutfitBar.Vertical)
+	self.DragBar2:SetVerticalOrientation(self.Settings.OutfitBar.Vertical)
 end
 
 function Outfitter.OutfitBar:Show()
@@ -159,7 +165,7 @@ function Outfitter.OutfitBar:AdjustAlpha()
 		return
 	end
 	
-	self:SetAlpha(Outfitter.InCombat and gOutfitter_Settings.OutfitBar.CombatAlpha or gOutfitter_Settings.OutfitBar.Alpha or 1)
+	self:SetAlpha(Outfitter.InCombat and self.Settings.OutfitBar.CombatAlpha or self.Settings.OutfitBar.Alpha or 1)
 end
 
 function Outfitter.OutfitBar:SetAlpha(pAlpha)
@@ -194,17 +200,15 @@ function Outfitter.OutfitBar:SetScale(pScale)
 	self:UpdateBars2()
 end
 
-function Outfitter.OutfitBar:DragBar_OnClick()
-	if arg1 == "RightButton" then
+function Outfitter.OutfitBar:DragBar_OnClick(button)
+	if button == "RightButton" then
 		if not self.SettingsDialog then
 			self.SettingsDialog = Outfitter.OutfitBar._SettingsDialog:New()
 		end
 		
 		if self.SettingsDialog:IsVisible() then
-			Outfitter:TestMessage("Hiding")
 			self.SettingsDialog:HideDialog()
 		else
-			Outfitter:TestMessage("Showing")
 			self.SettingsDialog:ShowDialog()
 		end
 	elseif self.SettingsDialog then
@@ -213,7 +217,7 @@ function Outfitter.OutfitBar:DragBar_OnClick()
 end
 	
 function Outfitter.OutfitBar:SetShowOutfitBar(pShowBar)
-	gOutfitter_Settings.OutfitBar.ShowOutfitBar = pShowBar
+	self.Settings.OutfitBar.ShowOutfitBar = pShowBar
 	
 	if pShowBar then
 		self:Show()
@@ -235,20 +239,20 @@ function Outfitter.OutfitBar:IsOutfitShown(pOutfit)
 end
 
 function Outfitter.OutfitBar:StartFrameFades(pForceDragBars)
-	if pForceDragBars or not gOutfitter_Settings.OutfitBar.LockPosition then
+	if pForceDragBars or not self.Settings.OutfitBar.LockPosition then
 		UIFrameFadeOut(self.DragBar1, 0.3, 1, 0)
 		UIFrameFadeOut(self.DragBar2, 0.3, 1, 0)
 	end
 	
-	if gOutfitter_Settings.OutfitBar.Alpha and gOutfitter_Settings.OutfitBar.Alpha ~= 1 then
+	if self.Settings.OutfitBar.Alpha and self.Settings.OutfitBar.Alpha ~= 1 then
 		for vIndex = 1, #self.Bars do
-			UIFrameFadeOut(self.Bars[vIndex], 0.5, 1, gOutfitter_Settings.OutfitBar.Alpha)
+			UIFrameFadeOut(self.Bars[vIndex], 0.5, 1, self.Settings.OutfitBar.Alpha)
 		end
 	end
 end
 
 function Outfitter.OutfitBar:StopFrameFades(pForceDragBars)
-	if pForceDragBars or not gOutfitter_Settings.OutfitBar.LockPosition then
+	if pForceDragBars or not self.Settings.OutfitBar.LockPosition then
 		UIFrameFadeRemoveFrame(self.DragBar1)
 		UIFrameFadeRemoveFrame(self.DragBar2)
 	end
@@ -259,7 +263,7 @@ function Outfitter.OutfitBar:StopFrameFades(pForceDragBars)
 end
 
 function Outfitter.OutfitBar:ShowDragBars(pForceShow)
-	if pForceShow or not gOutfitter_Settings.OutfitBar.LockPosition then
+	if pForceShow or not self.Settings.OutfitBar.LockPosition then
 		self.DragBar1:SetAlpha(1)
 		self.DragBar2:SetAlpha(1)
 	end
@@ -274,8 +278,8 @@ function Outfitter.OutfitBar:HideDragBars(pForceHide)
 end
 
 function Outfitter.OutfitBar:PositionChanged()
-	if not gOutfitter_Settings.OutfitBar.Position then
-		gOutfitter_Settings.OutfitBar.Position = {}
+	if not self.Settings.OutfitBar.Position then
+		self.Settings.OutfitBar.Position = {}
 	end
 	
 	local vBarScale = self.Bars[1]:GetEffectiveScale()
@@ -298,19 +302,19 @@ function Outfitter.OutfitBar:PositionChanged()
 	local vIsAnchorRight = 0.5 * (vBarLeft + vBarRight) < 0.5 * (vUILeft + vUIRight)
 	
 	if vIsAnchorBottom then
-		gOutfitter_Settings.OutfitBar.Position.RelativePoint = "BOTTOM"
-		gOutfitter_Settings.OutfitBar.Position.y = vBarBottom - vUIBottom
+		self.Settings.OutfitBar.Position.RelativePoint = "BOTTOM"
+		self.Settings.OutfitBar.Position.y = vBarBottom - vUIBottom
 	else
-		gOutfitter_Settings.OutfitBar.Position.RelativePoint = "TOP"
-		gOutfitter_Settings.OutfitBar.Position.y = vBarTop - vUITop
+		self.Settings.OutfitBar.Position.RelativePoint = "TOP"
+		self.Settings.OutfitBar.Position.y = vBarTop - vUITop
 	end
 	
 	if vIsAnchorRight then
-		gOutfitter_Settings.OutfitBar.Position.RelativePoint = gOutfitter_Settings.OutfitBar.Position.RelativePoint.."LEFT"
-		gOutfitter_Settings.OutfitBar.Position.x = vBarLeft - vUILeft
+		self.Settings.OutfitBar.Position.RelativePoint = self.Settings.OutfitBar.Position.RelativePoint.."LEFT"
+		self.Settings.OutfitBar.Position.x = vBarLeft - vUILeft
 	else
-		gOutfitter_Settings.OutfitBar.Position.RelativePoint = gOutfitter_Settings.OutfitBar.Position.RelativePoint.."RIGHT"
-		gOutfitter_Settings.OutfitBar.Position.x = vBarRight - vUIRight
+		self.Settings.OutfitBar.Position.RelativePoint = self.Settings.OutfitBar.Position.RelativePoint.."RIGHT"
+		self.Settings.OutfitBar.Position.x = vBarRight - vUIRight
 	end
 end
 
@@ -324,62 +328,60 @@ function Outfitter.OutfitBar:NewBar(pNumColumns, pNumRows)
 	Outfitter.InitializeFrame(vBar, Outfitter._ButtonBar, self._Bar)
 	
 	vBar:Construct(vName, pNumColumns, pNumRows)
-	vBar:SetScale(gOutfitter_Settings.OutfitBar.Scale or 1)
-	vBar:ShowBackground(not gOutfitter_Settings.OutfitBar.HideBackground)
+	vBar:SetScale(self.Settings.OutfitBar.Scale or 1)
+	vBar:ShowBackground(not self.Settings.OutfitBar.HideBackground)
 	
 	return vBar
 end
 
 function Outfitter.OutfitBar:GetDefaultIcons(pOutfit)
-	local vIcons = {}
-	
+	local iconIDs = {}
+	local usedIconIDs = {}
+
 	-- See if the script has a default icon
-	
-	local vTexture = Outfitter.OutfitBar.cDefaultScriptIcons[pOutfit.ScriptID]
-	
-	if vTexture then
-		table.insert(vIcons, Outfitter.OutfitBar.cBlizzardIconPath..vTexture)
+	local iconID = Outfitter.OutfitBar.cDefaultScriptIcons[pOutfit.ScriptID]
+	if iconID then
+		table.insert(iconIDs, iconID)
+		usedIconIDs[iconID] = true
 	end
 	
 	-- See if the optimization has a default icon
-	
-	vTexture = Outfitter.OutfitBar.cDefaultScriptIcons[pOutfit.StatID]
-	
-	if vTexture then
-		table.insert(vIcons, Outfitter.OutfitBar.cBlizzardIconPath..vTexture)
+	iconID = Outfitter.OutfitBar.cDefaultScriptIcons[pOutfit.StatID]
+	if iconID and not usedIconIDs[iconID] then
+		table.insert(iconIDs, iconID)
 	end
 	
 	-- See if the name has a default icon
-	
-	vTexture = Outfitter.OutfitBar.cDefaultScriptIcons[pOutfit.Name]
-	
-	if vTexture then
-		table.insert(vIcons, Outfitter.OutfitBar.cBlizzardIconPath..vTexture)
+	iconID = Outfitter.OutfitBar.cDefaultScriptIcons[pOutfit:GetName()]
+	if iconID and not usedIconIDs[iconID] then
+		table.insert(iconIDs, iconID)
 	end
 	
-	return vIcons
+	-- Done
+	return iconIDs
 end
 
 function Outfitter.OutfitBar:GetOutfitTexture(pOutfit)
-	-- If the icon specifies the texture then just use it
+	if not pOutfit then
+		return 132662
+	end
 	
-	if pOutfit.OutfitBar and pOutfit.OutfitBar.Texture then
-		return pOutfit.OutfitBar.Texture
+	-- If the icon specifies the texture then just use it
+	local vTexture = pOutfit:GetIcon()
+	if vTexture then
+		return vTexture
 	end
 	
 	-- See if the outfit has a default icon
-	
 	local vIcons = self:GetDefaultIcons(pOutfit)
-	
 	if #vIcons > 0 then
 		return vIcons[1]
 	end
 	
 	-- If it's a single-item outfit, use that item as the icon
-	
-	local	vOutfitItem
-	
-	for vInventorySlot, vItem in pairs(pOutfit.Items) do
+	local vOutfitItem
+	local vItems = pOutfit:GetItems()
+	for vInventorySlot, vItem in pairs(vItems) do
 		if not vOutfitItem then
 			vOutfitItem = vItem
 		else
@@ -397,8 +399,7 @@ function Outfitter.OutfitBar:GetOutfitTexture(pOutfit)
 	end
 	
 	-- Use a plain icon
-	
-	return "Interface\\Icons\\INV_Chest_Cloth_50"
+	return 132662
 end
 
 function Outfitter.OutfitBar:GetCursorTexture()
@@ -445,6 +446,16 @@ function Outfitter.OutfitBar:ChangedOutfits()
 	self:UpdateBars()
 end
 
+function Outfitter.OutfitBar:PetBattleStarted()
+	self:Hide()
+end
+
+function Outfitter.OutfitBar:PetBattleFinished()
+	if self.Settings.OutfitBar.ShowOutfitBar then
+		self:Show()
+	end
+end
+
 function Outfitter.OutfitBar:UpdateBars()
 	if not self.IsShown then
 		return
@@ -454,7 +465,7 @@ function Outfitter.OutfitBar:UpdateBars()
 	-- is not affected when there are multiple outfits being changed
 	-- simultaneously
 	
-	MCSchedulerLib:ScheduleUniqueTask(0.01, self.UpdateBars2, self)
+	Outfitter.SchedulerLib:ScheduleUniqueTask(0.01, self.UpdateBars2, self)
 end
 
 function Outfitter.OutfitBar:xor(a, b)
@@ -462,7 +473,7 @@ function Outfitter.OutfitBar:xor(a, b)
 end
 
 function Outfitter.OutfitBar:UpdateBars2()
-	MCSchedulerLib:UnscheduleTask(self.UpdateBars2, self)
+	Outfitter.SchedulerLib:UnscheduleTask(self.UpdateBars2, self)
 	
 	-- Update the title bar orientation
 	
@@ -470,13 +481,13 @@ function Outfitter.OutfitBar:UpdateBars2()
 	
 	--
 	
-	local vIsAnchorBottom = string.sub(gOutfitter_Settings.OutfitBar.Position.RelativePoint, 1, 6) == "BOTTOM"
-	local vIsAnchorRight = string.sub(gOutfitter_Settings.OutfitBar.Position.RelativePoint, -5) == "RIGHT"
-	local vStackBackwards = (gOutfitter_Settings.OutfitBar.Vertical and vIsAnchorBottom)
-	                     or (not gOutfitter_Settings.OutfitBar.Vertical and vIsAnchorRight)
+	local vIsAnchorBottom = string.sub(self.Settings.OutfitBar.Position.RelativePoint, 1, 6) == "BOTTOM"
+	local vIsAnchorRight = string.sub(self.Settings.OutfitBar.Position.RelativePoint, -5) == "RIGHT"
+	local vStackBackwards = (self.Settings.OutfitBar.Vertical and vIsAnchorBottom)
+	                     or (not self.Settings.OutfitBar.Vertical and vIsAnchorRight)
 	
-	local vDragBarAnchor = tern(self:xor(gOutfitter_Settings.OutfitBar.Vertical, vIsAnchorBottom), "BOTTOM", "TOP")..
-	                       tern(self:xor(gOutfitter_Settings.OutfitBar.Vertical, vIsAnchorRight), "LEFT", "RIGHT")
+	local vDragBarAnchor = (self:xor(self.Settings.OutfitBar.Vertical, vIsAnchorBottom) and "BOTTOM" or "TOP")..
+	                       (self:xor(self.Settings.OutfitBar.Vertical, vIsAnchorRight) and "LEFT" or "RIGHT")
 	
 	self.DidStackBackwards = vStackBackwards
 	
@@ -487,9 +498,9 @@ function Outfitter.OutfitBar:UpdateBars2()
 	self.DragBar1:SetPoint(
 			vDragBarAnchor,
 			UIParent,
-			gOutfitter_Settings.OutfitBar.Position.RelativePoint,
-			gOutfitter_Settings.OutfitBar.Position.x / self.DragBar1:GetEffectiveScale(),
-			gOutfitter_Settings.OutfitBar.Position.y / self.DragBar1:GetEffectiveScale())
+			self.Settings.OutfitBar.Position.RelativePoint,
+			self.Settings.OutfitBar.Position.x / self.DragBar1:GetEffectiveScale(),
+			self.Settings.OutfitBar.Position.y / self.DragBar1:GetEffectiveScale())
 	
 	-- Update the bars
 	
@@ -507,7 +518,7 @@ function Outfitter.OutfitBar:UpdateBars2()
 				
 				vBar:ClearAllPoints()
 				
-				if gOutfitter_Settings.OutfitBar.Vertical then
+				if self.Settings.OutfitBar.Vertical then
 					vBar:SetPoint("BOTTOMLEFT", vPreviousBar, "TOPLEFT")
 				else
 					vBar:SetPoint("TOPRIGHT", vPreviousBar, "TOPLEFT")
@@ -523,7 +534,7 @@ function Outfitter.OutfitBar:UpdateBars2()
 		end
 		
 		self.DragBar2:ClearAllPoints()
-		if gOutfitter_Settings.OutfitBar.Vertical then
+		if self.Settings.OutfitBar.Vertical then
 			self.DragBar2:SetPoint("BOTTOMLEFT", vPreviousBar, "TOPLEFT")
 		else
 			self.DragBar2:SetPoint("TOPRIGHT", vPreviousBar, "TOPLEFT")
@@ -535,7 +546,7 @@ function Outfitter.OutfitBar:UpdateBars2()
 				
 				vBar:ClearAllPoints()
 				
-				if gOutfitter_Settings.OutfitBar.Vertical then
+				if self.Settings.OutfitBar.Vertical then
 					vBar:SetPoint("TOPLEFT", vPreviousBar, "BOTTOMLEFT")
 				else
 					vBar:SetPoint("TOPLEFT", vPreviousBar, "TOPRIGHT")
@@ -551,7 +562,7 @@ function Outfitter.OutfitBar:UpdateBars2()
 		end
 		
 		self.DragBar2:ClearAllPoints()
-		if gOutfitter_Settings.OutfitBar.Vertical then
+		if self.Settings.OutfitBar.Vertical then
 			self.DragBar2:SetPoint("TOPLEFT", vPreviousBar, "BOTTOMLEFT", 0, 6)
 		else
 			self.DragBar2:SetPoint("TOPLEFT", vPreviousBar, "TOPRIGHT", -1, 0)
@@ -569,7 +580,7 @@ function Outfitter.OutfitBar:UpdateBars2()
 	local vBar1OffsetX, vBar1OffsetY = 0, 0
 	local vBar2OffsetX, vBar2OffsetY = 0, 0
 	
-	if gOutfitter_Settings.OutfitBar.Vertical then
+	if self.Settings.OutfitBar.Vertical then
 		if vIsAnchorBottom then
 			vBar1OffsetY = 4
 			vBar2OffsetY = 1
@@ -594,11 +605,11 @@ function Outfitter.OutfitBar:AnchorDragBar(pBar)
 	pBar:ClearAllPoints()
 	
 	pBar:SetPoint(
-			gOutfitter_Settings.OutfitBar.Position.RelativePoint,
+			self.Settings.OutfitBar.Position.RelativePoint,
 			UIParent,
-			gOutfitter_Settings.OutfitBar.Position.RelativePoint,
-			gOutfitter_Settings.OutfitBar.Position.x / self.DragBar1:GetEffectiveScale(),
-			gOutfitter_Settings.OutfitBar.Position.y / self.DragBar1:GetEffectiveScale())
+			self.Settings.OutfitBar.Position.RelativePoint,
+			self.Settings.OutfitBar.Position.x / self.DragBar1:GetEffectiveScale(),
+			self.Settings.OutfitBar.Position.y / self.DragBar1:GetEffectiveScale())
 end
 
 function Outfitter.OutfitBar:UpdateBar(pBarIndex, pCategoryID)
@@ -623,7 +634,7 @@ function Outfitter.OutfitBar:UpdateBar(pBarIndex, pCategoryID)
 	local vBar = self.Bars[pBarIndex]
 	local vNumColumns, vNumRows
 	
-	if gOutfitter_Settings.OutfitBar.Vertical then
+	if self.Settings.OutfitBar.Vertical then
 		vNumColumns = 1
 		vNumRows = vNumShown
 	else
@@ -650,36 +661,12 @@ function Outfitter.OutfitBar:UpdateBar(pBarIndex, pCategoryID)
 	return true
 end
 
-function Outfitter.OutfitBar.IconSetDropdown_OnLoad(pMenuFrame)
-	pMenuFrame.Dialog = OutfitterChooseIconDialog
-	pMenuFrame.ChangedValueFunc = Outfitter.OutfitBar.IconSetDropdown_ChangedValue
-	
-	UIDropDownMenu_Initialize(pMenuFrame, Outfitter.OutfitBar.IconSetDropdown_Initialize)
-	UIDropDownMenu_SetWidth(175)
-	UIDropDownMenu_Refresh(this)
-end
-
-function Outfitter.OutfitBar.IconSetDropdown_Initialize()
-	local	vFrame = getglobal(UIDROPDOWNMENU_INIT_MENU)
-	
-	Outfitter:AddMenuItem(vFrame, Outfitter.cSuggestedIcons, "Recommend")
-	Outfitter:AddMenuItem(vFrame, Outfitter.cSpellbookIcons, "Spellbook")
-	Outfitter:AddMenuItem(vFrame, Outfitter.cYourItemIcons, "Inventory")
-	Outfitter:AddMenuItem(vFrame, Outfitter.cEveryIcon, "All")
-	Outfitter:AddMenuItem(vFrame, Outfitter.cItemIcons, "Items")
-	Outfitter:AddMenuItem(vFrame, Outfitter.cAbilityIcons, "Abilities")
-end
-
-function Outfitter.OutfitBar.IconSetDropdown_ChangedValue(pMenuFrame, pValue)
-	pMenuFrame.Dialog:SetIconSetID(pValue)
-end
-
 ----------------------------------------
 Outfitter.OutfitBar._Bar = {}
 ----------------------------------------
 
 function Outfitter.OutfitBar._Bar:Construct(pName, pNumColumns, pNumRows)
-	Outfitter._ButtonBar.Construct(self, pName, pNumColumns, pNumRows, Outfitter.OutfitBar._Button)
+	Outfitter._ButtonBar.Construct(self, pName, pNumColumns, pNumRows, Outfitter.OutfitBar._Button, "ActionButtonTemplate")
 	
 	self:SetScript("OnEnter", function () Outfitter.OutfitBar:ShowDragBars() end)
 	self:SetScript("OnLeave", function () Outfitter.OutfitBar:HideDragBars() end)
@@ -707,17 +694,10 @@ Outfitter.OutfitBar._Button = {}
 
 Outfitter.OutfitBar._Button.Widgets =
 {
-	"IconTexture",
+	"Icon",
 }
 
 function Outfitter.OutfitBar._Button:Construct()
-	self.EquippedHighlight = self:CreateTexture(nil, "OVERLAY")
-	self.EquippedHighlight:SetPoint("TOPLEFT", self, "TOPLEFT", -5, 5)
-	self.EquippedHighlight:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", 5, -5)
-	self.EquippedHighlight:SetTexture("Interface\\Addons\\Outfitter\\Textures\\IconButtonHighlight")
-	self.EquippedHighlight:SetVertexColor(0.6, 1, 0.2, 1)
-	self.EquippedHighlight:Hide()
-	
 	self:SetWidth(Outfitter.Style.ButtonBar.ButtonWidth)
 	self:SetHeight(Outfitter.Style.ButtonBar.ButtonHeight)
 	
@@ -727,25 +707,9 @@ function Outfitter.OutfitBar._Button:Construct()
 	
 	self:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 	
-	-- Initialize the stuff for the dropdown menu
-	
-	self.SavedHeight = Outfitter.Style.ButtonBar.ButtonHeight
-	self.ChangedValueFunc = self.MenuItemSelected
-	
-	UIDropDownMenu_SetAnchor(0, 0, self, "TOPLEFT", self:GetName(), "CENTER")
-	UIDropDownMenu_Initialize(self, self.InitializeMenu)
-end
-
-function Outfitter.OutfitBar._Button.InitializeMenu()
-	local vButton = getglobal(UIDROPDOWNMENU_INIT_MENU)
-	
-	Outfitter:InitializeOutfitMenu(vButton, vButton.Outfit)
-	
-	vButton:SetHeight(Outfitter.Style.ButtonBar.ButtonHeight) -- WoW's menu code changes the height, so put it back
-end
-
-function Outfitter.OutfitBar._Button:MenuItemSelected(pItemID)
-	Outfitter:PerformAction(pItemID, self.Outfit)
+	if Outfitter.LBFGroup then
+		Outfitter.LBFGroup:AddButton(self)
+	end
 end
 
 function Outfitter.OutfitBar._Button:SetOutfit(pOutfit)
@@ -754,14 +718,16 @@ function Outfitter.OutfitBar._Button:SetOutfit(pOutfit)
 end
 
 function Outfitter.OutfitBar._Button:Update()
-	self.Widgets.IconTexture:SetTexture(Outfitter.OutfitBar:GetOutfitTexture(self.Outfit))
+	local vTexture = Outfitter.OutfitBar:GetOutfitTexture(self.Outfit)
+
+	self.Widgets.Icon:SetTexture(vTexture)
 	
 	if Outfitter:WearingOutfit(self.Outfit) then
-		self.EquippedHighlight:Show()
-		self.Widgets.IconTexture:SetVertexColor(1, 1, 1)
+		self:SetChecked(true)
+		self.Widgets.Icon:SetVertexColor(1, 1, 1)
 	else
-		self.EquippedHighlight:Hide()
-		self.Widgets.IconTexture:SetVertexColor(0.9, 0.9, 0.9)
+		self:SetChecked(false)
+		self.Widgets.Icon:SetVertexColor(0.9, 0.9, 0.9)
 	end
 end
 
@@ -781,7 +747,7 @@ function Outfitter.OutfitBar._Button:OnClick(pMouseButton)
 						self.Outfit.OutfitBar = {}
 					end
 					
-					self.Outfit.OutfitBar.Texture = vTexture
+					self.Outfit:SetIcon(vTexture)
 					self:Update()
 					ClearCursor()
 				end
@@ -792,12 +758,12 @@ function Outfitter.OutfitBar._Button:OnClick(pMouseButton)
 				local vItem = Outfitter:GetItemInfoFromLink(vParam2)
 				
 				if not vItem then
-					MCDebugLib:ErrorMessage("Outfitter.OutfitBar: Couldn't get information about the item being dropped")
+					Outfitter:ErrorMessage("Outfitter.OutfitBar: Couldn't get information about the item being dropped")
 					return
 				end
 				
 				if not vItem.ItemSlotName then
-					MCDebugLib:ErrorMessage("Outfitter.OutfitBar: Couldn't make an outfit from "..vItem.Name.." because it isn't equippable")
+					Outfitter:ErrorMessage("Outfitter.OutfitBar: Couldn't make an outfit from "..vItem.Name.." because it isn't equippable")
 					return
 				end
 				
@@ -805,7 +771,7 @@ function Outfitter.OutfitBar._Button:OnClick(pMouseButton)
 				
 				local vOutfit = Outfitter:NewEmptyOutfit(vItem.Name)
 				
-				Outfitter:AddOutfitItem(vOutfit, vItem.ItemSlotName, vItem)
+				vOutfit:AddItem(vItem.ItemSlotName, vItem)
 				Outfitter:AddOutfit(vOutfit)
 				Outfitter:WearOutfit(vOutfit)
 			end
@@ -813,26 +779,51 @@ function Outfitter.OutfitBar._Button:OnClick(pMouseButton)
 		-- If there are no modifiers down, then just equip or unequip the outfit
 		
 		else
+			Outfitter.HasHWEvent = true
 			if self.Outfit.CategoryID == "Complete"
 			or not Outfitter:WearingOutfit(self.Outfit) then
 				Outfitter:WearOutfit(self.Outfit)
 			else
 				Outfitter:RemoveOutfit(self.Outfit)
 			end
+			Outfitter.HasHWEvent = false
 		end
 	else -- if pButton == "RightButton" then
-		if DropDownList1:IsShown() then
-			ToggleDropDownMenu(nil, nil, self, self)
-		else
-			ToggleDropDownMenu(nil, nil, self, self)
-			PlaySound("igMainMenuOptionCheckBoxOn")
+		-- If the menu is already up then hide it
+		if self.menuFrame then
+			self.menuFrame:Hide()
+			return
+		end
+
+		-- Create the menu
+		local items = Outfitter:New(Outfitter.UIElementsLib._DropDownMenuItems, function ()
+			Outfitter.SchedulerLib:ScheduleTask(0.2, function () self.menuFrame:Hide() end)
+		end)
+		Outfitter:AddOutfitMenu(items, self.Outfit)
+		
+		-- Get the cursor's position
+		local cursorX, cursorY = GetCursorPosition()
+		local uiScale = UIParent:GetScale()
+		cursorX = cursorX / uiScale
+		cursorY = cursorY / uiScale
+
+		-- Get the nearest and opposite edges
+		local nearestVert, nearestHoriz, oppositeVert, oppositeHoriz = Outfitter:GetNearestFrameEdgesFromCoordinates(UIParent, cursorX, cursorY)
+		local anchorPoint = nearestVert..nearestHoriz
+		local relativePoint = oppositeVert..nearestHoriz
+
+		-- Show the menu
+		self.menuFrame = LibStub("LibDropdownMC-1.0"):OpenAce3Menu(items)
+		self.menuFrame:SetPoint(anchorPoint, self, relativePoint, 0, 0)
+		self.menuFrame.cleanup = function ()
+			self.menuFrame = nil
+			self:Update()
 		end
 	end
 end
 
 function Outfitter.OutfitBar._Button:OnEnter()
-	local	vEquippableItems = Outfitter.ItemList_GetEquippableItems()
-	local	vMissingItems, vBankedItems = Outfitter.ItemList_GetMissingItems(vEquippableItems, self.Outfit)
+	local	vMissingItems, vBankedItems = Outfitter:GetInventoryCache():GetMissingItems(self.Outfit)
 	
 	Outfitter:ShowOutfitTooltip(self.Outfit, self, vMissingItems, vBankedItems, true)
 	
@@ -891,32 +882,41 @@ function Outfitter.OutfitBar._ChooseIconDialog:Construct()
 	
 	-- Hook into the UIMenus list when the dialog is up to capture the escape key presses
 	
-	self:SetScript("OnShow", function()
-		Outfitter:BeginMenu(this)
+	self:SetScript("OnShow", function(self)
+		Outfitter:BeginMenu(self)
 	end)
 	
-	self:SetScript("OnHide", function()
-		Outfitter:EndMenu(this)
+	self:SetScript("OnHide", function(self)
+		Outfitter:EndMenu(self)
 		
-		if this.Outfit then
-			this:Close()
+		if self.Outfit then
+			self:Close()
 		end
 	end)
 
+	-- Icon sets
+	self.iconSets = {
+		{id = "Recommend", name = Outfitter.cSuggestedIcons},
+		{id = "Spellbook", name = Outfitter.cSpellbookIcons},
+		{id = "Inventory", name = Outfitter.cYourItemIcons},
+		{id = "All", name = Outfitter.cEveryIcon},
+		{id = "Items", name = Outfitter.cItemIcons},
+		{id = "Abilities", name = Outfitter.cAbilityIcons},
+	}
+
 	-- Set the default icon set
-	
-	self.IconSetID = "All"
+	self.IconSetID = self.iconSets[1].id
 end
 
 function Outfitter.OutfitBar._ChooseIconDialog:Open(pOutfit)
 	self.Outfit = pOutfit
-	self.SelectedTexture = self.Outfit.OutfitBar.Texture
+	self.SelectedTexture = self.Outfit:GetIcon()
 	
 	if not self.SelectedTexture then
 		self.SelectedTexture = Outfitter.OutfitBar.cWildcardIcon
 	end
 	
-	self.Widgets.Title:SetText(string.format(Outfitter.cChooseIconTitle, pOutfit.Name))
+	self.Widgets.Title:SetText(string.format(Outfitter.cChooseIconTitle, pOutfit:GetName()))
 	self.Widgets.FilterEditBox:SetText("")
 	self:SetIconSetID(self.IconSetID)
 	
@@ -925,12 +925,12 @@ end
 
 function Outfitter.OutfitBar._ChooseIconDialog:Save()
 	if self.SelectedTexture == Outfitter.OutfitBar.cWildcardIcon then
-		self.Outfit.OutfitBar.Texture = nil
+		self.Outfit:SetIcon(nil)
 	else
-		self.Outfit.OutfitBar.Texture = self.SelectedTexture
+		self.Outfit:SetIcon(self.SelectedTexture)
 	end
 	
-	Outfitter:DispatchOutfitEvent("EDIT_OUTFIT", self.Outfit.Name, self.Outfit)
+	Outfitter:DispatchOutfitEvent("EDIT_OUTFIT", self.Outfit:GetName(), self.Outfit)
 end
 
 function Outfitter.OutfitBar._ChooseIconDialog:Close()
@@ -947,8 +947,14 @@ function Outfitter.OutfitBar._ChooseIconDialog:SetIconSetID(pIconSetID)
 	self.IconSetID = pIconSetID
 	self.TextureList = nil
 	
-	UIDropDownMenu_SetSelectedValue(self.Widgets.IconSetMenu, pIconSetID)
-	
+	-- Find the name
+	for _, iconSet in ipairs(self.iconSets) do
+		if iconSet.id == pIconSetID then
+			self.Widgets.IconSetMenu:SetCurrentValueText(iconSet.name)
+			break
+		end
+	end
+
 	self:SetIconFilter(self.Widgets.FilterEditBox:GetText())
 end
 
@@ -1036,6 +1042,16 @@ function Outfitter.OutfitBar._ChooseIconDialog:NewIconButton()
 	return vButton
 end
 
+function Outfitter.OutfitBar._ChooseIconDialog:GetIconSetMenuItems(menu)
+	for _, iconSet in ipairs(self.iconSets) do
+		menu:AddToggle(iconSet.name, function ()
+				return self.IconSetID == iconSet.id
+			end, function (menu, value)
+				self:SetIconSetID(iconSet.id)
+			end)
+	end
+end
+
 ----------------------------------------
 Outfitter.OutfitBar._IconButton = {}
 ----------------------------------------
@@ -1065,14 +1081,12 @@ function Outfitter.OutfitBar._IconButton:OnEnter()
 	
 	if self.Texture == Outfitter.OutfitBar.cWildcardIcon then
 		vTextureName = Outfitter.cOutfitterDecides
-	elseif strsub(self.Texture, 1, Outfitter.OutfitBar.cBlizzardIconPathLength) == Outfitter.OutfitBar.cBlizzardIconPath then
-		vTextureName = strsub(self.Texture, Outfitter.OutfitBar.cBlizzardIconPathLength + 1)
 	else
 		vTextureName = self.Texture
 	end
 	
 	GameTooltip:SetOwner(self, "ANCHOR_LEFT")
-	GameTooltip:AddLine(vTextureName)
+	GameTooltip:AddLine(Outfitter:ConvertTextureIDToString(vTextureName))
 	GameTooltip:Show()
 end
 
@@ -1092,25 +1106,30 @@ Outfitter.OutfitBar.TextureSets = {}
 Outfitter.OutfitBar.TextureSets.Recommend = {}
 ----------------------------------------
 
-function Outfitter.OutfitBar.TextureSets.Recommend:Activate(pOutfit)
+function Outfitter.OutfitBar.TextureSets.Recommend:Activate(outfit)
 	self.TextureList = Outfitter:RecycleTable(self.TextureList)
-	
+	local usedIconIDs = {}
+
+	-- Add the wildcard item
 	table.insert(self.TextureList, Outfitter.OutfitBar.cWildcardIcon)
 	
-	for vInventorySlot, vOutfitItem in pairs(pOutfit.Items) do
-		local	vItem = Outfitter.ItemList_FindItemOrAlt(Outfitter.ItemList_GetEquippableItems(), vOutfitItem)
-		
-		if vItem and vItem.Texture then
-			table.insert(self.TextureList, vItem.Texture)
+	-- Add each equipped item
+	local items = outfit:GetItems()
+	for _, outfitItem in pairs(items) do
+		local item = Outfitter:GetInventoryCache():FindItemOrAlt(outfitItem)
+		if item and item.Texture and not usedIconIDs[item.Texture] then
+			table.insert(self.TextureList, item.Texture)
+			usedIconIDs[item.Texture] = true
 		end
 	end
 	
 	-- Add any default icons
-	
-	local vIcons = Outfitter.OutfitBar:GetDefaultIcons(pOutfit)
-	
-	for _, vTexture in ipairs(vIcons) do
-		table.insert(self.TextureList, vTexture)
+	local iconIDs = Outfitter.OutfitBar:GetDefaultIcons(outfit)
+	for _, iconID in ipairs(iconIDs) do
+		if not usedIconIDs[iconID] then
+			table.insert(self.TextureList, iconID)
+			usedIconIDs[iconID] = true
+		end
 	end
 end
 
@@ -1131,17 +1150,16 @@ Outfitter.OutfitBar.TextureSets.All = {}
 ----------------------------------------
 
 function Outfitter.OutfitBar.TextureSets.All:GetNumTextures()
-	return GetNumMacroItemIcons() + GetNumMacroIcons()
+	if not self.icons then
+		self.icons = {}
+		GetMacroItemIcons(self.icons)
+		GetMacroIcons(self.icons)
+	end
+	return #self.icons
 end
 
 function Outfitter.OutfitBar.TextureSets.All:GetIndexedTexture(pIndex)
-	local vNumMacroItemIcons = GetNumMacroItemIcons()
-	
-	if pIndex <= vNumMacroItemIcons then
-		return GetMacroItemIconInfo(pIndex)
-	else
-		return GetMacroIconInfo(pIndex - vNumMacroItemIcons)
-	end
+	return self.icons[pIndex]
 end
 
 ----------------------------------------
@@ -1149,11 +1167,15 @@ Outfitter.OutfitBar.TextureSets.Items = {}
 ----------------------------------------
 
 function Outfitter.OutfitBar.TextureSets.Items:GetNumTextures()
-	return GetNumMacroItemIcons()
+	if not self.icons then
+		self.icons = {}
+		GetMacroItemIcons(self.icons)
+	end
+	return #self.icons
 end
 
 function Outfitter.OutfitBar.TextureSets.Items:GetIndexedTexture(pIndex)
-	return GetMacroItemIconInfo(pIndex)
+	return self.icons[pIndex]
 end
 
 ----------------------------------------
@@ -1161,11 +1183,15 @@ Outfitter.OutfitBar.TextureSets.Abilities = {}
 ----------------------------------------
 
 function Outfitter.OutfitBar.TextureSets.Abilities:GetNumTextures()
-	return GetNumMacroIcons()
+	if not self.icons then
+		self.icons = {}
+		GetMacroIcons(self.icons)
+	end
+	return #self.icons
 end
 
 function Outfitter.OutfitBar.TextureSets.Abilities:GetIndexedTexture(pIndex)
-	return GetMacroIconInfo(pIndex)
+	return self.icons[pIndex]
 end
 
 ----------------------------------------
@@ -1175,38 +1201,50 @@ Outfitter.OutfitBar.TextureSets.Spellbook = {}
 function Outfitter.OutfitBar.TextureSets.Spellbook:Activate()
 	self.TextureList = Outfitter:RecycleTable(self.TextureList)
 	
+	-- Always include the wildcard icon
 	table.insert(self.TextureList, Outfitter.OutfitBar.cWildcardIcon)
 	
-	local vUsedTextures = {}
+	-- Only insert each texture once
+	local usedIconIDs = {}
 	
+	-- Insert the profession icons
+	local professions = {GetProfessions()}
+	for _, professionID in ipairs(professions) do
+		local name, iconID = GetProfessionInfo(professionID)
+		if not usedIconIDs[iconID] then
+			table.insert(self.TextureList, iconID)
+			usedIconIDs[iconID] = true
+		end
+	end
+
 	-- Insert the spellbook category icons together
-	
-	for vSpellTabIndex = 1, MAX_SKILLLINE_TABS do
-		local	vCategoryName, vCategoryTexture, vCategoryOffset, vCategoryNumSpells = GetSpellTabInfo(vSpellTabIndex)
+	for tabIndex = 1, MAX_SKILLLINE_TABS do
+		local	categoryName, categoryIconID, categoryOffset, categoryNumSpells = GetSpellTabInfo(tabIndex)
 		
-		if not vCategoryName then
+		if not categoryName then
 			break
 		end
 		
-		table.insert(self.TextureList, vCategoryTexture)
-		vUsedTextures[vCategoryTexture] = true
+		if categoryIconID and not usedIconIDs[categoryIconID] then
+			table.insert(self.TextureList, categoryIconID)
+			usedIconIDs[categoryIconID] = true
+		end
 	end
 	
 	-- Now insert the icons from each category
-	
-	for vSpellTabIndex = 1, MAX_SKILLLINE_TABS do
-		local	vCategoryName, vCategoryTexture, vCategoryOffset, vCategoryNumSpells = GetSpellTabInfo(vSpellTabIndex)
+	for tabIndex = 1, MAX_SKILLLINE_TABS do
+		local	categoryName, categoryIconID, categoryOffset, categoryNumSpells = GetSpellTabInfo(tabIndex)
 		
-		if not vCategoryName then
+		if not categoryName then
 			break
 		end
 		
-		for vSpellIndex = vCategoryOffset + 1, vCategoryOffset + vCategoryNumSpells do
-			local vSpellTexture = GetSpellTexture(vSpellIndex, BOOKTYPE_SPELL)
+		for spellIndex = categoryOffset + 1, categoryOffset + categoryNumSpells do
+			local spellIconID = GetSpellTexture(spellIndex, BOOKTYPE_SPELL)
 			
-			if not vUsedTextures[vSpellTexture] then
-				table.insert(self.TextureList, vSpellTexture)
-				vUsedTextures[vSpellTexture] = true
+			if spellIconID and not usedIconIDs[spellIconID] then
+				table.insert(self.TextureList, spellIconID)
+				usedIconIDs[spellIconID] = true
 			end
 		end
 	end
@@ -1303,8 +1341,9 @@ function Outfitter.OutfitBar.TextureSets.Filtered:SetFilter(pTextureSet, pFilter
 	
 	for vIndex = 1, vNumTextures do
 		local vTexture = self.TextureSet:GetIndexedTexture(vIndex)
+		local vTextureString = Outfitter:ConvertTextureIDToString(vTexture)
 		
-		if strfind(strlower(vTexture), self.Filter) then
+		if strfind(strlower(vTextureString), self.Filter) then
 			table.insert(self.TextureList, vTexture)
 		end
 	end
@@ -1349,8 +1388,8 @@ function Outfitter.OutfitBar._SettingsDialog:Construct()
 	self:SetBackdropColor(0, 0, 0, 0.9)
 	self:SetAlpha(1)
 	
-	self:SetScript("OnShow", function () this:OnShow() end)
-	self:SetScript("OnHide", function () this:OnHide() end)
+	self:SetScript("OnShow", function (self) self:OnShow() end)
+	self:SetScript("OnHide", function (self) self:OnHide() end)
 	
 	self:SetWidth(180)
 	self:SetHeight(245)
@@ -1378,39 +1417,26 @@ end
 
 function Outfitter.OutfitBar._SettingsDialog:ShowDialog()
 	self.DisableUpdates = true
-	self.SizeSlider:SetValue(gOutfitter_Settings.OutfitBar.Scale or 1)
-	self.AlphaSlider:SetValue(gOutfitter_Settings.OutfitBar.Alpha or 1)
-	self.CombatAlphaSlider:SetValue(gOutfitter_Settings.OutfitBar.CombatAlpha or 1)
-	self.VerticalCheckbutton:SetChecked(gOutfitter_Settings.OutfitBar.Vertical)
-	self.LockPositionCheckbutton:SetChecked(gOutfitter_Settings.OutfitBar.LockPosition)
-	self.HideBackgroundCheckbutton:SetChecked(gOutfitter_Settings.OutfitBar.HideBackground)
+	self.SizeSlider:SetValue(Outfitter.Settings.OutfitBar.Scale or 1)
+	self.AlphaSlider:SetValue(Outfitter.Settings.OutfitBar.Alpha or 1)
+	self.CombatAlphaSlider:SetValue(Outfitter.Settings.OutfitBar.CombatAlpha or 1)
+	self.VerticalCheckbutton:SetChecked(Outfitter.Settings.OutfitBar.Vertical)
+	self.LockPositionCheckbutton:SetChecked(Outfitter.Settings.OutfitBar.LockPosition)
+	self.HideBackgroundCheckbutton:SetChecked(Outfitter.Settings.OutfitBar.HideBackground)
 	self.DisableUpdates = false
 	
 	-- Put the dialog under the cursor
+	local cursorX, cursorY = GetCursorPosition()
+	local uiScale = UIParent:GetScale()
+	cursorX = cursorX / uiScale
+	cursorY = cursorY / uiScale
+	local anchorPoint = Outfitter:GetScreenQuadrantFromCoordinates(cursorX, cursorY)
 	
-	local	vCursorX, vCursorY = GetCursorPosition()
-	local	vUIScale = UIParent:GetScale()
-	
-	vCursorX = vCursorX / vUIScale
-	vCursorY = vCursorY / vUIScale
-	
+	-- Anchor the dialog
 	self:ClearAllPoints()
-	
-	local	vAnchorPoint
-	
-	if vCursorY < 0.5 * (UIParent:GetTop() + UIParent:GetBottom()) then
-		vAnchorPoint = "BOTTOM"
-	else
-		vAnchorPoint = "TOP"
-	end
-	
-	if vCursorX < 0.5 * (UIParent:GetLeft() + UIParent:GetRight()) then
-		vAnchorPoint = vAnchorPoint.."LEFT"
-	else
-		vAnchorPoint = vAnchorPoint.."RIGHT"
-	end
-	
-	self:SetPoint(vAnchorPoint, UIParent, "BOTTOMLEFT", vCursorX, vCursorY)
+	self:SetPoint(anchorPoint, UIParent, "BOTTOMLEFT", cursorX, cursorY)
+
+	-- Show
 	self:Show()
 end
 
@@ -1436,28 +1462,28 @@ end
 
 function Outfitter.OutfitBar._SettingsDialog:SizeSlider_OnValueChanged()
 	if self.DisableUpdates then return end
-	gOutfitter_Settings.OutfitBar.Scale = self.SizeSlider:GetValue()
+	Outfitter.Settings.OutfitBar.Scale = self.SizeSlider:GetValue()
 	
-	Outfitter.OutfitBar:SetScale(gOutfitter_Settings.OutfitBar.Scale)
+	Outfitter.OutfitBar:SetScale(Outfitter.Settings.OutfitBar.Scale)
 	Outfitter.OutfitBar:SetAlpha(1)
 end
 
 function Outfitter.OutfitBar._SettingsDialog:AlphaSlider_OnValueChanged()
 	if self.DisableUpdates then return end
-	gOutfitter_Settings.OutfitBar.Alpha = self.AlphaSlider:GetValue()
-	Outfitter.OutfitBar:SetAlpha(gOutfitter_Settings.OutfitBar.Alpha)
+	Outfitter.Settings.OutfitBar.Alpha = self.AlphaSlider:GetValue()
+	Outfitter.OutfitBar:SetAlpha(Outfitter.Settings.OutfitBar.Alpha)
 end
 
 function Outfitter.OutfitBar._SettingsDialog:CombatAlphaSlider_OnValueChanged()
 	if self.DisableUpdates then return end
-	gOutfitter_Settings.OutfitBar.CombatAlpha = self.CombatAlphaSlider:GetValue()
-	Outfitter.OutfitBar:SetAlpha(gOutfitter_Settings.OutfitBar.CombatAlpha)
+	Outfitter.Settings.OutfitBar.CombatAlpha = self.CombatAlphaSlider:GetValue()
+	Outfitter.OutfitBar:SetAlpha(Outfitter.Settings.OutfitBar.CombatAlpha)
 end
 
 function Outfitter.OutfitBar._SettingsDialog:VerticalCheckbutton_OnClick()
 	if self.DisableUpdates then return end
-	gOutfitter_Settings.OutfitBar.Vertical = not gOutfitter_Settings.OutfitBar.Vertical
-	self.VerticalCheckbutton:SetChecked(gOutfitter_Settings.OutfitBar.Vertical)
+	Outfitter.Settings.OutfitBar.Vertical = not Outfitter.Settings.OutfitBar.Vertical
+	self.VerticalCheckbutton:SetChecked(Outfitter.Settings.OutfitBar.Vertical)
 	
 	Outfitter.OutfitBar:AdjustAlpha()
 	Outfitter.OutfitBar:ChangedOutfits() -- Update the display
@@ -1465,18 +1491,18 @@ end
 
 function Outfitter.OutfitBar._SettingsDialog:LockPositionCheckbutton_OnClick()
 	if self.DisableUpdates then return end
-	gOutfitter_Settings.OutfitBar.LockPosition = not gOutfitter_Settings.OutfitBar.LockPosition
-	self.LockPositionCheckbutton:SetChecked(gOutfitter_Settings.OutfitBar.LockPosition)
+	Outfitter.Settings.OutfitBar.LockPosition = not Outfitter.Settings.OutfitBar.LockPosition
+	self.LockPositionCheckbutton:SetChecked(Outfitter.Settings.OutfitBar.LockPosition)
 
 	Outfitter.OutfitBar:AdjustAlpha()
 end
 
 function Outfitter.OutfitBar._SettingsDialog:HideBackgroundCheckbutton_OnClick()
 	if self.DisableUpdates then return end
-	gOutfitter_Settings.OutfitBar.HideBackground = not gOutfitter_Settings.OutfitBar.HideBackground
-	self.HideBackgroundCheckbutton:SetChecked(gOutfitter_Settings.OutfitBar.HideBackground)
+	Outfitter.Settings.OutfitBar.HideBackground = not Outfitter.Settings.OutfitBar.HideBackground
+	self.HideBackgroundCheckbutton:SetChecked(Outfitter.Settings.OutfitBar.HideBackground)
 	
-	Outfitter.OutfitBar:ShowBackground(not gOutfitter_Settings.OutfitBar.HideBackground)
+	Outfitter.OutfitBar:ShowBackground(not Outfitter.Settings.OutfitBar.HideBackground)
 end
 
 ----------------------------------------
@@ -1515,8 +1541,8 @@ function Outfitter.OutfitBar._SettingsDialog:NewSlider(pTitle, pMinValue, pMaxVa
 	return vSlider
 end
 
-function Outfitter.OutfitBar._SettingsDialog.Slider_OnValueChanged()
-	this.OnValueChangedFunc(this:GetParent())
+function Outfitter.OutfitBar._SettingsDialog.Slider_OnValueChanged(self)
+	self.OnValueChangedFunc(self:GetParent())
 end
 
 ----------------------------------------
@@ -1544,8 +1570,8 @@ function Outfitter.OutfitBar._SettingsDialog:NewCheckbutton(pTitle, pOnClickFunc
 	return vCheckbutton
 end
 
-function Outfitter.OutfitBar._SettingsDialog.Checkbutton_OnClick()
-	this.OnClickFunction(this:GetParent())
+function Outfitter.OutfitBar._SettingsDialog.Checkbutton_OnClick(self)
+	self.OnClickFunction(self:GetParent())
 end
 
 ----------------------------------------
@@ -1577,11 +1603,11 @@ function Outfitter.OutfitBar._DragBar:Construct(pOutfitBar)
 	
 	self:SetScript("OnEnter", function (self) self.OutfitBar:ShowDragBars(true) end)
 	self:SetScript("OnLeave", function (self) self.OutfitBar:HideDragBars(true) end)
-	self:SetScript("OnDragStart", function ()this:OnDragStart() end)
-	self:SetScript("OnDragStop", function () this:OnDragStop() end)
-	self:SetScript("OnMouseUp", function () this:OnDragStop() end)
-	self:SetScript("OnMouseDown", function () this:OnMouseDown() end)
-	self:SetScript("OnClick", function (self) self.OutfitBar:DragBar_OnClick() end)
+	self:SetScript("OnDragStart", function (self) self:OnDragStart() end)
+	self:SetScript("OnDragStop", function (self) self:OnDragStop() end)
+	self:SetScript("OnMouseUp", function (self) self:OnDragStop() end)
+	self:SetScript("OnMouseDown", function (self) self:OnMouseDown() end)
+	self:SetScript("OnClick", function (self, button) self.OutfitBar:DragBar_OnClick(button) end)
 end
 
 function Outfitter.OutfitBar._DragBar:SetTextureOffset(pOffsetX, pOffsetY)
@@ -1592,11 +1618,11 @@ function Outfitter.OutfitBar._DragBar:SetTextureOffset(pOffsetX, pOffsetY)
 end
 
 function Outfitter.OutfitBar._DragBar:OnMouseDown()
-	Outfitter:FrameMouseDown(this.OutfitBar.DragBar1)
+	Outfitter:FrameMouseDown(self.OutfitBar.DragBar1)
 end
 
 function Outfitter.OutfitBar._DragBar:OnDragStart()
-	if not gOutfitter_Settings.OutfitBar.LockPosition then
+	if not Outfitter.Settings.OutfitBar.LockPosition then
 		Outfitter:StartMovingFrame(self.OutfitBar.DragBar1)
 	else
 		Outfitter:ErrorMessage(Outfitter.cPositionLockedError)
@@ -1604,7 +1630,7 @@ function Outfitter.OutfitBar._DragBar:OnDragStart()
 end
 
 function Outfitter.OutfitBar._DragBar:OnDragStop()
-	if not gOutfitter_Settings.OutfitBar.LockPosition then
+	if not Outfitter.Settings.OutfitBar.LockPosition then
 		Outfitter:StopMovingFrame(self.OutfitBar.DragBar1)
 		self.OutfitBar:PositionChanged()
 	end
@@ -1640,4 +1666,15 @@ function Outfitter.OutfitBar._DragBar:SetVerticalOrientation(pVertical)
 		self.DragTexture:SetTexture("Interface\\Addons\\Outfitter\\Textures\\LeftDragHandle")
 		self.DragTexture:SetTexCoord(0, 0.46875, 0, 0.75)
 	end
+end
+
+function Outfitter:LBFSkinCallback(pSkinID, pGloss, pBackdrop, pGroup, pButton, pColors)
+	if not self.Settings.LBFSettings then
+		self.Settings.LBFSettings = {}
+	end
+	
+	self.Settings.LBFSettings.SkinID = pSkinID
+	self.Settings.LBFSettings.Gloss = pGloss
+	self.Settings.LBFSettings.Backdrop = pBackdrop
+	self.Settings.LBFSettings.Colors = pColors
 end

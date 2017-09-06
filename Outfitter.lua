@@ -1,11 +1,252 @@
 ----------------------------------------
--- Outfitter
+-- Outfitter Copyright 2006-2014 John Stephen, wobbleworks.com
+-- All rights reserved, unauthorized redistribution is prohibited
 ----------------------------------------
 
-Outfitter.cContributors = {"Dridzt", "Kal_Zakath13", "Smurfy", "XMinionX", "Zanoroy", "mrmr"}
-Outfitter.cFriendsAndFamily = {"Brian", "Dave", "Glenn", "Leah", "Mark", "Gian", "Jerry", "The Mighty Pol", "Forge"}
-Outfitter.cTranslators = {"Jullye (FR)", "Quetzaco (FR)", "Ekhurr (FR)", "Negwe (FR)", "Ani (DE)", "Zokrym (DE)", "Dessa (DE)", "Unknown (KR)"}
-Outfitter.cTesters = {"Whishann", "HunterZ", "docthis", "Irdx", "TigaFIN", "iceeagle", "Denrax", "rasmoe", "Katlefiya", "gtmsece", "Militis", "Casard", "saltorio", "elusif"}
+Outfitter.Debug =
+{
+	InventoryCache = false,
+	EquipmentChanges = false,
+	EquipmentManager = false,
+	NewItems = false,
+	TemporaryItems = false,
+	Optimize = false,
+}
+
+----------------------------------------
+Outfitter.CreditPlayersByRealm =
+--
+-- 0 Friend
+-- 1 Tester or developer (bugfixes, enhancements, etc.)
+-- 2 Localizer
+-- 3 Donor
+----------------------------------------
+{
+	["Ace Library"] = {
+		["LibBabble"] = 2,
+		["LibBabble-Zone"] = 2,
+		["LibBabble-SubZone"] = 2,
+		["LibBabble-Inventory"] = 2,
+		["LibDataBroker"] = 2,
+		["LibTipHooker"] = 2,
+		["LibDropdown"] = 2,
+	},
+	[Outfitter.cGermanLocalization] =
+	{
+		["Ani"] = 2,
+		["Zokrym"] = 2,
+		["Dessa"] = 2,
+	},
+	[Outfitter.cChineseLocalization] =
+	{
+		["AndyAska"] = 2,
+		["xingdvd"] = 2,
+	},
+	[Outfitter.cFrenchLocalization] =
+	{
+		["Jullye"] = 2,
+		["Quetzaco"] = 2,
+		["Ekhurr"] = 2,
+		["Negwe"] = 2,
+	},
+	[Outfitter.cSpanishLocalization] =
+	{
+		["Marutak"] = 2,
+		["Marosth"] = 2,
+	},
+	[Outfitter.cRussianLocalization] =
+	{
+		["Delika"] = 2,
+	},
+	[Outfitter.cKoreanLocalization] =
+	{
+		["Unknown"] = 2,
+	},
+	[Outfitter.cContributingDeveloper] =
+	{
+		["Dridzt"] = 1,
+		["Bruce Quinton"] = 1,
+		["Kal_Zakath13"] = 1,
+		["Smurfy"] = 1,
+		["XMinionX"] = 1,
+		["Dussander"] = 1,
+		["Echobravo"] = 1,
+		["MacGregor"] = 1,
+		["LaoTseu"] = 1,
+		["Irozal"] = 1,
+		["EmForAce"] = 1,
+		["durandal42"] = 1,
+		["Dicebar"] = 1,
+		["Silarn"] = 1,
+		["slippycheeze"] = 1,
+		["binul"] = 1,
+		["elaundar"] = 1,
+		["Bodar"] = 1,
+		["chullah"] = 1,
+	},
+	["Tester"] =
+	{
+		["Whishann"] = 1,
+		["HunterZ"] = 1,
+		["docthis"] = 1,
+		["Irdx"] = 1,
+		["TigaFIN"] = 1,
+		["iceeagle"] = 1,
+		["Denrax"] = 1,
+		["rasmoe"] = 1,
+		["Katlefiya"] = 1,
+		["gtmsece"] = 1,
+		["Militis"] = 1,
+		["Casard"] = 1,
+		["saltorio"] = 1,
+		["elusif"] = 1,
+		["DanoPDX"] = 1,
+	},
+	["Alterac Mountains"] =
+	{
+		["Asgeirr\n<The Stone Council>"] = 3,
+	},
+	["Aman'Thul"] =
+	{
+		["Blessmie\n<Chairman of the Horde>"] = 3,
+		["Zanoroy\n<The Mighty Few>"] = 3,
+	},
+	["Antonidas"] =
+	{
+		["Colina\n<Drunken Monkey Brigade>"] = 3,
+	},
+	["Anvilmar"] =
+	{
+		["Droodwrmycar"] = 3,
+	},
+	["Azgalore"] =
+	{
+		["Dankris\n<Caligula's Pleasures>"] = 3,
+	},
+	["Azjol-Nerub"] =
+	{
+		["Mythris"] = 3,
+	},
+	["Blackwater Raiders"] =
+	{
+		["Maumau\n<No Quarter>"] = 3,
+	},
+	["Bronzebeard"] =
+	{
+		["Jiminimonka\n<Go Rin No Sho>"] = 3,
+	},
+	["Dalaran"] =
+	{
+		["Y C\n<Blurred Reality>"] = 3,
+	},
+	["Defias Brotherhood"] =
+	{
+		["Maelmoor"] = 3,
+	},
+	["Draenor"] =
+	{
+		["Emmerald\n<Adept>"] = 3,
+	}, 
+	["Draka"] =
+	{
+		["Nagem\n<Loch Modan Yacht Club"] = 3,
+	},
+	["Durotar"] =
+	{
+		["Haguen"] = 3,
+	},
+	Ghostlands =
+	{
+		Nounchok = 3,
+	},
+	["Gnomeregan"] =
+	{
+		["Calind\n<Swords of the Alliance>"] = 3,
+	},
+	["Jubei'Thos"] =
+	{
+		["Thoresen\n<Verb>"] = 3,
+		["Thorgils"] = 3,
+	},
+	["Kargath"] =
+	{
+		["Leara"] = 3,
+		["Burnaron\nLiga of Faliviens"] = 3,
+	},
+	["Khaz Modan"] =
+	{
+		["Faizal"] = 3,
+	},
+	["Khaz'goroth"] =
+	{
+		["Xentric\n<Cult of the Nuzzled Nark>"] = 3,
+	},
+	["Kul'Tiras"] =
+	{
+		["Tharca"] = 3,
+	},
+	["Lightbringer"] =
+	{
+		["Teldra\n<The Trust>"] = 3,
+	},
+	["Llane"] =
+	{
+		["Chirily"] = 3,
+	},
+	["Malfurion"] =
+	{
+		["Zetac\n<Hold Fast>"] = 3,
+	},
+	["Moonglade"] =
+	{
+		["Ciev"] = 3,
+	},
+	["Rexxar"] =
+	{
+		["Blitzi\n<Absolution>"] = 3,
+	},
+	["Scilla"] =
+	{
+		["Blam\n<Syndicate>"] = 3,
+	},
+	["Sentinels"] =
+	{
+		["Dhaktar"] = 3,
+	},
+	["Skywall"] =
+	{
+		["Valerya"] = 3,
+	},
+	["Suramar"] =
+	{
+		["Zendex"] = 3,
+		["Klaxon\n<Forbidden Planet"] = 3,
+	},
+	["Terrokkar"] =
+	{
+		["Extropianus\n<The First Immortals>"] = 3,
+	},
+	["Thorium Brotherhood"] =
+	{
+		["Pitchifus\n<Bloodforged>"] = 0,
+		Tiae = 0,
+		Airmid = 0,
+		Pistachio = 0,
+		Fizzlebang = 0,
+		[Outfitter.cGuildCreditFormat:format("Bloodforged")] = 1,
+	},
+	["Ysondre"] =
+	{
+		["Steikfrit"] = 3,
+	},
+	["Zangarmarsh"] =
+	{
+		["Feliany"] = 3,
+	},
+}
+
+Outfitter.BannedCharacters = {
+}
 
 ----------------------------------------
 ----------------------------------------
@@ -26,27 +267,26 @@ Outfitter.ExpectedOutfit = nil
 Outfitter.CurrentInventoryOutfit = nil
 
 Outfitter.EquippedNeedsUpdate = false
-Outfitter.WeaponsNeedUpdate = false
 Outfitter.LastEquipmentUpdateTime = 0
-	
+
 Outfitter.SpecialState = {} -- The current state as determined by the engine, not necessarily the state of the outfit itself
-	
-Outfitter.ScriptContexts = {}
-Outfitter.OutfitScriptEvents = {}
 
 -- Player state
-	
+
 Outfitter.CurrentZone = ""
 Outfitter.CurrentZoneIDs = {}
 
 Outfitter.InCombat = false
 Outfitter.MaybeInCombat = false
-	
+
 Outfitter.IsDead = false
 Outfitter.IsFeigning = false
-	
+
 Outfitter.BankFrameIsOpen = false
-	
+Outfitter.VoidStorageIsOpen = false
+
+Outfitter.HasHWEvent = false
+
 Outfitter.SettingTypeInfo =
 {
 	string      = {Default = "",    FrameType = "EditBox"          },
@@ -57,7 +297,7 @@ Outfitter.SettingTypeInfo =
 }
 
 Outfitter.Style = {}
-	
+
 Outfitter.Style.ButtonBar =
 {
 	ButtonHeight = 37,
@@ -82,6 +322,8 @@ Outfitter.Collapsed = {}
 Outfitter.SelectedOutfit = nil
 Outfitter.DisplayIsDirty = true
 Outfitter.OutfitInfoCache = {}
+
+Outfitter.MaxSimpleTitles = 10
 
 function Outfitter:FormatItemList(pList)
 	local vNumItems = #pList
@@ -136,18 +378,6 @@ Outfitter_cEnableAll = Outfitter.cEnableAll
 Outfitter_cEnableNone = Outfitter.cEnableNone
 Outfitter_cOptionsTitle = Outfitter.cOptionsTitle
 
-Outfitter.cSpecialThanksNames = "%s"
-Outfitter.cTranslationCredit = "Translations by %s"
-
-Outfitter_cAboutTitle = Outfitter.cAboutTitle
-Outfitter_cAuthor = string.format(Outfitter.cAuthor, Outfitter:FormatItemList(Outfitter.cContributors))
-Outfitter_cTestersTitle = Outfitter.cTestersTitle
-Outfitter_cTestersNames = string.format(Outfitter.cTestersNames, Outfitter:FormatItemList(Outfitter.cTesters))
-Outfitter_cSpecialThanksTitle = Outfitter.cSpecialThanksTitle
-Outfitter_cSpecialThanksNames = string.format(Outfitter.cSpecialThanksNames, Outfitter:FormatItemList(Outfitter.cFriendsAndFamily))
-Outfitter_cTranslationCredit = string.format(Outfitter.cTranslationCredit, Outfitter:FormatItemList(Outfitter.cTranslators))
-Outfitter_cURL = Outfitter.cURL
-
 Outfitter_cEditScriptTitle = Outfitter.cEditScriptTitle
 Outfitter_cEditScriptEllide = Outfitter.cEditScriptEllide
 Outfitter_cPresetScript = Outfitter.cPresetScript
@@ -161,8 +391,6 @@ Outfitter_cIconSetLabel = Outfitter.cIconSetLabel
 -- which call into Outfitter directly (OutfitterFu, FishingBuddy, ArkInventory)
 -- Hopefully the authors of those addons will eventually migrate their code to
 -- use the new functions instead so that these can eventually be eliminated.
-
-Outfitter_cFishingStatName = Outfitter.cFishingStatName
 
 Outfitter_cCompleteOutfits = Outfitter.cCompleteOutfits
 Outfitter_cAccessoryOutfits = Outfitter.cAccessoryOutfits
@@ -180,7 +408,7 @@ function Outfitter_GetOutfitsByCategoryID(...) return Outfitter:GetOutfitsByCate
 function Outfitter_HasVisibleOutfits(...) return Outfitter:HasVisibleOutfits(...) end
 function Outfitter_OutfitIsVisible(...) return Outfitter:OutfitIsVisible(...) end
 
-function Outfitter_GenerateSmartOutfit(...) return Outfitter:GenerateSmartOutfit(...) end
+function Outfitter_GenerateSmartOutfit(pName, pStat, pInventoryCache, pAllowEmptyOutfit) return Outfitter:GenerateSmartOutfit(pName, pStat, pInventoryCache, pAllowEmptyOutfit) end
 function Outfitter_AddOutfit(...) return Outfitter:AddOutfit(...) end
 function Outfitter_DeleteOutfit(...) return Outfitter:DeleteOutfit(...) end
 
@@ -191,22 +419,21 @@ function Outfitter_WearingOutfit(...) return Outfitter:WearingOutfit(...) end
 function Outfitter_RegisterOutfitEvent(...) return Outfitter:RegisterOutfitEvent(...) end
 function Outfitter_UnregisterOutfitEvent(...) return Outfitter:UnregisterOutfitEvent(...) end
 
-function Outfitter_GetOutfitFromListItem(...) return Outfitter:GetOutfitFromListItem(...) end
 function Outfitter_GetCurrentOutfitInfo(...) return Outfitter:GetCurrentOutfitInfo(...) end
 function Outfitter_SetShowMinimapButton(...) return Outfitter:SetShowMinimapButton(...) end
 
 function Outfitter_GetItemInfoFromLink(...) return Outfitter:GetItemInfoFromLink(...) end
 function Outfitter_GetOutfitsUsingItem(...) return Outfitter:GetOutfitsUsingItem(...) end
 
-function OutfitterItemList_GetEquippableItems(...) return Outfitter.ItemList_GetEquippableItems(...) end
-function OutfitterItemList_GetMissingItems(...) return Outfitter.ItemList_GetMissingItems(...) end
+function OutfitterItemList_GetEquippableItems(...) return Outfitter:GetInventoryCache(...) end
+function OutfitterItemList_GetMissingItems(pItemList, ...) return pItemList:GetMissingItems(...) end
 
-function OutfitterMinimapButton_ItemSelected(...) return Outfitter.MinimapButton_ItemSelected(...) end
+function Outfitter.ItemList_GetEquippableItems(...) return Outfitter:GetInventoryCache(...) end
+function Outfitter.ItemList_GetMissingItems(pItemList, ...) return pItemList:GetMissingItems(...) end
+
+function Outfitter:OutfitUsesItem(pOutfit, pItemInfo) return pOutfit:OutfitUsesItem(pItemInfo) end
 
 --
-
-Outfitter.OrigGameTooltipOnShow = nil
-Outfitter.OrigGameTooltipOnHide = nil
 
 Outfitter.cMinEquipmentUpdateInterval = 1.5
 
@@ -216,114 +443,168 @@ Outfitter.cInitializationEvents =
 	["BAG_UPDATE"] = true,
 	["UNIT_INVENTORY_CHANGED"] = true,
 	["ZONE_CHANGED_NEW_AREA"] = true,
+	["ZONE_CHANGED"] = true,
+	["ZONE_CHANGED_INDOORS"] = true,
 	["PLAYER_ALIVE"] = true,
 }
 
-Outfitter.BANKED_FONT_COLOR = {r = 0.25, g = 0.2, b = 1.0}
+Outfitter.BANKED_FONT_COLOR = CreateColor(0.25, 0.2, 1.0)
 Outfitter.BANKED_FONT_COLOR_CODE = "|cff4033ff"
-Outfitter.OUTFIT_MESSAGE_COLOR = {r = 0.2, g = 0.75, b = 0.3}
+Outfitter.OUTFIT_MESSAGE_COLOR = CreateColor(0.2, 0.75, 0.3)
 
-Outfitter.cItemLinkFormat = "|(%x+)|Hitem:(-?%d+):(-?%d+):(-?%d+):(-?%d+):(-?%d+):(-?%d+):(-?%d+):(-?%d+)|h%[([^%]]+)%]|h|r"
+Outfitter.IsWoW4 = true
+Outfitter.cItemLinkFormat = "|Hitem:(-?%d+):(-?%d+):(-?%d+):(-?%d+):(-?%d+):(-?%d+):(-?%d+):(-?%d+):(-?%d+):(-?%d+):(-?%d+):(-?%d+):(-?%d+)|h%[([^%]]*)%]|h"
 
-Outfitter.cUniqueEquippedGemIDs =
+-- Phantom items are items which appear to be in a slot but which are actually the by-product of some other item being equipped in a different slot. This is being used in Patch 7 (Legion) for the artifact weapons which occupy both weapon slots.
+-- /dump {Outfitter:GetInventoryItemInfo("MainHandSlot").Code,Outfitter:GetInventoryItemInfo("SecondaryHandSlot").Code}
+Outfitter.PhantomItemIDs = {
+	[133948] = true, -- Monk, Fists of the Heavaens
+	[128293] = true, -- DK, Blades of the Fallen Prince
+	[127830] = true, -- DH, Twinblades of the Deceiver
+	[128831] = true, -- DH, Aldrachi Warblades
+	[128859] = true, -- Druid, Fangs of Ashmane
+	[128822] = true, -- Druid, Claws of Ursoc
+	[133959] = true, -- Mage, Heart of the Phoenix
+	[128867] = true, -- Paladin, Oathseeker
+	[133958] = true, -- Priest, Secrets of the Void
+	[128869] = true, -- Rogue, The Kingslayers
+	[134552] = true, -- Rogue, Fortune
+	[128479] = true, -- Rogue, Akaari's Will
+	[128936] = true, -- Shaman, The Highkeeper's Ward
+	[128873] = true, -- Shaman, Fury of the Stonemother
+	[128934] = true, -- Shaman, Shield of the Sea Queen
+	[137246] = true, -- Warlock, Spine of Thal'kiel
+	[134553] = true, -- Warrior, Helya's Wrath
+	[128288] = true, -- Warrior, Scaleshard
+}
+
+Outfitter.cUniqueGemItemIDs =
 {
-	[2850] = true, -- Blood of Amber, ItemCode 33140, +13 Spell Critical Strike Rating
-	[2945] = true, -- Bold Ornate Ruby, ItemCode 28362, +20 Attack Power
-	[2749] = true, -- Brilliant Bladestone, ItemCode 33139, +12 Intellect
-	[1068] = true, -- Charmed Amani Jewel, ItemCode 34256, +15 Stamina
-	[1593] = true, -- Crimson Sun, ItemCode 33131, +24 Attack Power
-	[368] = true, -- Delicate Fire Ruby, ItemCode 33132, +12 Agility
-	[3210] = true, -- Don Julio's Heart, ItemCode 33133
-	[1957] = true, -- Facet of Eternity, ItemCode 33144, +12 Defense Rating
-	[1071] = true, -- Falling Star, ItemCode 33135, +18 Stamina
-	[2914] = true, -- Gleaming Ornate Dawnstone, ItemCode 28120, +10 Spell Critical Strike Rating FIXME: Is this supposed to be 2934 maybe?
-
-	[3218] = true, -- Great Bladestone, ItemCode 33141, +12 Spell Hit Rating
-	[2946] = true, -- Inscribed Ornate Topaz, ItemCode 28363, +10 Attack Power, +5 Critical Strike Rating
-	[3211] = true, -- Kailee's Rose, ItemCode 33134, +26 Healing and +9 Spell Damage
-	[3215] = true, -- Mystic Bladestone, ItemCode 33138, +12 Resilience Rating
-	[2916] = true, -- Potent Ornate Topaz, ItemCode 28123, +6 Spell Damage, +5 Spell Crit Rating
-	[1591] = true, -- Radiant Spencerite, ItemCode 32735, +20 Attack Power
-	[2784] = true, -- Rigid Bladestone, ItemCode 33142, +12 Hit Rating
-	[2912] = true, -- Runed Ornate Ruby, ItemCode 28118, +12 Spell Damage
-	[2913] = true, -- Smooth Ornate Dawnstone, ItemCode 28119, +10 Critical Strike Rating
-	[370] = true, -- Sparkling Falling Star, ItemCode 33137, +12 Spirit
+	[33140] = 33140, -- Blood of Amber, ItemCode 33140, +13 Spell Critical Strike Rating
+	[33139] = 33139, -- Brilliant Bladestone, ItemCode 33139, +12 Intellect
+	[34256] = 34256, -- Charmed Amani Jewel, ItemCode 34256, +15 Stamina
+	[33131] = 33131, -- Crimson Sun, ItemCode 33131, +24 Attack Power
+	[33132] = 33132, -- Delicate Fire Ruby, ItemCode 33132, +12 Agility
+	[33133] = 33133, -- Don Julio's Heart, ItemCode 33133
+	[33144] = 33144, -- Facet of Eternity, ItemCode 33144, +12 Defense Rating
+	[33135] = 33135, -- Falling Star, ItemCode 33135, +18 Stamina
 	
-	[3220] = true, -- Stone of Blades, ItemCode 33143, +12 Critical Strike Rating
-	[2891] = true, -- Sublime Mystic Dawnstone, ItemCode 27679, +10 Resilience Rating
-	[2899] = true, -- Barbed Deep Peridot, ItemCode 27786 & 27809, +3 Stamina, +4 Critical Strike Rating
-	[3103] = true, -- Don Amancio's Heart, ItemCode 30598, +8 Strength (numerous enchants of +8 str)
-	[3065] = true, -- Don Rodrigo's Heart, ItemCode 30571, +8 Strength
-	[3268] = true, -- Eye of the Sea, ItemCode 34831, +15 Stamina
-	[2943] = true, -- Mighty Blood Garnet, ItemCode 28360, +14 Attack Power
-	[2944] = true, -- Mighty Blood Garnet, ItemCode 28361, +14 Attack Power
-	[2898] = true, -- Notched Deep Peridot, ItemCode 27785, +3 Stamina, +4 Spell Critical Strike Rating
-	[2923] = true, -- Notched Deep Peridot, ItemCode 27820, +3 Stamina, +4 Spell Critical Strike Rating
-	[2896] = true, -- Stark Blood Garnet, ItemCode 27777, +8 Spell Damage
-	[2924] = true, -- Stark Blood Garnet, ItemCode 27812, +8 Spell Damage
-	[2970] = true, -- Swift Starfire Diamond, ItemCode 28557, +12 Spell Damage and Minor Run Speed Increase
-	[2969] = true, -- Swift Windfire Diamond, ItemCode 28556, +20 Attack Power and Minor Run Speed Increase
+	[33141] = 33141, -- Great Bladestone, ItemCode 33141, +12 Spell Hit Rating
+	[33134] = 33134, -- Kailee's Rose, ItemCode 33134, +26 Healing and +9 Spell Damage
+	[33138] = 33138, -- Mystic Bladestone, ItemCode 33138, +12 Resilience Rating
+	[32735] = 32735, -- Radiant Spencerite, ItemCode 32735, +20 Attack Power
+	[33142] = 33142, -- Rigid Bladestone, ItemCode 33142, +12 Hit Rating
+	[33137] = 33137, -- Sparkling Falling Star, ItemCode 33137, +12 Spirit
+	
+	[33143] = 3220, -- Stone of Blades, ItemCode 33143, +12 Critical Strike Rating
+	[27679] = 2891, -- Sublime Mystic Dawnstone, ItemCode 27679, +10 Resilience Rating
+	[27786] = 2899, -- Barbed Deep Peridot, ItemCode 27786 & 27809, +3 Stamina, +4 Critical Strike Rating
+	[27809] = 2899, -- Barbed Deep Peridot, ItemCode 27786 & 27809, +3 Stamina, +4 Critical Strike Rating
+	[30598] = 3103, -- Don Amancio's Heart, ItemCode 30598, +8 Strength (numerous enchants of +8 str)
+	[30571] = 3065, -- Don Rodrigo's Heart, ItemCode 30571, +8 Strength
+	[34831] = 3268, -- Eye of the Sea, ItemCode 34831, +15 Stamina
+	[28360] = 2943, -- Mighty Blood Garnet, ItemCode 28360, +14 Attack Power
+	[28361] = 2944, -- Mighty Blood Garnet, ItemCode 28361, +14 Attack Power
+	[27785] = 2898, -- Notched Deep Peridot, ItemCode 27785, +3 Stamina, +4 Spell Critical Strike Rating
+	[27820] = 2923, -- Notched Deep Peridot, ItemCode 27820, +3 Stamina, +4 Spell Critical Strike Rating
+	[27777] = 2896, -- Stark Blood Garnet, ItemCode 27777, +8 Spell Damage
+	[27812] = 2924, -- Stark Blood Garnet, ItemCode 27812, +8 Spell Damage
+	[28557] = 2970, -- Swift Starfire Diamond, ItemCode 28557, +12 Spell Damage and Minor Run Speed Increase
+	[28556] = 2969, -- Swift Windfire Diamond, ItemCode 28556, +20 Attack Power and Minor Run Speed Increase
 
-	[3156] = true, -- Unstable Amethyst, ItemCode 32634, +8 Attack Power and +6 Stamina
-	[3159] = true, -- Unstable Citrine, ItemCode 32637, +8 Attack Power
-	[3157] = true, -- Unstable Peridot, ItemCode 32635,
-	[3158] = true, -- Unstable Sapphire, ItemCode 32636,
-	[3161] = true, -- Unstable Talasite, ItemCode 32639,
-	[3160] = true, -- Unstable Topaz, ItemCode 32638,
-
-	-- [3091] = true, -- Radiant Chrysoprase, ItemCode 30608, +5 Spell Critical Rating and +5 Spell Penetration
-	-- [3077] = true, -- Dazzling Chrysoprase, ItemCode 30589, +5 Intellect and 2 mana per 5 sec.
-	-- [3082] = true, -- Effulgent Chrysoprase, ItemCode 30594, +5 Defense Rating and 2 mana per 5 sec.
-	-- [3078] = true, -- Enduring Chrysoprase, ItemCode 30590, +6 Stamina and +5 Defense Rating
-	-- [3085] = true, -- Jagged Chrysoprase, ItemCode 30602, +6 Stamina and +5 Crit Rating
-	-- [3089] = true, -- Lambent Chrysoprase, ItemCode 30606, +5 Spell Hit Rating and 2 mana per 5 sec.
-	-- [3047] = true, -- Polished Chrysoprase, ItemCode 30548, +6 Stamina and +5 Spell Crit Rating
-	-- [3058] = true, -- Rune Covered Chrysoprase, ItemCode 30560, +5 Spell Critical Rating and 2 mana per 5 sec.
-	-- [3074] = true, -- Seer's Chrysoprase, ItemCode 30586, +4 Intellect and +5 Spirit
-	-- [3080] = true, -- Steady Chrysoprase, ItemCode 30592, +6 Stamina and +5 Resilience Rating
-	-- [3049] = true, -- Sundered Chrysoprase, ItemCode 30550, +5 Critical Strike Rating and +2 mana per 5 sec.
-	-- [3071] = true, -- Timeless Chrysoprase, ItemCode 30583, +5 Intellect and +6 Stamina
-	-- [3088] = true, -- Vivid Chrysoprase, ItemCode 30605, +5 Spell Hit Rating and +6 Stamina
-
-	-- [3062] = true, -- Assassin's Fire Opal, Item 30565, +6 Critical Rating and +5 Dodge Rating
-	-- [3084] = true, -- Beaming Fire Opal, ItemCode 30601, +5 Dodge Rating and +4 Resilience Rating
-	-- [3075] = true, -- Champion's Fire Opal, ItemCode 30587, +5 Strength and +4 Defense
-	-- [3070] = true, -- Deadly Fire Opal, ItemCode 30582, +8 Attack Power and +5 Critical Rating
-	-- [3069] = true, -- Durable Fire Opal, ItemCode 30581, +11 Healing and +4 Resilience Rating
-	-- [3079] = true, -- Empowered Fire Opal, ItemCode 30591, +8 Attack Power and +5 Resilience Rating
-	-- [3072] = true, -- Enscribed Fire Opal, ItemCode 30584, +5 Strength and +4 Critical Rating
-	-- [3057] = true, -- Etched Fire Opal, ItemCode 30559, +5 Strength and +4 Hit Rating
-	-- [3056] = true, -- Glimmering Fire Opal, ItemCode 30558, +5 Parry Rating and +4 Defense Rating
-	-- [3055] = true, -- Glinting Fire Opal, ItemCode 30556, +5 Agility and +4 Hit Rating
-	-- [3073] = true, -- Glistening Fire Opal, ItemCode 30585, +4 Agility and +5 Defense Rating
-	-- [3050] = true, -- Infused Fire Opal, ItemCode 30551, +6 Spell Damage and +4 Intellect
-	-- [3081] = true, -- Iridescent Fire Opal, ItemCode 30593, +11 Healing and +4 Spell Critical Rating
-	-- [3046] = true, -- Luminous Fire Opal, ItemCode 30547, +11 Healing and +4 Intellect
-	-- [3066] = true, -- Mysterious Fire Opal, ItemCode 30573, +6 Spell Damage and +5 Spell Penetration
-	-- [3068] = true, -- Nimble Fire Opal, ItemCode 30575, +5 Dodge Rating and +4 Hit Rating
-	-- [3076] = true, -- Potent Fire Opal, ItemCode 30588, +6 Spell Damage and +4 Spell Critical Rating
-	-- [3052] = true, -- Pristine Fire Opal, ItemCode 30553, +10 Attack Power and +4 Hit Rating
-	-- [3087] = true, -- Resplendent Fire Opal, Item ID 30604, ItemCode 3087, 
-	-- [3061] = true, -- Shining Fire Opal, ItemCode 30564, +6 Spell Damage and +5 Spell Hit Rating
-	-- [3090] = true, -- Splendid Fire Opal, ItemCode 30607, +5 Parry Rating and +4 Resilience Rating
-	-- [3053] = true, -- Stalwart Fire Opal, ItemCode 30554, +5 Defense Rating and +4 Dodge Rating
-
-	-- [3100] = true, -- Blessed Tanzanite, ItemCode 30552, +11 Healing and +6 Stamina
-	-- [3067] = true, -- Brutal Tanzanite, ItemCode 30574, +10 Attack Power and +6 Stamina
-	-- [3063] = true, -- Defender's Tanzanite, ItemCode 30566, +5 Parry Rating and +6 Stamina
-	-- [3083] = true, -- Fluorescent Tanzanite, ItemCode 30600, +6 Spell Damage and +4 Spirit
-	-- [3099] = true, -- Glowing Tanzanite, ItemCode 30555, +6 Spell Damage and +6 Stamina
-	-- [3064] = true, -- Imperial Tanzanite, ItemCode 30572, +5 Spirit and +9 Healing
-	-- [3060] = true, -- Regal Tanzanite, ItemCode 30563, +5 Dodge Rating and +6 Stamina
-	-- [3086] = true, -- Royal Tanzanite, ItemCode 30603, +11 Healing and 2 mana per 5 sec.
-	-- [3048] = true, -- Shifting Tanzanite, ItemCode 30549, +5 Strength and +4 Agility
-	-- [3045] = true, -- Sovereign Tanzanite, ItemCode 30546, +5 Strength and +6 Stamina
+	[32634] = 3156, -- Unstable Amethyst, ItemCode 32634, +8 Attack Power and +6 Stamina
+	[32635] = 3157, -- Unstable Peridot, ItemCode 32635,
+	[32636] = 3158, -- Unstable Sapphire, ItemCode 32636
+	[32637] = 3159, -- Unstable Citrine, ItemCode 32637, +8 Attack Power
+	[32638] = 3160, -- Unstable Topaz, ItemCode 32638
+	[32639] = 3161, -- Unstable Talasite, ItemCode 32639
+	
+	-- WotLK unique-equipped
+	
+	[42701] = 3749, -- Enchanted Pearl, +4 all stats, ItemCode 42701
+	[42702] = 3750, -- Enchanted Tear, +6 all stats, ItemCode 42702
+	[44066] = 3792, -- Kharmaa's Grace, +20 resilience, ItemCode 44066
+	
+	-- WotLK JC Prismatics (unique-equipped x 3)
+	
+	[36766] = "PRISM3", -- Bright Dragon's Eye, 54att, ItemCode 36766
+	[36767] = "PRISM3", -- Solid Dragon's Eye, 41stam, ItemCode 36767
+	[42142] = "PRISM3", -- Bold Dragon's Eye, 27str, ItemCode 42142
+	[42143] = "PRISM3", -- Delicate Dragon's Eye, 27agi, ItemCode 42143
+	[42144] = "PRISM3", -- Runed Dragon's Eye, 32spell, ItemCode 42144
+	[42145] = "PRISM3", -- Sparkling Dragon's Eye, 27spi, ItemCode 42145
+	[42146] = "PRISM3", -- Lustrous Dragon's Eye, 11mp5, ItemCode 42146
+	[42148] = "PRISM3", -- Brilliant Dragon's Eye, 27int, ItemCode 42148
+	[42149] = "PRISM3", -- Smooth Dragon's Eye, 27crit, ItemCode 42149
+	[42150] = "PRISM3", -- Quick Dragon's Eye, 27haste, ItemCode 42150
+	[42151] = "PRISM3", -- Subtle Dragon's Eye, 27dodge, ItemCode 42151
+	[42152] = "PRISM3", -- Flashing Dragon's Eye, 27parry, ItemCode 42152
+	[42153] = "PRISM3", -- Fractured Dragon's Eye, 27armorpen, ItemCode 42153
+	[42154] = "PRISM3", -- Precise Dragon's Eye, 27exp, ItemCode 42154
+	[42155] = "PRISM3", -- Stormy Dragon's Eye, 32spellpen, ItemCode 42155
+	[42156] = "PRISM3", -- Rigid Dragon's Eye, 27hit, ItemCode 42156
+	[42157] = "PRISM3", -- Thick Dragon's Eye, 27def, ItemCode 42157
+	[42158] = "PRISM3", -- Mystic Dragon's Eye, 27resil, ItemCode 42158
+	
+	-- Patch 3.2
+	
+	[49110] = 49110, -- Nightmare Tear
+	
+	-- Cataclysm JC
+	
+	[52255] = "PRISM3", -- Bold Chimera's Eye
+	[52257] = "PRISM3", -- Brilliant Chimera's Eye
+	[52258] = "PRISM3", -- Delicate Chimera's Eye
+	[52259] = "PRISM3", -- Flashing Chimera's Eye
+	[52269] = "PRISM3", -- Fractured Chimera's Eye
+	[52267] = "PRISM3", -- Mystic Chimera's Eye
+	[52260] = "PRISM3", -- Precise Chimera's Eye
+	[52268] = "PRISM3", -- Quick Chimera's Eye
+	[52264] = "PRISM3", -- Rigid Chimera's Eye
+	[52266] = "PRISM3", -- Smooth Chimera's Eye
+	[52261] = "PRISM3", -- Solid Chimera's Eye
+	[52262] = "PRISM3", -- Sparkling Chimera's Eye
+	[52263] = "PRISM3", -- Stormy Chimera's Eye
+	[52265] = "PRISM3", -- Subtle Chimera's Eye
+	
+	-- MoP JC
+	
+	[83141] = "FACET2", -- Bold Serpent's Eye
+	[83142] = "FACET2", -- Quick Serpent's Eye
+	[83143] = "FACET2", -- Fractured Serpent's Eye
+	[83144] = "FACET2", -- Rigid Serpent's Eye
+	[83145] = "FACET2", -- Subtle Serpent's Eye
+	[83146] = "FACET2", -- Smooth Serpent's Eye
+	[83147] = "FACET2", -- Precise Serpent's Eye
+	[83148] = "FACET2", -- Solid Serpent's Eye
+	[83149] = "FACET2", -- Sparkling Serpent's Eye
+	[83150] = "FACET2", -- Brilliant Serpent's Eye
+	[83151] = "FACET2", -- Delicate Serpent's Eye
+	[83152] = "FACET2", -- Flashing Serpent's Eye
+	
+	-- MoP Cogwheel
+	[77540] = 77540, -- Subtle Tinker's Gear
+	[77541] = 77541, -- Smooth Tinker's Gear
+	[77542] = 77542, -- Quick Tinker's Gear
+	[77543] = 77543, -- Precise Tinker's Gear
+	[77544] = 77544, -- Flashing Tinker's Gear
+	[77545] = 77545, -- Rigid Tinker's Gear
+	[77546] = 77546, -- Sparkling Tinker's Gear
+	[77547] = 77547, -- Fractured Tinker's Gear
+	
+	-- MoP JC
+	[93404] = "FACET2", -- Resplendent
+	[93405] = "FACET2", -- Lucent
+	[93406] = "FACET2", -- Willful
+	[93408] = "FACET2", -- Tense
+	[93409] = "FACET2", -- Assassin's
+	[93410] = "FACET2", -- Mysterious
 }
 
 StaticPopupDialogs.OUTFITTER_CANT_RELOADUI =
 {
-	text = TEXT(Outfitter.cCantReloadUI),
-	button1 = TEXT(OKAY),
+	text = Outfitter.cCantReloadUI,
+	button1 = OKAY,
 	OnAccept = function() end,
 	OnCancel = function() end,
 	timeout = 0,
@@ -332,1286 +613,29 @@ StaticPopupDialogs.OUTFITTER_CANT_RELOADUI =
 	showAlert = 1,
 }
 
-function Outfitter:GenerateScriptHeader(pEventIDs, pDescription)
-	local vDescription
-	
-	if pDescription then
-		vDescription = '-- $DESC '..pDescription..'\n'
-	else
-		vDescription = ''
-	end
-	
-	if type(pEventIDs) == "table" then
-		pEventIDs = table.concat(pEventIDs, " ")
-	end
-	
-	return '-- $EVENTS '..pEventIDs..'\n'..vDescription..'\n'
-end
-
-function Outfitter:GenerateSimpleScript(pEventID, pDescription)
-	return
-		self:GenerateScriptHeader(pEventID.." NOT_"..pEventID, pDescription)..
-		'-- If the activation event fires, equip the outfit\n'..
-		'\n'..
-		'if event == "'..pEventID..'" then\n'..
-		'    equip = true\n'..
-		'\n'..
-		'-- Otherwise it must be the deactivation event so unequip it\n'..
-		'\n'..
-		'else\n'..
-		'    equip = false\n'..
-		'end\n'
-end
-
-function Outfitter:GenerateSmartUnequipScript(pEventID, pDescription, pUnequipDelay)
-	local vScript
-	
-	vScript = self:GenerateScriptHeader(pEventID.." NOT_"..pEventID, pDescription)..
-		'-- If the activation event fires, equip the outfit\n'..
-		'\n'..
-		'if event == "'..pEventID..'" then\n'..
-		'    equip = true\n'..
-		'\n'..
-		'-- Otherwise it must be the deactivation event so unequip\n'..
-		'-- the outfit.\n'..
-		'\n'..
-		'-- Note that if you manually equipped the outfit the script\n'..
-		'-- will not unequip it for you.  This allows you to avoid excess\n'..
-		'-- outfit changes, for example when entering and exiting\n'..
-		'-- battlegrounds repeatedly. Remove the didEquip condition\n'..
-		'-- to change the behavior to always unequip.\n'..
-		'\n'..
-		'elseif didEquip then\n'..
-		'    equip = false\n' if pUnequipDelay then vScript = vScript..
-		'    delay = '..pUnequipDelay..'\n' end vScript = vScript..
-		'end\n'
-	
-	return vScript
-end
-
-function Outfitter:GenerateShapeshiftScript(pEventID, pDescription)
-	return
-		self:GenerateScriptHeader({pEventID, 'NOT_'..pEventID, "OUTFIT_EQUIPPED"}, pDescription)..
-		'-- $SETTING DisableBG={Type="Boolean", Label="Don\'t equip in Battlegrounds", Default=false}\n'..
-		'-- $SETTING DisablePVP={Type="Boolean", Label="Don\'t equip while PvP flagged", Default=false}\n'..
-		'\n'..
-		'-- Just return if they\'re PvP\'ing and don\'t want the outfit changing\n'..
-		'\n'..
-		'if (setting.DisableBG and Outfitter:InBattlegroundZone())\n'..
-		'or (setting.DisablePVP and UnitIsPVP("player")) then\n'..
-		'    return\n'..
-		'end\n'..
-		'\n'..
-		'-- Return if the user isn\'t in full control\n'..
-		'\n'..
-		'if not Outfitter.IsDead and not HasFullControl() then\n'..
-		'    return\n'..
-		'end\n'..
-		'\n'..
-		'-- If the outfit is being equipped then let Outfitter know\n'..
-		'-- which layer it\'s representing\n'..
-		'\n'..
-		'if event == "OUTFIT_EQUIPPED" then\n'..
-		'    layer = "shapeshift"\n'..
-		'\n'..
-		'-- Equip and set the layer if entering the stance\n'..
-		'\n'..
-		'elseif event == "'..pEventID..'" then\n'..
-		'    equip = true\n'..
-		'    layer = "shapeshift"\n'..
-		'\n'..
-		'-- Just unequip if leaving the stance\n'..
-		'\n'..
-		'else\n'..
-		'    equip = false\n'..
-		'end\n'
-end
-
-function Outfitter:GenerateDruidShapeshiftScript(pEventID, pDescription)
-	return
-		self:GenerateScriptHeader({pEventID, 'NOT_'..pEventID, 'OUTFIT_EQUIPPED'}, pDescription)..
-		'-- $SETTING DisableBG={Type="Boolean", Label="Don\'t equip in Battlegrounds", Default=false}\n'..
-		'-- $SETTING DisablePVP={Type="Boolean", Label="Don\'t equip while PvP flagged", Default=false}\n'..
-		'\n'..
-		'-- Just return if they\'re PvP\'ing and don\'t want the outfit changing\n'..
-		'\n'..
-		'if (setting.DisableBG and Outfitter:InBattlegroundZone())\n'..
-		'or (setting.DisablePVP and UnitIsPVP("player")) then\n'..
-		'    return\n'..
-		'end\n'..
-		'\n'..
-		'-- Return if the user isn\'t in full control\n'..
-		'\n'..
-		'if not Outfitter.IsDead and not HasFullControl() then\n'..
-		'    return\n'..
-		'end\n'..
-		'\n'..
-		'-- If the user is manually equipping the outfit, let\n'..
-		'-- Outfitter know which layer it\'s representing\n'..
-		'\n'..
-		'if event == "OUTFIT_EQUIPPED" then\n'..
-		'    layer = "shapeshift"\n'..
-		'\n'..
-		'-- Equip and set the layer if entering the form\n'..
-		'\n'..
-		'elseif event == "'..pEventID..'" then\n'..
-		'    equip = true\n'..
-		'    layer = "shapeshift"\n'..
-		'\n'..
-		'-- Unequip if leaving the form.  If they\'re in combat also\n'..
-		'-- add a 2 second delay so they have time to start casting\n'..
-		'-- a heal on themselves without triggering the global cooldown\n'..
-		'\n'..
-		'else\n'..
-		'    equip = false\n'..
-		'\n'..
-		'    if Outfitter.InCombat then\n'..
-		'        delay = 2\n'..
-		'    end\n'..
-		'end\n'
-end
-
-function Outfitter:GenerateGatheringScript(pTooltipGatherMessage, pDescription)
-	return
-		self:GenerateScriptHeader("GAMETOOLTIP_SHOW GAMETOOLTIP_HIDE", pDescription)..
-		'-- If the tooltip is being shown see if the outfit should be equipped\n'..
-		'\n'..
-		'if event == "GAMETOOLTIP_SHOW" then\n'..
-		'\n'..
-		'    -- Check the tooltip for an orange or red tradeskill message\n'..
-		'    -- and equip the outfit if there is one\n'..
-		'\n'..
-		'    local hasText, isDifficult = Outfitter:TooltipContainsLine(GameTooltip, '..pTooltipGatherMessage..')\n'..
-		'\n'..
-		'    if hasText and isDifficult then\n'..
-		'        equip=true\n'..
-		'    end\n'..
-		'\n'..
-		'    -- The tooltip isn\'t being shown so it\'s being hidden.\n'..
-		'    -- A one second delay is used so that the outfit doesn\'t\n'..
-		'    -- unequip if the user momentarily moves the cursor off\n'..
-		'    -- the node\n'..
-		'\n'..
-		'elseif didEquip then\n'..
-		'    equip=false; delay=1\n'..
-		'end'
-end
-
-function Outfitter:GenerateLockpickingScript(pTooltipGatherMessage, pDescription)
-	return
-		self:GenerateScriptHeader("GAMETOOLTIP_SHOW GAMETOOLTIP_HIDE", pDescription)..
-		'-- If the tooltip is being shown see if the outfit should be equipped\n'..
-		'\n'..
-		'if event == "GAMETOOLTIP_SHOW" or event == "TIMER" then\n'..
-		'    if event == "GAMETOOLTIP_SHOW" then\n'..
-		'        self:RegisterEvent("TIMER")\n'..
-		'    end\n'..
-		'\n'..
-		'    if not SpellIsTargeting() then\n'..
-		'        return\n'..
-		'    end\n'..
-		'\n'..
-		'    -- Check the tooltip for an orange or red tradeskill message\n'..
-		'    -- and equip the outfit if there is one\n'..
-		'\n'..
-		'    local hasText, isDifficult = Outfitter:TooltipContainsLine(GameTooltip, Outfitter.cRequiresLockpicking)\n'..
-		'\n'..
-		'    if hasText and isDifficult then\n'..
-		'        equip=true\n'..
-		'    end\n'..
-		'\n'..
-		'    -- The tooltip isn\'t being shown so it\'s being hidden.\n'..
-		'    -- A one second delay is used so that the outfit doesn\'t\n'..
-		'    -- unequip if the user momentarily moves the cursor off\n'..
-		'    -- the node\n'..
-		'\n'..
-		'else\n'..
-		'    self:UnregisterEvent("TIMER")\n'..
-		'    if didEquip then -- GAME_TOOLTIP_HIDE\n'..
-		'        equip=false; delay=1\n'..
-		'    end\n'..
-		'end'
-end
-
-Outfitter.PresetScripts =
+StaticPopupDialogs.OUTFITTER_SERVER_FULL =
 {
-	{
-		Name = Outfitter.cHerbalismOutfit,
-		ID = "HERBALISM",
-		Category = "TRADE",
-		Script = Outfitter:GenerateGatheringScript("UNIT_SKINNABLE_HERB", Outfitter.cHerbalismDescription),
-	},
-	{
-		Name = Outfitter.cMiningOutfit,
-		ID = "MINING",
-		Category = "TRADE",
-		Script = Outfitter:GenerateGatheringScript("UNIT_SKINNABLE_ROCK", Outfitter.cMiningDescription),
-	},
-	{
-		Name = Outfitter.cSkinningOutfit,
-		ID = "SKINNING",
-		Category = "TRADE",
-		Script = Outfitter:GenerateGatheringScript("UNIT_SKINNABLE_LEATHER", Outfitter.cSkinningDescription),
-	},
-	{
-		Name = Outfitter.cLockpickingOutfit,
-		ID = "LOCKPICKING",
-		Category = "TRADE",
-		Class = "ROGUE",
-		Script = Outfitter:GenerateLockpickingScript(Outfitter.cLockpickingDescription),
-	},
-	{
-		Name = Outfitter.cLowHealthOutfit,
-		ID = "LOW_HEALTH",
-		Category = "GENERAL",
-		Script = Outfitter:GenerateScriptHeader("UNIT_HEALTH UNIT_MANA", Outfitter.cLowHealthDescription)..
-		       '-- $SETTING Health="Number"\n'..
-		       '-- $SETTING Mana="Number"\n'..
-		       '\n'..
-		       'if arg1=="player"\n'..
-		       'and (UnitHealth(arg1) < setting.Health\n'..
-		       '  or UnitMana(arg1) < setting.Mana) then\n'..
-		       '    equip = true\n'..
-		       'elseif didEquip then\n'..
-		       '    equip = false\n'..
-		       'end',
-	},
-	{
-		Name = Outfitter.cHasBuffOutfit,
-		ID = "HAS_BUFF",
-		Category = "GENERAL",
-		Script = Outfitter:GenerateScriptHeader("PLAYER_AURAS_CHANGED", Outfitter.cHasBuffDescription)..
-		         '-- $SETTING buffName = {Type = "String", Label = "Buff name"}\n'..
-		         '\n'..
-		         'local index = 1\n'..
-		         'local lowerName = strlower(setting.buffName)\n'..
-		         '\n'..
-		         'while true do\n'..
-		         '    local buffName = UnitBuff("player", index)\n'..
-		         '    if not buffName then break end\n'..
-		         '    if strlower(buffName) == lowerName then equip = true break end\n'..
-		         '    index = index + 1\n'..
-		         'end\n'..
-		         '\n'..
-		         'if equip == nil and didEquip then equip = false end\n',
-	},
-	{
-		Name = "Trinket Queue",
-		ID = "TRINKET_QUEUE",
-		Category = "GENERAL",
-		Script = Outfitter:GenerateScriptHeader("TIMER", "The highest trinket in the list that isn\'t on cooldown will automatically be equipped for you")..
-		       '-- $SETTING Trinkets={Label="Upper slot", Type="StringTable"}\n'..
-		       '-- $SETTING Trinkets2={Label="Lower slot", Type="StringTable"}\n'..
-		       '\n'..
-		       'local upperSlotVisible = true\n'..
-		       'local lowerSlotVisible = true\n'..
-		       '\n'..
-		       'if not Outfitter.OutfitStack:IsTopmostOutfit(outfit) then\n'..
-		       '    for index = #Outfitter.OutfitStack.Outfits, 1, -1 do\n'..
-		       '        local stackOutfit = Outfitter.OutfitStack.Outfits[index]\n'..
-		       '        if outfit == stackOutfit then break end\n'..
-		       '        if stackOutfit.Name then\n'..
-		       '            if stackOutfit.Items.Trinket0Slot then\n'..
-		       '                upperSlotVisible = false\n'..
-		       '            end\n'..
-		       '            if stackOutfit.Items.Trinket1Slot then\n'..
-		       '                lowerSlotVisible = false\n'..
-		       '            end\n'..
-		       '        end\n'..
-		       '    end\n'..
-		       'end\n'..
-		       '\n'..
-		       'if isEquipped and not Outfitter.InCombat and not Outfitter.IsDead then\n'..
-		       '    if upperSlotVisible and not Outfitter:InventoryItemIsActive("Trinket0Slot") then\n'..
-		       '        for _, itemName in ipairs(setting.Trinkets) do\n'..
-		       '            local startTime, duration, enable = GetItemCooldown(itemName)\n'..
-		       '            if duration <= 30 then\n'..
-		       '                EquipItemByName(itemName)\n'..
-		       '                break\n'..
-		       '            end\n'..
-		       '        end\n'..
-		       '    end\n'..
-		       '\n'..
-		       '    if lowerSlotVisible and not Outfitter:InventoryItemIsActive("Trinket1Slot") then\n'..
-		       '        for _, itemName in ipairs(setting.Trinkets2) do\n'..
-		       '            local startTime, duration, enable = GetItemCooldown(itemName)\n'..
-		       '            if duration <= 30 then\n'..
-		       '                EquipItemByName(itemName, 14)\n'..
-		       '                break\n'..
-		       '            end\n'..
-		       '        end\n'..
-		       '    end\n'..
-		       'end',
-	},
-	{
-		Name = Outfitter.cInZonesOutfit,
-		ID = "IN_ZONES",
-		Category = "TRADE",
-		Script = Outfitter:GenerateScriptHeader("ZONE_CHANGED_INDOORS ZONE_CHANGED ZONE_CHANGED_NEW_AREA", Outfitter.cInZonesOutfitDescription)..
-		       '-- $SETTING zoneList={Type=\"ZoneList\", Label=\"Zones\"}\n'..
-		       '-- $SETTING minimapZoneList={Type=\"ZoneList\", ZoneType=\"MinimapZone\", Label=\"Minimap zones\"}\n'..
-		       '\n'..
-		       'local currentZone = GetZoneText()\n'..
-		       '\n'..
-		       'for _, zoneName in ipairs(setting.zoneList) do\n'..
-		       '    if zoneName == currentZone then\n'..
-		       '        equip = true\n'..
-		       '        break\n'..
-		       '    end\n'..
-		       'end\n'..
-		       '\n'..
-		       'if not equip then\n'..
-		       '    currentZone = GetMinimapZoneText()\n'..
-		       '    for _, zoneName in ipairs(setting.minimapZoneList) do\n'..
-		       '        if zoneName == currentZone then\n'..
-		       '            equip = true\n'..
-		       '            break\n'..
-		       '        end\n'..
-		       '    end\n'..
-		       'end\n'..
-		       '\n'..
-		       'if didEquip and equip == nil then\n'..
-		       '    equip = false\n'..
-		       'end',
-	},
-	{
-		Name = Outfitter.cArgentDawnOutfit,
-		ID = "ArgentDawn",
-		Category = "GENERAL",
-		Script = Outfitter:GenerateScriptHeader("ARGENT_DAWN NOT_ARGENT_DAWN", Outfitter.cArgentDawnOutfitDescription)..
-		         '-- $SETTING DisableNaxx={Type="Boolean", Label="Disable in Naxxramas"}\n'..
-		         'if event == "ARGENT_DAWN" then\n'..
-		         '    if not setting.DisableNaxx\n'..
-		         '    or not Outfitter:InZoneType("Naxx") then\n'..
-		         '        equip = true\n'..
-		         '    end\n'..
-		         'elseif didEquip then\n'..
-		         '    equip = false\n'..
-		         'end\n',
-	},
-	{
-		Name = Outfitter.cRidingOutfit,
-		ID = "Riding",
-		Category = "TRADE",
-		Script = Outfitter:GenerateScriptHeader("MOUNTED NOT_MOUNTED", Outfitter.cRidingOutfitDescription)..
-		         '-- $SETTING DisableBG={Type="Boolean", Label="Don\'t equip in Battlegrounds", Default=true}\n'..
-		         '-- $SETTING DisableInstance={Type="Boolean", Label="Don\'t equip in dungeons", Default=true}\n'..
-		         '-- $SETTING DisablePVP={Type="Boolean", Label="Don\'t equip while PvP flagged", Default=false}\n'..
-		         '-- $SETTING StayEquippedWhileFalling={Type="Boolean", Label="Leave equipped while falling", Default=false}\n'..
-		         '-- $SETTING UnequipDelay={Type="Number", Label="Wait", Suffix="seconds before unequipping", Default=0}\n'..
-		         '\n'..
-		         '-- Equip on mount unless it\'s disabled\n'..
-		         '\n'..
-		         'if event == "MOUNTED" then\n'..
-		         '    -- The disable options are only checked inside the mounting handler.  This way\n'..
-		         '    -- the outfit won\'t equip automatically, but if the player chooses to\n'..
-		         '    -- manually equip it after mounting, then Outfitter will still unequip\n'..
-		         '    -- it for them when they dismount\n'..
-		         '\n'..
-		         '    local inInstance, instanceType = IsInInstance()\n'..
-		         '    if (setting.DisableInstance and inInstance and (instanceType == "raid" or instanceType == "party"))\n'..
-		         '    or (setting.DisableBG and Outfitter:InBattlegroundZone())\n'..
-		         '    or (setting.DisablePVP and UnitIsPVP("player")) then\n'..
-		         '        return\n'..
-		         '    end\n'..
-		         '\n'..
-		         '    equip = true\n'..
-		         '\n'..
-		         '-- Unequip on dismount\n'..
-		         '\n'..
-		         'elseif event == "NOT_MOUNTED" then\n'..
-		         '    if not setting.StayEquippedWhileFalling then\n'..
-		         '        equip = false\n'..
-		         '    else\n'..
-				 '        self.UnequipWhenNotFalling = true\n'..
-				 '        self.DismountTime = GetTime()\n'..
-		         '        self:RegisterEvent("TIMER")\n'..
-		         '    end\n'..
-		         '\n'..
-		         '    if setting.UnequipDelay then\n'..
-		         '        delay = setting.UnequipDelay\n'..
-		         '    end\n'..
-		         '\n'..
-		         '-- If they\'re still mounted three seconds after casting then assume\n'..
-		         '-- it was nothing important and put the riding gear back on\n'..
-		         '\n'..
-				 'elseif event == "TIMER" then\n'..
-		         '    -- Unequip if the player was falling when dismounted and has now landed\n'..
-		         '\n'..
-		         '    if self.UnequipWhenNotFalling\n'..
-		         '    and GetTime() >= self.DismountTime + 1\n'..
-		         '    and not IsFalling() then\n'..
-		         '        equip = false\n'..
-		         '        self.UnequipWhenNotFalling = nil\n'..
-		         '    end\n'..
-		         '\n'..
-				 '    if not self.UnequipWhenNotFalling then\n'..
-				 '        self:UnregisterEvent("TIMER")\n'..
-				 '    end\n'..
-		         'end\n',
-	},
-	{
-		Name = Outfitter.cSwimmingOutfit,
-		ID = "Swimming",
-		Category = "TRADE",
-		Script = Outfitter:GenerateScriptHeader("SWIMMING NOT_SWIMMING", Outfitter.cSwimmingOutfitDescription)..
-				'-- $SETTING DisableBG={Type="Boolean", Label="Don\'t equip in Battlegrounds", Default=false}\n'..
-				'-- $SETTING DisablePVP={Type="Boolean", Label="Don\'t equip while PvP flagged", Default=false}\n'..
-				'\n'..
-				'-- Just return if they\'re PvP\'ing and don\'t want the outfit changing\n'..
-				'\n'..
-				'if (setting.DisableBG and Outfitter:InBattlegroundZone())\n'..
-				'or (setting.DisablePVP and UnitIsPVP("player")) then\n'..
-				'    return\n'..
-				'end\n'..
-				'\n'..
-				'if event == "SWIMMING" then\n'..
-				'    equip = true\n'..
-				'elseif didEquip then\n'..
-				'    equip = false\n'..
-				'    delay = 2.5 -- Use a delay since hitting spacebar temporarily makes the player not swimming\n'..
-				'end\n',
-	},
-	{
-		Name = Outfitter.cFishingOutfit,
-		ID = "Fishing",
-		Category = "TRADE",
-		Script = Outfitter:GenerateScriptHeader("PLAYER_REGEN_ENABLED PLAYER_REGEN_DISABLED PLAYER_ENTERING_WORLD OUTFIT_EQUIPPED OUTFIT_UNEQUIPPED PLAYER_AURAS_CHANGED", Outfitter.cFishingOutfitDescription)..
-		         '-- $SETTING EquipOnTrackFish = {Type = "Boolean", Label = "Equip whenever Track Fish is selected"}\n'..
-		         '-- $SETTING EnableAutoLoot = {Type = "Boolean", Label = "Enable auto loot while equipped"}\n'..
-		         '\n'..
-		         '-- Enable auto looting if the outfit is being equipped and EnableAutoLoot is on\n'..
-		         '\n'..
-		         'if event == "OUTFIT_EQUIPPED" then\n'..
-		         '    if setting.EnableAutoLoot then\n'..
-		         '        setting.savedAutoLoot = GetAutoLootDefault()\n'..
-		         '        SetAutoLootDefault(true)\n'..
-		         '        setting.didSetAutoLoot = true\n'..
-		         '    end\n'..
-		         '\n'..
-		         '-- Turn auto looting back off if the outfit is being unequipped and we turned it on\n'..
-		         '\n'..
-		         'elseif event == "OUTFIT_UNEQUIPPED" then\n'..
-		         '    if setting.EnableAutoLoot and setting.didSetAutoLoot then\n'..
-		         '        SetAutoLootDefault(setting.savedAutoLoot)\n'..
-		         '        setting.didSetAutoLoot = nil\n'..
-		         '        setting.savedAutoLoot = nil\n'..
-		         '    end\n'..
-		         '\n'..
-		         '-- If the player is entering combat then unequip the outfit\n'..
-		         '\n'..
-		         'elseif isEquipped and event == "PLAYER_REGEN_DISABLED" then\n'..
-		         '    equip = false\n'..
-		         '    outfit.didCombatUnequip = true\n'..
-		         '\n'..
-		         '-- If the outfit was unequipped because of combat\n'..
-		         '-- then put it back on when combat is over\n'..
-		         '\n'..
-		         'elseif outfit.didCombatUnequip and (event == "PLAYER_REGEN_ENABLED" or event == "PLAYER_ENTERING_WORLD") then\n'..
-		         '    equip = true\n'..
-		         '    outfit.didCombatUnequip = nil\n'..
-		         '\n'..
-		         '-- Equip the outfit when tracking is changed to Find Fish, unequip\n'..
-		         '-- it if the tracking is changed to something else\n'..
-		         '\n'..
-		         'elseif event == "PLAYER_AURAS_CHANGED" then \n'..
-		         '    local vTrackingFindFish = GetTrackingTexture() == "Interface\\\\Icons\\\\INV_Misc_Fish_02"\n'..
-		         '    if outfit.trackingFindFish == vTrackingFindFish then return end\n'..
-		         '    outfit.trackingFindFish = vTrackingFindFish\n'..
-		         '\n'..
-		         '    if not setting.EquipOnTrackFish then return end\n'..
-		         '\n'..
-		         '    if vTrackingFindFish then\n'..
-		         '        equip = true\n'..
-		         '        outfit.equippedByFindFish = true\n'..
-		         '    elseif outfit.equippedByFindFish then\n'..
-		         '        equip = false\n'..
-		         '        outfit.equippedByFindFish = nil\n'..
-		         '    end\n'..
-		         'end\n',
-	},
-	{
-		Name = Outfitter.cDiningOutfit,
-		ID = "Dining",
-		Category = "TRADE",
-		Script = Outfitter:GenerateSmartUnequipScript("DINING", Outfitter.cDiningOutfitDescription),
-	},
-	{
-		Name = Outfitter.cCityOutfit,
-		ID = "City",
-		Category = "GENERAL",
-		Script = Outfitter:GenerateSimpleScript("CITY", Outfitter.cCityOutfitDescription),
-	},
-	{
-		Name = Outfitter.cBattlegroundOutfit,
-		ID = "Battleground",
-		Category = "PVP",
-		Script = Outfitter:GenerateSmartUnequipScript("BATTLEGROUND", Outfitter.cBattlegroundOutfitDescription),
-	},
-	{
-		Name = Outfitter.cABOutfit,
-		ID = "AB",
-		Category = "PVP",
-		Script = Outfitter:GenerateSmartUnequipScript("BATTLEGROUND_AB", Outfitter.cArathiBasinOutfitDescription),
-	},
-	{
-		Name = Outfitter.cAVOutfit,
-		ID = "AV",
-		Category = "PVP",
-		Script = Outfitter:GenerateSmartUnequipScript("BATTLEGROUND_AV", Outfitter.cAlteracValleyOutfitDescription),
-	},
-	{
-		Name = Outfitter.cWSGOutfit,
-		ID = "WSG",
-		Category = "PVP",
-		Script = Outfitter:GenerateSmartUnequipScript("BATTLEGROUND_WSG", Outfitter.cWarsongGulchOutfitDescription),
-	},
-	{
-		Name = Outfitter.cEotSOutfit,
-		ID = "EotS",
-		Category = "PVP",
-		Script = Outfitter:GenerateSmartUnequipScript("BATTLEGROUND_EOTS", Outfitter.cEotSOutfitDescription),
-	},
-	{
-		Name = Outfitter.cArenaOutfit,
-		ID = "Arena",
-		Category = "PVP",
-		Script = Outfitter:GenerateSmartUnequipScript("BATTLEGROUND_ARENA", Outfitter.cArenaOutfitDescription),
-	},
-	{
-		Name = "Spirit Regen",
-		ID = "Spirit",
-		Category = "GENERAL",
-		Script = Outfitter:GenerateSmartUnequipScript("SPIRIT_REGEN", Outfitter.SpiritRegenOutfitDescription, 0.5),
-	},
-	{
-		Name = Outfitter.cWarriorBattleStance,
-		ID = "Battle",
-		Class = "WARRIOR",
-		Script = Outfitter:GenerateShapeshiftScript("BATTLE_STANCE", Outfitter.cWarriorBattleStanceDescription),
-	},
-	{
-		Name = Outfitter.cWarriorDefensiveStance,
-		ID = "Defensive",
-		Class = "WARRIOR",
-		Script = Outfitter:GenerateShapeshiftScript("DEFENSIVE_STANCE", Outfitter.cWarriorDefensiveStanceDescription),
-	},
-	{
-		Name = Outfitter.cWarriorBerserkerStance,
-		ID = "Berserker",
-		Class = "WARRIOR",
-		Script = Outfitter:GenerateShapeshiftScript("BERSERKER_STANCE", Outfitter.cWarriorBerserkerStanceDescription),
-	},
-	{
-		Name = Outfitter.cDruidCasterForm,
-		ID = "Caster",
-		Class = "DRUID",
-		Script = Outfitter:GenerateScriptHeader("CASTER_FORM NOT_CASTER_FORM OUTFIT_EQUIPPED", Outfitter.cDruidCasterFormDescription)..
-			'-- $SETTING DisableBG={Type="Boolean", Label="Don\'t equip in Battlegrounds", Default=false}\n'..
-			'-- $SETTING DisablePVP={Type="Boolean", Label="Don\'t equip while PvP flagged", Default=false}\n'..
-			'\n'..
-			'-- Just return if they\'re PvP\'ing and don\'t want the outfit changing\n'..
-			'\n'..
-			'if (setting.DisableBG and Outfitter:InBattlegroundZone())\n'..
-			'or (setting.DisablePVP and UnitIsPVP("player")) then\n'..
-			'    return\n'..
-			'end\n'..
-			'\n'..
-			'-- Return if the user isn\'t in full control\n'..
-			'\n'..
-			'if not Outfitter.IsDead and not HasFullControl() then\n'..
-			'    return\n'..
-			'end\n'..
-			'\n'..
-			'-- If the user is manually equipping the outfit, let\n'..
-			'-- Outfitter know which layer it\'s representing\n'..
-			'\n'..
-			'if event == "OUTFIT_EQUIPPED" then\n'..
-			'    layer = "shapeshift"\n'..
-			'\n'..
-			'-- Equip and set the layer if entering caster form.  When\n'..
-			'-- shifting directly between forms, WoW temporarily puts\n'..
-			'-- the druid in caster form.  To avoid having the caster\n'..
-			'-- outfit equip during those changes, a small delay is\n'..
-			'-- added to equipping so it can be canceled when the form\n'..
-			'-- shift completes.\n'..
-			'\n'..
-			'elseif event == "CASTER_FORM" then\n'..
-			'    equip = true\n'..
-			'    layer = "shapeshift"\n'..
-			'    delay = 0.1\n'..
-			'\n'..
-			'-- Unequip if leaving caster form\n'..
-			'\n'..
-			'else\n'..
-			'    equip = false\n'..
-			'end\n',
-	},
-	{
-		Name = Outfitter.cDruidBearForm,
-		ID = "Bear",
-		Class = "DRUID",
-		Script = Outfitter:GenerateDruidShapeshiftScript("BEAR_FORM", "This outfit will be worn whenever you're in Bear or Dire Bear Form"),
-	},
-	{
-		Name = Outfitter.cDruidCatForm,
-		ID = "Cat",
-		Class = "DRUID",
-		Script = Outfitter:GenerateDruidShapeshiftScript("CAT_FORM", "This outfit will be worn whenever you're in Cat Form"),
-	},
-	{
-		Name = Outfitter.cDruidAquaticForm,
-		ID = "Aquatic",
-		Class = "DRUID",
-		Script = Outfitter:GenerateDruidShapeshiftScript("AQUATIC_FORM", "This outfit will be worn whenever you're in Aquatic Form"),
-	},
-	{
-		Name = Outfitter.cDruidFlightForm,
-		ID = "Flight",
-		Class = "DRUID",
-		Script = Outfitter:GenerateDruidShapeshiftScript("FLIGHT_FORM", "This outfit will be worn whenever you're in Flight or Swift Flight Form"),
-	},
-	{
-		Name = Outfitter.cDruidTravelForm,
-		ID = "Travel",
-		Class = "DRUID",
-		Script = Outfitter:GenerateDruidShapeshiftScript("TRAVEL_FORM", "This outfit will be worn whenever you're in Travel Form"),
-	},
-	{
-		Name = Outfitter.cDruidMoonkinForm,
-		ID = "Moonkin",
-		Class = "DRUID",
-		Script = Outfitter:GenerateDruidShapeshiftScript("MOONKIN_FORM", "This outfit will be worn whenever you're in Moonkin Form"),
-	},
-	{
-		Name = Outfitter.cDruidTreeOfLifeForm,
-		ID = "Tree",
-		Class = "DRUID",
-		Script = Outfitter:GenerateDruidShapeshiftScript("TREE_FORM", "This outfit will be worn whenever you're in Tree Form"),
-	},
-	{
-		Name = Outfitter.cDruidProwl,
-		ID = "Prowl",
-		Class = "DRUID",
-		Script = Outfitter:GenerateSimpleScript("STEALTH", "This outfit will be worn whenever you're prowling"),
-	},
-	{
-		Name = Outfitter.cRogueStealth,
-		ID = "Stealth",
-		Class = "ROGUE",
-		Script = Outfitter:GenerateSimpleScript("STEALTH", "This outfit will be worn whenever you're stealthed"),
-	},
-	{
-		Name = Outfitter.cPriestShadowform,
-		ID = "Shadowform",
-		Class = "PRIEST",
-		Script = Outfitter:GenerateShapeshiftScript("SHADOWFORM", Outfitter.cPriestShadowformDescription),
-	},
-	{
-		Name = Outfitter.cShamanGhostWolf,
-		ID = "GhostWolf",
-		Class = "SHAMAN",
-		Script = Outfitter:GenerateSimpleScript("GHOST_WOLF", Outfitter.cShamanGhostWolfDescription),
-	},
-	{
-		Name = Outfitter.cHunterMonkey,
-		ID = "Monkey",
-		Class = "HUNTER",
-		Script = Outfitter:GenerateShapeshiftScript("MONKEY_ASPECT", Outfitter.cHunterMonkeyDescription),
-	},
-	{
-		Name = Outfitter.cHunterHawk,
-		ID = "Hawk",
-		Class = "HUNTER",
-		Script = Outfitter:GenerateShapeshiftScript("HAWK_ASPECT", Outfitter.cHunterHawkDescription),
-	},
-	{
-		Name = Outfitter.cHunterCheetah,
-		ID = "Cheetah",
-		Class = "HUNTER",
-		Script = Outfitter:GenerateShapeshiftScript("CHEETAH_ASPECT", Outfitter.cHunterCheetahDescription),
-	},
-	{
-		Name = Outfitter.cHunterPack,
-		ID = "Pack",
-		Class = "HUNTER",
-		Script = Outfitter:GenerateShapeshiftScript("PACK_ASPECT", Outfitter.cHunterPackDescription),
-	},
-	{
-		Name = Outfitter.cHunterBeast,
-		ID = "Beast",
-		Class = "HUNTER",
-		Script = Outfitter:GenerateShapeshiftScript("BEAST_ASPECT", Outfitter.cHunterBeastDescription),
-	},
-	{
-		Name = Outfitter.cHunterWild,
-		ID = "Wild",
-		Class = "HUNTER",
-		Script = Outfitter:GenerateShapeshiftScript("WILD_ASPECT", Outfitter.cHunterWildDescription),
-	},
-	{
-		Name = Outfitter.cHunterViper,
-		ID = "Viper",
-		Class = "HUNTER",
-		Script = Outfitter:GenerateShapeshiftScript("VIPER_ASPECT", Outfitter.cHunterViperDescription),
-	},
-	{
-		Name = Outfitter.cHunterFeignDeath,
-		ID = "Feigning",
-		Class = "HUNTER",
-		Script = Outfitter:GenerateSimpleScript("FEIGN_DEATH", Outfitter.cHunterFeignDeathDescription),
-	},
-	{
-		Name = Outfitter.cMageEvocate,
-		ID = "Evocate",
-		Class = "MAGE",
-		Script = Outfitter:GenerateSimpleScript("EVOCATE", Outfitter.cMageEvocateDescription),
-	},
-	{
-		Name = Outfitter.cSoloOutfit,
-		ID = "SOLO",
-		Category = "GENERAL",
-		Script = Outfitter:GenerateScriptHeader("PLAYER_ENTERING_WORLD RAID_ROSTER_UPDATE PARTY_MEMBERS_CHANGED", Outfitter.cSoloOutfitDescription)..
-			'-- $SETTING EquipSolo = {Label="Equip when solo", Type = "Boolean"}\n'..
-			'-- $SETTING EquipGroup = {Label="Equip when in a party", Type = "Boolean"}\n'..
-			'-- $SETTING EquipRaid = {Label="Equip when in a raid", Type = "Boolean"}\n'..
-			'\n'..
-			'if setting.EquipSolo\n'..
-			'and GetNumRaidMembers() == 0\n'..
-			'and GetNumPartyMembers() == 0 then\n'..
-			'    equip = true\n'..
-			'elseif setting.EquipGroup\n'..
-			'and GetNumRaidMembers() == 0\n'..
-			'and GetNumPartyMembers() ~= 0 then\n'..
-			'    equip = true\n'..
-			'elseif setting.EquipRaid\n'..
-			'and GetNumRaidMembers() ~= 0 then\n'..
-			'    equip = true\n'..
-			'elseif didEquip then\n'..
-			'    equip = false\n'..
-			'end\n',
-	},
-	{
-		Name = Outfitter.cFallingOutfit,
-		ID = "FALLING",
-		Category = "GENERAL",
-		Script = Outfitter:GenerateScriptHeader("TIMER", Outfitter.cFallingOutfitDescription)..
-			'if IsFalling() then\n'..
-			'    equip = true\n'..
-			'    delay = 1.5\n'..
-			'elseif didEquip then\n'..
-			'    equip = false\n'..
-			'end\n',
-	},
+	text = Outfitter.cTooManyServerOutfits,
+	button1 = OKAY,
+	OnAccept = function() end,
+	OnCancel = function() end,
+	timeout = 0,
+	whileDead = 1,
+	hideOnEscape = 1,
+	showAlert = 1,
 }
 
-Outfitter.cScriptCategoryOrder =
+StaticPopupDialogs.OUTFITTER_CANT_SET_ICON =
 {
-	GENERAL = 0,
-	TRADE = 1,
-	PVP = 2,
-}
-
-table.sort(
-		Outfitter.PresetScripts,
-		function (pItem1, pItem2)
-			if pItem1.Category ~= pItem2.Category then
-				if not pItem1.Category then
-					return true
-				elseif not pItem2.Category then
-					return false
-				else
-					return Outfitter.cScriptCategoryOrder[pItem1.Category] < Outfitter.cScriptCategoryOrder[pItem2.Category]
-				end
-			elseif not pItem2.Name then
-				return false
-			elseif not pItem1.Name then
-				return true
-			else
-				return pItem1.Name < pItem2.Name
-			end
-		end)
-
-Outfitter.cCategoryDescriptions =
-{
-	Complete = Outfitter.cCompleteCategoryDescription,
-	Accessory = Outfitter.cAccessoryCategoryDescription,
-	OddsNEnds = Outfitter.cOddsNEndsCategoryDescription,
-}
-
-Outfitter.cSlotNames =
-{
-	-- First priority goes to armor
-	
-	"HeadSlot",
-	"ShoulderSlot",
-	"ChestSlot",
-	"WristSlot",
-	"HandsSlot",
-	"WaistSlot",
-	"LegsSlot",
-	"FeetSlot",
-	
-	-- Second priority goes to weapons
-	
-	"MainHandSlot",
-	"SecondaryHandSlot",
-	"RangedSlot",
-	"AmmoSlot",
-	
-	-- Last priority goes to items with no durability
-	
-	"BackSlot",
-	"NeckSlot",
-	"ShirtSlot",
-	"TabardSlot",
-	"Finger0Slot",
-	"Finger1Slot",
-	"Trinket0Slot",
-	"Trinket1Slot",
-}
-
-Outfitter.cSlotDisplayNames =
-{
-	HeadSlot = HEADSLOT,
-	NeckSlot = NECKSLOT,
-	ShoulderSlot = SHOULDERSLOT,
-	BackSlot = BACKSLOT,
-	ChestSlot = CHESTSLOT,
-	ShirtSlot = SHIRTSLOT,
-	TabardSlot = TABARDSLOT,
-	WristSlot = WRISTSLOT,
-	HandsSlot = HANDSSLOT,
-	WaistSlot = WAISTSLOT,
-	LegsSlot = LEGSSLOT,
-	FeetSlot = FEETSLOT,
-	Finger0Slot = Outfitter.cFinger0SlotName,
-	Finger1Slot = Outfitter.cFinger1SlotName,
-	Trinket0Slot = Outfitter.cTrinket0SlotName,
-	Trinket1Slot = Outfitter.cTrinket1SlotName,
-	MainHandSlot = MAINHANDSLOT,
-	SecondaryHandSlot = SECONDARYHANDSLOT,
-	RangedSlot = RANGEDSLOT,
-	AmmoSlot = AMMOSLOT,
-}
-
-Outfitter.cInvTypeToSlotName =
-{
-	INVTYPE_2HWEAPON = {SlotName = "MainHandSlot", MetaSlotName = "TwoHandSlot"},
-	INVTYPE_BAG = {SlotName = "Bag"},
-	INVTYPE_BODY = {SlotName = "ShirtSlot"},
-	INVTYPE_CHEST = {SlotName = "ChestSlot"},
-	INVTYPE_CLOAK = {SlotName = "BackSlot"},
-	INVTYPE_FEET = {SlotName = "FeetSlot"},
-	INVTYPE_FINGER = {SlotName = "Finger0Slot"},
-	INVTYPE_HAND = {SlotName = "HandsSlot"},
-	INVTYPE_HEAD = {SlotName = "HeadSlot"},
-	INVTYPE_HOLDABLE = {SlotName = "SecondaryHandSlot"},
-	INVTYPE_LEGS = {SlotName = "LegsSlot"},
-	INVTYPE_NECK = {SlotName = "NeckSlot"},
-	INVTYPE_RANGED = {SlotName = "RangedSlot"},
-	INVTYPE_ROBE = {SlotName = "ChestSlot"},
-	INVTYPE_SHIELD = {SlotName = "SecondaryHandSlot"},
-	INVTYPE_SHOULDER = {SlotName = "ShoulderSlot"},
-	INVTYPE_TABARD = {SlotName = "TabardSlot"},
-	INVTYPE_TRINKET = {SlotName = "Trinket0Slot"},
-	INVTYPE_WAIST = {SlotName = "WaistSlot"},
-	INVTYPE_WEAPON = {SlotName = "MainHandSlot", MetaSlotName = "Weapon0Slot"},
-	INVTYPE_WEAPONMAINHAND = {SlotName = "MainHandSlot"},
-	INVTYPE_WEAPONOFFHAND = {SlotName = "SecondaryHandSlot"},
-	INVTYPE_WRIST = {SlotName = "WristSlot"},
-	INVTYPE_RANGEDRIGHT = {SlotName = "RangedSlot"},
-	INVTYPE_AMMO = {SlotName = "AmmoSlot"},
-	INVTYPE_THROWN = {SlotName = "RangedSlot"},
-	INVTYPE_RELIC = {SlotName = "RangedSlot"},
-}
-
-Outfitter.cHalfAlternateStatSlot =
-{
-	Trinket0Slot = "Trinket1Slot",
-	Finger0Slot = "Finger1Slot",
-	Weapon0Slot = "Weapon1Slot",
-}
-
-Outfitter.cFullAlternateStatSlot =
-{
-	Trinket0Slot = "Trinket1Slot",
-	Trinket1Slot = "Trinket0Slot",
-	Finger0Slot = "Finger1Slot",
-	Finger1Slot = "Finger0Slot",
-	Weapon0Slot = "Weapon1Slot",
-	Weapon1Slot = "Weapon0Slot",
-}
-
-Outfitter.cCategoryOrder =
-{
-	"Complete",
-	"Accessory"
-}
-
-Outfitter.cItemAliases =
-{
-	[18608] = 18609,	-- Benediction -> Anathema
-	[18609] = 18608,	-- Anathema -> Benediction
-	[17223] = 17074,	-- Thunderstrike -> Shadowstrike
-	[17074] = 17223,	-- Shadowstrike -> Thunderstrike
-}
-
-Outfitter.cFishingPoles =
-{
-	{Code = 25978, SubCode = 0}, -- Seth's Graphite Fishing Pole
-	{Code = 19970, SubCode = 0}, -- Arcanite Fishing Pole
-	{Code = 19022, SubCode = 0}, -- Nat Pagles Fishing Pole
-	{Code = 12224, SubCode = 0}, -- Blump Family Fishing Pole
-	{Code = 6367, SubCode = 0}, -- Big Iron Fishing Pole
-	{Code = 6365, SubCode = 0}, -- Strong Fishing Pole
-	{Code = 6256, SubCode = 0}, -- Fishing Pole
-}
-
-Outfitter.cRidingItems =
-{
-	{Code = 11122, SubCode = 0}, -- Carrot on a Stick
-	{Code = 25653, SubCode = 0}, -- Riding Crop
-}
-
-Outfitter.cArgentDawnTrinkets = 
-{
-	{Code = 13209, SubCode = 0}, -- Seal of the Dawn
-	{Code = 19812, SubCode = 0}, -- Rune of the Dawn
-	{Code = 12846, SubCode = 0}, -- Argent Dawn Commission
-}
-
-Outfitter.cStatIDItems =
-{
-	Fishing = Outfitter.cFishingPoles,
-	Riding = Outfitter.cRidingItems,
-	ArgentDawn = Outfitter.cArgentDawnTrinkets,
-}
-
-Outfitter.cIgnoredUnusedItems = 
-{
-	[2901] = "Mining Pick",
-	[5956] = "Blacksmith hammer",
-	[6219] = "Arclight Spanner",
-	[7005] = "Skinning Knife",
-	[7297] = "Morbent's Bane",
-	[10696] = "Enchanted Azsharite Felbane Sword",
-	[10697] = "Enchanted Azsharite Felbane Dagger",
-	[10698] = "Enchanted Azsharite Felbane Staff",
-	[20406] = "Twilight Cultist Mantle",
-	[20407] = "Twilight Cultist Robe",
-	[20408] = "Twilight Cultist Cowl",
-}
-
-Outfitter.cSmartOutfits =
-{
-	{Name = Outfitter.cFishingOutfit, StatID = "Fishing", ScriptID = "Fishing"},
-	{Name = Outfitter.cHerbalismOutfit, StatID = "Herbalism", ScriptID = "Herbalism"},
-	{Name = Outfitter.cMiningOutfit, StatID = "Mining", ScriptID = "Mining"},
-	{Name = Outfitter.cSkinningOutfit, StatID = "Skinning", ScriptID = "Skinning"},
-	{Name = Outfitter.cFireResistOutfit, StatID = "FireResist"},
-	{Name = Outfitter.cNatureResistOutfit, StatID = "NatureResist"},
-	{Name = Outfitter.cShadowResistOutfit, StatID = "ShadowResist"},
-	{Name = Outfitter.cArcaneResistOutfit, StatID = "ArcaneResist"},
-	{Name = Outfitter.cFrostResistOutfit, StatID = "FrostResist"},
-}
-
-Outfitter.cStatCategoryInfo =
-{
-	{Category = "Stat", Name = Outfitter.cStatsCategory},
-	{Category = "Melee", Name = Outfitter.cMeleeCategory},
-	{Category = "Spell", Name = Outfitter.cSpellsCategory},
-	{Category = "Regen", Name = Outfitter.cRegenCategory},
-	{Category = "Resist", Name = Outfitter.cResistCategory},
-	{Category = "Trade", Name = Outfitter.cTradeCategory},
-}
-
-Outfitter.cItemStatInfo =
-{
-	{ID = "Agility", Name = Outfitter.cAgilityStatName, Category = "Stat"},
-	{ID = "Intellect", Name = Outfitter.cIntellectStatName, Category = "Stat"},
-	{ID = "Spirit", Name = Outfitter.cSpiritStatName, Category = "Stat"},
-	{ID = "Stamina", Name = Outfitter.cStaminaStatName, Category = "Stat"},
-	{ID = "Strength", Name = Outfitter.cStrengthStatName, Category = "Stat"},
-	{ID = "Health", Name = Outfitter.cHealthStatName, Category = "Stat"},
-	{ID = "Mana", Name = Outfitter.cManaStatName, Category = "Stat"},
-	{ID = "TotalStats", Name = Outfitter.cTotalStatsName, Category = "Stat"},
-	
-	{ID = "ManaRegen", Name = Outfitter.cManaRegenStatName, Category = "Regen"},
-	{ID = "CombatManaRegen", Name = Outfitter.cCombatManaRegenStatName, Category = "Regen"},
-	{ID = "HealthRegen", Name = Outfitter.cHealthRegenStatName, Category = "Regen"},
-	{ID = "CombatHealthRegen", Name = Outfitter.cCombatHealthRegenStatName, Category = "Regen"},
-	
-	{ID = "SpellCrit", Name = Outfitter.cSpellCritStatName, Category = "Spell"},
-	{ID = "SpellHit", Name = Outfitter.cSpellHitStatName, Category = "Spell"},
-	{ID = "SpellHaste", Name = Outfitter.cSpellHasteStatName, Category = "Spell"},
-	{ID = "SpellDmg", Name = Outfitter.cSpellDmgStatName, Category = "Spell"},
-	{ID = "FrostDmg", Name = Outfitter.cFrostDmgStatName, Category = "Spell"},
-	{ID = "FireDmg", Name = Outfitter.cFireDmgStatName, Category = "Spell"},
-	{ID = "ArcaneDmg", Name = Outfitter.cArcaneDmgStatName, Category = "Spell"},
-	{ID = "ShadowDmg", Name = Outfitter.cShadowDmgStatName, Category = "Spell"},
-	{ID = "NatureDmg", Name = Outfitter.cNatureDmgStatName, Category = "Spell"},
-	{ID = "Healing", Name = Outfitter.cHealingStatName, Category = "Spell"},
-	
-	{ID = "Armor", Name = Outfitter.cArmorStatName, Category = "Melee"},
-	{ID = "Defense", Name = Outfitter.cDefenseStatName, Category = "Melee"},
-	{ID = "Dodge", Name = Outfitter.cDodgeStatName, Category = "Melee"},
-	{ID = "Parry", Name = Outfitter.cParryStatName, Category = "Melee"},
-	{ID = "Block", Name = Outfitter.cBlockStatName, Category = "Melee"},
-	{ID = "Resilience", Name = Outfitter.cResilienceStatName, Category = "Melee"},
-	{ID = "MeleeDmg", Name = Outfitter.cMeleeDmgStatName, Category = "Melee"},
-	{ID = "MeleeCrit", Name = Outfitter.cMeleeCritStatName, Category = "Melee"},
-	{ID = "MeleeHit", Name = Outfitter.cMeleeHitStatName, Category = "Melee"},
-	{ID = "MeleeHaste", Name = Outfitter.cMeleeHasteStatName, Category = "Melee"},
-	
-	{ID = "Attack", Name = Outfitter.cAttackStatName, Category = "Melee"},
-	{ID = "RangedAttack", Name = Outfitter.cRangedAttackStatName, Category = "Melee"},
-	
-	{ID = "ArcaneResist", Name = Outfitter.cArcaneResistStatName, Category = "Resist"},
-	{ID = "FireResist", Name = Outfitter.cFireResistStatName, Category = "Resist"},
-	{ID = "FrostResist", Name = Outfitter.cFrostResistStatName, Category = "Resist"},
-	{ID = "NatureResist", Name = Outfitter.cNatureResistStatName, Category = "Resist"},
-	{ID = "ShadowResist", Name = Outfitter.cShadowResistStatName, Category = "Resist"},
-	
-	{ID = "Fishing", Name = Outfitter.cFishingStatName, Category = "Trade"},
-	{ID = "Herbalism", Name = Outfitter.cHerbalismStatName, Category = "Trade"},
-	{ID = "Mining", Name = Outfitter.cMiningStatName, Category = "Trade"},
-	{ID = "Skinning", Name = Outfitter.cSkinningStatName, Category = "Trade"},
-}
-
-Outfitter.cSpecialIDEvents =
-{
-	Battle = {Equip = "BATTLE_STANCE", Unequip = "NOT_BATTLE_STANCE"},
-	Defensive = {Equip = "DEFENSIVE_STANCE", Unequip = "NOT_DEFENSIVE_STANCE"},
-	Berserker = {Equip = "BERSERKER_STANCE", Unequip = "NOT_BERSERKER_STANCE"},
-	
-	Bear = {Equip = "BEAR_FORM", Unequip = "NOT_BEAR_FORM"},
-	Cat = {Equip = "CAT_FORM", Unequip = "NOT_CAT_FORM"},
-	Aquatic = {Equip = "AQUATIC_FORM", Unequip = "NOT_AQUATIC_FORM"},
-	Travel = {Equip = "TRAVEL_FORM", Unequip = "NOT_TRAVEL_FORM"},
-	Moonkin = {Equip = "MOONKIN_FORM", Unequip = "NOT_MOONKIN_FORM"},
-	Tree = {Equip = "TREE_FORM", Unequip = "NOT_TREE_FORM"},
-	Prowl = {Equip = "STEALTH", Unequip = "NOT_STEALTH"},
-	Flight = {Equip = "FLIGHT_FORM", Unequip = "NOT_FLIGHT_FORM"},
-	Caster = {Equip = "CASTER_FORM", Unequip = "NOT_CASTER_FORM"},
-	
-	Shadowform = {Equip = "SHADOWFORM", Unequip = "NOT_SHADOWFORM"},
-
-	Stealth = {Equip = "STEALTH", Unequip = "NOT_STEALTH"},
-
-	GhostWolf = {Equip = "GHOST_WOLF", Unequip = "NOT_GHOST_WOLF"},
-
-	Monkey = {Equip = "MONKEY_ASPECT", Unequip = "NOT_MONKEY_ASPECT"},
-	Hawk = {Equip = "HAWK_ASPECT", Unequip = "NOT_HAWK_ASPECT"},
-	Cheetah = {Equip = "CHEETAH_ASPECT", Unequip = "NOT_CHEETAH_ASPECT"},
-	Pack = {Equip = "PACK_ASPECT", Unequip = "NOT_PACK_ASPECT"},
-	Beast = {Equip = "BEAST_ASPECT", Unequip = "NOT_BEAST_ASPECT"},
-	Wild = {Equip = "WILD_ASPECT", Unequip = "NOT_WILD_ASPECT"},
-	Viper = {Equip = "VIPER_ASPECT", Unequip = "NOT_VIPER_ASPECT"},
-	Feigning = {Equip = "FEIGN_DEATH", Unequip = "NOT_FEIGN_DEATH"},
-	
-	Evocate = {Equip = "EVOCATE", Unequip = "NOT_EVOCATE"},
-	
-	Dining = {Equip = "DINING", Unequip = "NOT_DINING"},
-	City = {Equip = "CITY", Unequip = "NOT_CITY"},
-	Riding = {Equip = "MOUNTED", Unequip = "NOT_MOUNTED"},
-	Swimming = {Equip = "SWIMMING", Unequip = "NOT_SWIMMING"},
-	Spirit = {Equip = "SPIRIT_REGEN", Unequip = "NOT_SPIRIT_REGEN"},
-	ArgentDawn = {Equip = "ARGENT_DAWN", Unequip = "NOT_ARGENT_DAWN"},
-
-	Battleground = {Equip = "BATTLEGROUND", Unequip = "NOT_BATTLEGROUND"},
-	AB = {Equip = "BATTLEGROUND_AB", Unequip = "NOT_BATTLEGROUND_AB"},
-	AV = {Equip = "BATTLEGROUND_AV", Unequip = "NOT_BATTLEGROUND_AV"},
-	WSG = {Equip = "BATTLEGROUND_WSG", Unequip = "NOT_BATTLEGROUND_WSG"},
-	EotS = {Equip = "BATTLEGROUND_EOTS", Unequip = "NOT_BATTLEGROUND_EOTS"},
-	Arena = {Equip = "BATTLEGROUND_ARENA", Unequip = "NOT_BATTLEGROUND_ARENA"},
-	BladesEdgeArena = {Equip = "BATTLEGROUND_BLADESEDGE", Unequip = "NOT_BATTLEGROUND_BLADESEDGE"},
-	NagrandArena = {Equip = "BATTLEGROUND_NAGRAND", Unequip = "NOT_BATTLEGROUND_NAGRAND"},
-	LordaeronArena = {Equip = "BATTLEGROUND_LORDAERON", Unequip = "NOT_BATTLEGROUND_LORDAERON"},
-}
-
-Outfitter.cClassSpecialOutfits =
-{
-	WARRIOR =
-	{
-		{Name = Outfitter.cWarriorBattleStance, ScriptID = "Battle"},
-		{Name = Outfitter.cWarriorDefensiveStance, ScriptID = "Defensive"},
-		{Name = Outfitter.cWarriorBerserkerStance, ScriptID = "Berserker"},
-	},
-	
-	DRUID =
-	{
-		{Name = Outfitter.cDruidCasterForm, ScriptID = "Caster"},
-		{Name = Outfitter.cDruidBearForm, ScriptID = "Bear"},
-		{Name = Outfitter.cDruidCatForm, ScriptID = "Cat"},
-		{Name = Outfitter.cDruidAquaticForm, ScriptID = "Aquatic"},
-		{Name = Outfitter.cDruidTravelForm, ScriptID = "Travel"},
-		{Name = Outfitter.cDruidMoonkinForm, ScriptID = "Moonkin"},
-		{Name = Outfitter.cDruidTreeOfLifeForm, ScriptID = "Tree"},
-		{Name = Outfitter.cDruidProwl, ScriptID = "Prowl"},
-		{Name = Outfitter.cDruidFlightForm, ScriptID = "Flight"},
-	},
-	
-	PRIEST =
-	{
-		{Name = Outfitter.cPriestShadowform, ScriptID = "Shadowform"},
-	},
-	
-	ROGUE =
-	{
-		{Name = Outfitter.cRogueStealth, ScriptID = "Stealth"},
-	},
-	
-	SHAMAN =
-	{
-		{Name = Outfitter.cShamanGhostWolf, ScriptID = "GhostWolf"},
-	},
-	
-	HUNTER =
-	{
-		{Name = Outfitter.cHunterMonkey, ScriptID = "Monkey"},
-		{Name = Outfitter.cHunterHawk, ScriptID = "Hawk"},
-		{Name = Outfitter.cHunterCheetah, ScriptID = "Cheetah"},
-		{Name = Outfitter.cHunterPack, ScriptID = "Pack"},
-		{Name = Outfitter.cHunterBeast, ScriptID = "Beast"},
-		{Name = Outfitter.cHunterWild, ScriptID = "Wild"},
-		{Name = Outfitter.cHunterViper, ScriptID = "Viper"},
-	},
-	
-	MAGE =
-	{
-		{Name = Outfitter.cMageEvocate, ScriptID = "Evocate"},
-	},
-}
-
-Outfitter.cSpellNameSpecialID =
-{
-	[Outfitter.cAspectOfTheCheetah] = "Cheetah",
-	[Outfitter.cAspectOfThePack] = "Pack",
-	[Outfitter.cAspectOfTheBeast] = "Beast",
-	[Outfitter.cAspectOfTheWild] = "Wild",
-	[Outfitter.cAspectOfTheViper] = "Viper",
-	[Outfitter.cEvocate] = "Evocate",
-}
-
-Outfitter.cAuraIconSpecialID =
-{
-	["INV_Misc_Fork&Knife"] = "Dining",
-	["Spell_Shadow_Shadowform"] = "Shadowform",
-	["Spell_Nature_SpiritWolf"] = "GhostWolf",
-	["Ability_Rogue_FeignDeath"] = "Feigning",
-	["Ability_Hunter_AspectOfTheMonkey"] = "Monkey",
-	["Spell_Nature_RavenForm"] = "Hawk",
-	[Outfitter.cProwl] = "Prowl",
-}
-
--- Note that zone special outfits will be worn in the order
--- the are listed here, with later outfits being worn over
--- earlier outfits (when they're being applied at the same time)
--- This allows BG-specific outfits to take priority over the generic
--- BG outfit
-
-Outfitter.cZoneSpecialIDs =
-{
-	"ArgentDawn",
-	"City",
-	"Battleground",
-	"AV",
-	"AB",
-	"WSG",
-	"Arena",
-	"BladesEdgeArena",
-	"NagrandArena",
-	"LordaeronArena",
-	"EotS",
-}
-
-Outfitter.cZoneSpecialIDMap =
-{
-	[Outfitter.cWesternPlaguelands] = {"ArgentDawn"},
-	[Outfitter.cEasternPlaguelands] = {"ArgentDawn"},
-	[Outfitter.cStratholme] = {"ArgentDawn"},
-	[Outfitter.cScholomance] = {"ArgentDawn"},
-	[Outfitter.cNaxxramas] = {"ArgentDawn", "Naxx"},
-	[Outfitter.cAlteracValley] = {"Battleground", "AV"},
-	[Outfitter.cArathiBasin] = {"Battleground", "AB"},
-	[Outfitter.cWarsongGulch] = {"Battleground", "WSG"},
-	[Outfitter.cEotS] = {"Battleground", "EotS"},
-	[Outfitter.cBladesEdgeArena] = {"Battleground", "BladesEdgeArena", "Arena"},
-	[Outfitter.cNagrandArena] = {"Battleground", "NagrandArena", "Arena"},
-	[Outfitter.cRuinsOfLordaeron] = {"Battleground", "LordaeronArena", "Arena"},
-	[Outfitter.cIronforge] = {"City"},
-	[Outfitter.cCityOfIronforge] = {"City"},
-	[Outfitter.cDarnassus] = {"City"},
-	[Outfitter.cStormwind] = {"City"},
-	[Outfitter.cOrgrimmar] = {"City"},
-	[Outfitter.cThunderBluff] = {"City"},
-	[Outfitter.cUndercity] = {"City"},
-	[Outfitter.cSilvermoon] = {"City"},
-	[Outfitter.cExodar] = {"City"},
-	[Outfitter.cShattrath] = {"City"},
-}
-
-Outfitter.cCombatEquipmentSlots =
-{
-	MainHandSlot = true,
-	SecondaryHandSlot = true,
-	RangedSlot = true,
-	AmmoSlot = true,
-}
-
-Outfitter.EquippableItems = nil
-
-Outfitter.cMaxDisplayedItems = 14
-
-Outfitter.cPanelFrames =
-{
-	"OutfitterMainFrame",
-	"OutfitterOptionsFrame",
-	"OutfitterAboutFrame",
-}
-
-Outfitter.cShapeshiftInfo =
-{
-	-- Warriors
-	
-	[Outfitter.cBattleStance] = {ID = "Battle", Type = "WARSTANCE"},
-	[Outfitter.cDefensiveStance] = {ID = "Defensive", Type = "WARSTANCE"},
-	[Outfitter.cBerserkerStance] = {ID = "Berserker", Type = "WARSTANCE"},
-	
-	-- Druids
-	
-	[Outfitter.cBearForm] = {ID = "Bear", Type = "DRUIDFORM", MaybeInCombat = true},
-	[Outfitter.cCatForm] = {ID = "Cat", Type = "DRUIDFORM"},
-	[Outfitter.cAquaticForm] = {ID = "Aquatic", Type = "DRUIDFORM"},
-	[Outfitter.cTravelForm] = {ID = "Travel", Type = "DRUIDFORM"},
-	[Outfitter.cDireBearForm] = {ID = "Bear", Type = "DRUIDFORM"},
-	[Outfitter.cMoonkinForm] = {ID = "Moonkin", Type = "DRUIDFORM"},
-	[Outfitter.cTreeOfLifeForm] = {ID = "Tree", Type = "DRUIDFORM"},
-	[Outfitter.cFlightForm] = {ID = "Flight", Type = "DRUIDFORM"},
-	[Outfitter.cSwiftFlightForm] = {ID = "Flight", Type = "DRUIDFORM"},
-	CasterForm = {ID = "Caster", Type = "DRUIDFORM"}, -- this is a psuedo-form which is active when no other druid form is
-	
-	-- Rogues
-	
-	[Outfitter.cStealth] = {ID = "Stealth"},
-}
-
-Outfitter.cShapeshiftTypes =
-{
-	Battle = "WARSTANCE",
-	Defensive = "WARSTANCE",
-	Berserker = "WARSTANCE",
-
-	Bear = "DRUIDFORM",
-	Cat = "DRUIDFORM",
-	Aquatic = "DRUIDFORM",
-	Travel = "DRUIDFORM",
-	Bear = "DRUIDFORM",
-	Moonkin = "DRUIDFORM",
-	Tree = "DRUIDFORM",
-	Flight = "DRUIDFORM",
-	Caster = "DRUIDFORM",
+	text = Outfitter.cCantSetIcon,
+	button1 = Outfitter.cChangeIcon,
+	button2 = CANCEL,
+	OnAccept = function() end,
+	OnCancel = function() end,
+	timeout = 0,
+	whileDead = 1,
+	hideOnEscape = 1,
+	showAlert = 1,
 }
 
 StaticPopupDialogs.OUTFITTER_CONFIRM_DELETE =
@@ -1647,8 +671,391 @@ StaticPopupDialogs.OUTFITTER_CONFIRM_SET_CURRENT =
 	hideOnEscape = 1,
 }
 
+Outfitter.cCategoryDescriptions =
+{
+	Complete = Outfitter.cCompleteCategoryDescription,
+	Accessory = Outfitter.cAccessoryCategoryDescription,
+	OddsNEnds = Outfitter.cOddsNEndsCategoryDescription,
+	BoEs = Outfitter.cBoEsCategoryDescription,
+}
+
+Outfitter.cSlotNames =
+{
+	-- First priority goes to armor
+	
+	"HeadSlot",
+	"ShoulderSlot",
+	"ChestSlot",
+	"WristSlot",
+	"HandsSlot",
+	"WaistSlot",
+	"LegsSlot",
+	"FeetSlot",
+	
+	-- Second priority goes to weapons
+	
+	"MainHandSlot",
+	"SecondaryHandSlot",
+	
+	-- Last priority goes to items with no durability
+	
+	"BackSlot",
+	"NeckSlot",
+	"ShirtSlot",
+	"TabardSlot",
+	"Finger0Slot",
+	"Finger1Slot",
+	"Trinket0Slot",
+	"Trinket1Slot",
+}
+
+Outfitter.cSlotOrder = {}
+
+for vIndex, vSlotName in ipairs(Outfitter.cSlotNames) do
+	Outfitter.cSlotOrder[vSlotName] = vIndex
+end
+
+Outfitter.cSlotDisplayNames =
+{
+	HeadSlot = HEADSLOT,
+	NeckSlot = NECKSLOT,
+	ShoulderSlot = SHOULDERSLOT,
+	BackSlot = BACKSLOT,
+	ChestSlot = CHESTSLOT,
+	ShirtSlot = SHIRTSLOT,
+	TabardSlot = TABARDSLOT,
+	WristSlot = WRISTSLOT,
+	HandsSlot = HANDSSLOT,
+	WaistSlot = WAISTSLOT,
+	LegsSlot = LEGSSLOT,
+	FeetSlot = FEETSLOT,
+	Finger0Slot = Outfitter.cFinger0SlotName,
+	Finger1Slot = Outfitter.cFinger1SlotName,
+	Trinket0Slot = Outfitter.cTrinket0SlotName,
+	Trinket1Slot = Outfitter.cTrinket1SlotName,
+	MainHandSlot = MAINHANDSLOT,
+	SecondaryHandSlot = SECONDARYHANDSLOT,
+}
+
+Outfitter.cInvTypeToSlotName =
+{
+	INVTYPE_2HWEAPON = {SlotName = "MainHandSlot", MetaSlotName = "TwoHandSlot"},
+	INVTYPE_BODY = {SlotName = "ShirtSlot"},
+	INVTYPE_CHEST = {SlotName = "ChestSlot"},
+	INVTYPE_CLOAK = {SlotName = "BackSlot"},
+	INVTYPE_FEET = {SlotName = "FeetSlot"},
+	INVTYPE_FINGER = {SlotName = "Finger0Slot"},
+	INVTYPE_HAND = {SlotName = "HandsSlot"},
+	INVTYPE_HEAD = {SlotName = "HeadSlot"},
+	INVTYPE_HOLDABLE = {SlotName = "SecondaryHandSlot"},
+	INVTYPE_LEGS = {SlotName = "LegsSlot"},
+	INVTYPE_NECK = {SlotName = "NeckSlot"},
+	INVTYPE_ROBE = {SlotName = "ChestSlot"},
+	INVTYPE_SHIELD = {SlotName = "SecondaryHandSlot"},
+	INVTYPE_SHOULDER = {SlotName = "ShoulderSlot"},
+	INVTYPE_TABARD = {SlotName = "TabardSlot"},
+	INVTYPE_TRINKET = {SlotName = "Trinket0Slot"},
+	INVTYPE_WAIST = {SlotName = "WaistSlot"},
+	INVTYPE_WEAPON = {SlotName = "MainHandSlot", MetaSlotName = "Weapon0Slot"},
+	INVTYPE_WEAPONMAINHAND = {SlotName = "MainHandSlot"},
+	INVTYPE_WEAPONOFFHAND = {SlotName = "SecondaryHandSlot"},
+	INVTYPE_WRIST = {SlotName = "WristSlot"},
+	INVTYPE_RANGED = {SlotName = "MainHandSlot"},
+	INVTYPE_RANGEDRIGHT = {SlotName = "MainHandSlot"},
+	INVTYPE_THROWN = {SlotName = "MainHandSlot"},
+	INVTYPE_RELIC = {SlotName = "MainHandSlot"},
+}
+
+Outfitter.cHalfAlternateStatSlot =
+{
+	Trinket0Slot = "Trinket1Slot",
+	Finger0Slot = "Finger1Slot",
+	Weapon0Slot = "Weapon1Slot",
+}
+
+Outfitter.cFullAlternateStatSlot =
+{
+	Trinket0Slot = "Trinket1Slot",
+	Trinket1Slot = "Trinket0Slot",
+	Finger0Slot = "Finger1Slot",
+	Finger1Slot = "Finger0Slot",
+	Weapon0Slot = "Weapon1Slot",
+	Weapon1Slot = "Weapon0Slot",
+}
+
+Outfitter.cCategoryOrder =
+{
+	"Complete",
+	"Accessory"
+}
+
+Outfitter.cItemAliases =
+{
+	[18608] = 18609,	-- Benediction -> Anathema
+	[18609] = 18608,	-- Anathema -> Benediction
+	[17223] = 17074,	-- Thunderstrike -> Shadowstrike
+	[17074] = 17223,	-- Shadowstrike -> Thunderstrike
+	
+	[46069] = 46106,	-- Alliance Lance -> Argent Lance
+	[46070] = 46106,	-- Horde Lance -> Argent Lance
+	[46106] = 46069,	-- Argent Lance -> Alliance Lance (will be replaced by Horde Lance at runtime)
+}
+
+Outfitter.cIgnoredUnusedItems = 
+{
+	[2901] = "Mining Pick",
+	[5956] = "Blacksmith hammer",
+	[6219] = "Arclight Spanner",
+	[7005] = "Skinning Knife",
+	[7297] = "Morbent's Bane",
+	[10696] = "Enchanted Azsharite Felbane Sword",
+	[10697] = "Enchanted Azsharite Felbane Dagger",
+	[10698] = "Enchanted Azsharite Felbane Staff",
+	[20406] = "Twilight Cultist Mantle",
+	[20407] = "Twilight Cultist Robe",
+	[20408] = "Twilight Cultist Cowl",
+}
+
+Outfitter.cSmartOutfits =
+{
+--	{Name = Outfitter.cFishingOutfit, StatID = "FISHING", ScriptID = "Fishing"},
+--	{Name = Outfitter.cHerbalismOutfit, StatID = "HERBALISM", ScriptID = "Herbalism"},
+--	{Name = Outfitter.cMiningOutfit, StatID = "MINING", ScriptID = "Mining"},
+--	{Name = Outfitter.cSkinningOutfit, StatID = "SKINNING", ScriptID = "Skinning"},
+}
+
+Outfitter.cSpecialIDEvents =
+{
+	Bear = {Equip = "BEAR_FORM", Unequip = "NOT_BEAR_FORM"},
+	Cat = {Equip = "CAT_FORM", Unequip = "NOT_CAT_FORM"},
+	Travel = {Equip = "TRAVEL_FORM", Unequip = "NOT_TRAVEL_FORM"},
+	Moonkin = {Equip = "MOONKIN_FORM", Unequip = "NOT_MOONKIN_FORM"},
+	Tree = {Equip = "TREE_FORM", Unequip = "NOT_TREE_FORM"},
+	Prowl = {Equip = "STEALTH", Unequip = "NOT_STEALTH"},
+	Caster = {Equip = "CASTER_FORM", Unequip = "NOT_CASTER_FORM"},
+	
+	Stealth = {Equip = "STEALTH", Unequip = "NOT_STEALTH"},
+
+	GhostWolf = {Equip = "GHOST_WOLF", Unequip = "NOT_GHOST_WOLF"},
+
+	Feigning = {Equip = "FEIGN_DEATH", Unequip = "NOT_FEIGN_DEATH"},
+	
+	Evocate = {Equip = "EVOCATE", Unequip = "NOT_EVOCATE"},
+	
+	Dining = {Equip = "DINING", Unequip = "NOT_DINING"},
+	City = {Equip = "CITY", Unequip = "NOT_CITY"},
+	Riding = {Equip = "MOUNTED", Unequip = "NOT_MOUNTED"},
+	Swimming = {Equip = "SWIMMING", Unequip = "NOT_SWIMMING"},
+	Spirit = {Equip = "SPIRIT_REGEN", Unequip = "NOT_SPIRIT_REGEN"},
+	ArgentDawn = {Equip = "ARGENT_DAWN", Unequip = "NOT_ARGENT_DAWN"},
+
+	Battleground = {Equip = "BATTLEGROUND", Unequip = "NOT_BATTLEGROUND"},
+	AB = {Equip = "BATTLEGROUND_AB", Unequip = "NOT_BATTLEGROUND_AB"},
+	AV = {Equip = "BATTLEGROUND_AV", Unequip = "NOT_BATTLEGROUND_AV"},
+	WSG = {Equip = "BATTLEGROUND_WSG", Unequip = "NOT_BATTLEGROUND_WSG"},
+	EotS = {Equip = "BATTLEGROUND_EOTS", Unequip = "NOT_BATTLEGROUND_EOTS"},
+	SotA = {Equip = "BATTLEGROUND_SOTA", Unequip = "NOT_BATTLEGROUND_SOTA"},
+	IoC = {Equip = "BATTLEGROUND_IOC", Unequip = "NOT_BATTLEGROUND_IOC"},
+	Wintergrasp = {Equip = "BATTLEGROUND_WG", Unequip = "NOT_BATTLEGROUND_WG"},
+	Sewers = {Equip = "BATTLEGROUND_SEWERS", Unequip = "NOT_BATTLEGROUND_SEWERS"},
+	Gilneas = {Equip = "BATTLEGROUND_GILNEAS", Unequip = "NOT_BATTLEGROUND_GILNEAS"},
+	TwinPeaks = {Equip = "BATTLEGROUND_TWINPEAKS", Unequip = "NOT_BATTLEGROUND_TWINPEAKS"},
+	RingOfValor = {Equip = "BATTLEGROUND_ROV", Unequip = "NOT_BATTLEGROUND_ROV"},
+	Arena = {Equip = "BATTLEGROUND_ARENA", Unequip = "NOT_BATTLEGROUND_ARENA"},
+	BladesEdgeArena = {Equip = "BATTLEGROUND_BLADESEDGE", Unequip = "NOT_BATTLEGROUND_BLADESEDGE"},
+	NagrandArena = {Equip = "BATTLEGROUND_NAGRAND", Unequip = "NOT_BATTLEGROUND_NAGRAND"},
+	LordaeronArena = {Equip = "BATTLEGROUND_LORDAERON", Unequip = "NOT_BATTLEGROUND_LORDAERON"},
+}
+
+Outfitter.cClassSpecialOutfits =
+{
+	WARRIOR =
+	{
+	},
+	
+	DRUID =
+	{
+		{Name = Outfitter.cDruidCasterForm, ScriptID = "Caster"},
+		{Name = Outfitter.cDruidBearForm, ScriptID = "Bear"},
+		{Name = Outfitter.cDruidCatForm, ScriptID = "Cat"},
+		{Name = Outfitter.cDruidTravelForm, ScriptID = "Travel"},
+		{Name = Outfitter.cDruidMoonkinForm, ScriptID = "Moonkin"},
+		{Name = Outfitter.cDruidTreeOfLifeForm, ScriptID = "Tree"},
+		{Name = Outfitter.cDruidProwl, ScriptID = "Prowl"},
+	},
+	
+	PRIEST =
+	{
+	},
+	
+	ROGUE =
+	{
+		{Name = Outfitter.cRogueStealth, ScriptID = "Stealth"},
+	},
+	
+	SHAMAN =
+	{
+		{Name = Outfitter.cShamanGhostWolf, ScriptID = "GhostWolf"},
+	},
+	
+	HUNTER =
+	{
+	},
+	
+	MAGE =
+	{
+	},
+	
+	DEATHKNIGHT =
+	{
+	},
+
+	MONK =
+	{
+	},
+	DEMONHUNTER =
+	{
+	},
+}
+
+Outfitter.cSpellIDToSpecialID =
+{
+	[13165] = "Hawk",
+	[14318] = "Hawk",
+	[14319] = "Hawk",
+	[14320] = "Hawk",
+	[14321] = "Hawk",
+	[14322] = "Hawk",
+	[25296] = "Hawk",
+	[27044] = "Hawk",
+	
+	[61846] = "Hawk",
+	[61847] = "Hawk",
+	
+	[12051] = "Evocate",
+	[2645] = "GhostWolf",
+	[5384] = "Feigning",
+	[58984] = "Prowl",
+}
+
+Outfitter.cAuraIconSpecialID =
+{
+	[134062] = "Dining",
+	[132805] = "Dining",
+}
+
+-- Note that zone special outfits will be worn in the order
+-- the are listed here, with later outfits being worn over
+-- earlier outfits (when they're being applied at the same time)
+-- This allows BG-specific outfits to take priority over the generic
+-- BG outfit
+
+Outfitter.cZoneSpecialIDs =
+{
+	"ArgentDawn",
+	
+	"City",
+	"Battleground",
+	"Arena",
+	
+	"AV",
+	"AB",
+	"WSG",
+	"EotS",
+	"SotA",
+	"IoC",
+	
+	"BladesEdgeArena",
+	"NagrandArena",
+	"LordaeronArena",
+}
+
+Outfitter.cZoneSpecialIDMap =
+{
+	[GetMapNameByID(22)] = {"ArgentDawn"}, -- Western Plaguelands
+	[GetMapNameByID(23)] = {"ArgentDawn"}, -- Eastern Plaguelands
+	[GetMapNameByID(765)] = {"ArgentDawn"}, -- Stratholme
+	[GetMapNameByID(763)] = {"ArgentDawn"}, -- Scholomance
+	[GetMapNameByID(535)] = {"Naxx"}, -- Naxxramas
+	[GetMapNameByID(401)] = {"Battleground", "AV"}, -- Alterac Valley
+	[GetMapNameByID(461)] = {"Battleground", "AB"}, -- Arathi Basin
+	[GetMapNameByID(443)] = {"Battleground", "WSG"}, -- Warsong Gulch
+	[Outfitter.LSZ["Silverwing Hold"]] = {"Battleground", "WSG"}, -- Silverwing Hold
+	[Outfitter.LSZ["Warsong Lumber Mill"]] = {"Battleground", "WSG"}, -- Warsong Lumber Mill
+	[GetMapNameByID(482)] = {"Battleground", "EotS"}, -- Eye of the Storm
+	[GetMapNameByID(512)] = {"Battleground", "SotA"}, -- Strand of the Ancients
+	[GetMapNameByID(540)] = {"Battleground", "IoC"}, -- Isle of Conquest
+	[GetMapNameByID(501)] = {"Battleground", "Wintergrasp"}, -- Wintergrasp
+	[GetMapNameByID(736)] = {"Battleground", "Gilneas"}, -- Battle for Gilneas
+	[GetMapNameByID(626)] = {"Battleground", "TwinPeaks"}, -- Twin Peaks
+	[Outfitter.LSZ["Wildhammer Stronghold"]] = {"Battleground", "TwinPeaks"}, -- Wildhammer Stronghold
+	[Outfitter.LSZ["Dragonmaw Stronghold"]] = {"Battleground", "TwinPeaks"}, -- Dragonmaw Stronghold
+	
+	-- Arenas
+--	[GetMapNameByID(Dalaran Sewers)] = {"Battleground", "Arena", "Sewers"}, -- Dalaran Sewers
+--	[GetMapNameByID(The Ring of Valor)] = {"Battleground", "Arena", "RingOfValor"}, -- The Ring of Valor
+--	[GetMapNameByID(Blade's Edge Arena)] = {"Battleground", "BladesEdgeArena", "Arena"}, -- Blade's Edge Arena
+--	[GetMapNameByID(Nagrand Arena)] = {"Battleground", "NagrandArena", "Arena"}, -- Nagrand Arena
+--	[GetMapNameByID(Ruins of Lordaeron)] = {"Battleground", "LordaeronArena", "Arena"}, -- Ruins of Lordaeron
+	
+	[GetMapNameByID(341)] = {"City"}, -- Ironforge
+	[Outfitter.LSZ["City of Ironforge"]] = {"City"}, -- City of Ironforge
+	[Outfitter.LSZ["Miwana's Longhouse"]] = {"City"}, -- Miwana's Longhouse
+	[GetMapNameByID(381)] = {"City"}, -- Darnassus
+--	[GetMapNameByID(Stormwind)] = {"City"}, -- Stormwind
+	[GetMapNameByID(301)] = {"City"}, -- Stormwind City
+	[GetMapNameByID(321)] = {"City"}, -- Orgrimmar
+	[GetMapNameByID(362)] = {"City"}, -- Thunder Bluff
+	[GetMapNameByID(382)] = {"City"}, -- Undercity
+	[GetMapNameByID(480)] = {"City"}, -- Silvermoon City
+	[GetMapNameByID(471)] = {"City"}, -- The Exodar
+	[GetMapNameByID(481)] = {"City"}, -- Shattrath City
+	[GetMapNameByID(504)] = {"City"}, -- Dalaran
+	[GetMapNameByID(903)] = {"City"}, -- Shrine of Two Moons
+	[GetMapNameByID(905)] = {"City"}, -- Shrine of Seven Stars
+}
+
+-- As of patch 3.3 automated combat swaps aren't allowed.  I'm
+-- leaving the code in but emptying the slot list in
+-- case an acceptable workaround is discovered which would
+-- make it useful again.
+
+Outfitter.cCombatEquipmentSlots =
+{
+--[[
+	MainHandSlot = true,
+	SecondaryHandSlot = true,
+]]
+}
+
+Outfitter.InventoryCache = nil
+
+Outfitter.cMaxDisplayedItems = 14
+
+Outfitter.cPanelFrames =
+{
+	"OutfitterMainFrame",
+	"OutfitterOptionsFrame",
+	"OutfitterAboutFrame",
+}
+
+Outfitter.cShapeshiftTextureInfo =
+{
+	-- Druids
+	[132276] = {ID = "Bear", MaybeInCombat = true},
+	[132115] = {ID = "Cat"},
+	[132144] = {ID = "Travel"},
+	[1394966] = {ID = "Travel"},
+	[132145] = {ID = "Tree"},
+	CasterForm = {ID = "Caster"}, -- this is a psuedo-form which is active when no other druid form is
+	
+	-- Rogues
+	Ability_Stealth = {ID = "Stealth"},
+	Spell_Nature_Invisibility = {ID = "Stealth"},
+}
+
 function Outfitter:ToggleOutfitterFrame()
-	if Outfitter:IsOpen() then
+	if self:IsOpen() then
 		OutfitterFrame:Hide()
 	else
 		OutfitterFrame:Show()
@@ -1660,22 +1067,30 @@ function Outfitter:IsOpen()
 end
 
 function Outfitter:OnLoad()
-	for vEventID, _ in pairs(Outfitter.cInitializationEvents) do
-		MCEventLib:RegisterEvent(vEventID, self.InitializationCheck, self)
+	for vEventID, _ in pairs(self.cInitializationEvents) do
+		self.EventLib:RegisterEvent(vEventID, self.InitializationCheck, self)
 	end
 end
 
 function Outfitter:OnShow()
-	Outfitter.SetFrameLevel(OutfitterFrame, PaperDollFrame:GetFrameLevel() - 1)
+	self.SetFrameLevel(OutfitterFrame, PaperDollFrame:GetFrameLevel() - 1)
 	
-	Outfitter:ShowPanel(1) -- Always switch to the main view when showing the window
+	self:ShowPanel(1) -- Always switch to the main view when showing the window
 end
 
 function Outfitter:OnHide()
-	Outfitter:ClearSelection()
+	self:ClearSelection()
 	
-	if Outfitter.QuickSlots then
-		Outfitter.QuickSlots:Close()
+	if self.QuickSlots and self.QuickSlots.Close then
+		self.QuickSlots:Close()
+	end
+	
+	if self.NameOutfitDialog and self.NameOutfitDialog:IsShown() then
+		self.NameOutfitDialog:Cancel()
+	end
+	
+	if self.RebuildOutfitDialog and self.RebuildOutfitDialog:IsShown() then
+		self.RebuildOutfitDialog:Cancel()
 	end
 	
 	OutfitterFrame:Hide()  -- This seems redundant, but the OnHide handler gets called
@@ -1686,7 +1101,7 @@ function Outfitter:OnHide()
 end
 
 function Outfitter:SchedulePlayerEnteringWorld()
-	MCSchedulerLib:RescheduleTask(0.05, self.PlayerEnteringWorld, self)
+	self.SchedulerLib:RescheduleTask(0.05, self.PlayerEnteringWorld, self)
 end
 
 function Outfitter:PlayerEnteringWorld()
@@ -1695,16 +1110,18 @@ function Outfitter:PlayerEnteringWorld()
 	
 	self:BeginEquipmentUpdate()
 	
-	self.ItemList_FlushEquippableItems()
+	self:FlushInventoryCache()
 	
 	self:RegenEnabled()
 	self:UpdateAuraStates()
 	
 	self:ScheduleUpdateZone()
 	
-	self:SetSpecialOutfitEnabled("Riding", false)
-	
 	self:ResumeLoadScreenEvents()
+	self:ScheduleSynch() -- Always sync on entering world
+	
+	self:SynchronizeEM()
+
 	self:EndEquipmentUpdate()
 end
 
@@ -1714,58 +1131,53 @@ function Outfitter:PlayerLeavingWorld()
 	
 	self.Suspended = true
 	
-	MCEventLib:UnregisterEvent("BAG_UPDATE", self.BagUpdate, self)
-	MCEventLib:UnregisterEvent("UNIT_INVENTORY_CHANGED", self.UnitInventoryChanged, self)
-	MCEventLib:UnregisterEvent("PLAYER_AURAS_CHANGED", self.UpdateAuraStates, self)
-	MCEventLib:UnregisterEvent("PLAYERBANKSLOTS_CHANGED", self.BankSlotsChanged, self)
+	self.EventLib:UnregisterEvent("BAG_UPDATE", self.BagUpdate, self)
+	self.EventLib:UnregisterEvent("UNIT_INVENTORY_CHANGED", self.UnitInventoryChanged, self)
+	self.EventLib:UnregisterEvent("UNIT_AURA", self.UnitAuraChanged, self)
+	self.EventLib:UnregisterEvent("PLAYERBANKSLOTS_CHANGED", self.BankSlotsChanged, self)
 end
 
 function Outfitter:ResumeLoadScreenEvents()
-	if Outfitter.Suspended then
+	if self.Suspended then
 		-- To improve load screen performance, suspend events which are
 		-- fired repeatedly and rapidly during zoning
 		
-		Outfitter.Suspended = false
+		self.Suspended = false
 
-		MCEventLib:RegisterEvent("BAG_UPDATE", Outfitter.BagUpdate, Outfitter)
-		MCEventLib:RegisterEvent("UNIT_INVENTORY_CHANGED", Outfitter.UnitInventoryChanged, Outfitter)
-		MCEventLib:RegisterEvent("PLAYER_AURAS_CHANGED", Outfitter.UpdateAuraStates, Outfitter)
-		MCEventLib:RegisterEvent("PLAYERBANKSLOTS_CHANGED", Outfitter.BankSlotsChanged, Outfitter)
-		
-		Outfitter:ScheduleSynch()
+		self.EventLib:RegisterEvent("BAG_UPDATE", self.BagUpdate, self)
+		self.EventLib:RegisterEvent("UNIT_INVENTORY_CHANGED", self.UnitInventoryChanged, self, true) -- Register as a blind event handler (no event id param)
+		self.EventLib:RegisterEvent("UNIT_AURA", self.UnitAuraChanged, self)
+		self.EventLib:RegisterEvent("PLAYERBANKSLOTS_CHANGED", self.BankSlotsChanged, self)
 	end
 end
 
 function Outfitter:VariablesLoaded()
-	Outfitter.Settings = gOutfitter_Settings
-	
-	Outfitter.OriginalStaticPopup_EscapePressed = StaticPopup_EscapePressed
-	StaticPopup_EscapePressed = Outfitter.StaticPopup_EscapePressed
+	self.Settings = gOutfitter_Settings
 end
 
 function Outfitter:BankSlotsChanged()
-	Outfitter:ScheduleSynch()
+	self:ScheduleSynch()
 end
 
 function Outfitter:BagUpdate()
-	Outfitter:ScheduleSynch()
+	self:ScheduleSynch()
 end
 
 Outfitter.OutfitEvents = {}
 
 function Outfitter:RegisterOutfitEvent(pEvent, pFunction)
-	local vHandlers = Outfitter.OutfitEvents[pEvent]
+	local vHandlers = self.OutfitEvents[pEvent]
 	
 	if not vHandlers then
 		vHandlers = {}
-		Outfitter.OutfitEvents[pEvent] = vHandlers
+		self.OutfitEvents[pEvent] = vHandlers
 	end
 	
 	table.insert(vHandlers, pFunction)
 end
 
 function Outfitter:UnregisterOutfitEvent(pEvent, pFunction)
-	local vHandlers = Outfitter.OutfitEvents[pEvent]
+	local vHandlers = self.OutfitEvents[pEvent]
 	
 	if not vHandlers then
 		return
@@ -1782,13 +1194,13 @@ end
 function Outfitter:DispatchOutfitEvent(pEvent, pParameter1, pParameter2)
 	-- Don't send out events until we're initialized
 	
-	if not Outfitter.Initialized then
+	if not self.Initialized then
 		return
 	end
 	
 	-- Post a message
 	
-	local vHandlers = Outfitter.OutfitEvents[pEvent]
+	local vHandlers = self.OutfitEvents[pEvent]
 	
 	if vHandlers then
 		for _, vFunction in ipairs(vHandlers) do
@@ -1812,7 +1224,7 @@ function Outfitter:DispatchOutfitEvent(pEvent, pParameter1, pParameter2)
 		vEventID = "OUTFIT_UNEQUIPPED"
 	end
 	
-	local vOutfits = Outfitter.OutfitScriptEvents[vEventID]
+	local vOutfits = self.OutfitScriptEvents[vEventID]
 	
 	if vOutfits then
 		local vScriptContext = vOutfits[pParameter2]
@@ -1830,14 +1242,26 @@ function Outfitter:DispatchOutfitEvent(pEvent, pParameter1, pParameter2)
 	-- Translate to the event ids for dispatch through the event system
 	
 	if pEvent == "WEAR_OUTFIT" then
-		MCEventLib:DispatchEvent("WEAROUTFIT")
+		self.EventLib:DispatchEvent("WEAROUTFIT")
 	elseif pEvent == "UNWEAR_OUTFIT" then
-		MCEventLib:DispatchEvent("UNWEAROUTFIT")
+		self.EventLib:DispatchEvent("UNWEAROUTFIT")
 	end
 
 	-- Set the correct Helm and Cloak settings.
+	self.OutfitStack:UpdateOutfitDisplay()
 	
-	MCSchedulerLib:ScheduleUniqueTask(0.5, Outfitter.OutfitStack.UpdateHelmAndCloakVisibility, Outfitter.OutfitStack)
+	--self.SchedulerLib:ScheduleUniqueTask(0.5, self.OutfitStack.UpdateOutfitDisplay, self.OutfitStack)
+	self.SchedulerLib:ScheduleUniqueTask(0.1, self.UpdateCurrentOutfitIcon, self)
+end
+
+function Outfitter:UpdateCurrentOutfitIcon()
+	local _, vOutfit = self:GetCurrentOutfitInfo()
+	local vTexture = self.OutfitBar:GetOutfitTexture(vOutfit)
+	
+	if type(vTexture) == "number" then
+		vTexture = 	self:ConvertTextureIDToPath(vTexture)
+	end
+	SetPortraitToTexture(OutfitterMinimapButton.CurrentOutfitTexture, vTexture)
 end
 
 function Outfitter:BankFrameOpened()
@@ -1850,21 +1274,51 @@ function Outfitter:BankFrameClosed()
 	self:BankSlotsChanged()
 end
 
+function Outfitter:VoidStorageFrameOpened()
+	self.VoidStorageIsOpen = true
+end
+
+function Outfitter:VoidStorageFrameClosed()
+	self.VoidStorageIsOpen = false
+end
+
 function Outfitter:RegenDisabled(pEvent)
 	self.InCombat = true
 	
 	if self.OutfitBar then
 		self.OutfitBar:AdjustAlpha()
 	end
+
+	self.OutfitStack:UpdateOutfitDisplay()
+
+	self:SuspendSecureActions()
 end
 
 function Outfitter:RegenEnabled(pEvent)
-	Outfitter:BeginEquipmentUpdate()
+	self:BeginEquipmentUpdate()
 	self.InCombat = false
-	Outfitter:EndEquipmentUpdate()
+	self:EndEquipmentUpdate()
 	
-	if Outfitter.OutfitBar then
-		Outfitter.OutfitBar:AdjustAlpha()
+	if self.OutfitBar then
+		self.OutfitBar:AdjustAlpha()
+	end
+
+	self.OutfitStack:UpdateOutfitDisplay()
+
+	self:ResumeSecureActions()
+end
+
+function Outfitter:SuspendSecureActions()
+	for index = 1, self.cMaxDisplayedItems do
+		local item = _G["OutfitterItem"..(index - 1)]
+		item:suspendSecureActions()
+	end
+end
+
+function Outfitter:ResumeSecureActions()
+	for index = 1, self.cMaxDisplayedItems do
+		local item = _G["OutfitterItem"..(index - 1)]
+		item:resumeSecureActions()
 	end
 end
 
@@ -1873,10 +1327,6 @@ function Outfitter:PlayerDead(pEvent)
 end
 
 function Outfitter:PlayerAlive(pEvent)
-	if UnitIsDeadOrGhost("player") then
-		return
-	end
-	
 	self:BeginEquipmentUpdate()
 	self.IsDead = false
 	self:UpdateAuraStates()
@@ -1888,18 +1338,18 @@ function Outfitter:UnitHealthOrManaChanged(pUnitID)
 		return
 	end
 	
-	Outfitter:BeginEquipmentUpdate()
+	self:BeginEquipmentUpdate()
 	
 	-- Check to see if the player is full while dining
 	
-	if Outfitter.SpecialState.Dining
-	and Outfitter:PlayerIsFull() then
-		Outfitter:SetSpecialOutfitEnabled("Dining", false)
+	if self.SpecialState.Dining
+	and self:PlayerIsFull() then
+		self:SetSpecialOutfitEnabled("Dining", false)
 	end
 	
 	-- If the mana drops, see if there was a recent spellcast
 	
-	local vPlayerMana = UnitMana("player")
+	local vPlayerMana = UnitPower("player")
 	
 	if vPlayerMana and (not self.PreviousManaLevel or vPlayerMana < self.PreviousManaLevel) then
 		local vTime = GetTime()
@@ -1909,12 +1359,12 @@ function Outfitter:UnitHealthOrManaChanged(pUnitID)
 			
 			-- Five second rule has begun
 			
-			if Outfitter.SpiritRegenEnabled then
-				Outfitter.SpiritRegenEnabled = false
-				Outfitter:SetSpecialOutfitEnabled("Spirit", false)
+			if self.SpiritRegenEnabled then
+				self.SpiritRegenEnabled = false
+				self:SetSpecialOutfitEnabled("Spirit", false)
 			end
 			
-			MCSchedulerLib:RescheduleTask(5.0, Outfitter.SpiritRegenTimer, Outfitter)
+			self.SchedulerLib:RescheduleTask(5.0, self.SpiritRegenTimer, self)
 		end
 	end
 	
@@ -1923,12 +1373,20 @@ function Outfitter:UnitHealthOrManaChanged(pUnitID)
 	--
 	
 	if self.SpellcastSentMana then
-		MCSchedulerLib:RescheduleTask(0.01, Outfitter.CheckSpellcastManaDrop, Outfitter)
+		self.SchedulerLib:RescheduleTask(0.01, self.CheckSpellcastManaDrop, self)
 	end
 	
 	--
 	
-	Outfitter:EndEquipmentUpdate()
+	self:EndEquipmentUpdate()
+end
+
+function Outfitter:UnitSpellcastDebug(pEventID, pUnitID, pSpellName)
+	if pUnitID ~= "player" then
+		return
+	end
+	
+	self:DebugMessage("UnitSpellcastDebug: %s %s %s", pEventID, pUnitID, pSpellName)
 end
 
 function Outfitter:UnitSpellcastSent(pEventID, pUnitID, pSpellName)
@@ -1936,12 +1394,9 @@ function Outfitter:UnitSpellcastSent(pEventID, pUnitID, pSpellName)
 		return
 	end
 	
-	self:TestMessage("UnitSpellcastSent: %s %s %s", pEventID, pUnitID, pSpellName)
-	
 	self.SpellcastSentTime = GetTime()
 	
 	if not self.IsCasting then
-		self:TestMessage(GREEN_FONT_COLOR_CODE.."IsCasting")
 		self.IsCasting = true
 	end
 end
@@ -1951,9 +1406,6 @@ function Outfitter:UnitSpellcastChannelStart(pEventID, pUnitID, pSpellName)
 		return
 	end
 	
-	self:TestMessage("UnitSpellcastChannelStart: %s %s %s", pEventID, pUnitID, pSpellName)
-	
-	self:TestMessage(GREEN_FONT_COLOR_CODE.."IsChanneling")
 	self.IsChanneling = true
 end
 
@@ -1962,15 +1414,10 @@ function Outfitter:UnitSpellcastChannelStop(pEventID, pUnitID, pSpellName)
 		return
 	end
 	
-	self:TestMessage("UnitSpellcastChannelStop: %s %s %s", pEventID, pUnitID, pSpellName)
-	
 	if not self.IsChanneling then
 		return
 	end
 
-	self:TestMessage(RED_FONT_COLOR_CODE.."NOT IsChanneling")
-	self:TestMessage(RED_FONT_COLOR_CODE.."NOT IsCasting")
-	
 	self:BeginEquipmentUpdate()
 	self.IsChanneling = false
 	self.IsCasting = false
@@ -1983,13 +1430,9 @@ function Outfitter:UnitSpellcastStop(pEventID, pUnitID, pSpellName)
 		return
 	end
 	
-	self:TestMessage("UnitSpellcastStop: %s %s %s", pEventID, pUnitID, pSpellName)
-	
 	if not self.IsCasting then
 		return
 	end
-	
-	self:TestMessage(RED_FONT_COLOR_CODE.."NOT IsCasting")
 	
 	self:BeginEquipmentUpdate()
 	self.IsCasting = false
@@ -2011,205 +1454,217 @@ function Outfitter:PlayerIsFull()
 		return true
 	end
 	
-	return UnitMana("player") > (UnitManaMax("player") * 0.85)
+	return UnitPower("player") > (UnitPowerMax("player") * 0.85)
 end
 
 function Outfitter:UnitInventoryChanged(pUnitID)
 	if pUnitID == "player" then
-		Outfitter:ScheduleSynch()
+		self:ScheduleSynch()
 	end
 end
 
-function Outfitter:ScheduleSynch()
-	MCSchedulerLib:ScheduleUniqueTask(0.01, Outfitter.Synchronize, Outfitter)
-end
-
 function Outfitter:InventoryChanged()
-	Outfitter.DisplayIsDirty = true -- Update the list so the checkboxes reflect the current state
+	self.DisplayIsDirty = true -- Update the list so the checkboxes reflect the current state
 	
-	local vNewItemsOutfit, vCurrentOutfit = Outfitter:GetNewItemsOutfit(Outfitter.CurrentOutfit)
+	local vNewItemsOutfit, vCurrentOutfit = self:GetNewItemsOutfit(self.CurrentOutfit)
 	
 	if vNewItemsOutfit then
 		-- Save the new outfit
 		
-		Outfitter.CurrentOutfit = vCurrentOutfit
+		self.CurrentOutfit = vCurrentOutfit
 		
 		-- Update the selected outfit or temporary outfit
 		
-		Outfitter:SubtractOutfit(vNewItemsOutfit, Outfitter.ExpectedOutfit)
+		self:SubtractOutfit(vNewItemsOutfit, self.ExpectedOutfit)
 		
-		if Outfitter.SelectedOutfit then
-			Outfitter:UpdateOutfitFromInventory(Outfitter.SelectedOutfit, vNewItemsOutfit)
-		else
-			Outfitter:UpdateTemporaryOutfit(vNewItemsOutfit)
+		if next(vNewItemsOutfit.Items) then
+			if self.SelectedOutfit then
+				self:UpdateOutfitFromInventory(self.SelectedOutfit, vNewItemsOutfit)
+			else
+				self:UpdateTemporaryOutfit(vNewItemsOutfit)
+			end
 		end
 		
-		if Outfitter.QuickSlots then
-			Outfitter.QuickSlots:InventoryChanged(Outfitter:OutfitIsAmmoOnly(vNewItemsOutfit))
+		if self.QuickSlots and self.QuickSlots.InventoryChanged then
+			self.QuickSlots:InventoryChanged(false)
 		end
 	end
 	
-	Outfitter:Update(true)
-end
-
-function Outfitter:OutfitIsAmmoOnly(pOutfit)
-	local vHasAmmoItem = false
+	-- Fire off an event if the current outfit matches the expected outfit
 	
-	for vInventorySlot, vItem in pairs(pOutfit.Items) do
-		if vInventorySlot ~= "AmmoSlot" then
-			return false
-		else
-			vHasAmmoItem = true
+	if not self.EquippedNeedsUpdate
+	and self:OutfitItemsAreSame(self.CurrentOutfit, self.ExpectedOutfit, nil, true) then
+		if self.Debug.TemporaryItems then
+			self:DebugMessage("Swap complete")
 		end
+		
+		self.EventLib:DispatchEvent("OUTFITTER_SWAP_COMPLETE")
+	elseif self.Debug.TemporaryItems then
+		self:DebugMessage("Swap not complete")
+		self:DebugTable(self.CurrentOutfit, "CurrentOutfit", 2)
+		self:DebugTable(self.ExpectedOutfit, "ExpectedOutfit", 2)
 	end
 	
-	return vHasAmmoItem
+	--
+	
+	self:Update(true)
 end
 
-function Outfitter.ExecuteCommand(pCommandLine)
+function Outfitter:ExecuteCommand(pCommand)
 	local vCommands =
 	{
-		about = {func = Outfitter.ShowCommandAbout},
-		wear = {useOutfit = true, func = Outfitter.WearOutfit},
-		unwear = {useOutfit = true, func = Outfitter.RemoveOutfit},
-		toggle = {useOutfit = true, func = Outfitter.ToggleOutfit},
-		reset = {func = Outfitter.AskReset},
-		
-		summary = {func = Outfitter.OutfitSummary},
-		rating = {func = Outfitter.RatingSummary},
-		sortbags = {func = Outfitter.SortBags},
-		iteminfo = {func = Outfitter.ShowLinkInfo},
-		itemstats = {func = Outfitter.ShowLinkStats},
-		
-		missing = {func = Outfitter.ShowMissingItems},
-		
-		sound = {func = Outfitter.SetSoundOption},
-		help = {func = Outfitter.ShowCommandHelp},
-		
-		disable = {func = Outfitter.DisableAutoChanges},
-		enable = {func = Outfitter.EnableAutoChanges},
+		wear = {useOutfit = true, func = self.WearOutfitNow},
+		unwear = {useOutfit = true, func = self.RemoveOutfitNow},
+		toggle = {useOutfit = true, func = self.ToggleOutfitNow},
+		reset = {func = self.AskReset},
 
-		export = {useOutfit = true, func = Outfitter.CommandExport},
-		guiexport = {useOutfit = true, func = Outfitter.CommandGUIExport},
+		deposit = {useOutfit = true, func = self.DepositOutfit},
+		depositunique = {useOutfit = true, func = self.DepositOutfitUnique},
+		depositothers = {useOutfit = true, func = self.DepositOtherOutfits},
+		withdraw = {useOutfit = true, func = self.WithdrawOutfit},
+		withdrawothers = {useOutfit = true, func = self.WithdrawOtherOutfits},
+		
+		update = {useOutfit = true, func = self.SetOutfitToCurrent},
+		updatetitle = {func = function () Outfitter.OutfitStack:UpdateOutfitDisplay() end},
+		
+		summary = {func = self.OutfitSummary},
+		rating = {func = self.RatingSummary},
+		iteminfo = {func = self.ShowLinkInfo},
+		itemstats = {func = self.ShowLinkStats},
+		
+		missing = {func = self.ShowMissingItems},
+		
+		sound = {func = self.SetSoundOption},
+		help = {func = self.ShowCommandHelp},
+		
+		disable = {func = self.DisableAutoChanges},
+		enable = {func = self.EnableAutoChanges},
+		
+		errors = {func = self.SetErrorsOption},
+		daxdax = {func = self.SetErrorsOption},
 	}
 	
 	-- Evaluate options if the command uses them
-	local vCommandLine
-	if string.find(pCommandLine, "|h") then -- Commands which use item links don't appear to parse correctly
-		vCommandLine = pCommandLine
+	
+	local vCommand
+	
+	if string.find(pCommand, "|h") then -- Commands which use item links don't appear to parse correctly
+		vCommand = pCommand
 	else
-		vCommandLine = SecureCmdOptionParse(pCommandLine)
+		vCommand = SecureCmdOptionParse(pCommand)
 	end
 	
-	if not vCommandLine then
+	if not vCommand then
 		return
 	end
 	
-	-- Let's get the Outfitter commandline command now!
-	local vComm, tmp = vCommandLine:match('(%w+) ?(.*)')
-
-	if not vComm then
-		Outfitter:ShowCommandHelp()
-		return
-	end
-
-	-- Now, let's see if such command NEEDS an outfit and try to get it!
-	vComm = strlower(vComm)
-	local vCommInfo = vCommands[vComm]
+	--
 	
-	if not vCommInfo then
-		Outfitter:ShowCommandHelp()
-		Outfitter:ErrorMessage("Unknown command %s", vComm)
+	local vStartIndex, vEndIndex, vCommand, vParameter = string.find(vCommand, "(%w+) ?(.*)")
+	
+	if not vCommand then
+		self:ShowCommandHelp()
 		return
 	end
-
-	local sOutfit = nil
+	
+	vCommand = strlower(vCommand)
+	
+	local vCommandInfo = vCommands[vCommand]
+	
+	if not vCommandInfo then
+		self:ShowCommandHelp()
+		self:ErrorMessage("Unknown command %s", vCommand)
+		return
+	end
+	
 	local vOutfit = nil
-	local vCatID = nil
+	local vCategoryID = nil
+	
+	if vCommandInfo.useOutfit then
+		if vParameter and vParameter:len() > 0 then
+			vOutfit, vCategoryID = self:FindOutfitByName(vParameter)
+		else
+			vOutfit = self:GetCurrentCompleteOutfit()
+			if not vOutfit then
+				self:ErrorMessage("No Complete outfit is equipped")
+				return
+			end
+			vCategoryID = vOutfit.CategoryID
+		end
 
-	if vCommInfo.useOutfit then
-		sOutfit, tmp = tmp:match('%s*<(.+)> ?%s*(.*)')
-		if not sOutfit then
-			Outfitter:ErrorMessage("Expected outfit name for ".. vComm .." command.")
-			Outfitter:ErrorMessage("  Remember to enclose the outfit name between < and >.")
+		if not vOutfit then
+			self:ErrorMessage("Couldn't find outfit named "..vParameter)
 			return
 		end
-		vOutfit, vCatID = Outfitter:FindOutfitByName(sOutfit)
-		if not vOutfit then
-			Outfitter:ErrorMessage("Couldn't find outfit named '" .. sOutfit .. "'")
-			return
-		end		
-	end
-
-	-- Let's get the remaining arguments
-	local vPar1, vPar2, vPar3 = tmp:match('%s*(%w*) ?%s*(%w*) ?%s*(.*)')
-
-	-- Now it's time to run the associated function and get things done
-	if vCommInfo.useOutfit then
-		vCommInfo.func(Outfitter, vOutfit, vCatID, vPar1, vPar2, vPar3)
+		
+		Outfitter.HasHWEvent = true
+		vCommandInfo.func(self, vOutfit)
+		Outfitter.HasHWEvent = false
 	else
-		vCommInfo.func(Outfitter, vPar1)
+		vCommandInfo.func(self, vParameter)
 	end
 end
 
 function Outfitter:DisableAutoChanges()
-	Outfitter:SetAutoSwitch(false)
-	Outfitter:NoteMessage(Outfitter.cAutoChangesDisabled)
+	self:SetAutoSwitch(false)
+	self:NoteMessage(self.cAutoChangesDisabled)
 end
 
 function Outfitter:EnableAutoChanges()
-	Outfitter:SetAutoSwitch(true)
-	Outfitter:NoteMessage(Outfitter.cAutoChangesEnabled)
-end
-
-function Outfitter:ShowCommandAbout()
-	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."   Outfitter 4.2.6 "..NORMAL_FONT_COLOR_CODE.." - by John Stephen, modded by mrmr")
-	Outfitter:NoteMessage(NORMAL_FONT_COLOR_CODE.."  A clothing and weapon management and automated equipment changes addon.")
-	Outfitter:NoteMessage(NORMAL_FONT_COLOR_CODE.."  Get this modded version (and report bugs) from: https://github.com/rsheep")
+	self:SetAutoSwitch(true)
+	self:NoteMessage(self.cAutoChangesEnabled)
 end
 
 function Outfitter:ShowCommandHelp()
-	Outfitter:ShowCommandAbout()
-	Outfitter:NoteMessage(NORMAL_FONT_COLOR_CODE.."")
-	Outfitter:NoteMessage(NORMAL_FONT_COLOR_CODE.."    Remember to enclose every <outfit name> between quotes or doublequotes!")
-	Outfitter:NoteMessage(NORMAL_FONT_COLOR_CODE.."")
-	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter about"..NORMAL_FONT_COLOR_CODE..": Print an 'about' text")
-	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter wear <outfit name>"..NORMAL_FONT_COLOR_CODE..": Wear an outfit")
-	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter unwear <outfit name>"..NORMAL_FONT_COLOR_CODE..": Remove an outfit")
-	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter toggle <outfit name>"..NORMAL_FONT_COLOR_CODE..": Wears or removes an outfit")
-	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter reset"..NORMAL_FONT_COLOR_CODE..": Resets Outfitter, restoring default settings and outfits")
-	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter sound [on|off]"..NORMAL_FONT_COLOR_CODE..": Turns equipment sound effects off during Outfitter's gear changes")
-	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter missing"..NORMAL_FONT_COLOR_CODE..": Generates a list of items which are in your outfits but can't be found")
-	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter export <outfit name> [self|say|party|raid|guild|whispertarget]"..NORMAL_FONT_COLOR_CODE..": Export/Dump an outfit to the choosen channel")
-	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter export <outfit name> [whisper|channel] <name>"..NORMAL_FONT_COLOR_CODE..": Export/Dump an outfit to the choosen player/channel")
-	Outfitter:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter guiexport <outfit name> [simple|urls]"..NORMAL_FONT_COLOR_CODE..": Export/Dump an outfit to a frame for easy Copy&Paste")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter wear outfitName"..NORMAL_FONT_COLOR_CODE..": Wear an outfit")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter unwear outfitName"..NORMAL_FONT_COLOR_CODE..": Remove an outfit")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter toggle outfitName"..NORMAL_FONT_COLOR_CODE..": Wears or removes an outfit")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter reset"..NORMAL_FONT_COLOR_CODE..": Resets Outfitter, restoring default settings and outfits")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter reset bar"..NORMAL_FONT_COLOR_CODE..": Resets the position of the outfit bar")
+	self:NoteMessage("")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter deposit outfitName"..NORMAL_FONT_COLOR_CODE..": Deposits an outfit to the bank")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter depositunique outfitName"..NORMAL_FONT_COLOR_CODE..": Deposits an outfit to the bank, except for items used by other outfits")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter depositothers outfitName"..NORMAL_FONT_COLOR_CODE..": Deposits all outfits except one to the bank")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter withdraw outfitName"..NORMAL_FONT_COLOR_CODE..": Withdraws an outfit from the bank")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter withdrawothers outfitName"..NORMAL_FONT_COLOR_CODE..": Withdraws all outfits except one from the bank")
+	self:NoteMessage("")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter update [outfitName]"..NORMAL_FONT_COLOR_CODE..": Updates the outfit with currently equipped items, or the current Complete outfit if no outfit is specified")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter updatetitle"..NORMAL_FONT_COLOR_CODE..": Refreshes the current player title based on equipped items")
+	self:NoteMessage("")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter sound [on|off]"..NORMAL_FONT_COLOR_CODE..": Turns equipment sound effects off during Outfitter's gear changes")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter disable"..NORMAL_FONT_COLOR_CODE..": Prevents all scripts from running")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter enable"..NORMAL_FONT_COLOR_CODE..": Allows enabled scripts to run")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter missing"..NORMAL_FONT_COLOR_CODE..": Generates a list of items which are in your outfits but can't be found")
+	self:NoteMessage(HIGHLIGHT_FONT_COLOR_CODE.."/outfitter errors [on|off]"..NORMAL_FONT_COLOR_CODE..": Enables/disables missing item messages during gear changes")
 end
 
-function Outfitter.UnequipItemByName(pItemName)
+function Outfitter:UnequipItemByName(pItemName)
 	local vInventoryID = tonumber(pItemName)
 	
-	if pItemName  ~= tostring(vInventoryIDthen) then
+	if pItemName ~= tostring(vInventoryID) then
+		local vLowerItemName = pItemName:lower()
+		
 		-- Search the inventory for a matching item name
 		
 		vInventoryID = nil
 		
-		for _, vInventorySlot in ipairs(Outfitter.cSlotNames) do
-			local vCurrentItemInfo = Outfitter:GetInventoryItemInfo(vInventorySlot)
+		for _, vSlotID in ipairs(self.cSlotIDs) do
+			local vItemCodes, vItemName = self:GetSlotIDLinkInfo(vSlotID)
 			
-			if vCurrentItemInfo and strlower(vCurrentItemInfo.Name) == strlower(pItemName) then
-				vInventoryID = Outfitter.cSlotIDs[vInventorySlot]
+			if vItemName and vItemName:lower() == vLowerItemName then
+				vInventoryID = vSlotID
 			end
 		end
 		
 		if not vInventoryID then
-			Outfitter:ErrorMessage("Couldn't find an item named "..pItemName)
+			self:ErrorMessage("Couldn't find an item named "..pItemName)
 		end
 	end
 	
-	local vEmptyBagSlot = Outfitter:GetEmptyBagSlot(NUM_BAG_SLOTS, 1)
+	local vEmptyBagSlot = self:GetEmptyBagSlot(NUM_BAG_SLOTS, 1)
 	
 	if not vEmptyBagSlot then
-		Outfitter:ErrorMessage("Couldn't unequip "..pItemName.." because all bags are full")
+		self:ErrorMessage("Couldn't unequip "..pItemName.." because all bags are full")
 		return
 	end
 	
@@ -2234,10 +1689,49 @@ function Outfitter:RebuildOutfit(pOutfit)
 		return
 	end
 	
-	local vOutfit = Outfitter:GenerateSmartOutfit("temp", pOutfit.StatID, Outfitter.ItemList_GetEquippableItems(true))
+	local vStatConfig = pOutfit.StatConfig
+	
+	if not vStatConfig and pOutfit.StatID then
+		vStatConfig = {{StatID = pOutfit.StatID}}
+	end
+	
+	local vOutfit = self:GenerateSmartOutfit(
+		pOutfit.Name,
+		vStatConfig,
+		self:GetInventoryCache(),
+		false,
+		function (pNewOutfit)
+			local vNewItems = pNewOutfit:GetItems()
+			
+			if pOutfit:IsComplete() then
+				local vOldItems = pOutfit:GetItems()
+				
+				for vItemSlot, vOldItem in pairs(vOldItems) do
+					if not vNewItems[vItemSlot] then
+						vNewItems[vItemSlot] = vOldItem
+					end
+				end
+			end
+			
+			pOutfit:SetItems(vNewItems)
+			self:OutfitSettingsChanged(pOutfit)
+			self:WearOutfit(pOutfit)
+			self:Update(true)
+		end)
 	
 	if vOutfit then
-		pOutfit.Items = vOutfit.Items
+		local vNewItems = vOutfit:GetItems()
+		
+		if pOutfit:IsComplete() then
+			local vOldItems = pOutfit:GetItems()
+			
+			for vItemSlot, vOldItem in pairs(vOldItems) do
+				if not vNewItems[vItemSlot] then
+					vNewItems[vItemSlot] = vOldItem
+				end
+			end
+		end
+		pOutfit:SetItems(vNewItems)
 		self:OutfitSettingsChanged(pOutfit)
 		self:WearOutfit(pOutfit)
 		self:Update(true)
@@ -2249,14 +1743,14 @@ function Outfitter:SetOutfitToCurrent(pOutfit)
 		return
 	end
 	
-	for vSlotName in pairs(pOutfit.Items) do
-		self:SetInventoryItem(pOutfit, vSlotName)
-	end
+	pOutfit:SetToCurrentInventory()
 	
 	self:OutfitSettingsChanged(pOutfit)
 	self:WearOutfit(pOutfit)
 	
-	Outfitter:Update(true)
+	self:Update(true)
+
+	self:NoteMessage("Updated the outfit '"..pOutfit:GetName().."' to currently equipped items")
 end
 
 function Outfitter:AskDeleteOutfit(pOutfit)
@@ -2269,199 +1763,17 @@ function Outfitter:DeleteSelectedOutfit()
 		return
 	end
 	
-	Outfitter:DeleteOutfit(gOutfitter_OutfitToDelete)
+	self:DeleteOutfit(gOutfitter_OutfitToDelete)
 	
-	Outfitter:Update(true)
+	self:Update(true)
 end
 
-function Outfitter:LoadString(pString)
-	assert(loadstring(pString, "Outfit Script"))()
-end
-
-Outfitter.cScriptPrefix =
-'Outfitter.ScriptFunc = function (self, event)\n'..
-'   local outfit = self.Outfit\n'..
-'	if outfit.Disabled or (outfit.CombatDisabled and (Outfitter.InCombat or Outfitter.MaybeInCombat)) then return end\n'..
-'	local equip, layer, delay\n'..
-'	local didEquip, didUnequip, isEquipped = outfit.didEquip, outfit.didUnequip, Outfitter:WearingOutfit(outfit)\n'..
-'	local time, setting = GetTime(), outfit.ScriptSettings\n'
-
--- User's script will be inserted here
-
-Outfitter.cScriptSuffix =
-'	self:PostProcess(equip, layer, delay, time)\n'..
-'end'
-
-Outfitter.cInputPrefix = "Outfitter.ScriptInputs={"
-Outfitter.cInputSuffix = "}"
-
-function Outfitter:LoadScript(pScript)
-	local vSucceeded, vMessage = pcall(Outfitter.LoadString, Outfitter, pScript)
-	
-	if vMessage then
-		local _, _, vLine, vMessage2 = string.find(vMessage, Outfitter.cExtractErrorFormat)
-		
-		if vLine then
-			vMessage = string.format(Outfitter.cScriptErrorFormat, vLine, vMessage2)
-		end
-	end
-	
-	return vSucceeded, vMessage
-end
-
-function Outfitter:ParseScriptFields(pScript)
-	local vSettings = {}
-	local vMessage
-	
-	for vSetting, vValue in string.gmatch(pScript, "--%s*$([%w_]+)([^\r\n]*)") do
-		vSetting = string.upper(vSetting)
-		
-		if vSetting == "EVENTS" then
-			if not vSettings.Events then
-				vSettings.Events = vValue
-			else
-				vSettings.Events = vSettings.Events.." "..vValue
-			end
-			
-		elseif vSetting == "DESC" then
-			vSettings.Description = vValue
-		
-		elseif vSetting == "SETTING" then
-			local vScript = Outfitter.cInputPrefix..vValue..Outfitter.cInputSuffix
-			local vSucceeded
-			
-			Outfitter.ScriptInputs = nil
-			
-			vSucceeded, vMessage = Outfitter:LoadScript(vScript)
-			
-			if not vSucceeded then
-				return nil, vMessage
-			end
-			
-			if Outfitter.ScriptInputs then
-				if not vSettings.Inputs then
-					vSettings.Inputs = {}
-				end
-				
-				for vKey, vValue in pairs(Outfitter.ScriptInputs) do
-					if type(vValue) == "string" then
-						vValue = {Type = vValue, Label = vKey}
-						
-						if vValue.Type ~= "Boolean" then
-							vValue.Label = vValue.Label..":"
-						end
-					end
-					
-					vValue.Field = vKey
-					table.insert(vSettings.Inputs, vValue)
-				end
-				
-				Outfitter.ScriptInputs = nil
-			end
-		end
-	end
-	
-	return vSettings
-end
-
-function Outfitter:LoadOutfitScript(pScript)
-	local vScript = Outfitter.cScriptPrefix..pScript..Outfitter.cScriptSuffix
-
-	Outfitter.ScriptFunc = nil
-	
-	local vSucceeded, vMessage = Outfitter:LoadScript(vScript)
-	local vScriptFunc = Outfitter.ScriptFunc
-	
-	Outfitter.ScriptFunc = nil
-	
-	return vScriptFunc, vMessage
-end
-
-function Outfitter:ActivateScript(pOutfit)
-	local vScript = Outfitter:GetScript(pOutfit)
-	
-	if gOutfitter_Settings.Options.DisableAutoSwitch
-	or pOutfit.Disabled
-	or not vScript then
-		return
-	end
-	
-	local vScriptFields = Outfitter:ParseScriptFields(vScript)
-	local vScriptSettings = {}
-	
-	if not vScriptFields then
-		return
-	end
-	
-	if not vScriptFields.Events then
-		Outfitter:ErrorMessage("The script for %s does not specify any events", pOutfit.Name)
-		return
-	end
-	
-	-- Initialize the settings to their defaults
-	
-	if not pOutfit.ScriptSettings then
-		pOutfit.ScriptSettings = {}
-	end
-	
-	if vScriptFields.Inputs then
-		for _, vDescriptor in ipairs(vScriptFields.Inputs) do
-			local vDefault = vDescriptor.Default
-			
-			if vDefault == nil then
-				local vType = string.lower(vDescriptor.Type)
-				local vTypeInfo = Outfitter.SettingTypeInfo[vType]
-				
-				if not vTypeInfo then
-					Outfitter:ErrorMessage("Script for outfit %s has an unknown $SETTING type (%s)", pOutfit.Name, vDescriptor.Type or "nil")
-					return
-				end
-				
-				vDefault = vTypeInfo.Default -- Override the built-in default if the $SETTING specifies its own default
-			end
-			
-			-- Set to the default if the value is missing or if
-			-- it's the wrong type
-			
-			if pOutfit.ScriptSettings[vDescriptor.Field] == nil
-			or type(pOutfit.ScriptSettings[vDescriptor.Field]) ~= type(vDefault) then	
-				pOutfit.ScriptSettings[vDescriptor.Field] = vDefault
-			end
-		end
-	end
-	
-	local vScriptContext, vErrorMessage = Outfitter._ScriptContext:NewContext(pOutfit, vScript)
-	
-	if not vScriptContext then
-		Outfitter:ErrorMessage("Couldn't activate script for %s", pOutfit.Name)
-		Outfitter:ErrorMessage(vErrorMessage)
-		return
-	end
-	
-	Outfitter.ScriptContexts[pOutfit] = vScriptContext
-	
-	for vEventID in string.gmatch(vScriptFields.Events, "([%w%d_]+)") do
-		vScriptContext:RegisterEvent(vEventID)
-	end
-	
-	self:DispatchOutfitEvent("INITIALIZE", pOutfit.Name, pOutfit)
-end
-
-function Outfitter:DeactivateScript(pOutfit)
-	self:DispatchOutfitEvent("TERMINATE", pOutfit.Name, pOutfit)
-	
-	if Outfitter.ScriptContexts[pOutfit] then
-		Outfitter.ScriptContexts[pOutfit]:UnregisterAllEvents()
-		Outfitter.ScriptContexts[pOutfit] = nil
-	end
-end
-
-function Outfitter:OutfitHasScript(pOutfit)
-	return  pOutfit.ScriptID ~= nil or pOutfit.Script ~= nil
+function Outfitter:TalentsChanged()
+	self.CanDualWield2H = self.PlayerClass == "WARRIOR" and GetSpecialization() == 2
 end
 
 function Outfitter:SetScript(pOutfit, pScript)
-	Outfitter:DeactivateScript(pOutfit)
+	self:DeactivateScript(pOutfit)
 	
 	if pScript == "" then
 		pScript = nil
@@ -2470,12 +1782,12 @@ function Outfitter:SetScript(pOutfit, pScript)
 	pOutfit.Script = pScript
 	pOutfit.ScriptID = nil
 	
-	Outfitter:OutfitSettingsChanged(Outfitter.SelectedOutfit)
-	Outfitter:ActivateScript(pOutfit)
+	self:OutfitSettingsChanged(self.SelectedOutfit)
+	self:ActivateScript(pOutfit)
 end
 
 function Outfitter:SetScriptID(pOutfit, pScriptID)
-	Outfitter:DeactivateScript(pOutfit)
+	self:DeactivateScript(pOutfit)
 	
 	if pScriptID == "" then
 		pScriptID = nil
@@ -2484,16 +1796,18 @@ function Outfitter:SetScriptID(pOutfit, pScriptID)
 	pOutfit.Script = nil
 	pOutfit.ScriptID = pScriptID
 	
-	Outfitter:OutfitSettingsChanged(Outfitter.SelectedOutfit)
-	Outfitter:ActivateScript(pOutfit)
+	self:OutfitSettingsChanged(self.SelectedOutfit)
+	self:ActivateScript(pOutfit)
 end
 
 function Outfitter:GetScript(pOutfit)
 	if pOutfit.ScriptID then
-		local vPresetScript = Outfitter:GetPresetScriptByID(pOutfit.ScriptID)
+		local vPresetScript = self:GetPresetScriptByID(pOutfit.ScriptID)
 		
 		if vPresetScript then
-			return vPresetScript.Script, pOutfit.ScriptID
+			local vScript = vPresetScript.Script:gsub("([\r\t])", {["\r"] = "", ["\t"] = "    "})
+			
+			return vScript, pOutfit.ScriptID
 		end
 	else
 		return pOutfit.Script
@@ -2503,18 +1817,20 @@ end
 function Outfitter:ShowPanel(pPanelIndex)
 	self:CancelDialogs() -- Force any dialogs to close if they're open
 	
-	if Outfitter.CurrentPanel > 0
-	and Outfitter.CurrentPanel ~= pPanelIndex then
-		Outfitter:HidePanel(Outfitter.CurrentPanel)
+	if self.CurrentPanel > 0
+	and self.CurrentPanel ~= pPanelIndex then
+		self:HidePanel(self.CurrentPanel)
 	end
 	
 	-- NOTE: Don't check for redundant calls since this function
 	-- will be called to reset the field values as well as to 
 	-- actually show the panel when it's hidden
 	
-	Outfitter.CurrentPanel = pPanelIndex
+	self.CurrentPanel = pPanelIndex
 	
-	getglobal(Outfitter.cPanelFrames[pPanelIndex]):Show()
+	local vPanelFrame = _G[self.cPanelFrames[pPanelIndex]]
+	
+	vPanelFrame:Show()
 	
 	PanelTemplates_SetTab(OutfitterFrame, pPanelIndex)
 	
@@ -2529,384 +1845,397 @@ function Outfitter:ShowPanel(pPanelIndex)
 	elseif pPanelIndex == 3 then
 		-- About panel
 		
+		if not self.AboutView then
+			self.AboutView = self:New(self._AboutView)
+		end
 	else
-		Outfitter:ErrorMessage("Unknown index (%d) in ShowPanel()", pPanelIndex)
+		self:ErrorMessage("Unknown index (%d) in ShowPanel()", pPanelIndex)
 	end
 	
-	Outfitter:Update(false)
+	self:Update(false)
 end
 
 function Outfitter:HidePanel(pPanelIndex)
-	if Outfitter.CurrentPanel ~= pPanelIndex then
+	if self.CurrentPanel ~= pPanelIndex then
 		return
 	end
 	
-	getglobal(Outfitter.cPanelFrames[pPanelIndex]):Hide()
-	Outfitter.CurrentPanel = 0
+	_G[self.cPanelFrames[pPanelIndex]]:Hide()
+	self.CurrentPanel = 0
 end
 
 function Outfitter:CancelDialogs()
 end
 
-function Outfitter:AddDividerMenuItem()
-	UIDropDownMenu_AddButton({text = " ", notCheckable = true, notClickable = true}, UIDROPDOWNMENU_MENU_LEVEL)
-end
-
-function Outfitter:AddCategoryMenuItem(pName)
-	UIDropDownMenu_AddButton({text = pName, notCheckable = true, notClickable = true}, UIDROPDOWNMENU_MENU_LEVEL)
-end
-
-function Outfitter:AddMenuItem(pFrame, pName, pValue, pChecked, pLevel, pColor, pDisabled, pAdditionalOptions)
-	if not pColor then
-		pColor = NORMAL_FONT_COLOR
-	end
-	
-	local vDesc =
-	{
-		text = pName,
-		value = pValue,
-		owner = pFrame,
-		checked = pChecked,
-		func = Outfitter.DropDown_OnClick,
-		textR = pColor.r,
-		textG = pColor.g,
-		textB = pColor.b,
-		disabled = pDisabled,
-	}
-	
-	if pAdditionalOptions then
-		for vKey, vValue in pairs(pAdditionalOptions) do
-			vDesc[vKey] = vValue
-		end
-	end
-	
-	UIDropDownMenu_AddButton(vDesc, pLevel or UIDROPDOWNMENU_MENU_LEVEL)
-end
-
-function Outfitter:AddSubmenuItem(pFrame, pName, pValue, pDisabled, pAdditionalOptions)
-	local vDesc =
-	{
-		text = pName,
-		owner = pFrame,
-		hasArrow = 1,
-		value = pValue,
-		textR = NORMAL_FONT_COLOR.r,
-		textG = NORMAL_FONT_COLOR.g,
-		textB = NORMAL_FONT_COLOR.b,
-		disabled = pDisabled,
-	}
-	
-	if pAdditionalOptions then
-		for vKey, vValue in pairs(pAdditionalOptions) do
-			vDesc[vKey] = vValue
-		end
-	end
-	
-	UIDropDownMenu_AddButton(vDesc, UIDROPDOWNMENU_MENU_LEVEL)
-end
-
-function Outfitter:InitializeOutfitMenu(pFrame, pOutfit)
-	if not pOutfit then
+function Outfitter:AddOutfitMenu(menu, outfit)
+	-- This shouldn't happen
+	if not outfit then
+		self:ErrorMessage("Outfit is nil for menu")
 		return
 	end
 	
-	if UIDROPDOWNMENU_MENU_LEVEL == 1 then
-		Outfitter:AddCategoryMenuItem(pOutfit.Name)
+	menu:AddCategoryTitle(outfit:GetName())
 		
-		-- General
-		
-		Outfitter:AddMenuItem(pFrame, PET_RENAME, "RENAME")
-		if pOutfit.StatID then
-			local vStatName = Outfitter:GetStatIDName(pOutfit.StatID)
-			
-			if vStatName then
-				Outfitter:AddMenuItem(pFrame, format(Outfitter.cRebuildOutfitFormat, vStatName), "REBUILD")
-			end
-		end
-
-		Outfitter:AddSubmenuItem(pFrame, Outfitter.cExportOutfit, "EXPORT")
-		Outfitter:AddMenuItem(pFrame, Outfitter.cSetCurrentItems, "SET_CURRENT")
-		Outfitter:AddSubmenuItem(pFrame, Outfitter.cKeyBinding, "BINDING")
-		Outfitter:AddSubmenuItem(pFrame, Outfitter.cRememberVisibility, "HELMCLOAK")
-		Outfitter:AddSubmenuItem(pFrame, Outfitter.cBankCategoryTitle, "BANKING")
-		if pOutfit.CategoryID ~= "Complete" then
-			Outfitter:AddMenuItem(pFrame, Outfitter.cUnequipOthers, "UNEQUIP_OTHERS", pOutfit.UnequipOthers)
-		end
-		Outfitter:AddMenuItem(pFrame, DELETE, "DELETE")
-		
-		-- Automation
-		
-		Outfitter:AddCategoryMenuItem(Outfitter.cAutomation)
-		
-		local vPresetScript = Outfitter:GetPresetScriptByID(pOutfit.ScriptID)
-		local vScriptName
-		
-		if vPresetScript then
-			vScriptName = vPresetScript.Name
-		elseif pOutfit.Script then
-			vScriptName = Outfitter.cCustomScript
+	-- General
+	menu:AddFunction(PET_RENAME, function (menu)
+		self:PerformAction("RENAME", outfit)
+	end)
+	menu:AddSelect(self.cKeyBinding, {
+		self.cNone,
+		_G["BINDING_NAME_OUTFITTER_OUTFIT1"],
+		_G["BINDING_NAME_OUTFITTER_OUTFIT2"],
+		_G["BINDING_NAME_OUTFITTER_OUTFIT3"],
+		_G["BINDING_NAME_OUTFITTER_OUTFIT4"],
+		_G["BINDING_NAME_OUTFITTER_OUTFIT5"],
+		_G["BINDING_NAME_OUTFITTER_OUTFIT6"],
+		_G["BINDING_NAME_OUTFITTER_OUTFIT7"],
+		_G["BINDING_NAME_OUTFITTER_OUTFIT8"],
+		_G["BINDING_NAME_OUTFITTER_OUTFIT9"],
+		_G["BINDING_NAME_OUTFITTER_OUTFIT10"]
+	}, function ()
+		if outfit.BindingIndex then
+			return outfit.BindingIndex + 1
 		else
-			vScriptName = nil
+			return 1
 		end
-		
-		Outfitter:AddSubmenuItem(pFrame, string.format(Outfitter.cScriptFormat, vScriptName or Outfitter.cNoScript), "SCRIPT")
-		Outfitter:AddMenuItem(pFrame, Outfitter.cScriptSettings, "SCRIPT_SETTINGS", nil, UIDROPDOWNMENU_MENU_LEVEL, nil, vScriptName == nil)
-		Outfitter:AddMenuItem(pFrame, Outfitter.cDisableScript, "DISABLE", pOutfit.Disabled, UIDROPDOWNMENU_MENU_LEVEL, nil, vScriptName == nil)
-		Outfitter:AddMenuItem(pFrame, Outfitter.cDisableOutfitInCombat, "COMBATDISABLE", pOutfit.CombatDisabled, UIDROPDOWNMENU_MENU_LEVEL, nil, vScriptName == nil)
-		
-		-- Outfit bar
-		
-		if Outfitter.OutfitBar then
-			Outfitter:AddCategoryMenuItem(Outfitter.cOutfitBar)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cShowInOutfitBar, "OUTFITBAR_SHOW", Outfitter.OutfitBar:IsOutfitShown(pOutfit), UIDROPDOWNMENU_MENU_LEVEL)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cChangeIcon, "OUTFITBAR_CHOOSEICON", nil, UIDROPDOWNMENU_MENU_LEVEL)
+	end, function (menu, value)
+		if value == 1 then
+			self:SetOutfitBindingIndex(outfit, nil)
+		else
+			self:SetOutfitBindingIndex(outfit, value - 1)
 		end
-		
-	elseif UIDROPDOWNMENU_MENU_LEVEL == 2 then
-		if UIDROPDOWNMENU_MENU_VALUE == "EXPORT" then
-			Outfitter:AddCategoryMenuItem(Outfitter.cExportFrames)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cExportSimple, "EXPORT_SIMPLE", nil, UIDROPDOWNMENU_MENU_LEVEL)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cExportURLs, "EXPORT_URLS", nil, UIDROPDOWNMENU_MENU_LEVEL)
-			Outfitter:AddCategoryMenuItem(Outfitter.cExportChannel)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cExportChannelSelf, "EXPORT_CHANNEL_SELF", nil, UIDROPDOWNMENU_MENU_LEVEL)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cExportChannelSay, "EXPORT_CHANNEL_SAY", nil, UIDROPDOWNMENU_MENU_LEVEL)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cExportChannelParty, "EXPORT_CHANNEL_PARTY", nil, UIDROPDOWNMENU_MENU_LEVEL, nil, not (GetNumPartyMembers() > 0))
-			Outfitter:AddMenuItem(pFrame, Outfitter.cExportChannelRaid, "EXPORT_CHANNEL_RAID", nil, UIDROPDOWNMENU_MENU_LEVEL, nil, not (GetNumRaidMembers() > 0))
-			Outfitter:AddMenuItem(pFrame, Outfitter.cExportChannelGuild, "EXPORT_CHANNEL_GUILD", nil, UIDROPDOWNMENU_MENU_LEVEL, nil, not IsInGuild())
-			Outfitter:AddMenuItem(pFrame, Outfitter.cExportChannelWhisperTo, "EXPORT_CHANNEL_WHISPER_TO", nil, UIDROPDOWNMENU_MENU_LEVEL)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cExportChannelWhisperTarget, "EXPORT_CHANNEL_WHISPER_TARGET", nil, UIDROPDOWNMENU_MENU_LEVEL, nil, not (UnitIsPlayer("target") and UnitFactionGroup("player") == UnitFactionGroup("target")))
-			Outfitter:AddSubmenuItem(pFrame, Outfitter.cExportChannelOthers, "EXPORT_OTHERS")
+	end)
+	
+	-- Get the titles
+	local titles = self:GetSortedTitles()
 
-		elseif UIDROPDOWNMENU_MENU_VALUE == "BANKING" then
-			Outfitter:AddMenuItem(pFrame, Outfitter.cDepositToBank, "DEPOSIT", nil, UIDROPDOWNMENU_MENU_LEVEL, nil, not Outfitter.BankFrameIsOpen)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cDepositUniqueToBank, "DEPOSITUNIQUE", nil, UIDROPDOWNMENU_MENU_LEVEL, nil, not Outfitter.BankFrameIsOpen)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cWithdrawFromBank, "WITHDRAW", nil, UIDROPDOWNMENU_MENU_LEVEL, nil, not Outfitter.BankFrameIsOpen)
-			
-		elseif UIDROPDOWNMENU_MENU_VALUE == "BINDING" then
-			Outfitter:AddMenuItem(pFrame, Outfitter.cNone, "BINDING_NONE", not pOutfit.BindingIndex, UIDROPDOWNMENU_MENU_LEVEL)
-			
-			for vIndex = 1, 10 do
-				Outfitter:AddMenuItem(pFrame, getglobal("BINDING_NAME_OUTFITTER_OUTFIT"..vIndex), "BINDING_"..vIndex, pOutfit.BindingIndex == vIndex, UIDROPDOWNMENU_MENU_LEVEL)
-			end
-		elseif UIDROPDOWNMENU_MENU_VALUE == "HELMCLOAK" then
-			Outfitter:AddCategoryMenuItem(Outfitter.cHelm)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cShow, "SHOWHELM", pOutfit.ShowHelm == true, UIDROPDOWNMENU_MENU_LEVEL)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cHide, "HIDEHELM", pOutfit.ShowHelm == false, UIDROPDOWNMENU_MENU_LEVEL)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cDontChange, "IGNOREHELM", pOutfit.ShowHelm == nil, UIDROPDOWNMENU_MENU_LEVEL)
-			
-			Outfitter:AddCategoryMenuItem(Outfitter.cCloak)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cShow, "SHOWCLOAK", pOutfit.ShowCloak == true, UIDROPDOWNMENU_MENU_LEVEL)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cHide, "HIDECLOAK", pOutfit.ShowCloak == false, UIDROPDOWNMENU_MENU_LEVEL)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cDontChange, "IGNORECLOAK", pOutfit.ShowCloak == nil, UIDROPDOWNMENU_MENU_LEVEL)
-		elseif UIDROPDOWNMENU_MENU_VALUE == "SCRIPT" then
-			Outfitter:AddMenuItem(pFrame, Outfitter.cNoScript, "PRESET_NONE", pOutfit.ScriptID == nil and Outfitter:GetScript(pOutfit) == nil, UIDROPDOWNMENU_MENU_LEVEL)
-			Outfitter:AddMenuItem(pFrame, Outfitter.cEditScriptEllide, "EDIT_SCRIPT", pOutfit.ScriptID == nil and Outfitter:GetScript(pOutfit) ~= nil, UIDROPDOWNMENU_MENU_LEVEL)
-			
-			local vCategory
-			
-			for _, vPresetScript in ipairs(Outfitter.PresetScripts) do
-				if not vPresetScript.Class
-				or vPresetScript.Class == Outfitter.PlayerClass then
-					-- Start a new category if it's changing
-					
-					local vNewCategory = vPresetScript.Category or vPresetScript.Class or "GENERAL"
-					
-					if vCategory ~= vNewCategory then
-						vCategory = vNewCategory
-						Outfitter:AddSubmenuItem(pFrame, Outfitter.cScriptCategoryName[vCategory] or Outfitter.cClassName[vCategory], vCategory)
-					end
-				end
-			end
-		end
-	elseif UIDROPDOWNMENU_MENU_LEVEL == 3 then
-		if UIDROPDOWNMENU_MENU_VALUE == "EXPORT_OTHERS" then
-			local channels={GetChannelList()}
-			for i=1,table.getn(channels)/2 do
-				Outfitter:AddMenuItem(pFrame, channels[i*2-1]..".  "..channels[i*2], "EXPORT_CHANNEL_OTHERS", nil, UIDROPDOWNMENU_MENU_LEVEL)
-			end
+	-- Build the menu
+	local maxTitlesPerMenu = 30
+	menu:AddChildMenu(self.cPlayerTitle, function (submenu)
+		local startIndex = 1
 
+		-- Add the None item
+		submenu:AddToggle(self.cNone,
+			function ()
+				return outfit.ShowTitleID == nil
+			end, function (menu, value)
+				outfit.ShowTitleID = nil
+
+				Outfitter.HasHWEvent = true
+				self.OutfitStack:UpdateOutfitDisplay()
+				Outfitter.HasHWEvent = false
+			end)
+
+		-- Add a select menu for groups of titles
+		while startIndex <= #titles do
+			local endIndex = startIndex + maxTitlesPerMenu - 1
+			if endIndex > #titles then
+				endIndex = #titles
+			end
+			
+			self:AddTitleSelectMenu(submenu, tostring(startIndex).." - "..tostring(endIndex), outfit, titles, startIndex, maxTitlesPerMenu)
+			
+			startIndex = endIndex + 1
 		end
-		for _, vPresetScript in ipairs(Outfitter.PresetScripts) do
-			if not vPresetScript.Class
-			or vPresetScript.Class == Outfitter.PlayerClass then
-				local vCategory = vPresetScript.Category or vPresetScript.Class or "GENERAL"
-				
-				if vCategory == UIDROPDOWNMENU_MENU_VALUE then
-					local vName = vPresetScript.Name
-					local vScriptFields = Outfitter:ParseScriptFields(vPresetScript.Script)
+	end)
+	menu:AddChildMenu(self.cBankCategoryTitle, function (submenu)
+		submenu:AddFunction(self.cDepositToBank, function () self:PerformAction("DEPOSIT", outfit) end, not self.BankFrameIsOpen)
+		submenu:AddFunction(self.cDepositUniqueToBank, function () self:PerformAction("DEPOSITUNIQUE", outfit) end, not self.BankFrameIsOpen)
+		submenu:AddFunction(self.cWithdrawFromBank, function () self:PerformAction("WITHDRAW", outfit) end, not self.BankFrameIsOpen)
+		submenu:AddDivider()
+		submenu:AddFunction(self.cDepositOthersToBank, function () self:PerformAction("DEPOSITOTHERS", outfit) end, not self.BankFrameIsOpen)
+		submenu:AddFunction(self.cWithdrawOthersFromBank, function () self:PerformAction("WITHDRAWOTHERS", outfit) end, not self.BankFrameIsOpen)
+	end)
+	if outfit.CategoryID ~= "Complete" then
+		menu:AddToggle(self.cUnequipOthers, function ()
+			return outfit.UnequipOthers
+		end, function (menu, value)
+			outfit.UnequipOthers = value or nil
+			self:OutfitSettingsChanged(outfit)
+		end)
+	end
+	menu:AddToggle(self.cIgnoreComparisons, function ()
+		return outfit.IgnoreComparisons
+	end, function (menu, value)
+		outfit.IgnoreComparisons = value or nil
+	end)
+	menu:AddFunction(DELETE, function ()
+		self:PerformAction("DELETE", outfit)
+	end)
+
+	-- Rebuild
+	menu:AddCategoryTitle(self.cRebuild)
+	menu:AddFunction(self.cSetCurrentItems, function ()
+		self:PerformAction("SET_CURRENT", outfit)
+	end)
+	local statName
+	if outfit.StatConfig then
+		statName = self:GetStatConfigName(outfit.StatConfig)
+	elseif outfit.StatID then
+		statName = self:GetStatIDName(outfit.StatID)
+	end
+	if statName then
+		menu:AddFunction(format(self.cRebuildOutfitFormat, statName),
+			function ()
+				self:PerformAction("REBUILD", outfit)
+			end)
+	end
+	menu:AddFunction(self.cRebuildFor, function () self:PerformAction("REBUILD_FOR", outfit) end)
+	
+	-- Automation
+	menu:AddCategoryTitle(self.cAutomation)
+		
+	local presetScript = self:GetPresetScriptByID(outfit.ScriptID)
+	local scriptName
+	if presetScript then
+		scriptName = presetScript.Name
+	elseif outfit.Script then
+		scriptName = self.cCustomScript
+	else
+		scriptName = nil
+	end
+		
+	menu:AddChildMenu(string.format(self.cScriptFormat, scriptName or self.cNoScript),
+		function (submenu)
+			local hasAnyScript = self:GetScript(outfit) ~= nil
+			submenu:AddToggle(self.cNoScript,
+				function ()
+					return (outfit.ScriptID == nil) and not hasAnyScript
+				end, function (menu, value)
+					self:PerformAction("PRESET_NONE", outfit)
+				end)
+			submenu:AddFunction(self.cEditScriptEllide,
+				function ()
+					self:PerformAction("EDIT_SCRIPT", outfit)
+				end, (outfit.ScriptID == nil) and hasAnyScript)
+			
+			local previousCategory, foundSelectedScript
+			for _, presetScript in ipairs(self.PresetScripts) do
+				if not presetScript.Class or presetScript.Class == self.PlayerClass then
+					-- Get the category for this script
+					local category = presetScript.Category or presetScript.Class or "GENERAL"
 					
-					if vScriptFields.Inputs ~= nil and #vScriptFields.Inputs ~= 0 then
-						vName = vName.."..."
+					-- Add the category once it changes
+					if previousCategory ~= category then
+						self:AddScriptCategorySubmenu(submenu, category,
+							function ()
+								return outfit.ScriptID
+							end, function (menu, value)
+								self:PerformAction("PRESET_"..value, outfit)
+							end)
+						previousCategory = category
+						foundSelectedScript = false
 					end
 					
-					Outfitter:AddMenuItem(
-							pFrame,
-							vName,
-							"PRESET_"..vPresetScript.ID,
-							pOutfit.ScriptID == vPresetScript.ID,
-							nil, -- Level
-							nil, -- Color
-							nil, -- Disabled
-							{tooltipTitle = vName, tooltipText = vScriptFields.Description})
-				end
-			end
-		end
+					if outfit.ScriptID == presetScript.ID then
+						foundSelectedScript = true
+					end
+				end -- if
+			end -- for
+		end)
+	menu:AddFunction(self.cScriptSettings,
+		function ()
+			self:PerformAction("SCRIPT_SETTINGS", outfit)
+		end, scriptName == nil)
+	menu:AddToggle(self.cDisableScript,
+		function ()
+			return outfit.Disabled
+		end, function (menu, value)
+			self:SetScriptEnabled(outfit, not value)
+		end, scriptName == nil)
+	menu:AddToggle(self.cDisableOutfitInCombat,
+		function ()
+			return outfit.CombatDisabled
+		end, function (menu, value)
+			self:PerformAction("COMBATDISABLE", outfit)
+		end, scriptName == nil)
+
+	-- Outfit bar
+	if self.OutfitBar then
+		menu:AddCategoryTitle(self.cOutfitBar)
+		menu:AddToggle(self.cShowInOutfitBar,
+			function ()
+				return self.OutfitBar:IsOutfitShown(outfit)
+			end, function (menu, value)
+				self:PerformAction("OUTFITBAR_SHOW", outfit)
+			end)
+		menu:AddFunction(self.cChangeIcon.."...",
+			function ()
+				self:PerformAction("OUTFITBAR_CHOOSEICON", outfit)
+			end)
 	end
 end
 
-function Outfitter.ItemDropDown_Initialize()
-	local vFrame = getglobal(UIDROPDOWNMENU_INIT_MENU)
-	local vItem = vFrame:GetParent():GetParent()
-	local vOutfit = Outfitter:GetOutfitFromListItem(vItem)
+function Outfitter:GetSortedTitles()
+	local titles = {}
+
+	-- Gather the list of known titles
+	local numTitles = GetNumTitles()
+	for titleIndex = 1, numTitles do
+		if IsTitleKnown(titleIndex) then
+			local titleName = GetTitleName(titleIndex)
+			table.insert(titles, {name = titleName, index = titleIndex})
+		end
+	end
+
+	-- Sort the list
+	table.sort(titles, function (a, b)
+		return a.name < b.name
+	end)
+
+	return titles
+end
+
+function Outfitter:AddTitleSelectMenu(menu, menuTitle, outfit, titles, startIndex, maxTitles)
+	-- Calculate the endIndex
+	local endIndex = startIndex + maxTitles - 1
+	if endIndex > #titles then
+		endIndex = #titles
+	end
+
+	-- Build the list of values
+	local values = {}
+	for titleIndex = startIndex, endIndex do
+		table.insert(values, titles[titleIndex].name)
+	end
+
+	menu:AddSelect(menuTitle, values,
+		function ()
+			local selectedTitleIndex = outfit.ShowTitleID
+			if not selectedTitleIndex then
+				selectedTitleIndex = -1
+			end
+			for titleIndex = startIndex, endIndex do
+				if titles[titleIndex].index == selectedTitleIndex then
+					return titleIndex - startIndex + 1
+				end
+			end
+		end, function (menu, value)
+			local title = titles[value + startIndex - 1]
+
+			-- No title for the first index
+			if title.index == -1 then
+				outfit.ShowTitleID = nil
+
+			-- Find the titleID for the index
+			else
+				outfit.ShowTitleID = title.index
+			end
+			Outfitter.HasHWEvent = true
+			self.OutfitStack:UpdateOutfitDisplay()
+			Outfitter.HasHWEvent = false
+		end)
+end
+
+function Outfitter:AddScriptCategorySubmenu(menu, category, get, set)
+	local title = self.cScriptCategoryName[category]
+	if not title then
+		local isFemale = UnitSex("player") == 3
+		if isFemale then
+			title = LOCALIZED_CLASS_NAMES_FEMALE[category]
+		else
+			title = LOCALIZED_CLASS_NAMES_MALE[category]
+		end
+	end
+	assert(title, "no name found for category "..tostring(category))
+
+	menu:AddChildMenu(title, function (submenu)
+			for _, presetScript in ipairs(self.PresetScripts) do
+				local scriptCategory = presetScript.Category or presetScript.Class or "GENERAL"
+
+				-- Add the item if it's the right category
+				if (not presetScript.Class or presetScript.Class == self.PlayerClass) and scriptCategory == category then
+										
+					-- Ellide the name if there are inputs
+					local name = presetScript.Name
+					local scriptFields = self:ParseScriptFields(presetScript.Script)
+					if scriptFields.Inputs ~= nil and #scriptFields.Inputs ~= 0 then
+						name = name.."..."
+					end
+										
+					-- Add the item
+					submenu:AddToggle(name,
+						function ()
+							return get() == presetScript.ID
+						end, function (menu, value)
+							set(menu, presetScript.ID)
+						end, nil, {
+							desc = Outfitter:GetScriptDescription(presetScript.Script)
+						})
+				end -- if
+			end -- for
+		end)
+end
+
+function Outfitter.ItemDropDownMenuFunc(dropdown, menu)
+	local listItem = dropdown:GetParent():GetParent()
+	local outfit = listItem:GetOutfit()
+	Outfitter:AddOutfitMenu(menu, outfit)
+end
+
+function Outfitter.ItemDropDown_Initialize(pFrame)
+	local vItem = pFrame:GetParent():GetParent()
+	local vOutfit = vItem:GetOutfit()
 	
-	Outfitter:InitializeOutfitMenu(vFrame, vOutfit)
+	Outfitter:InitializeOutfitMenu(pFrame, vOutfit)
 	
-	vFrame:SetHeight(vFrame.SavedHeight)
+	pFrame:SetHeight(pFrame.SavedHeight)
 end
 
 function Outfitter:SetAutoSwitch(pAutoSwitch)
 	local vDisableAutoSwitch = not pAutoSwitch
 	
-	if gOutfitter_Settings.Options.DisableAutoSwitch == vDisableAutoSwitch then
+	if self.Settings.Options.DisableAutoSwitch == vDisableAutoSwitch then
 		return
 	end
 	
-	gOutfitter_Settings.Options.DisableAutoSwitch = vDisableAutoSwitch
+	self.Settings.Options.DisableAutoSwitch = vDisableAutoSwitch
 	
 	if pAutoSwitch then
-		Outfitter:ActivateAllScripts()
+		self:ActivateAllScripts()
 	else
-		Outfitter:DeactivateAllScripts()
+		self:DeactivateAllScripts()
 	end
 	
-	Outfitter.DisplayIsDirty = true
-	Outfitter:Update(false)
+	self.DisplayIsDirty = true
+	self:Update(false)
 end
 
 function Outfitter:SetShowTooltipInfo(pShowInfo)
-	gOutfitter_Settings.Options.DisableToolTipInfo = not pShowInfo
-	Outfitter:Update(false)
+	self.Settings.Options.DisableToolTipInfo = not pShowInfo
+	self:Update(false)
+end
+
+function Outfitter:SetShowItemComparisons(pShowComparisons)
+	self.Settings.Options.DisableItemComparisons = not pShowComparisons
+	
+	if pShowComparisons and not self.ExtendedCompareTooltip then
+		self.ExtendedCompareTooltip = self:New(self._ExtendedCompareTooltip)
+	end
 end
 
 function Outfitter:SetShowMinimapButton(pShowButton)
-	gOutfitter_Settings.Options.HideMinimapButton = not pShowButton
+	self.Settings.Options.HideMinimapButton = not pShowButton
 	
-	if gOutfitter_Settings.Options.HideMinimapButton then
+	if self.Settings.Options.HideMinimapButton then
 		OutfitterMinimapButton:Hide()
 	else
 		OutfitterMinimapButton:Show()
 	end
 	
-	Outfitter:Update(false)
+	self:Update(false)
 end
 
 function Outfitter:SetShowHotkeyMessages(pShowHotkeyMessages)
-	gOutfitter_Settings.Options.DisableHotkeyMessages = not pShowHotkeyMessages
+	self.Settings.Options.DisableHotkeyMessages = not pShowHotkeyMessages
 	
-	Outfitter:Update(false)
-end
-
-StaticPopupDialogs.OUTFITTER_CONFIRM_EXPORT_URL =
-{
-	text = TEXT(Outfitter.cExportConfirmURL),
-	button1 = TEXT(YES),
-	button2 = TEXT(NO),
-	
-	OnAccept = function(_, data2)
-		Outfitter:SetExportURLEditbox(data2)
-	end,
-	
-	OnCancel = function(data)
-		StaticPopup_Hide("OUTFITTER_CONFIRM_EXPORT_URL")
-		Outfitter:SetExportURLEditbox(data)
-	end,
-
-	OnEscapePressed = function()
-		StaticPopup_Hide("OUTFITTER_CONFIRM_EXPORT_URL")
-	end,
-
-	timeout = 0,
-	whileDead = true,
-	hideOnEscape = true,
-	hasEditBox = false,
-}
-
-function Outfitter:CheckExportURLEditbox(pExportURLEditboxContent)
-	if not (pExportURLEditboxContent == gOutfitter_Settings.Options.ExportURL) then
-		local dialog = StaticPopup_Show("OUTFITTER_CONFIRM_EXPORT_URL", gOutfitter_Settings.Options.ExportURL, pExportURLEditboxContent)
-		if dialog then
-			dialog.data = gOutfitter_Settings.Options.ExportURL
-			dialog.data2 = pExportURLEditboxContent
-		end
-	end
-end
-
-function Outfitter:SetExportURLEditbox(pExportURLEditboxContent)
-	gOutfitter_Settings.Options.ExportURL = pExportURLEditboxContent
-	OutfitterExportURLEditbox:SetText(pExportURLEditboxContent)
-end
-
-function Outfitter.MinimapDropDown_OnLoad()
-	UIDropDownMenu_SetAnchor(3, -7, this, "TOPRIGHT", this:GetName(), "TOPLEFT")
-	UIDropDownMenu_Initialize(this, Outfitter.MinimapDropDown_Initialize)
-	--UIDropDownMenu_Refresh(this) -- Don't refresh on menus which don't have a text portion
-	
-	if not Outfitter.RegisteredMinimapEvents then
-		Outfitter:RegisterOutfitEvent("WEAR_OUTFIT", Outfitter.MinimapDropDown_OutfitEvent)
-		Outfitter:RegisterOutfitEvent("UNWEAR_OUTFIT", Outfitter.MinimapDropDown_OutfitEvent)
-		
-		Outfitter.RegisteredMinimapEvents = true
-	end
-end
-
-function Outfitter.MinimapDropDown_OutfitEvent(pEvent, pParameter1, pParameter2)
-	MCSchedulerLib:ScheduleUniqueTask(0.1, Outfitter.MinimapDropDown_OutfitEvent2)
-end
-
-function Outfitter.MinimapDropDown_OutfitEvent2()
-	if UIDROPDOWNMENU_OPEN_MENU ~= "OutfitterMinimapButton" then
-		return
-	end
-	
-	UIDropDownMenu_Initialize(OutfitterMinimapButton, Outfitter.MinimapDropDown_Initialize)
-end
-
-function Outfitter.MinimapDropDown_AdjustScreenPosition(pMenu)
-	local vListFrame = getglobal("DropDownList1")
-	
-	if not vListFrame:IsVisible() then
-		return
-	end
-	
-	local vCenterX, vCenterY = pMenu:GetCenter()
-	local vScreenWidth, vScreenHeight = GetScreenWidth(), GetScreenHeight()
-	
-	local vAnchor
-	local vOffsetX, vOffsetY
-	
-	if vCenterY < vScreenHeight / 2 then
-		vAnchor = "BOTTOM"
-		vOffsetY = -8
-	else
-		vAnchor = "TOP"
-		vOffsetY = -17
-	end
-	
-	if vCenterX < vScreenWidth / 2 then
-		vAnchor = vAnchor.."LEFT"
-		vOffsetX = 21
-	else
-		vAnchor = vAnchor.."RIGHT"
-		vOffsetX = 3
-	end
-	
-	vListFrame:ClearAllPoints()
-	vListFrame:SetPoint(vAnchor, pMenu.relativeTo, pMenu.relativePoint, vOffsetX, vOffsetY)
+	self:Update(false)
 end
 
 function Outfitter:OutfitIsVisible(pOutfit)
 	return not pOutfit.Disabled
-	   and not Outfitter:IsEmptyOutfit(pOutfit)
+	   and not pOutfit:IsEmpty()
+	   and (not pOutfit.OutfitBar or not pOutfit.OutfitBar.Hide)
 end
 
 function Outfitter:HasVisibleOutfits(pOutfits)
@@ -2915,7 +2244,7 @@ function Outfitter:HasVisibleOutfits(pOutfits)
 	end
 	
 	for vIndex, vOutfit in pairs(pOutfits) do
-		if Outfitter:OutfitIsVisible(vOutfit) then	
+		if self:OutfitIsVisible(vOutfit) then	
 			return true
 		end
 	end
@@ -2923,33 +2252,15 @@ function Outfitter:HasVisibleOutfits(pOutfits)
 	return false
 end
 
-function Outfitter.MinimapDropDown_Initialize()
-	-- Just return if not initialized yet
-	
-	if not Outfitter.Initialized then
-		return
-	end
-	
-	--
-	
-	local vFrame = getglobal(UIDROPDOWNMENU_INIT_MENU)
-	
-	Outfitter:AddCategoryMenuItem(Outfitter.cTitleVersion)
-	Outfitter:AddMenuItem(vFrame, Outfitter.cOpenOutfitter, 0)
-	Outfitter:AddMenuItem(vFrame, Outfitter.cAutoSwitch, -1, gOutfitter_Settings.Options.DisableAutoSwitch)
-	
-	Outfitter.MinimapDropDown_InitializeOutfitList()
-end
-
 function Outfitter:GetCategoryOrder()
-	return Outfitter.cCategoryOrder
+	return self.cCategoryOrder
 end
 
 function Outfitter:GetOutfitsByCategoryID(pCategoryID)
-	return gOutfitter_Settings.Outfits[pCategoryID]
+	return self.Settings.Outfits[pCategoryID]
 end
 
-function Outfitter.MinimapDropDown_InitializeOutfitList()
+function Outfitter.MinimapDropDown_InitializeOutfitList(pFrame)
 	-- Just return if not initialized yet
 	
 	if not Outfitter.Initialized then
@@ -2958,8 +2269,7 @@ function Outfitter.MinimapDropDown_InitializeOutfitList()
 	
 	--
 	
-	local vFrame = getglobal(UIDROPDOWNMENU_INIT_MENU)
-	local vEquippableItems = Outfitter.ItemList_GetEquippableItems()
+	local vInventoryCache = Outfitter:GetInventoryCache()
 	local vCategoryOrder = Outfitter:GetCategoryOrder()
 		
 	for vCategoryIndex, vCategoryID in ipairs(vCategoryOrder) do
@@ -2972,44 +2282,45 @@ function Outfitter.MinimapDropDown_InitializeOutfitList()
 			for vIndex, vOutfit in ipairs(vOutfits) do
 				if Outfitter:OutfitIsVisible(vOutfit) then
 					local vWearingOutfit = Outfitter:WearingOutfit(vOutfit)
-					local vMissingItems, vBankedItems = Outfitter.ItemList_GetMissingItems(vEquippableItems, vOutfit)
-					local vItemColor = NORMAL_FONT_COLOR
+					local vMissingItems, vBankedItems = vInventoryCache:GetMissingItems(vOutfit)
+					local vItemColor = NORMAL_FONT_COLOR_CODE
 					
 					if vMissingItems then
-						vItemColor = RED_FONT_COLOR
+						vItemColor = RED_FONT_COLOR_CODE
 					elseif vBankedItems then
-						vItemColor = Outfitter.BANKED_FONT_COLOR
+						vItemColor = Outfitter.BANKED_FONT_COLOR_CODE
 					end
 					
-					Outfitter:AddMenuItem(vFrame, vOutfit.Name, {CategoryID = vCategoryID, Index = vIndex}, vWearingOutfit, nil, vItemColor)
+					Outfitter:AddMenuItem(
+							pFrame,
+							vOutfit:GetName(),
+							{CategoryID = vCategoryID, Index = vIndex},
+							vWearingOutfit, -- Checked
+							nil, -- Level
+							vItemColor, -- Color
+							nil, -- Disabled
+							{icon = Outfitter.OutfitBar:GetOutfitTexture(vOutfit)})
 				end
 			end
 		end
 	end
 end
 
-function Outfitter.DropDown_OnClick()
-	if this.owner.AutoSetValue then
-		UIDropDownMenu_SetSelectedValue(this.owner, this.value)
+function Outfitter.DropDown_OnClick(pItem, pOwner, pValue)
+	if not pOwner then
+		Outfitter:DebugTable(pItem, "OnClick Item")
+		return
 	end
 	
-	if this.owner.ChangedValueFunc then
-		this.owner.ChangedValueFunc(this.owner, this.value)
+	if pOwner.AutoSetValue then
+		pOwner:SetSelectedValue(pValue)
+	end
+	
+	if pOwner.ChangedValueFunc then
+		pOwner.ChangedValueFunc(pOwner, pValue)
 	end
 	
 	CloseDropDownMenus()
-end
-
-function Outfitter.Item_SetTextColor(pItem, pRed, pGreen, pBlue)
-	local vItemNameField
-	
-	if pItem.isCategory then
-		vItemNameField = getglobal(pItem:GetName().."CategoryName")
-	else
-		vItemNameField = getglobal(pItem:GetName().."OutfitName")
-	end
-	
-	vItemNameField:SetTextColor(pRed, pGreen, pBlue)
 end
 
 function Outfitter:GenerateItemListString(pLabel, pListColorCode, pItems)
@@ -3017,197 +2328,132 @@ function Outfitter:GenerateItemListString(pLabel, pListColorCode, pItems)
 
 	for vIndex, vOutfitItem in ipairs(pItems) do
 		if not vItemList then
-			vItemList = HIGHLIGHT_FONT_COLOR_CODE..pLabel..pListColorCode..vOutfitItem.Name
+			vItemList = HIGHLIGHT_FONT_COLOR_CODE..pLabel..pListColorCode..tostring(vOutfitItem.Name)
 		else
-			vItemList = vItemList..Outfitter.cMissingItemsSeparator..vOutfitItem.Name
+			vItemList = vItemList..self.cMissingItemsSeparator..tostring(vOutfitItem.Name)
 		end
 	end
 	
 	return vItemList
 end
 
-function Outfitter.Item_OnEnter(pItem)
-	Outfitter.Item_SetTextColor(pItem, HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b)
-	
-	if pItem.isCategory then
-		local vDescription = Outfitter.cCategoryDescriptions[pItem.categoryID]
-		
-		if vDescription then
-			local vCategoryName = Outfitter["c"..pItem.categoryID.."Outfits"]
-			
-			GameTooltip_AddNewbieTip(vCategoryName, 1.0, 1.0, 1.0, vDescription, 1)
-		end
-		
-		ResetCursor()
-	elseif pItem.isOutfitItem then
-		local vHasCooldown, vRepairCost
-		
-		GameTooltip:SetOwner(pItem, "ANCHOR_TOP")
-		
-		if pItem.outfitItem.Location.SlotName then
-			if not pItem.outfitItem.Location.SlotID then
-				pItem.outfitItem.Location.SlotID = Outfitter.cSlotIDs[pItem.outfitItem.Location.SlotName]
-			end
-			
-			GameTooltip:SetInventoryItem("player", pItem.outfitItem.Location.SlotID)
+function Outfitter.AddNewbieTip(pItem, pNormalText, pRed, pGreen, pBlue, pNewbieText, pNoNormalText)
+	if GetCVarBool("UberTooltips") then
+		GameTooltip_SetDefaultAnchor(GameTooltip, pItem)
+		if pNormalText then
+			GameTooltip:SetText(pNormalText, pRed, pGreen, pBlue)
+			GameTooltip:AddLine(pNewbieText, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1)
 		else
-			vHasCooldown, vRepairCost = GameTooltip:SetBagItem(pItem.outfitItem.Location.BagIndex, pItem.outfitItem.Location.BagSlotIndex)
+			GameTooltip:SetText(pNewbieText, pRed, pGreen, pBlue, 1, 1)
 		end
-		
 		GameTooltip:Show()
-
-		if InRepairMode() and (vRepairCost and vRepairCost > 0) then
-			GameTooltip:AddLine(TEXT(REPAIR_COST), "", 1, 1, 1)
-			SetTooltipMoney(GameTooltip, vRepairCost)
-			GameTooltip:Show()
-		elseif MerchantFrame:IsShown() and MerchantFrame.selectedTab == 1 then
-			if pItem.outfitItem.Location.BagIndex then
-				ShowContainerSellCursor(pItem.outfitItem.Location.BagIndex, pItem.outfitItem.Location.BagSlotIndex)
-			end
-		else
-			ResetCursor()
-		end
 	else
-		local vOutfit = Outfitter:GetOutfitFromListItem(pItem)
-		
-		Outfitter:ShowOutfitTooltip(vOutfit, pItem, pItem.MissingItems, pItem.BankedItems)
+		if not pNoNormalText then
+			GameTooltip:SetOwner(pItem, "ANCHOR_RIGHT")
+			GameTooltip:SetText(pNormalText, pRed, pGreen, pBlue)
+		end
 	end
 end
 
 function Outfitter:ShowOutfitTooltip(pOutfit, pOwner, pMissingItems, pBankedItems, pShowEmptyTooltips, pTooltipAnchor)
-	-- local vEquippableItems = Outfitter.ItemList_GetEquippableItems()
-	-- local vMissingItems, vBankedItems = Outfitter.ItemList_GetMissingItems(vEquippableItems, pOutfit)
+	-- local vInventoryCache = self:GetInventoryCache()
+	-- local vMissingItems, vBankedItems = vInventoryCache:GetMissingItems(pOutfit)
 	
-	local vDescription = Outfitter:GetOutfitDescription(pOutfit)
+	local vDescription = self:GetOutfitDescription(pOutfit)
 	
 	if pMissingItems
 	or pBankedItems
 	or pShowEmptyTooltips then
 		GameTooltip:SetOwner(pOwner, pTooltipAnchor or "ANCHOR_LEFT")
 		
-		GameTooltip:AddLine(pOutfit.Name)
+		GameTooltip:AddLine(pOutfit:GetName())
 		
 		if vDescription then
 			GameTooltip:AddLine(vDescription, HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b, true)
 		end
 		
 		if pMissingItems then
-			local vItemList = Outfitter:GenerateItemListString(Outfitter.cMissingItemsLabel, RED_FONT_COLOR_CODE, pMissingItems)
+			local vItemList = self:GenerateItemListString(self.cMissingItemsLabel, RED_FONT_COLOR_CODE, pMissingItems)
 			GameTooltip:AddLine(vItemList, RED_FONT_COLOR.r, RED_FONT_COLOR.g, RED_FONT_COLOR.b, true)
 		end
 		
 		if pBankedItems then
-			local vItemList = Outfitter:GenerateItemListString(Outfitter.cBankedItemsLabel, Outfitter.BANKED_FONT_COLOR_CODE, pBankedItems)
+			local vItemList = self:GenerateItemListString(self.cBankedItemsLabel, self.BANKED_FONT_COLOR_CODE, pBankedItems)
 			GameTooltip:AddLine(vItemList, RED_FONT_COLOR.r, RED_FONT_COLOR.g, RED_FONT_COLOR.b, true)
 		end
 		
 		GameTooltip:Show()
 	elseif vDescription then
-		GameTooltip_AddNewbieTip(pOutfit.Name, 1.0, 1.0, 1.0, vDescription, 1)
+		self.AddNewbieTip(pOwner, pOutfit:GetName(), 1.0, 1.0, 1.0, vDescription, 1)
 	end
 	
 	ResetCursor()
 end
 
 function Outfitter:GetOutfitDescription(pOutfit)
-	return Outfitter:GetScriptDescription(Outfitter:GetScript(pOutfit))
-end
-
-function Outfitter:GetScriptDescription(pScript)
-	if not pScript then
-		return
-	end
-	
-	local vScriptFields = Outfitter:ParseScriptFields(pScript)
-	
-	if not vScriptFields then
-		return
-	end
-	
-	return vScriptFields.Description
+	return self:GetScriptDescription(self:GetScript(pOutfit))
 end
 
 function Outfitter:OutfitHasSettings(pOutfit)
-	return Outfitter:ScriptHasSettings(Outfitter:GetScript(pOutfit))
+	return self:ScriptHasSettings(self:GetScript(pOutfit))
 end
 
-function Outfitter:ScriptHasSettings(pScript)
-	if not pScript then
-		return
-	end
-	
-	local vScriptFields = Outfitter:ParseScriptFields(pScript)
-	
-	if not vScriptFields then
-		return
-	end
-	
-	return vScriptFields.Inputs ~= nil and #vScriptFields.Inputs ~= 0
-end
-
-function Outfitter.Item_OnLeave(pItem)
-	if pItem.isCategory then
-		Outfitter.Item_SetTextColor(pItem, 1, 1, 1)
+function Outfitter:ToggleOutfitMenuAtCursor(outfit)
+	if self.outfitMenu then
+		self:HideOutfitMenu()
 	else
-		Outfitter.Item_SetTextColor(pItem, pItem.DefaultColor.r, pItem.DefaultColor.g, pItem.DefaultColor.b)
+		self:ShowOutfitMenuAtCursor(outfit)
 	end
-	
-	GameTooltip:Hide()
 end
 
-function Outfitter.Item_OnClick(pItem, pButton, pIgnoreModifiers)
-	if pItem.isCategory then
-		local vCategoryOutfits = gOutfitter_Settings.Outfits[pItem.categoryID]
-		
-		Outfitter.Collapsed[pItem.categoryID] = not Outfitter.Collapsed[pItem.categoryID]
-		Outfitter.DisplayIsDirty = true
-	elseif pItem.isOutfitItem then
-		if pButton == "LeftButton" then
-			Outfitter:PickupItemLocation(pItem.outfitItem.Location)
-			StackSplitFrame:Hide()
-		else
-			if MerchantFrame:IsShown() and MerchantFrame.selectedTab == 2 then
-				-- Don't sell the item if the buyback tab is selected
-				return
-			else
-				if pItem.outfitItem.Location.BagIndex then
-					UseContainerItem(pItem.outfitItem.Location.BagIndex, pItem.outfitItem.Location.BagSlotIndex)
-					StackSplitFrame:Hide()
-				end
-			end
-		end
-	else
-		local vOutfit = Outfitter:GetOutfitFromListItem(pItem)
-		
-		if not vOutfit then
-			-- Error: outfit not found
-			return
-		end
-		
-		if pButton == "LeftButton" then
-			vOutfit.Disabled = nil
-			Outfitter:WearOutfit(vOutfit)
-		else
-			this = pItem.OutfitMenu
-			
-			if DropDownList1:IsShown() then
-				ToggleDropDownMenu(nil, nil, pItem.OutfitMenu)
-			else
-				ToggleDropDownMenu(nil, nil, pItem.OutfitMenu, "cursor")
-				PlaySound("igMainMenuOptionCheckBoxOn")
-			end
-		end
+function Outfitter:ShowOutfitMenuAtCursor(outfit)
+	if self.outfitMenu then
+		return
 	end
-	
-	Outfitter:Update(true)
+
+	-- Create the items
+	local items = Outfitter:New(Outfitter.UIElementsLib._DropDownMenuItems, function ()
+		
+		-- Close the menu after a short delay when a menu item is selected
+		Outfitter.SchedulerLib:ScheduleTask(0.1, function ()
+			self:HideOutfitMenu()
+		end)
+	end)
+
+	-- Get the items
+	Outfitter:AddOutfitMenu(items, outfit)
+
+	-- Get the cursor position
+	local cursorX, cursorY = GetCursorPosition()
+	local scaling = UIParent:GetEffectiveScale()
+	cursorX = cursorX / scaling
+	cursorY = cursorY / scaling
+
+	-- Use the screen quadrant as an anchor for the menu
+	local quadrant = Outfitter:GetScreenQuadrantFromCoordinates(cursorX, cursorY)
+
+	-- Show the menu
+	self.outfitMenu = Outfitter:New(Outfitter.UIElementsLib._DropDownMenu)
+	self.outfitMenu:Show(items, quadrant, UIParent, "BOTTOMLEFT", cursorX, cursorY)
+	self.outfitMenu.cleanup = function ()
+		self.outfitMenu = nil
+	end
 end
 
-function Outfitter.Item_CheckboxClicked(pItem)
+function Outfitter:HideOutfitMenu()
+	if not self.outfitMenu then
+		return
+	end
+
+	self.outfitMenu:Hide()
+end
+
+function Outfitter:Item_CheckboxClicked(pItem)
 	if pItem.isCategory then
 		return
 	end
 	
-	local vOutfits = gOutfitter_Settings.Outfits[pItem.categoryID]
+	local vOutfits = Outfitter.Settings.Outfits[pItem.categoryID]
 	
 	if not vOutfits then
 		-- Error: outfit category not found
@@ -3221,7 +2467,7 @@ function Outfitter.Item_CheckboxClicked(pItem)
 		return
 	end
 	
-	local vCheckbox = getglobal(pItem:GetName().."OutfitSelected")
+	local vCheckbox = _G[pItem:GetName().."OutfitSelected"]
 	
 	if vCheckbox:GetChecked() then
 		vOutfit.Disabled = nil
@@ -3230,188 +2476,72 @@ function Outfitter.Item_CheckboxClicked(pItem)
 		Outfitter:RemoveOutfit(vOutfit)
 	end
 	
-	Outfitter:Update(true)
+	self.DisplayIsDirty = true
+	self:Update(true)
 end
 
-function Outfitter.Item_SetToOutfit(pItemIndex, pOutfit, pCategoryID, pOutfitIndex, pEquippableItems)
-	local vItemName = "OutfitterItem"..pItemIndex
-	local vItem = getglobal(vItemName)
-	local vOutfitFrameName = vItemName.."Outfit"
-	local vOutfitFrame = getglobal(vOutfitFrameName)
-	local vItemFrame = getglobal(vItemName.."Item")
-	local vCategoryFrame = getglobal(vItemName.."Category")
-	local vMissingItems, vBankedItems = Outfitter.ItemList_GetMissingItems(pEquippableItems, pOutfit)
-	
-	vOutfitFrame:Show()
-	vCategoryFrame:Hide()
-	vItemFrame:Hide()
-	
-	local vItemSelectedCheckmark = getglobal(vOutfitFrameName.."Selected")
-	local vItemNameField = getglobal(vOutfitFrameName.."Name")
-	local vItemMenu = getglobal(vOutfitFrameName.."Menu")
-	
-	vItemSelectedCheckmark:Show()
-	
-	if Outfitter:WearingOutfit(pOutfit) then
-		vItemSelectedCheckmark:SetChecked(true)
-	else
-		vItemSelectedCheckmark:SetChecked(nil)
+function Outfitter:Item_StoreOnServerClicked(pItem)
+	if pItem.isCategory then
+		return
 	end
 	
-	vItem.MissingItems = vMissingItems
-	vItem.BankedItems = vBankedItems
+	local vOutfits = self.Settings.Outfits[pItem.categoryID]
 	
-	if pOutfit.Disabled then
-		vItemNameField:SetText(format(Outfitter.cDisabledOutfitName, pOutfit.Name))
-		vItem.DefaultColor = GRAY_FONT_COLOR
-	else
-		vItemNameField:SetText(pOutfit.Name)
-		if vMissingItems then
-			vItem.DefaultColor = RED_FONT_COLOR
-		elseif vBankedItems then
-			vItem.DefaultColor = Outfitter.BANKED_FONT_COLOR
+	if not vOutfits then
+		-- Error: outfit category not found
+		return
+	end
+	
+	local vOutfit = vOutfits[pItem.outfitIndex]
+	
+	if not vOutfit then
+		-- Error: outfit not found
+		return
+	end
+	
+	local vCheckbox = _G[pItem:GetName().."OutfitServerButton"]
+	
+	if vCheckbox:GetChecked() then
+		if vOutfit ~= self.SelectedOutfit then
+			self:WearOutfit(vOutfit)
+			self:SelectOutfit(vOutfit)
 		else
-			vItem.DefaultColor = NORMAL_FONT_COLOR
+			vOutfit:StoreOnServer()
 		end
-	end
-	
-	vItemNameField:SetTextColor(vItem.DefaultColor.r, vItem.DefaultColor.g, vItem.DefaultColor.b)
-	
-	vItemMenu:Show()
-	
-	vItem.isCategory = false
-	vItem.isOutfitItem = false
-	vItem.outfitItem = nil
-	vItem.categoryID = pOutfit.CategoryID
-	vItem.outfitIndex = pOutfitIndex
-	
-	vItem:Show()
-	
-	-- Show the script icon if there's one attached
-	
-	local vScriptIcon = getglobal(vOutfitFrameName.."ScriptIcon")
-	
-	if pOutfit.ScriptID or pOutfit.Script then
-		vScriptIcon:SetTexture("Interface\\Addons\\Outfitter\\Textures\\Gear")
-		
-		if gOutfitter_Settings.Options.DisableAutoSwitch or pOutfit.Disabled then
-			vScriptIcon:SetVertexColor(0.4, 0.4, 0.4)
-		else
-			vScriptIcon:SetVertexColor(1, 1, 1)
-		end
-
-		vScriptIcon:Show()
 	else
-		vScriptIcon:Hide()
+		vOutfit:StoreLocally()
 	end
 	
-	-- Update the highlighting
-	
-	if Outfitter.SelectedOutfit == pOutfit then
-		OutfitterMainFrameHighlight:SetPoint("TOPLEFT", vItem, "TOPLEFT", 0, 0)
-		OutfitterMainFrameHighlight:Show()
-	end
+	self.DisplayIsDirty = true
+	self:Update(true)
 end
 
-function Outfitter.Item_SetToItem(pItemIndex, pOutfitItem)
-	local vItemName = "OutfitterItem"..pItemIndex
-	local vItem = getglobal(vItemName)
-	local vCategoryFrameName = vItemName.."Category"
-	local vItemFrameName = vItemName.."Item"
-	local vItemFrame = getglobal(vItemFrameName)
-	local vOutfitFrame = getglobal(vItemName.."Outfit")
-	local vCategoryFrame = getglobal(vCategoryFrameName)
-	
-	vItem.isOutfitItem = true
-	vItem.isCategory = false
-	vItem.outfitItem = pOutfitItem
-	
-	vItemFrame:Show()
-	vOutfitFrame:Hide()
-	vCategoryFrame:Hide()
-
-	local vItemNameField = getglobal(vItemFrameName.."Name")
-	local vItemIcon = getglobal(vItemFrameName.."Icon")
-	
-	vItemNameField:SetText(pOutfitItem.Name)
-	
-	if pOutfitItem.Quality then
-		vItem.DefaultColor = ITEM_QUALITY_COLORS[pOutfitItem.Quality]
-	else
-		vItem.DefaultColor = GRAY_FONT_COLOR
-	end
-	
-	if pOutfitItem.Texture then
-		vItemIcon:SetTexture(pOutfitItem.Texture)
-		vItemIcon:Show()
-	else
-		vItemIcon:Hide()
-	end
-	
-	vItemNameField:SetTextColor(vItem.DefaultColor.r, vItem.DefaultColor.g, vItem.DefaultColor.b)
-	
-	vItem:Show()
-end
-
-function Outfitter.Item_SetToCategory(pItemIndex, pCategoryID)
-	local vCategoryName = Outfitter["c"..pCategoryID.."Outfits"]
-	local vItemName = "OutfitterItem"..pItemIndex
-	local vItem = getglobal(vItemName)
-	local vCategoryFrameName = vItemName.."Category"
-	local vOutfitFrame = getglobal(vItemName.."Outfit")
-	local vItemFrame = getglobal(vItemName.."Item")
-	local vCategoryFrame = getglobal(vCategoryFrameName)
-	
-	vOutfitFrame:Hide()
-	vCategoryFrame:Show()
-	vItemFrame:Hide()
-	
-	local vItemNameField = getglobal(vCategoryFrameName.."Name")
-	local vExpandButton = getglobal(vCategoryFrameName.."Expand")
-	
-	vItem.MissingItems = nil
-	vItem.BankedItems = nil
-	
-	if Outfitter.Collapsed[pCategoryID] then
-		vExpandButton:SetNormalTexture("Interface\\Buttons\\UI-PlusButton-Up")
-	else
-		vExpandButton:SetNormalTexture("Interface\\Buttons\\UI-MinusButton-Up")
-	end
-	
-	vItemNameField:SetText(vCategoryName)
-	
-	vItem.isCategory = true
-	vItem.isOutfitItem = false
-	vItem.outfitItem = nil
-	vItem.categoryID = pCategoryID
-	
-	vItem:Show()
-end
-
-function Outfitter:AddOutfitsToList(pOutfits, pCategoryID, pItemIndex, pFirstItemIndex, pEquippableItems)
+function Outfitter:AddOutfitsToList(pOutfits, pCategoryID, pItemIndex, pFirstItemIndex, pInventoryCache)
 	local vOutfits = pOutfits[pCategoryID]
 	local vItemIndex = pItemIndex
 	local vFirstItemIndex = pFirstItemIndex
-	
+	local vItem = _G["OutfitterItem"..pItemIndex]
+
 	if vFirstItemIndex == 0 then
-		Outfitter.Item_SetToCategory(vItemIndex, pCategoryID, false)
+		vItem:SetToCategory(pCategoryID, false)
 		vItemIndex = vItemIndex + 1
 	else
 		vFirstItemIndex = vFirstItemIndex - 1
 	end
 
-	if vItemIndex >= Outfitter.cMaxDisplayedItems then
+	if vItemIndex >= self.cMaxDisplayedItems then
 		return vItemIndex, vFirstItemIndex
 	end
 
-	if not Outfitter.Collapsed[pCategoryID]
+	if not self.Collapsed[pCategoryID]
 	and vOutfits then
 		for vIndex, vOutfit in ipairs(vOutfits) do
 			if vFirstItemIndex == 0 then
-				Outfitter.Item_SetToOutfit(vItemIndex, vOutfit, pCategoryID, vIndex, pEquippableItems)
+				local vItem2 = _G["OutfitterItem"..vItemIndex]
+				vItem2:SetToOutfit(vOutfit, pCategoryID, vIndex, pInventoryCache)
 				vItemIndex = vItemIndex + 1
 				
-				if vItemIndex >= Outfitter.cMaxDisplayedItems then
+				if vItemIndex >= self.cMaxDisplayedItems then
 					return vItemIndex, vFirstItemIndex
 				end
 			else
@@ -3426,25 +2556,28 @@ end
 function Outfitter:AddOutfitItemsToList(pOutfitItems, pCategoryID, pItemIndex, pFirstItemIndex)
 	local vItemIndex = pItemIndex
 	local vFirstItemIndex = pFirstItemIndex
+	local vItem = _G["OutfitterItem"..pItemIndex]
 	
 	if vFirstItemIndex == 0 then
-		Outfitter.Item_SetToCategory(vItemIndex, pCategoryID, false)
+		vItem:SetToCategory(pCategoryID, false)
 		vItemIndex = vItemIndex + 1
 	else
 		vFirstItemIndex = vFirstItemIndex - 1
 	end
 
-	if vItemIndex >= Outfitter.cMaxDisplayedItems then
+	if vItemIndex >= self.cMaxDisplayedItems then
 		return vItemIndex, vFirstItemIndex
 	end
 
-	if not Outfitter.Collapsed[pCategoryID] then
+	if not self.Collapsed[pCategoryID] then
 		for vIndex, vOutfitItem in ipairs(pOutfitItems) do
 			if vFirstItemIndex == 0 then
-				Outfitter.Item_SetToItem(vItemIndex, vOutfitItem)
+				local vItem2 = _G["OutfitterItem"..vItemIndex]
+				vItem2:SetToItem(vOutfitItem)
+
 				vItemIndex = vItemIndex + 1
 				
-				if vItemIndex >= Outfitter.cMaxDisplayedItems then
+				if vItemIndex >= self.cMaxDisplayedItems then
 					return vItemIndex, vFirstItemIndex
 				end
 			else
@@ -3457,165 +2590,188 @@ function Outfitter:AddOutfitItemsToList(pOutfitItems, pCategoryID, pItemIndex, p
 end
 
 function Outfitter:SortOutfits()
-	for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
-		table.sort(vOutfits, Outfiter_CompareOutfitNames)
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
+		table.sort(vOutfits, Outfitter.CompareOutfitNames)
 	end
 end
 
-function Outfiter_CompareOutfitNames(pOutfit1, pOutfit2)
-	return pOutfit1.Name < pOutfit2.Name
+function Outfitter.CompareOutfitNames(pOutfit1, pOutfit2)
+	if pOutfit1.Name ~= pOutfit2.Name then
+		if not pOutfit1.Name then
+			return false
+		end
+		
+		if not pOutfit2.Name then
+			return true
+		end
+		
+		return pOutfit1.Name < pOutfit2.Name
+	end
+	
+	return pOutfit1.StoredInEM and not pOutfit2.StoredInEM
 end
 
 function Outfitter:Update(pOutfitsChanged)
 	-- Flush the caches
 	
 	if pOutfitsChanged then
-		Outfitter:EraseTable(Outfitter.OutfitInfoCache)
+		wipe(self.OutfitInfoCache)
 	end
 	
-	--
+	-- Just leave if we're not visible (when does this happen?)
 	
 	if not OutfitterFrame:IsVisible() then
 		return
 	end
 	
-	if Outfitter.CurrentPanel == 1 then
+	--
+	
+	if self.CurrentPanel == 1 then
 		-- Main panel
 		
-		if not Outfitter.DisplayIsDirty then
+		if not self.DisplayIsDirty then
 			return
 		end
 		
-		Outfitter.DisplayIsDirty = false
+		self.DisplayIsDirty = false
 		
 		-- Sort the outfits
 		
-		Outfitter:SortOutfits()
+		self:SortOutfits()
 		
 		-- Get the equippable items so outfits can be marked if they're missing anything
 		
-		local vEquippableItems = Outfitter.ItemList_GetEquippableItems()
+		local vInventoryCache = self:GetInventoryCache()
 		
 		-- Update the slot enables if they're shown
 		
 		if pOutfitsChanged
 		and OutfitterSlotEnables:IsVisible() then
-			Outfitter:UpdateSlotEnables(Outfitter.SelectedOutfit, vEquippableItems)
+			self:UpdateSlotEnables(self.SelectedOutfit, vInventoryCache)
 		end
 		
-		Outfitter.ItemList_CompiledUnusedItemsList(vEquippableItems)
+		vInventoryCache:CompiledUnusedItemsList()
 		
 		-- Update the list
 		
 		OutfitterMainFrameHighlight:Hide()
-
+		
 		local vFirstItemIndex = FauxScrollFrame_GetOffset(OutfitterMainFrameScrollFrame)
 		local vItemIndex = 0
 		
-		Outfitter.ItemList_ResetIgnoreItemFlags(vEquippableItems)
+		vInventoryCache:ResetIgnoreItemFlags()
 		
-		for vCategoryIndex, vCategoryID in ipairs(Outfitter.cCategoryOrder) do
-			vItemIndex, vFirstItemIndex = Outfitter:AddOutfitsToList(gOutfitter_Settings.Outfits, vCategoryID, vItemIndex, vFirstItemIndex, vEquippableItems)
+		for vCategoryIndex, vCategoryID in ipairs(self.cCategoryOrder) do
+			vItemIndex, vFirstItemIndex = self:AddOutfitsToList(self.Settings.Outfits, vCategoryID, vItemIndex, vFirstItemIndex, vInventoryCache)
 			
-			if vItemIndex >= Outfitter.cMaxDisplayedItems then
+			if vItemIndex >= self.cMaxDisplayedItems then
 				break
 			end
 		end
 		
-		if vItemIndex < Outfitter.cMaxDisplayedItems
-		and vEquippableItems.UnusedItems then
-			vItemIndex, vFirstItemIndex = Outfitter:AddOutfitItemsToList(vEquippableItems.UnusedItems, "OddsNEnds", vItemIndex, vFirstItemIndex)
+		if vItemIndex < self.cMaxDisplayedItems
+		and vInventoryCache.UnusedItems then
+			vItemIndex, vFirstItemIndex = self:AddOutfitItemsToList(vInventoryCache.UnusedItems, "OddsNEnds", vItemIndex, vFirstItemIndex)
 		end
 		
+		-- Add the BoEs
+		local vBoEItems = vInventoryCache:GetBoEItems()
+		if vItemIndex < self.cMaxDisplayedItems
+		and vBoEItems and #vBoEItems > 0 then
+			vItemIndex, vFirstItemIndex = self:AddOutfitItemsToList(vBoEItems, "BoEs", vItemIndex, vFirstItemIndex)
+		end
+
 		-- Hide any unused items
-		
-		for vItemIndex2 = vItemIndex, (Outfitter.cMaxDisplayedItems - 1) do
+		for vItemIndex2 = vItemIndex, (self.cMaxDisplayedItems - 1) do
 			local vItemName = "OutfitterItem"..vItemIndex2
-			local vItem = getglobal(vItemName)
+			local vItem = _G[vItemName]
 			
 			vItem:Hide()
 		end
 		
+		-- Count the total items
 		local vTotalNumItems = 0
 		
-		for vCategoryIndex, vCategoryID in ipairs(Outfitter.cCategoryOrder) do
+		-- Add in the main categories
+		for vCategoryIndex, vCategoryID in ipairs(self.cCategoryOrder) do
 			vTotalNumItems = vTotalNumItems + 1
 			
-			local vOutfits = gOutfitter_Settings.Outfits[vCategoryID]
+			local vOutfits = self.Settings.Outfits[vCategoryID]
 			
-			if not Outfitter.Collapsed[vCategoryID]
+			if not self.Collapsed[vCategoryID]
 			and vOutfits then
 				vTotalNumItems = vTotalNumItems + #vOutfits
 			end
 		end
 		
-		if vEquippableItems.UnusedItems then
+		-- Add in the Odd 'n Ends category
+		if vInventoryCache.UnusedItems then
 			vTotalNumItems = vTotalNumItems + 1
-			
-			if not Outfitter.Collapsed["OddsNEnds"] then
-				vTotalNumItems = vTotalNumItems + #vEquippableItems.UnusedItems
+			if not self.Collapsed["OddsNEnds"] then
+				vTotalNumItems = vTotalNumItems + #vInventoryCache.UnusedItems
 			end
 		end
 		
+		-- Add in the BoEs category
+		if vBoEItems and #vBoEItems then
+			vTotalNumItems = vTotalNumItems + 1
+			if not self.Collapsed["BoEs"] then
+				vTotalNumItems = vTotalNumItems + #vBoEItems
+			end
+		end
+
 		FauxScrollFrame_Update(
 				OutfitterMainFrameScrollFrame,
 				vTotalNumItems,                 -- numItems
-				Outfitter.cMaxDisplayedItems,   -- numToDisplay
+				self.cMaxDisplayedItems,        -- numToDisplay
 				18,                             -- valueStep
 				nil, nil, nil,                  -- button, smallWidth, bigWidth
 				nil,                            -- highlightFrame
 				0, 0)                           -- smallHighlightWidth, bigHighlightWidth
-	elseif Outfitter.CurrentPanel == 2 then -- Options panel
-		OutfitterAutoSwitch:SetChecked(gOutfitter_Settings.Options.DisableAutoSwitch)
-		OutfitterShowMinimapButton:SetChecked(not gOutfitter_Settings.Options.HideMinimapButton)
-		OutfitterTooltipInfo:SetChecked(not gOutfitter_Settings.Options.DisableToolTipInfo)
-		OutfitterShowHotkeyMessages:SetChecked(not gOutfitter_Settings.Options.DisableHotkeyMessages)
-		OutfitterShowOutfitBar:SetChecked(gOutfitter_Settings.OutfitBar.ShowOutfitBar)
-		OutfitterExportURLEditbox:SetText(gOutfitter_Settings.Options.ExportURL and gOutfitter_Settings.Options.ExportURL or "")
+	elseif self.CurrentPanel == 2 then -- Options panel
+		OutfitterAutoSwitch:SetChecked(self.Settings.Options.DisableAutoSwitch)
+		OutfitterShowMinimapButton:SetChecked(not self.Settings.Options.HideMinimapButton)
+		OutfitterTooltipInfo:SetChecked(not self.Settings.Options.DisableToolTipInfo)
+		OutfitterShowHotkeyMessages:SetChecked(not self.Settings.Options.DisableHotkeyMessages)
+		OutfitterShowOutfitBar:SetChecked(self.Settings.OutfitBar.ShowOutfitBar)
+		OutfitterItemComparisons:SetChecked(not self.Settings.Options.DisableItemComparisons)
 	end
 end
 
-function Outfitter:OnVerticalScroll()
+function Outfitter.OnVerticalScroll(pScrollFrame)
 	Outfitter.DisplayIsDirty = true
 	Outfitter:Update(false)
 end
 
 function Outfitter:SelectOutfit(pOutfit)
-	if not Outfitter:IsOpen() then
+	if not self:IsOpen() then
 		return
 	end
 	
-	Outfitter.SelectedOutfit = pOutfit
+	self.SelectedOutfit = pOutfit
 	
 	-- Get the equippable items so outfits can be marked if they're missing anything
 	
-	local vEquippableItems = Outfitter.ItemList_GetEquippableItems()
+	local vInventoryCache = self:GetInventoryCache()
 	
 	-- Update the slot enables
 	
-	Outfitter:UpdateSlotEnables(pOutfit, vEquippableItems)
+	self:UpdateSlotEnables(pOutfit, vInventoryCache)
 	OutfitterSlotEnables:Show()
 	
 	-- Done, rebuild the list
 	
-	Outfitter.DisplayIsDirty = true
+	self.DisplayIsDirty = true
 end
 
-function Outfitter:UpdateSlotEnables(pOutfit, pEquippableItems)
-	if UnitHasRelicSlot("player") then
-		OutfitterEnableAmmoSlot:Hide()
-	else
-		OutfitterEnableAmmoSlot:Show()
-	end
-	
-	for _, vInventorySlot in ipairs(Outfitter.cSlotNames) do
-		local vOutfitItem = pOutfit.Items[vInventorySlot]
-		local vCheckbox = getglobal("OutfitterEnable"..vInventorySlot)
+function Outfitter:UpdateSlotEnables(pOutfit, pInventoryCache)
+	for _, vInventorySlot in ipairs(self.cSlotNames) do
+		local vCheckbox = _G["OutfitterEnable"..vInventorySlot]
 		
-		if not vOutfitItem then
+		if not pOutfit:SlotIsEnabled(vInventorySlot) then
 			vCheckbox:SetChecked(false)
 		else
-			if Outfitter.ItemList_InventorySlotContainsItem(pEquippableItems, vInventorySlot, vOutfitItem) then
+			if pOutfit:SlotIsEquipped(vInventorySlot, pInventoryCache) then
 				vCheckbox:SetCheckedTexture("Interface\\Buttons\\UI-CheckBox-Check")
 				vCheckbox.IsUnknown = false
 			else
@@ -3629,13 +2785,13 @@ function Outfitter:UpdateSlotEnables(pOutfit, pEquippableItems)
 end
 
 function Outfitter:ClearSelection()
-	Outfitter.SelectedOutfit = nil
-	Outfitter.DisplayIsDirty = true
+	self.SelectedOutfit = nil
+	self.DisplayIsDirty = true
 	OutfitterSlotEnables:Hide()
 end
 
 function Outfitter:FindOutfitItemIndex(pOutfit)
-	local vOutfitCategoryID, vOutfitIndex = Outfitter:FindOutfit(pOutfit)
+	local vOutfitCategoryID, vOutfitIndex = self:FindOutfit(pOutfit)
 	
 	if not vOutfitCategoryID then
 		return nil
@@ -3643,14 +2799,14 @@ function Outfitter:FindOutfitItemIndex(pOutfit)
 	
 	local vItemIndex = 0
 	
-	for vCategoryIndex, vCategoryID in ipairs(Outfitter.cCategoryOrder) do
+	for vCategoryIndex, vCategoryID in ipairs(self.cCategoryOrder) do
 		vItemIndex = vItemIndex + 1
 		
-		if not Outfitter.Collapsed[vCategoryID] then
+		if not self.Collapsed[vCategoryID] then
 			if vOutfitCategoryID == vCategoryID then
 				return vItemIndex + vOutfitIndex - 1
 			else
-				vItemIndex = vItemIndex + #gOutfitter_Settings.Outfits[vCategoryID]
+				vItemIndex = vItemIndex + #self.Settings.Outfits[vCategoryID]
 			end
 		end
 	end
@@ -3659,10 +2815,10 @@ function Outfitter:FindOutfitItemIndex(pOutfit)
 end
 
 function Outfitter:WearOutfitByName(pOutfitName, pLayerID)
-	vOutfit = Outfitter:FindOutfitByName(pOutfitName)
+	vOutfit = self:FindOutfitByName(pOutfitName)
 	
 	if not vOutfit then
-		Outfitter:ErrorMessage("Couldn't find outfit named %s", pOutfitName)
+		self:ErrorMessage("Couldn't find outfit named %s", pOutfitName)
 		return
 	end
 	
@@ -3670,94 +2826,118 @@ function Outfitter:WearOutfitByName(pOutfitName, pLayerID)
 end
 
 function Outfitter:RemoveOutfitByName(pOutfitName, pLayerID)
-	vOutfit = Outfitter:FindOutfitByName(pOutfitName)
+	vOutfit = self:FindOutfitByName(pOutfitName)
 	
 	if not vOutfit then
-		Outfitter:ErrorMessage("Couldn't find outfit named %s", pOutfitName)
+		self:ErrorMessage("Couldn't find outfit named %s", pOutfitName)
 		return
 	end
 	
 	self:RemoveOutfit(vOutfit)
 end
 
+function Outfitter:WearOutfitNow(pOutfit, pLayerID, pCallerIsScript)
+	self:BeginEquipmentUpdate()
+	self:WearOutfit(pOutfit, pLayerID, pCallerIsScript)
+	self:EndEquipmentUpdate(nil, true)
+end
+
 function Outfitter:WearOutfit(pOutfit, pLayerID, pCallerIsScript)
-	Outfitter:BeginEquipmentUpdate()
+	self:BeginEquipmentUpdate()
 	
 	-- Update the equipment
 	
 	pOutfit.didEquip = pCallerIsScript
 	pOutfit.didUnequip = false
 	
-	Outfitter.EquippedNeedsUpdate = true
-	Outfitter.WeaponsNeedUpdate = true
+	self.EquippedNeedsUpdate = true
 	
 	-- Add the outfit to the stack
 	
 	if pOutfit.CategoryID == "Complete" then
-		Outfitter.OutfitStack:Clear()
+		self.OutfitStack:Clear()
 	elseif pOutfit.UnequipOthers then
-		Outfitter.OutfitStack:ClearCategory("Accessory")
+		self.OutfitStack:ClearCategory("Accessory")
 	end
 	
-	Outfitter.OutfitStack:AddOutfit(pOutfit, pLayerID)
+	self.OutfitStack:AddOutfit(pOutfit, pLayerID)
 	
 	-- If it's a Complete outfit, push it onto the list of recent complete outfits
 	
-	if pOutfit.CategoryID == "Complete" and pOutfit.Name then
-		for vRecentIndex, vRecentName in ipairs(gOutfitter_Settings.RecentCompleteOutfits) do
-			if vRecentName == pOutfit.Name then
-				table.remove(gOutfitter_Settings.RecentCompleteOutfits, vRecentIndex)
+	if pOutfit.CategoryID == "Complete" and pOutfit:GetName() then
+		local vOutfitName = pOutfit:GetName()
+		
+		for vRecentIndex, vRecentName in ipairs(self.Settings.RecentCompleteOutfits) do
+			if vRecentName == vOutfitName then
+				table.remove(self.Settings.RecentCompleteOutfits, vRecentIndex)
 				break
 			end
 		end
 		
-		table.insert(gOutfitter_Settings.RecentCompleteOutfits, pOutfit.Name)
+		table.insert(self.Settings.RecentCompleteOutfits, vOutfitName)
 	end
 	
 	-- If Outfitter is open then also select the outfit.  This is important
 	-- because the UI can't function correctly if the selected outfit and
 	-- top outfit don't stay the same.
 	
-	if Outfitter:IsOpen() then
-		if Outfitter.OutfitStack:IsTopmostOutfit(pOutfit) then
-			Outfitter:SelectOutfit(pOutfit)
+	if self:IsOpen() then
+		if self.OutfitStack:IsTopmostOutfit(pOutfit) then
+			self:SelectOutfit(pOutfit)
 		else
-			Outfitter:ClearSelection()
+			self:ClearSelection()
 		end
 	end
 	
-	Outfitter:EndEquipmentUpdate("Outfitter:WearOutfit")
+	self:EndEquipmentUpdate("Outfitter:WearOutfit")
 end
 
+function Outfitter:RemoveOutfitNow(pOutfit, pCallerIsScript)
+	self:BeginEquipmentUpdate()
+	self:RemoveOutfit(pOutfit, pCallerIsScript)
+	self:EndEquipmentUpdate(nil, true)
+end
+
+
 function Outfitter:RemoveOutfit(pOutfit, pCallerIsScript)
-	if not Outfitter.OutfitStack:RemoveOutfit(pOutfit) then
+	-- HACK: Disabling the unequipping of Complete outfits to see it works better
+	-- for more end-user situations
+	
+	-- UPDATE: It doesn't :(  Stealth, riding and other gear as Complete outfits
+	-- fail to unequip
+	
+	--if pOutfit.CategoryID == "Complete" then
+	--	return
+	--end
+	
+	-- Remove it from the stack
+	
+	if not self.OutfitStack:RemoveOutfit(pOutfit) then
 		return
 	end
 	
 	-- If it's a Complete outfit, move it to the bottom of the list of recent complete outfits
 	
-	if pOutfit.CategoryID == "Complete" and pOutfit.Name then
-		for vRecentIndex, vRecentName in ipairs(gOutfitter_Settings.RecentCompleteOutfits) do
-			if vRecentName == pOutfit.Name then
-				table.remove(gOutfitter_Settings.RecentCompleteOutfits, vRecentIndex)
+	if pOutfit.CategoryID == "Complete" and pOutfit:GetName() then
+		for vRecentIndex, vRecentName in ipairs(self.Settings.RecentCompleteOutfits) do
+			if vRecentName == pOutfit:GetName() then
+				table.remove(self.Settings.RecentCompleteOutfits, vRecentIndex)
 				break
 			end
 		end
 		
-		table.insert(gOutfitter_Settings.RecentCompleteOutfits, 1, pOutfit.Name)
-		
-		Outfitter:DebugTable("RecentCompleteOutfits", gOutfitter_Settings.RecentCompleteOutfits)
+		table.insert(self.Settings.RecentCompleteOutfits, 1, pOutfit:GetName())
 	end
 	
 	--
 	
-	Outfitter:BeginEquipmentUpdate()
+	self:BeginEquipmentUpdate()
 	
 	-- Clear the selection if the outfit being removed
 	-- is selected too
 	
-	if Outfitter.SelectedOutfit == pOutfit then
-		Outfitter:ClearSelection()
+	if self.SelectedOutfit == pOutfit then
+		self:ClearSelection()
 	end
 
 	-- Update the list
@@ -3765,21 +2945,20 @@ function Outfitter:RemoveOutfit(pOutfit, pCallerIsScript)
 	pOutfit.didEquip = false
 	pOutfit.didUnequip = pCallerIsScript
 	
-	Outfitter.EquippedNeedsUpdate = true
-	Outfitter.WeaponsNeedUpdate = true
+	self.EquippedNeedsUpdate = true
 	
-	Outfitter:EndEquipmentUpdate("Outfitter:RemoveOutfit")
+	self:EndEquipmentUpdate("Outfitter:RemoveOutfit")
 	
-	Outfitter:DispatchOutfitEvent("UNWEAR_OUTFIT", pOutfit.Name, pOutfit)
+	self:DispatchOutfitEvent("UNWEAR_OUTFIT", pOutfit:GetName(), pOutfit)
 	
 	-- If they're removing a complete outfit, find something else to wear instead
 	
 	if pOutfit.CategoryID == "Complete"
-	and #gOutfitter_Settings.RecentCompleteOutfits then
+	and #self.Settings.RecentCompleteOutfits then
 		local vOutfit
 		
 		while not vOutfit do
-			local vOutfitName = gOutfitter_Settings.RecentCompleteOutfits[#gOutfitter_Settings.RecentCompleteOutfits]
+			local vOutfitName = self.Settings.RecentCompleteOutfits[#self.Settings.RecentCompleteOutfits]
 			
 			vOutfit = self:FindOutfitByName(vOutfitName)
 			
@@ -3788,91 +2967,130 @@ function Outfitter:RemoveOutfit(pOutfit, pCallerIsScript)
 				break
 			end
 			
-			table.remove(gOutfitter_Settings.RecentCompleteOutfits)
+			table.remove(self.Settings.RecentCompleteOutfits)
 			
-			if #gOutfitter_Settings.RecentCompleteOutfits then
+			if #self.Settings.RecentCompleteOutfits then
 				break
 			end
 		end
 	end
 end
 
-function Outfitter:ToggleOutfit(pOutfit)
-	if Outfitter:WearingOutfit(pOutfit) then
-		Outfitter:RemoveOutfit(pOutfit)
+function Outfitter:ToggleOutfitNow(pOutfit)
+	if self:WearingOutfit(pOutfit) then
+		self:RemoveOutfitNow(pOutfit)
 		return false
 	else
-		Outfitter:WearOutfit(pOutfit)
+		self:WearOutfitNow(pOutfit)
+		return true
+	end
+end
+
+function Outfitter:ToggleOutfit(pOutfit)
+	if self:WearingOutfit(pOutfit) then
+		self:RemoveOutfit(pOutfit)
+		return false
+	else
+		self:WearOutfit(pOutfit)
 		return true
 	end
 end
 
 function Outfitter:SetSoundOption(pParam)
 	if pParam == "on" then
-		gOutfitter_Settings.DisableEquipSounds = nil
-		Outfitter:NoteMessage("Outfitter will no longer affect sounds during equipment changes")
+		self.Settings.EnableEquipSounds = true
+		self:NoteMessage("Outfitter will no longer affect sounds during equipment changes")
 	elseif pParam == "off" then
-		gOutfitter_Settings.DisableEquipSounds = true
-		Outfitter:NoteMessage("Outfitter will now disable sound effects during equipment changes")
+		self.Settings.EnableEquipSounds = nil
+		self:NoteMessage("Outfitter will now disable sound effects during equipment changes")
 	else
-		Outfitter:NoteMessage("Valid sound options are 'default' and 'off'")
+		self:NoteMessage("Valid sound options are 'on' and 'off'")
+	end
+end
+
+function Outfitter:SetErrorsOption(pParam)
+	if pParam == "on" then
+		self.Settings.DisableEquipErrors = nil
+		self:NoteMessage("Outfitter will report errors during equipment changes")
+	elseif pParam == "off" then
+		self.Settings.DisableEquipErrors = true
+		self:NoteMessage("Outfitter will not report errors during equipment changes")
+	else
+		self:NoteMessage("Valid error options are 'on' and 'off'")
 	end
 end
 
 function Outfitter:ShowLinkStats(pLink)
-	local vStats = Outfitter.ItemList_GetItemLinkStats(pLink)
+	local vStats = self:GetItemLinkStats(pLink)
 	
 	if not vStats then
-		Outfitter:NoteMessage("Couldn't get item stats from the link provided")
+		self:NoteMessage("Couldn't get item stats from the link provided")
 		return
 	end
 	
-	-- Outfitter:ConvertRatingsToStats(vStats)
-	-- Outfitter:DistributeSecondaryStats(vStats, Outfitter:GetPlayerStatDistribution())
-	
 	for vStatName, vStatValue in pairs(vStats) do
-		Outfitter:NoteMessage("%s: %s", vStatName, vStatValue or "nil")
+		self:NoteMessage("%s: %s", vStatName, vStatValue or "nil")
 	end
 end
 
 function Outfitter:ShowLinkInfo(pLink)
-	local vItemInfo = Outfitter:GetItemInfoFromLink(pLink)
+	local vItemInfo = self:GetItemInfoFromLink(pLink)
 	
 	if not vItemInfo then
-		Outfitter:NoteMessage("Couldn't get item info from the link provided")
+		self:NoteMessage("Couldn't get item info from the link provided")
 		return
 	end
 	
-	Outfitter:NoteMessage("Name: "..vItemInfo.Name)
-	Outfitter:NoteMessage("Quality: "..vItemInfo.Quality)
-	Outfitter:NoteMessage("Code: "..vItemInfo.Code)
-	Outfitter:NoteMessage("SubCode: "..vItemInfo.SubCode)
-	Outfitter:NoteMessage("Type: "..vItemInfo.Type)
-	Outfitter:NoteMessage("SubType: "..vItemInfo.SubType)
-	Outfitter:NoteMessage("InvType: "..vItemInfo.InvType)
-	Outfitter:NoteMessage("Level: "..vItemInfo.Level)
+	self:NoteMessage("Name: "..vItemInfo.Name)
+	self:NoteMessage("Quality: "..vItemInfo.Quality)
+	self:NoteMessage("Code: "..vItemInfo.Code)
+	self:NoteMessage("SubCode: "..vItemInfo.SubCode)
+	self:NoteMessage("Type: "..vItemInfo.Type)
+	self:NoteMessage("SubType: "..vItemInfo.SubType)
+	self:NoteMessage("InvType: "..vItemInfo.InvType)
+	self:NoteMessage("Level: "..vItemInfo.Level)
 	if vItemInfo.EnchantCode then
-		Outfitter:NoteMessage("EnchantCode: "..vItemInfo.EnchantCode)
+		self:NoteMessage("EnchantCode: "..vItemInfo.EnchantCode)
 	end
 	if vItemInfo.JewelCode1 then
-		Outfitter:NoteMessage("JewelCode1: "..vItemInfo.JewelCode1)
+		self:NoteMessage("JewelCode1: "..vItemInfo.JewelCode1)
 	end
 	if vItemInfo.JewelCode2 then
-		Outfitter:NoteMessage("JewelCode2: "..vItemInfo.JewelCode2)
+		self:NoteMessage("JewelCode2: "..vItemInfo.JewelCode2)
 	end
 	if vItemInfo.JewelCode3 then
-		Outfitter:NoteMessage("JewelCode3: "..vItemInfo.JewelCode3)
+		self:NoteMessage("JewelCode3: "..vItemInfo.JewelCode3)
 	end
 	if vItemInfo.JewelCode4 then
-		Outfitter:NoteMessage("JewelCode4: "..vItemInfo.JewelCode4)
+		self:NoteMessage("JewelCode4: "..vItemInfo.JewelCode4)
 	end
-	
-	local vStats = Outfitter.ItemList_GetItemLinkStats(pLink)
-	
-	Outfitter:ConvertRatingsToStats(vStats)
-	Outfitter:DistributeSecondaryStats(vStats, Outfitter:GetPlayerStatDistribution())
-	
-	Outfitter:DebugTable("Stats", vStats)
+	if vItemInfo.UniqueID then
+		self:NoteMessage("UniqueID: "..vItemInfo.UniqueID)
+	end
+	if vItemInfo.ReforgeID then
+		self:NoteMessage("ReforgeID: "..vItemInfo.ReforgeID)
+	end
+	if vItemInfo.InstanceDifficultyID then
+		self:NoteMessage("InstanceDifficultyID: "..vItemInfo.InstanceDifficultyID)
+	end
+	if vItemInfo.UpgradeTypeID then
+		self:NoteMessage("UpgradeTypeID: "..vItemInfo.UpgradeTypeID)
+	end
+	if vItemInfo.UpgradeID then
+		self:NoteMessage("UpgradeID: "..vItemInfo.UpgradeID)
+	end
+	if vItemInfo.BonusIDs and vItemInfo.BonusIDs ~= "::" then
+		self:NoteMessage("BonusIDs: "..vItemInfo.BonusIDs)
+	end
+end
+
+-- don't know where this function went; putting in a stub so its callers don't fail
+function Outfitter:GetItemLinkStats(pLink)
+	return
+end
+
+function Outfitter:DepositOutfitUnique(pOutfit)
+	self:DepositOutfit(pOutfit, true)
 end
 
 StaticPopupDialogs.OUTFITTER_CONFIRM_RESET =
@@ -3886,8 +3104,16 @@ StaticPopupDialogs.OUTFITTER_CONFIRM_RESET =
 	hideOnEscape = 1,
 }
 
-function Outfitter.AskReset()
-	StaticPopup_Show("OUTFITTER_CONFIRM_RESET")
+function Outfitter:AskReset(param)
+	-- Reset the bar position without prompting
+	if strlower(param) == "bar" then
+		self.OutfitBar:ResetPosition()
+		self:NoteMessage("Outfit bar position reset")
+
+	-- Ask the user if they're certain before resetting the entire addon
+	else
+		StaticPopup_Show("OUTFITTER_CONFIRM_RESET")
+	end
 end
 
 function Outfitter:Reset()
@@ -3900,14 +3126,14 @@ function Outfitter:Reset()
 
 	self.CurrentOutfit = self:GetInventoryOutfit()
 	self:InitializeOutfits()
+	self:SynchronizeEM()
 	
 	self.EquippedNeedsUpdate = false
-	self.WeaponsNeedUpdate = false
 end
 
 function Outfitter:SetOutfitBindingIndex(pOutfit, pBindingIndex)
 	if pBindingIndex then
-		for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+		for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
 			for vOutfitIndex, vOutfit in ipairs(vOutfits) do
 				if vOutfit.BindingIndex == pBindingIndex then
 					vOutfit.BindingIndex = nil
@@ -3930,42 +3156,44 @@ function Outfitter:WearBoundOutfit(pBindingIndex)
 	
 	local vTime = GetTime()
 	
-	if Outfitter.LastBindingIndex == pBindingIndex then
-		local vElapsed = vTime - Outfitter.LastBindingTime
+	if self.LastBindingIndex == pBindingIndex then
+		local vElapsed = vTime - self.LastBindingTime
 		
-		if vElapsed < Outfitter.cMinBindingTime then
-			Outfitter.LastBindingTime = vTime
+		if vElapsed < self.cMinBindingTime then
+			self.LastBindingTime = vTime
 			return
 		end
 	end
 	
 	--
 	
-	for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
 		for vOutfitIndex, vOutfit in ipairs(vOutfits) do
 			if vOutfit.BindingIndex == pBindingIndex then
 				vOutfit.Disabled = nil
+				Outfitter.HasHWEvent = true
 				if vCategoryID == "Complete" then
-					Outfitter:WearOutfit(vOutfit)
-					if not gOutfitter_Settings.Options.DisableHotkeyMessages then
-						UIErrorsFrame:AddMessage(format(Outfitter.cEquipOutfitMessageFormat, vOutfit.Name), Outfitter.OUTFIT_MESSAGE_COLOR.r, Outfitter.OUTFIT_MESSAGE_COLOR.g, Outfitter.OUTFIT_MESSAGE_COLOR.b)
+					self:WearOutfitNow(vOutfit)
+					if not self.Settings.Options.DisableHotkeyMessages then
+						UIErrorsFrame:AddMessage(format(self.cEquipOutfitMessageFormat, vOutfit:GetName()), self.OUTFIT_MESSAGE_COLOR.r, self.OUTFIT_MESSAGE_COLOR.g, self.OUTFIT_MESSAGE_COLOR.b)
 					end
 				else
-					local vEquipped = Outfitter:ToggleOutfit(vOutfit, vCategoryID)
+					local vEquipped = self:ToggleOutfitNow(vOutfit, vCategoryID)
 					
-					if not gOutfitter_Settings.Options.DisableHotkeyMessages then
+					if not self.Settings.Options.DisableHotkeyMessages then
 						if vEquipped then
-							UIErrorsFrame:AddMessage(format(Outfitter.cEquipOutfitMessageFormat, vOutfit.Name), Outfitter.OUTFIT_MESSAGE_COLOR.r, Outfitter.OUTFIT_MESSAGE_COLOR.g, Outfitter.OUTFIT_MESSAGE_COLOR.b)
+							UIErrorsFrame:AddMessage(format(self.cEquipOutfitMessageFormat, vOutfit:GetName()), self.OUTFIT_MESSAGE_COLOR.r, self.OUTFIT_MESSAGE_COLOR.g, self.OUTFIT_MESSAGE_COLOR.b)
 						else
-							UIErrorsFrame:AddMessage(format(Outfitter.cUnequipOutfitMessageFormat, vOutfit.Name), Outfitter.OUTFIT_MESSAGE_COLOR.r, Outfitter.OUTFIT_MESSAGE_COLOR.g, Outfitter.OUTFIT_MESSAGE_COLOR.b)
+							UIErrorsFrame:AddMessage(format(self.cUnequipOutfitMessageFormat, vOutfit:GetName()), self.OUTFIT_MESSAGE_COLOR.r, self.OUTFIT_MESSAGE_COLOR.g, self.OUTFIT_MESSAGE_COLOR.b)
 						end
 					end
 				end
+				Outfitter.HasHWEvent = false
 				
 				-- Remember the binding used to filter for button spam
 				
-				Outfitter.LastBindingIndex = pBindingIndex
-				Outfitter.LastBindingTime = vTime
+				self.LastBindingIndex = pBindingIndex
+				self.LastBindingTime = vTime
 				
 				return
 			end
@@ -3974,7 +3202,7 @@ function Outfitter:WearBoundOutfit(pBindingIndex)
 end
 
 function Outfitter:FindOutfit(pOutfit)
-	for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
 		for vOutfitIndex, vOutfit in ipairs(vOutfits) do
 			if vOutfit == pOutfit then
 				return vCategoryID, vOutfitIndex
@@ -3993,9 +3221,9 @@ function Outfitter:FindOutfitByName(pName)
 	
 	local vLowerName = strlower(pName)
 	
-	for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
 		for vOutfitIndex, vOutfit in ipairs(vOutfits) do
-			if strlower(vOutfit.Name) == vLowerName then
+			if strlower(vOutfit:GetName()) == vLowerName then
 				return vOutfit, vCategoryID, vOutfitIndex
 			end
 		end
@@ -4005,7 +3233,7 @@ function Outfitter:FindOutfitByName(pName)
 end
 
 function Outfitter:GetOutfitCategoryID(pOutfit)
-	for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
 		for vOutfitIndex, vOutfit in ipairs(vOutfits) do
 			if vOutfit == pOutfit then
 				return vCategoryID, vOutfitIndex
@@ -4022,7 +3250,7 @@ function Outfitter:FindOutfitByStatID(pStatID)
 		return nil
 	end
 
-	for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
 		for vOutfitIndex, vOutfit in ipairs(vOutfits) do
 			if vOutfit.StatID and vOutfit.StatID == pStatID then
 				return vOutfit, vCategoryID, vOutfitIndex
@@ -4033,69 +3261,7 @@ function Outfitter:FindOutfitByStatID(pStatID)
 	return nil
 end
 
-function Outfitter:GetPlayerStatDistribution()
-	return Outfitter.cStatDistribution[Outfitter.PlayerClass]
-end
-
-Outfitter.BaseRatings61 =
-{
-	Expertise = 2.5,
-	
-	MeleeHaste = 10,
-	MeleeHit = 10,
-	MeleeCrit = 14,
-	
-	SpellHaste = 10,
-	SpellHit = 8,
-	SpellCrit = 14,
-	
-	Defense = 1.5,
-	Dodge = 12,
-	Parry = 15,
-	Block = 5,
-	Resilience = 25,
-}
-
-function Outfitter:GetPlayerRatingStatDistribution()
-	local vLevel = UnitLevel("player")
-	
-	if Outfitter.RatingStatDistribution
-	and Outfitter.RatingStatDistributionLevel == vLevel then
-		return Outfitter.RatingStatDistribution
-	end
-	
-	--
-	
-	Outfitter.RatingStatDistribution = {}
-	
-	if vLevel < 10 then
-		vLevel = 10
-	end
-	
-	local vLevelFactor
-	
-	if vLevel <= 60 then
-		vLevelFactor = (vLevel - 8) / 52
-	
-	elseif vLevel <= 70 then
-		vLevelFactor = 82 / (262 - 3 * vLevel)
-	end
-	
-	for vStatID, vBase in pairs(Outfitter.BaseRatings61) do
-		Outfitter.RatingStatDistribution[vStatID.."Rating"] = {[vStatID] = {Coeff = 1.0 / (vBase * vLevelFactor)}}
-	end
-	
-	return Outfitter.RatingStatDistribution
-end
-	
 function Outfitter:OutfitSummary()
-	local vStatDistribution = Outfitter:GetPlayerStatDistribution()
-	
-	Outfitter:DebugTable("StatDistribution", vStatDistribution)
-	
-	local vCurrentOutfitStats = Outfitter.TankPoints_GetCurrentOutfitStats(vStatDistribution)
-	
-	Outfitter:DebugTable("Current Stats", vCurrentOutfitStats)
 end
 
 function Outfitter:RatingSummary()
@@ -4128,7 +3294,7 @@ function Outfitter:RatingSummary()
 		local vRatingBonus = GetCombatRatingBonus(vRatingID)
 		
 		if vRatingBonus > 0 then
-			Outfitter:NoteMessage(vRatingName..": "..(vRating / vRatingBonus))
+			self:NoteMessage(vRatingName..": "..(vRating / vRatingBonus))
 		end
 	end
 end
@@ -4195,230 +3361,164 @@ function Outfitter.GetItemSortRank(pItem)
 	end
 end
 
-function Outfitter:SortBags()
-	-- Gather a list of the items
-	
-	local vItems = {}
-	local vIterator = Outfitter:NewBagIterator()
-	
-	while vIterator:NextSlotLTR() do
-		local vItemInfo = Outfitter:GetBagItemInfo(vIterator.BagIndex, vIterator.BagSlotIndex)
+function Outfitter:RunThreads()
+	if self.SortBagsCoroutineRef then
+		local vSuccess, vMessage = coroutine.resume(self.SortBagsCoroutineRef, self)
 		
-		if vItemInfo then
-			Outfitter:CorrectItemInfo(vItemInfo)
-			
-			vItemInfo.BagIndex = vIterator.BagIndex
-			vItemInfo.BagSlotIndex = vIterator.BagSlotIndex
-			vItemInfo.ItemIsUsed = Outfitter:GetOutfitsUsingItem(vItemInfo)
-			vItemInfo.Equippable = vItemInfo.InvType ~= ""
-			vItemInfo.SortRank = Outfitter.GetItemSortRank(vItemInfo)
-			
-			table.insert(vItems, vItemInfo)
+		if not vSuccess then
+			self:ErrorMessage("SortBags resume failed: %s", vMessage)
 		end
 	end
-	
-	-- Sort the items
-	
-	table.sort(vItems, Outfitter.BagSortCompareItems)
-	
-	-- Assign the items to bag slots
-	
-	local vDestBagSlot = Outfitter:NewBagIterator()
-	
-	for _, vItemInfo in ipairs(vItems) do
-		if not vDestBagSlot:NextSlotLTR() then
-			break
-		end
-		
-		vItemInfo.DestBagIndex = vDestBagSlot.BagIndex
-		vItemInfo.DestBagSlotIndex = vDestBagSlot.BagSlotIndex
-	end
-	
-	--
-	
-	MCEventLib:RegisterEvent("BAG_UPDATE", Outfitter.BagSortBagsChanged, vItems)
-	
-	Outfitter.BagSortUpdate(vItems)
-end	
-
-function Outfitter.BagSortBagsChanged(pItems)
-	MCSchedulerLib:RescheduleTask(0.5, Outfitter.BagSortUpdate, pItems)
 end
 
-function Outfitter.BagSortCompareItems(pItem1, pItem2) -- Must not be method since it's called by table.sort
-	if pItem1.SortRank ~= pItem2.SortRank then
-		return pItem1.SortRank < pItem2.SortRank
-	end
-	
-	-- If both items are equippable, sort them by
-	-- slot first
-	
-	if pItem1.Equippable then
-		return pItem1.InvType < pItem2.InvType
-	end
-	
-	-- Sort items by type
-	
-	if pItem1.Type ~= pItem2.Type then
-		return pItem1.Type < pItem2.Type
-	end
-	
-	-- Sort by subtype
-	
-	if pItem1.SubType ~= pItem2.SubType then
-		return pItem1.SubType < pItem2.SubType
-	end
-	
-	-- Sort by name
-	
-	return pItem1.Name < pItem2.Name
+Outfitter._BagIterator = {}
+Outfitter.cGeneralBagType = 0
+
+function Outfitter._BagIterator:Construct(pStartIndex, pEndIndex)
+	self:Reset(pStartIndex, pEndIndex)
 end
 
-function Outfitter.BagSortUpdate(pItems)
-	local vDidMove = false
-	local vBagSlotUsed = {}
-	
-	for vIndex = 0, NUM_BAG_SLOTS do
-		vBagSlotUsed[vIndex] = {}
+function Outfitter._BagIterator:Reset(pStartIndex, pEndIndex)
+	if not pStartIndex then
+		pStartIndex = NUM_BAG_SLOTS
+		pEndIndex = 0
 	end
 	
-	-- Move the items to their destinations
-	
-	local vSaved_EnableSFX = GetCVar("Sound_EnableSFX")
-	SetCVar("Sound_EnableSFX", "0")
-	
-	for _, vItemInfo in ipairs(pItems) do
-		if (vItemInfo.BagIndex ~= vItemInfo.DestBagIndex
-		or vItemInfo.BagSlotIndex ~= vItemInfo.DestBagSlotIndex)
-		and not vBagSlotUsed[vItemInfo.BagIndex][vItemInfo.BagSlotIndex]
-		and not vBagSlotUsed[vItemInfo.DestBagIndex][vItemInfo.DestBagSlotIndex] then
-			
-			-- Find the item currently at the destination (if any)
-			
-			local vDestItemInfo
-			
-			for _, vItemInfo2 in ipairs(pItems) do
-				if vItemInfo2.BagSlotIndex == vItemInfo.DestBagSlotIndex
-				and vItemInfo2.BagIndex == vItemInfo.DestBagIndex then
-					vDestItemInfo = vItemInfo2
-					break
-				end
-			end
-			
-			-- Move/swap the items
-			
-			Outfitter:NoteMessage(format(
-					"Moving %s from bag %d, %d to %d, %d",
-					vItemInfo.Name,
-					vItemInfo.BagIndex, vItemInfo.BagSlotIndex,
-					vItemInfo.DestBagIndex, vItemInfo.DestBagSlotIndex))
-			
-			ClearCursor()
-			Outfitter:PickupItemLocation(vItemInfo)
-			Outfitter:PickupItemLocation({BagIndex = vItemInfo.DestBagIndex, BagSlotIndex = vItemInfo.DestBagSlotIndex})
-			
-			-- Mark the bag slots as already being involved in this round
-			
-			vBagSlotUsed[vItemInfo.BagIndex][vItemInfo.BagSlotIndex] = true
-			vBagSlotUsed[vItemInfo.DestBagIndex][vItemInfo.DestBagSlotIndex] = true
-			
-			-- Update the source and dest item info
-			
-			if vDestItemInfo then
-				vDestItemInfo.BagIndex = vItemInfo.BagIndex
-				vDestItemInfo.BagSlotIndex = vItemInfo.BagSlotIndex
-			end
-			
-			vItemInfo.BagIndex = vItemInfo.DestBagIndex
-			vItemInfo.BagSlotIndex = vItemInfo.DestBagSlotIndex
-			
-			vDidMove = true
-		end
+	if not pEndIndex then
+		pEndIndex = pStartIndex
 	end
 	
-	SetCVar("Sound_EnableSFX", vSaved_EnableSFX)
-	
-	if vDidMove then
-		-- Do nothing: the BAG_UPDATE event should fire once our items start moving
-		-- and then we'll be called again
+	if pStartIndex <= pEndIndex then
+		self.Direction = 1
 	else
-		MCEventLib:UnregisterEvent("BAG_UPDATE", Outfitter.BagSortBagsChanged, pItems)
+		self.Direction = -1
+	end
+	
+	self.BagIndex = pStartIndex
+	self.EndBagIndex = pEndIndex
+	
+	self.BagSlotIndex = 0
+	
+	if pStartIndex == pEndIndex
+	or Outfitter:GetBagType(self.BagIndex)== Outfitter.cGeneralBagType then
+		self.NumBagSlots = GetContainerNumSlots(self.BagIndex)
+	else
+		self.NumBagSlots = 0
 	end
 end
 
-function Outfitter:NewBagIterator()
-	local vIterator = {}
+function Outfitter._BagIterator:NextSlot()
+	self.BagSlotIndex = self.BagSlotIndex + 1
 	
-	function vIterator:ResetLTR()
-		self.BagIndex = NUM_BAG_SLOTS
-		self.BagSlotIndex = 0
+	while self.BagSlotIndex > self.NumBagSlots do
+		if self.BagIndex == self.EndBagIndex then
+			return false
+		end
 		
-		if Outfitter:GetBagType(self.BagIndex) == Outfitter.cContainerBagSubType then
+		self.BagIndex = self.BagIndex + self.Direction
+		
+		self.BagSlotIndex = 1
+		
+		if Outfitter:GetBagType(self.BagIndex) == Outfitter.cGeneralBagType then
 			self.NumBagSlots = GetContainerNumSlots(self.BagIndex)
 		else
 			self.NumBagSlots = 0
 		end
 	end
 	
-	function vIterator:NextSlotLTR()
-		self.BagSlotIndex = self.BagSlotIndex + 1
-		
-		while self.BagSlotIndex > self.NumBagSlots do
-			self.BagIndex = self.BagIndex - 1
-			
-			if self.BagIndex < 0 then
-				return false
-			end
-			
-			self.BagSlotIndex = 1
-			
-			if Outfitter:GetBagType(self.BagIndex) == Outfitter.cContainerBagSubType then
-				self.NumBagSlots = GetContainerNumSlots(self.BagIndex)
-			else
-				self.NumBagSlots = 0
-			end
-		end
-		
+	return true
+end
+
+function Outfitter:ItemUsesBothWeaponSlots(pItem)
+	if not pItem then
+		self:DebugMessage("ItemUsesBothWeaponSlots: nil item")
+		self:DebugStack()
+		return false
+	end
+	
+	if pItem.InvType ~= "INVTYPE_2HWEAPON"then
+		return false
+	end
+	
+	if not self.CanDualWield2H then
 		return true
 	end
 	
-	vIterator:ResetLTR()
+	if not pItem.SubType then
+		self:DebugMessage("ItemUsesBothWeaponSlots: SubType not specified")
+		self:DebugTable(pItem, "pItem")
+		self:DebugStack()
+	end
 	
-	return vIterator
+	return false
+end
+
+function Outfitter:GetItemMetaSlot(pItem)
+	if pItem.MetaSlotName == "TwoHandSlot"
+	and not self:ItemUsesBothWeaponSlots(pItem) then
+		return "Weapon0Slot"
+	else
+		return pItem.MetaSlotName
+	end
 end
 
 function Outfitter:GetCompiledOutfit()
-	local vCompiledOutfit = Outfitter:NewEmptyOutfit()
+	local vCompiledOutfit = self:NewEmptyOutfit()
 	
 	vCompiledOutfit.SourceOutfit = {}
 	
+	-- Start with the current inventory
+	
+	if self.CurrentInventoryOutfit then
+		local vItems = self.CurrentInventoryOutfit:GetItems()
+		
+		for vInventorySlot, vOutfitItem in pairs(vItems) do
+			vCompiledOutfit:SetItem(vInventorySlot, vOutfitItem)
+			vCompiledOutfit.SourceOutfit[vInventorySlot] = "Equipped"
+		end
+	end
+	
+	-- Layer each selected outfit
+	
 	for vStackIndex, vOutfit in ipairs(Outfitter.OutfitStack.Outfits) do
-		for vInventorySlot, vOutfitItem in pairs(vOutfit.Items) do
-			vCompiledOutfit.Items[vInventorySlot] = vOutfitItem
-			vCompiledOutfit.SourceOutfit[vInventorySlot] = vOutfit.Name
+		local vItems = vOutfit:GetItems()
+		
+		if vItems then
+			for vInventorySlot, vOutfitItem in pairs(vItems) do
+				vCompiledOutfit:SetItem(vInventorySlot, vOutfitItem)
+				vCompiledOutfit.SourceOutfit[vInventorySlot] = vOutfit:GetName()
+			end
 		end
 	end
 	
 	-- Make sure the OH slot is marked as empty if a 2H weapon is equipped
+	-- and the player can't dual-wield 2H weapons
 	
-	if vCompiledOutfit.Items.MainHandSlot
-	and vCompiledOutfit.Items.MainHandSlot.InvType == "INVTYPE_2HWEAPON" then
-		vCompiledOutfit.Items.SecondaryHandSlot = Outfitter:NewEmptyItemInfo()
-	end
+	vCompiledOutfit:AdjustOffhandSlot()
 	
 	return vCompiledOutfit
 end
 
+function Outfitter:GetCurrentCompleteOutfit()
+	for vStackIndex, vOutfit in ipairs(self.OutfitStack.Outfits) do
+		if vOutfit.CategoryID == "Complete" then
+			return vOutfit
+		end
+	end
+end
+
 function Outfitter:GetExpectedOutfit(pExcludeOutfit)
-	local vCompiledOutfit = Outfitter:NewEmptyOutfit()
+	local vCompiledOutfit = self:NewEmptyOutfit()
 	
 	vCompiledOutfit.SourceOutfit = {}
 	
-	for vStackIndex, vOutfit in ipairs(Outfitter.OutfitStack.Outfits) do
+	for vStackIndex, vOutfit in ipairs(self.OutfitStack.Outfits) do
 		if vOutfit ~= pExcludeOutfit then
-			for vInventorySlot, vOutfitItem in pairs(vOutfit.Items) do
-				vCompiledOutfit.Items[vInventorySlot] = vOutfitItem
-				vCompiledOutfit.SourceOutfit[vInventorySlot] = vOutfit.Name
+			local vItems = vOutfit:GetItems()
+			
+			for vInventorySlot, vOutfitItem in pairs(vItems) do
+				vCompiledOutfit:SetItem(vInventorySlot, vOutfitItem)
+				vCompiledOutfit.SourceOutfit[vInventorySlot] = vOutfit:GetName()
 			end
 		end
 	end
@@ -4427,8 +3527,9 @@ function Outfitter:GetExpectedOutfit(pExcludeOutfit)
 end
 
 function Outfitter:GetBagType(pBagIndex)
-	if pBagIndex == 0 then -- special case zero since ContainerIDToInventoryID will barf on it
-		return Outfitter.cContainerBagSubType
+	if pBagIndex == 0
+	or pBagIndex == -1 then -- special case 0 and -1 since ContainerIDToInventoryID will barf on it
+		return Outfitter.cGeneralBagType
 	end
 	
 	if pBagIndex < 0 then
@@ -4441,13 +3542,7 @@ function Outfitter:GetBagType(pBagIndex)
 		return nil
 	end
 	
-	local vItemInfo = Outfitter:GetItemInfoFromLink(vItemLink)
-	
-	if not vItemInfo then
-		return nil
-	end
-	
-	return vItemInfo.SubType
+	return GetItemFamily(vItemLink)
 end
 
 function Outfitter:GetEmptyBagSlot(pStartBagIndex, pStartBagSlotIndex, pIncludeBank)
@@ -4469,18 +3564,14 @@ function Outfitter:GetEmptyBagSlot(pStartBagIndex, pStartBagSlotIndex, pIncludeB
 	end
 	
 	for vBagIndex = vStartBagIndex, vEndBagIndex, -1 do
-		-- Search ordinary container bags for empty slots
+		local vNumEmptySlots, vBagType = GetContainerNumFreeSlots(vBagIndex)
 		
-		if Outfitter:GetBagType(vBagIndex) == Outfitter.cContainerBagSubType then
+		if vNumEmptySlots > 0 then
 			local vNumBagSlots = GetContainerNumSlots(vBagIndex)
 			
-			if vNumBagSlots > 0 then
-				for vSlotIndex = vStartBagSlotIndex, vNumBagSlots do
-					local vItemInfo = Outfitter:GetBagItemInfo(vBagIndex, vSlotIndex)
-					
-					if not vItemInfo then
-						return {BagIndex = vBagIndex, BagSlotIndex = vSlotIndex}
-					end
+			for vSlotIndex = vStartBagSlotIndex, vNumBagSlots do
+				if not GetContainerItemLink(vBagIndex, vSlotIndex) then
+					return {BagIndex = vBagIndex, BagSlotIndex = vSlotIndex, BagType = vBagType}
 				end
 			end
 		end
@@ -4498,7 +3589,7 @@ function Outfitter:GetEmptyBagSlotList()
 	local vBagSlotIndex = 1
 	
 	while true do
-		local vBagSlotInfo = Outfitter:GetEmptyBagSlot(vBagIndex, vBagSlotIndex)
+		local vBagSlotInfo = self:GetEmptyBagSlot(vBagIndex, vBagSlotIndex)
 		
 		if not vBagSlotInfo then
 			return vEmptyBagSlots
@@ -4518,7 +3609,7 @@ function Outfitter:GetEmptyBankSlotList()
 	local vBagSlotIndex = 1
 	
 	while true do
-		local vBagSlotInfo = Outfitter:GetEmptyBagSlot(vBagIndex, vBagSlotIndex, true)
+		local vBagSlotInfo = self:GetEmptyBagSlot(vBagIndex, vBagSlotIndex, true)
 		
 		if not vBagSlotInfo then
 			return vEmptyBagSlots
@@ -4547,21 +3638,21 @@ function Outfitter:FindItemsInBagsForSlot(pSlotName, pIgnoreItems)
 	--
 	
 	local vItems = {}
-	local vNumBags, vFirstBagIndex = Outfitter:GetNumBags()
+	local vNumBags, vFirstBagIndex = self:GetNumBags()
 	
 	for vBagIndex = vFirstBagIndex, vNumBags do
 		local vNumBagSlots = GetContainerNumSlots(vBagIndex)
 		
 		if vNumBagSlots > 0 then
 			for vSlotIndex = 1, vNumBagSlots do
-				local vItemInfo = Outfitter:GetBagItemInfo(vBagIndex, vSlotIndex)
+				local vItemInfo = self:GetBagItemInfo(vBagIndex, vSlotIndex)
 				
 				if vItemInfo
 				and (not pIgnoreItems or not pIgnoreItems[vItemInfo.Code]) then
 					local vItemSlotName = vItemInfo.ItemSlotName
 					
 					if vItemInfo.MetaSlotName then
-						vItemSlotName = vItemInfo.MetaSlotName
+						vItemSlotName = self:GetItemMetaSlot(vItemInfo)
 					end
 					
 					if vItemSlotName == "TwoHandSlot" then
@@ -4575,7 +3666,7 @@ function Outfitter:FindItemsInBagsForSlot(pSlotName, pIgnoreItems)
 					end
 					
 					if vItemSlotName == vInventorySlot then
-						table.insert(vItems, {BagIndex = vBagIndex, BagSlotIndex = vSlotIndex, Code = vItemInfo.Code, Name = vItemInfo.Name})
+						table.insert(vItems, vItemInfo)
 					end
 				end
 			end
@@ -4589,796 +3680,29 @@ function Outfitter:FindItemsInBagsForSlot(pSlotName, pIgnoreItems)
 	return vItems
 end
 
-function Outfitter:PickupItemLocation(pItemLocation)
-	if pItemLocation == nil then
-		Outfitter:ErrorMessage("nil location in PickupItemLocation")
-		return
+function Outfitter:OpenNameOutfitDialog(pOutfit)
+	if not self.NameOutfitDialog then
+		self.NameOutfitDialog = Outfitter:New(Outfitter._NameOutfitDialog, UIParent)
 	end
-	
-	if pItemLocation.BagIndex then
-		if CT_oldPickupContainerItem then
-			CT_oldPickupContainerItem(pItemLocation.BagIndex, pItemLocation.BagSlotIndex)
-		else
-			PickupContainerItem(pItemLocation.BagIndex, pItemLocation.BagSlotIndex)
-		end
-	elseif pItemLocation.SlotName then
-		PickupInventoryItem(Outfitter.cSlotIDs[pItemLocation.SlotName])
-	else
-		Outfitter:ErrorMessage("Unknown location in PickupItemLocation")
-		return
-	end
+	self.NameOutfitDialog:Open(pOutfit)
 end
 
-function Outfitter:DebugEquipmentChangeList(pEquipmentChangeList)
-	Outfitter:DebugMark()
-	Outfitter:DebugTable("ChangeList", pEquipmentChangeList)
-end
-
-function Outfitter:BuildUnequipChangeList(pOutfit, pEquippableItems)
-	local vEquipmentChangeList = {}
-
-	for vInventorySlot, vOutfitItem in pairs(pOutfit.Items) do
-		local vItem, vIgnoredItem = Outfitter.ItemList_FindItemOrAlt(pEquippableItems, vOutfitItem, true)
-		
-		if vItem then
-			table.insert(vEquipmentChangeList, {FromLocation = vItem.Location, Item = vItem, ToLocation = nil})
-		end
-	end -- for
-	
-	return vEquipmentChangeList
-end
-
-function Outfitter:BuildEquipmentChangeList(pOutfit, pEquippableItems)
-	local vEquipmentChangeList = {}
-	
-	Outfitter.ItemList_ResetIgnoreItemFlags(pEquippableItems)
-	
-	-- Remove items which are already in the correct slot from the outfit and from the
-	-- equippable items list
-	
-	for vInventorySlot, vOutfitItem in pairs(pOutfit.Items) do
-		local vContainsItem, vItem = Outfitter.ItemList_InventorySlotContainsItem(pEquippableItems, vInventorySlot, vOutfitItem)
-		
-		if vContainsItem then
-			pOutfit.Items[vInventorySlot] = nil
-			
-			if vItem then
-				vItem.IgnoreItem = true
-			end
-		end
+function Outfitter:OpenRebuildOutfitDialog(pOutfit)
+	if not self.RebuildOutfitDialog then
+		self.RebuildOutfitDialog = Outfitter:New(Outfitter._RebuildOutfitDialog, UIParent)
 	end
-	
-	-- Scan the outfit using the Outfitter.cSlotNames array as an index so that changes
-	-- are executed in the specified order.  The order is designed so that items with
-	-- durability values are unequipped first, followed by other items such as cloaks and rings
-	-- which have no durability.  This makes unequipping before a wipe more practical for
-	-- classes who can get away with it (Feign Death ftw, or "for the repair bill" I should say).
-	
-	self.EquippedUniqueGemIndex = self:RecycleTable(self.EquippedUniqueGemIndex)
-	self.EquippedUniqueGemItem = self:RecycleTable(self.EquippedUniqueGemItem)
-	
-	for _, vInventorySlot in ipairs(self.cSlotNames) do
-		local vOutfitItem = pOutfit.Items[vInventorySlot]
-		
-		if vOutfitItem then
-			local vSlotID = Outfitter.cSlotIDs[vInventorySlot]
-			local vCurrentItemInfo = self:GetInventoryItemInfo(vInventorySlot)
-			local vInsertBefore = #vEquipmentChangeList + 1
-			
-			-- The CurrentItemInfo is the item being unequipped.  If another item
-			-- with the same gem has already been equipped, then insert the unequip
-			-- entry before that one
-			
-			if vCurrentItemInfo then
-				for vIndex = 1, 4 do
-					local vJewelCode = vCurrentItemInfo["JewelCode"..vIndex]
-					
-					if self.EquippedUniqueGemIndex[vJewelCode] then
-						-- Move this unequip operation above the first gem it conflicts with
-						
-						if not vInsertBefore
-						or self.EquippedUniqueGemIndex[vJewelCode] < vInsertBefore then
-							vInsertBefore = self.EquippedUniqueGemIndex[vJewelCode]
-						end
-						
-						self.EquippedUniqueGemIndex[vJewelCode] = nil
-						self.EquippedUniqueGemItem[vJewelCode] = nil
-					end
-				end
-			end
-						
-			-- Empty the slot if it's supposed to be blank
-			
-			if vOutfitItem.Code == 0 or vOutfitItem.Code == nil then
-				if vCurrentItemInfo then
-					table.insert(vEquipmentChangeList, vInsertBefore, {SlotName = vInventorySlot, SlotID = vSlotID, ItemName = vOutfitItem.Name, ItemLocation = nil})
-					
-					-- Adjust any entries in the EquippedUniqueGemIndex table to account for the insertion
-					
-					for vJewelCode, vChangeIndex in pairs(self.EquippedUniqueGemIndex) do
-						if vChangeIndex >= vInsertBefore then
-							self.EquippedUniqueGemIndex[vJewelCode] = vChangeIndex + 1
-						end
-					end
-				end
-			else
-				-- Find the item
-				
-				local vItem, vIgnoredItem = Outfitter.ItemList_FindItemOrAlt(pEquippableItems, vOutfitItem, true)
-				
-				-- If the item wasn't found then show an appropriate error message
-
-				if not vItem then
-					self:ShowEquipError(vOutfitItem, vIgnoredItem, vInventorySlot)
-				
-				-- Otherwise generate a change to move the item from its present location to the correct slot
-				
-				else
-					pOutfit.Items[vInventorySlot].MetaSlotName = vItem.MetaSlotName
-					table.insert(vEquipmentChangeList, vInsertBefore, {SlotName = vInventorySlot, SlotID = vSlotID, ItemName = vOutfitItem.Name, ItemMetaSlotName = vItem.MetaSlotName, ItemLocation = vItem})
-					
-					-- Adjust any entries in the EquippedUniqueGemIndex table to account for the insertion
-					
-					for vJewelCode, vChangeIndex in pairs(self.EquippedUniqueGemIndex) do
-						if vChangeIndex >= vInsertBefore then
-							self.EquippedUniqueGemIndex[vJewelCode] = vChangeIndex + 1
-						end
-					end
-					
-					-- Note any unique-equipped gems being put on
-					
-					for vIndex = 1, 4 do
-						local vJewelCode = vItem["JewelCode"..vIndex]
-						
-						if self.cUniqueEquippedGemIDs[vJewelCode] then
-							if self.EquippedUniqueGemIndex[vJewelCode] then
-								-- Another item with the same jewel code is already being equipped, just warn the user
-								
-								Outfitter:NoteMessage("Attempting to equip %s and %s, but they have the same unique-equipped gem", vOutfitItem.Name or "unknown", self.EquippedUniqueGemItem[vJewelCode].Name or "unknown")
-							else
-								self.EquippedUniqueGemIndex[vJewelCode] = vInsertBefore
-								self.EquippedUniqueGemItem[vJewelCode] = vOutfitItem
-							end
-						end -- if cUniqueEquippedGemIDs
-					end -- for vIndex
-				end -- else not vItem
-			end -- else vOutfitItem.Code == 0 or vOutfitItem.Code == nil
-		end -- if
-	end -- for
-	
-	if #vEquipmentChangeList == 0 then
-		return nil
-	end
-	
-	Outfitter:OptimizeEquipmentChangeList(vEquipmentChangeList)
-	
-	return vEquipmentChangeList
-end
-
-function Outfitter:ShowEquipError(pOutfitItem, pIgnoredItem, pInventorySlot)
-	if pOutfitItem.Name then
-		if pIgnoredItem then
-			local vSlotDisplayName = Outfitter.cSlotDisplayNames[pInventorySlot]
-			
-			if not vSlotDisplayName then
-				vSlotDisplayName = pInventorySlot
-			end
-			
-			Outfitter:ErrorMessage(format(Outfitter.cItemAlreadyUsedError, pOutfitItem.Name, vSlotDisplayName))
-		else
-			Outfitter:ErrorMessage(format(Outfitter.cItemNotFoundError, pOutfitItem.Name))
-		end
-	else
-		Outfitter:ErrorMessage(format(Outfitter.cItemNotFoundError, "unknown"))
-	end
-end
-
-function Outfitter:FindEquipmentChangeForSlot(pEquipmentChangeList, pSlotName)
-	for vChangeIndex, vEquipmentChange in ipairs(pEquipmentChangeList) do
-		if vEquipmentChange.SlotName == pSlotName then
-			return vChangeIndex, vEquipmentChange
-		end
-	end
-	
-	return nil, nil
-end
-
-function Outfitter:FixSlotSwapChange(pEquipmentList, pChangeIndex1, pEquipmentChange1, pSlotName1, pChangeIndex2, pEquipmentChange2, pSlotName2)
-	-- No problem if both slots will be emptied
-	
-	if not pEquipmentChange1.ItemLocation
-	and not pEquipmentChange2.ItemLocation then
-		return
-	end
-	
-	-- No problem if neither slot is being moved to the other one
-	
-	local vSlot2ToSlot1 = pEquipmentChange1.ItemLocation ~= nil
-			            and pEquipmentChange1.ItemLocation.SlotName == pSlotName2
-	
-	local vSlot1ToSlot2 = pEquipmentChange2.ItemLocation ~= nil
-			            and pEquipmentChange2.ItemLocation.SlotName == pSlotName1
-	
-	-- No problem if the slots are swapping with each other
-	-- or not moving between each other at all
-	
-	if vSlot2ToSlot1 == vSlot1ToSlot2 then
-		return
-	end
-	
-	-- Slot 1 is moving to slot 2
-	
-	if vSlot1ToSlot2 then
-		
-		if pEquipmentChange1.ItemLocation then
-			-- Swap change 1 and change 2 around
-			
-			pEquipmentList[pChangeIndex1] = pEquipmentChange2
-			pEquipmentList[pChangeIndex2] = pEquipmentChange1
-			
-			-- Insert a change to empty slot 2
-			
-			table.insert(pEquipmentList, pChangeIndex1, {SlotName = pEquipmentChange2.SlotName, SlotID = pEquipmentChange2.SlotID, ItemLocation = nil})
-		else
-			-- Slot 1 is going to be empty, so empty slot 2 instead
-			-- and then when slot 1 is moved it'll swap the empty space
-			
-			pEquipmentChange1.SlotName = pSlotName2
-			pEquipmentChange1.SlotID = pEquipmentChange2.SlotID
-			pEquipmentChange1.ItemLocation = nil
-		end
-		
-	-- Slot 2 is moving to slot 1
-	
-	else
-		if pEquipmentChange2.ItemLocation then
-			-- Insert a change to empty slot 1 first
-			
-			table.insert(pEquipmentList, pChangeIndex1, {SlotName = pEquipmentChange1.SlotName, SlotID = pEquipmentChange1.SlotID, ItemLocation = nil})
-		else
-			-- Slot 2 is going to be empty, so empty slot 1 instead
-			-- and then when slot 2 is moved it'll swap the empty space
-			
-			pEquipmentChange2.SlotName = pSlotName1
-			pEquipmentChange2.SlotID = pEquipmentChange1.SlotID
-			pEquipmentChange2.ItemLocation = nil
-			
-			-- Change the order so that slot 1 gets emptied before the move
-			
-			pEquipmentList[pChangeIndex1] = pEquipmentChange2
-			pEquipmentList[pChangeIndex2] = pEquipmentChange1
-		end
-	end
-end
-
-function Outfitter:OptimizeEquipmentChangeList(pEquipmentChangeList)
-	local vSwapList =
-	{
-		{Slot1 = "Finger0Slot", Slot2 = "Finger1Slot"},
-		{Slot1 = "Trinket0Slot", Slot2 = "Trinket1Slot"},
-		{Slot1 = "MainHandSlot", Slot2 = "SecondaryHandSlot"},
-	}
-	
-	local vDidSlot = {}
-	
-	local vChangeIndex = 1
-	local vNumChanges = #pEquipmentChangeList
-	
-	while vChangeIndex <= vNumChanges do
-		local vEquipmentChange = pEquipmentChangeList[vChangeIndex]
-		
-		-- If a two-hand weapon is being equipped, remove the change event
-		-- for removing the offhand slot
-		
-		if vEquipmentChange.ItemMetaSlotName == "TwoHandSlot" then
-			local vChangeIndex2, vEquipmentChange2 = Outfitter:FindEquipmentChangeForSlot(pEquipmentChangeList, "SecondaryHandSlot")
-			
-			-- If there's a change for the offhand slot, remove it
-			
-			if vChangeIndex2 then
-				table.remove(pEquipmentChangeList, vChangeIndex2)
-				
-				if vChangeIndex2 < vChangeIndex then
-					vChangeIndex = vChangeIndex - 1
-				end
-				
-				vNumChanges = vNumChanges - 1
-			end
-			
-			-- Insert a new change for the offhand slot to empty it ahead
-			-- of equipping the two-hand item
-			
-			local vSlotID = Outfitter.cSlotIDs.SecondaryHandSlot
-			
-			table.insert(pEquipmentChangeList, vChangeIndex, {SlotName = "SecondaryHandSlot", SlotID = vSlotID, ItemLocation = nil})
-			
-		-- Otherwise see if the change needs to be re-arranged so that slot
-		-- swapping works correctly
-		
-		else
-			for vSwapListIndex, vSwapSlotInfo in ipairs(vSwapList) do
-				if vEquipmentChange.SlotName == vSwapSlotInfo.Slot1
-				and not vDidSlot[vEquipmentChange.SlotName] then
-					local vChangeIndex2, vEquipmentChange2 = Outfitter:FindEquipmentChangeForSlot(pEquipmentChangeList, vSwapSlotInfo.Slot2)
-					
-					if vChangeIndex2 then
-						Outfitter:FixSlotSwapChange(pEquipmentChangeList, vChangeIndex, vEquipmentChange, vSwapSlotInfo.Slot1, vChangeIndex2, vEquipmentChange2, vSwapSlotInfo.Slot2)
-					end
-					
-					vDidSlot[vEquipmentChange.SlotName] = true
-					
-					vNumChanges = #pEquipmentChangeList
-				end
-			end
-		end
-		
-		-- Check for a unique-equipped gem being put on, then if the same gem is being removed
-		-- we can move the unequipping one to happen first
-		
-		
-		
-		--
-		
-		vChangeIndex = vChangeIndex + 1
-	end
-end
-
-function Outfitter:ExecuteEquipmentChangeList(pEquipmentChangeList, pEmptyBagSlots, pExpectedEquippableItems)
-	local vSaved_EnableSFX
-	
-	if gOutfitter_Settings.DisableEquipSounds then
-		vSaved_EnableSFX = GetCVar("Sound_EnableSFX")
-		SetCVar("Sound_EnableSFX", "0")
-	end
-	
-	ClearCursor() -- Make sure nothing is already being held
-	
-	for vChangeIndex, vEquipmentChange in ipairs(pEquipmentChangeList) do
-		if vEquipmentChange.ItemLocation then
-			Outfitter:PickupItemLocation(vEquipmentChange.ItemLocation)
-			EquipCursorItem(vEquipmentChange.SlotID)
-			
-			if pExpectedEquippableItems then
-				Outfitter.ItemList_SwapLocationWithInventorySlot(pExpectedEquippableItems, vEquipmentChange.ItemLocation, vEquipmentChange.SlotName)
-			end
-		else
-			-- Remove the item
-			
-			if not pEmptyBagSlots
-			or #pEmptyBagSlots == 0 then
-				local vItemInfo = Outfitter:GetInventoryItemInfo(vEquipmentChange.SlotName)
-				
-				if not vItemInfo then
-					Outfitter:ErrorMessage("Internal error: Can't empty slot %s because bags are full but slot is empty", vEquipmentChange.SlotName)
-				else
-					Outfitter:ErrorMessage(format(Outfitter.cBagsFullError, vItemInfo.Name))
-				end
-			else
-				local vBagIndex = pEmptyBagSlots[1].BagIndex
-				local vBagSlotIndex = pEmptyBagSlots[1].BagSlotIndex
-				
-				table.remove(pEmptyBagSlots, 1)
-				
-				PickupInventoryItem(vEquipmentChange.SlotID)
-				if CT_oldPickupContainerItem then
-					CT_oldPickupContainerItem(vBagIndex, vBagSlotIndex)
-				else
-					PickupContainerItem(vBagIndex, vBagSlotIndex)
-				end
-				
-				if pExpectedEquippableItems then
-					Outfitter.ItemList_SwapBagSlotWithInventorySlot(pExpectedEquippableItems, vBagIndex, vBagSlotIndex, vEquipmentChange.SlotName)
-				end
-			end
-		end
-	end
-	
-	if vSaved_EnableSFX then
-		SetCVar("Sound_EnableSFX", vSaved_EnableSFX)
-	end
-end
-
-function Outfitter:ExecuteEquipmentChangeList2(pEquipmentChangeList, pEmptySlots, pBagsFullErrorFormat, pExpectedEquippableItems)
-	for vChangeIndex, vEquipmentChange in ipairs(pEquipmentChangeList) do
-		if vEquipmentChange.ToLocation then
-			Outfitter:PickupItemLocation(vEquipmentChange.FromLocation)
-			EquipCursorItem(vEquipmentChange.SlotID)
-			
-			if pExpectedEquippableItems then
-				Outfitter.ItemList_SwapLocationWithInventorySlot(pExpectedEquippableItems, vEquipmentChange.ToLocation, vEquipmentChange.SlotName)
-			end
-		else
-			-- Remove the item
-			
-			if not pEmptySlots
-			or #pEmptySlots == 0 then
-				Outfitter:ErrorMessage(format(pBagsFullErrorFormat, vEquipmentChange.Item.Name))
-			else
-				local vToLocation = {BagIndex = pEmptySlots[1].BagIndex, BagSlotIndex = pEmptySlots[1].BagSlotIndex}
-				
-				table.remove(pEmptySlots, 1)
-				
-				Outfitter:PickupItemLocation(vEquipmentChange.FromLocation)
-				Outfitter:PickupItemLocation(vToLocation)
-				
-				if pExpectedEquippableItems then
-					Outfitter.ItemList_SwapLocations(pExpectedEquippableItems, vEquipmentChange.FromLocation, vToLocation)
-				end
-			end
-		end
-	end
-end
-
-function Outfitter:OutfitHasCombatEquipmentSlots(pOutfit)
-	for vEquipmentSlot, _ in pairs(Outfitter.cCombatEquipmentSlots) do
-		if pOutfit.Items[vEquipmentSlot] then
-			return true
-		end
-	end
-	
-	return false
-end
-
-function Outfitter:OutfitOnlyHasCombatEquipmentSlots(pOutfit)
-	for vEquipmentSlot, _ in pairs(pOutfit.Items) do
-		if not Outfitter.cCombatEquipmentSlots[vEquipmentSlot] then
-			return false
-		end
-	end
-	
-	return true
-end
-
-Outfitter.EquipmentUpdateCount = 0
-
-function Outfitter:BeginEquipmentUpdate()
-	self.EquipmentUpdateCount = self.EquipmentUpdateCount + 1
-end
-
-function Outfitter:EndEquipmentUpdate(pCallerName)
-	self.EquipmentUpdateCount = self.EquipmentUpdateCount - 1
-	
-	if self.EquipmentUpdateCount == 0 then
-		self:ScheduleEquipmentUpdate()
-		self:Update(false)
-	end
-end
-
-function Outfitter:UpdateEquippedItems()
-	if not self.EquippedNeedsUpdate
-	and not self.WeaponsNeedUpdate then
-		return
-	end
-	
-	-- Delay all changes until they're alive or not casting a spell
-	
-	if self.IsDead
-	or self.IsCasting
-	or self.IsChanneling then
-		return
-	end
-	
-	local vCurrentTime = GetTime()
-	
-	if vCurrentTime - self.LastEquipmentUpdateTime < self.cMinEquipmentUpdateInterval then
-		self:ScheduleEquipmentUpdate()
-		return
-	end
-	
-	self.LastEquipmentUpdateTime = vCurrentTime
-	
-	local vWeaponsNeedUpdate = self.WeaponsNeedUpdate
-	
-	self.EquippedNeedsUpdate = false
-	self.WeaponsNeedUpdate = false
-	
-	-- Compile the outfit
-	
-	local vEquippableItems = self.ItemList_GetEquippableItems()
-	local vCompiledOutfit = self:GetCompiledOutfit()
-	
-	-- If the outfit contains non-weapon changes then
-	-- delay the change until they're out of combat but go
-	-- ahead and swap the weapon slots if there are any
-	
-	if self.InCombat or self.MaybeInCombat then
-		if vWeaponsNeedUpdate
-		and self:OutfitHasCombatEquipmentSlots(vCompiledOutfit) then
-			
-			-- Allow the weapon change to proceed but defer the rest
-			-- until they're out of combat
-			
-			local vWeaponOutfit = self:NewEmptyOutfit()
-			
-			for vEquipmentSlot, _ in pairs(self.cCombatEquipmentSlots) do
-				vWeaponOutfit.Items[vEquipmentSlot] = vCompiledOutfit.Items[vEquipmentSlot]
-			end
-			
-			-- Still need to update the rest once they exit combat
-			-- if there are non-equipment slot items
-			
-			if not self:OutfitOnlyHasCombatEquipmentSlots(vCompiledOutfit) then
-				self.EquippedNeedsUpdate = true
-			end
-			
-			-- Switch to the weapons-only part
-			
-			vCompiledOutfit = vWeaponOutfit
-		else
-			-- No weapon changes, just defer the whole outfit change
-			
-			self.EquippedNeedsUpdate = true
-			self:ScheduleEquipmentUpdate()
-			return
-		end
-	end
-	
-	-- Equip it
-	
-	local vEquipmentChangeList = self:BuildEquipmentChangeList(vCompiledOutfit, vEquippableItems)
-	
-	if vEquipmentChangeList then
-		-- local vExpectedEquippableItems = self.ItemList_New()
-	
-		self:ExecuteEquipmentChangeList(vEquipmentChangeList, self:GetEmptyBagSlotList(), vExpectedEquippableItems)
-		
-		-- self:DebugTable("ExpectedEquippableItems", vExpectedEquippableItems)
-	end
-	
-	-- Update the outfit we're expecting to see on the player
-	
-	for vInventorySlot, vItem in pairs(vCompiledOutfit.Items) do
-		self.ExpectedOutfit.Items[vInventorySlot] = vCompiledOutfit.Items[vInventorySlot]
-	end
-	
-	self.MaybeInCombat = false
-	
-	self:ScheduleEquipmentUpdate()
-	
-	-- self:TestMessage("Outfitter:UpdateEquippedItems: "..(GetTime() - vCurrentTime).."s")
-end
-
-function Outfitter:InventorySlotIsEmpty(pInventorySlot)
-	return Outfitter:GetInventoryItemInfo(pInventorySlot) == nil
-end
-
-function Outfitter:GetBagItemInfo(pBagIndex, pSlotIndex)
-	local vItemLink = GetContainerItemLink(pBagIndex, pSlotIndex)
-	local vItemInfo = Outfitter:GetItemInfoFromLink(vItemLink)
-	
-	if not vItemInfo then
-		return nil
-	end
-	
-	vItemInfo.Texture = GetContainerItemInfo(pBagIndex, pSlotIndex)
-	
-	return vItemInfo
-end
-
-function Outfitter:GetAmmotSlotItemName()
-	local vSlotID = Outfitter.cSlotIDs.AmmoSlot
-	local vAmmoItemTexture = GetInventoryItemTexture("player", vSlotID)
-	
-	if not vAmmoItemTexture then
-		return nil
-	end
-	
-	OutfitterTooltip:SetOwner(OutfitterFrame, "ANCHOR_BOTTOMRIGHT", 0, 0)
-	OutfitterTooltip:SetInventoryItem("player", vSlotID)
-	
-	if not OutfitterTooltipTextLeft1:IsShown() then
-		OutfitterTooltip:Hide()
-		return nil
-	end
-	
-	local vAmmoItemName = OutfitterTooltipTextLeft1:GetText()
-	
-	OutfitterTooltip:Hide()
-	
-	return vAmmoItemName, vAmmoItemTexture
-end
-
-function Outfitter:GetBagSlotItemName(pBagIndex, pBagSlotIndex)
-	OutfitterTooltip:SetOwner(OutfitterFrame, "ANCHOR_BOTTOMRIGHT", 0, 0)
-	OutfitterTooltip:SetBagItem(pBagIndex, pBagSlotIndex)
-	
-	if not OutfitterTooltipTextLeft1:IsShown() then
-		OutfitterTooltip:Hide()
-		return nil
-	end
-	
-	local vItemName = OutfitterTooltipTextLeft1:GetText()
-	
-	OutfitterTooltip:Hide()
-	
-	return vItemName
-end
-
-Outfitter.AmmoLinkByName = {}
-
-function Outfitter:GetAmmotSlotItemLink()
-	local vName, vTexture = Outfitter:GetAmmotSlotItemName()
-	
-	if not vName then
-		return nil
-	end
-	
-	local vLink = Outfitter.AmmoLinkByName[vName]
-	
-	if vLink then
-		return vLink
-	end
-	
-	vLink = Outfitter:FindAmmoSlotItemLink(vName)
-	
-	if not vLink then
-		return nil
-	end
-	
-	Outfitter.AmmoLinkByName[vName] = vLink
-	return vLink
-end
-
-function Outfitter:FindAmmoSlotItemLink(pName)
-	for vBagIndex = 0, NUM_BAG_SLOTS do
-		local vNumBagSlots = GetContainerNumSlots(vBagIndex)
-		
-		for vBagSlotIndex = 1, vNumBagSlots do
-			local vLink = GetContainerItemLink(vBagIndex, vBagSlotIndex)
-			
-			if vLink then
-				local vName = Outfitter:GetBagSlotItemName(vBagIndex, vBagSlotIndex)
-				
-				if vName == pName then
-					return vLink
-				end
-			end
-		end -- for vBagSlotIndex
-	end -- for vBagIndex
-	
-	-- Failed to find the ammo
-	
-	return nil
-end
-
-function Outfitter:GetInventoryItemInfo(pInventorySlot)
-	local vSlotID = Outfitter.cSlotIDs[pInventorySlot]
-	local vItemLink = Outfitter:GetInventorySlotIDLink(vSlotID)
-	local vItemInfo = Outfitter:GetItemInfoFromLink(vItemLink)
-	
-	if not vItemInfo then
-		return nil
-	end
-	
-	vItemInfo.Quality = GetInventoryItemQuality("player", vSlotID)
-	vItemInfo.Texture = GetInventoryItemTexture("player", vSlotID)
-	
-	return vItemInfo
-end
-
-function Outfitter:GetItemInfoFromLink(pItemLink)
-	if not pItemLink then
-		return nil
-	end
-	
-	-- |cff1eff00|Hitem:1465:803:0:0:0:0:0:0|h[Tigerbane]|h|r
-	-- |(hex code for item color)|Hitem:(item ID code):(enchant code):(added stats code):0|h[(item name)]|h|r
-	
-	local vStartIndex,
-			vEndIndex,
-			vLinkColor,
-			vItemCode,
-			vItemEnchantCode,
-			vItemJewelCode1,
-			vItemJewelCode2,
-			vItemJewelCode3,
-			vItemJewelCode4,
-			vItemSubCode,
-			vUnknownCode5,
-			vItemName = strfind(pItemLink, Outfitter.cItemLinkFormat)
-	
-	if not vStartIndex then
-		return nil
-	end
-	
-	if vItemName then
-		--Outfitter:TestMessage(string.format("Item %s:%d:%d:%d:%d:%d:%d:%d:%d", vItemName, vItemCode, vItemEnchantCode, vItemSubCode, vItemJewelCode1, vItemJewelCode2, vItemJewelCode3, vItemJewelCode4, vUnknownCode5))
-	end
-	
-	vItemCode = tonumber(vItemCode)
-	vItemSubCode = tonumber(vItemSubCode)
-	vItemEnchantCode = tonumber(vItemEnchantCode)
-	vItemJewelCode1 = tonumber(vItemJewelCode1)
-	vItemJewelCode2 = tonumber(vItemJewelCode2)
-	vItemJewelCode3 = tonumber(vItemJewelCode3)
-	vItemJewelCode4 = tonumber(vItemJewelCode4)
-	
-	local vItemFamilyName,
-			vItemLink,
-			vItemQuality,
-			vItemLevel,
-			vItemMinLevel,
-			vItemType,
-			vItemSubType,
-			vItemCount,
-			vItemInvType = GetItemInfo(vItemCode)
-	
-	local vItemInfo =
-	{
-		Link = pItemLink,
-		
-		Code = vItemCode,
-		SubCode = vItemSubCode,
-		
-		Name = vItemName,
-		Quality = vItemQuality,
-		Level = vItemLevel,
-		MinLevel = vItemMinLevel,
-		Type = vItemType,
-		SubType = vItemSubType,
-		
-		Count = vItemCount,
-		InvType = vItemInvType,
-		
-		EnchantCode = vItemEnchantCode,
-		
-		JewelCode1 = vItemJewelCode1,
-		JewelCode2 = vItemJewelCode2,
-		JewelCode3 = vItemJewelCode3,
-		JewelCode4 = vItemJewelCode4,		
-	}
-	
-	-- Just return if there's no inventory type
-	
-	if not vItemInvType
-	or vItemInvType == "" then
-		return vItemInfo
-	end
-	
-	-- If it's a known inventory type add that knowledge to the item info
-	
-	local vInvTypeInfo = Outfitter.cInvTypeToSlotName[vItemInvType]
-	
-	if vInvTypeInfo then
-		-- Get the slot name
-		
-		if not vInvTypeInfo.SlotName then
-			Outfitter:ErrorMessage("Unknown slot name for inventory type "..vItemInvType)
-			return vItemInfo
-		end
-		
-		vItemInfo.ItemSlotName = vInvTypeInfo.SlotName
-		vItemInfo.MetaSlotName = vInvTypeInfo.MetaSlotName
-	else
-		-- This function can be used to query non-equippable items, so it's not an error for
-		-- the inventory type to be unknown.  Should Blizzard ever add a new type though, this
-		-- debug message may be useful in figuring out its characteristics
-		
-		-- Outfitter:ErrorMessage("Unknown slot type "..vItemInvType.." for item "..vItemName)
-	end
-	
-	-- Done
-	
-	return vItemInfo
+	self.RebuildOutfitDialog:Open(pOutfit)
 end
 
 function Outfitter:CreateNewOutfit()
-	Outfitter.NameOutfit_Open(nil)
-end
-
-function Outfitter:NewEmptyOutfit(pName)
-	return {Name = pName, Items = {}}
-end
-
-function Outfitter:IsEmptyOutfit(pOutfit)
-	return Outfitter:ArrayIsEmpty(pOutfit.Items)
+	self:OpenNameOutfitDialog(nil)
 end
 
 function Outfitter:NewNakedOutfit(pName)
-	local vOutfit = Outfitter:NewEmptyOutfit(pName)
+	local vOutfit = self:NewEmptyOutfit(pName)
 
 	for _, vInventorySlot in ipairs(Outfitter.cSlotNames) do
-		Outfitter:AddOutfitItem(vOutfit, vInventorySlot, nil)
+		vOutfit:AddItem(vInventorySlot, nil)
 	end
 	
 	return vOutfit
@@ -5395,120 +3719,13 @@ function Outfitter:NewEmptyItemInfo()
 		JewelCode2 = 0,
 		JewelCode3 = 0,
 		JewelCode4 = 0,
+		UniqueID = 0,
+		UpgradeTypeID = 0,
+		InstanceDifficultyID = 0,
+		BonusIDs = "::",
+		UpgradeID = 0,
 		InvType = nil,
 	}
-end
-
-function Outfitter:AddOutfitItem(pOutfit, pSlotName, pItemInfo)
-	if pItemInfo == nil then
-		pItemInfo = Outfitter:NewEmptyItemInfo()
-	end
-	
-	pOutfit.Items[pSlotName] =
-	{
-		Code = tonumber(pItemInfo.Code),
-		SubCode = tonumber(pItemInfo.SubCode),
-		Name = pItemInfo.Name,
-		EnchantCode = tonumber(pItemInfo.EnchantCode),
-		JewelCode1 = tonumber(pItemInfo.JewelCode1),
-		JewelCode2 = tonumber(pItemInfo.JewelCode2),
-		JewelCode3 = tonumber(pItemInfo.JewelCode3),
-		JewelCode4 = tonumber(pItemInfo.JewelCode4),
-		InvType = pItemInfo.InvType,
-	}
-end
-
-function Outfitter:AddStats(pItem1, pItem2, pStatID)
-	local vStat = 0
-	
-	if pItem1
-	and pItem1[pStatID] then
-		vStat = pItem1[pStatID]
-	end
-	
-	if pItem2
-	and pItem2[pStatID] then
-		vStat = vStat + pItem2[pStatID]
-	end
-	
-	return vStat
-end
-
-function Outfitter:CollapseMetaSlotsIfBetter(pOutfit, pStatID)
-	-- Compare the weapon slot with the 1H/OH slots
-	
-	local vWeapon0Item = pOutfit.Items.Weapon0Slot
-	local vWeapon1Item = pOutfit.Items.Weapon1Slot
-	
-	if vWeapon0Item or vWeapon1Item then
-		-- Try the various combinations of MH/OH/W0/W1
-		
-		local v1HItem = pOutfit.Items.MainHandSlot
-		local vOHItem = pOutfit.Items.SecondaryHandSlot
-		
-		local vCombinations =
-		{
-			{MainHand = v1HItem, SecondaryHand = vOHItem, AllowEmptyMainHand = true},
-			{MainHand = v1HItem, SecondaryHand = vWeapon0Item, AllowEmptyMainHand = false},
-			{MainHand = v1HItem, SecondaryHand = vWeapon1Item, AllowEmptyMainHand = false},
-			{MainHand = vWeapon0Item, SecondaryHand = vOHItem, AllowEmptyMainHand = true},
-			{MainHand = vWeapon1Item, SecondaryHand = vOHItem, AllowEmptyMainHand = true},
-			{MainHand = vWeapon0Item, SecondaryHand = vWeapon1Item, AllowEmptyMainHand = false},
-		}
-		
-		local vBestCombinationIndex = nil
-		local vBestCombinationValue = nil
-		
-		for vIndex = 1, 6 do
-			local vCombination = vCombinations[vIndex]
-			
-			-- Ignore combinations where the main hand is empty if
-			-- that's not allowed in this combinations
-			
-			if vCombination.AllowEmptyMainHand
-			or vCombination.MainHand then
-				local vCombinationValue = Outfitter:AddStats(vCombination.MainHand, vCombination.SecondaryHand, pStatID)
-				
-				if not vBestCombinationIndex
-				or vCombinationValue > vBestCombinationValue then
-					vBestCombinationIndex = vIndex
-					vBestCombinationValue = vCombinationValue
-				end
-			end
-		end
-		
-		if vBestCombinationIndex then
-			local vCombination = vCombinations[vBestCombinationIndex]
-			
-			pOutfit.Items.MainHandSlot = vCombination.MainHand
-			pOutfit.Items.SecondaryHandSlot = vCombination.SecondaryHand
-		end
-		
-		pOutfit.Items.Weapon0Slot = nil
-		pOutfit.Items.Weapon1Slot = nil
-	end
-	
-	-- Compare the 2H slot with the 1H/OH slots
-	
-	local v2HItem = pOutfit.Items.TwoHandSlot
-	
-	if v2HItem then
-		local v1HItem = pOutfit.Items.MainHandSlot
-		local vOHItem = pOutfit.Items.SecondaryHandSlot
-		local v1HOHTotalStat = Outfitter:AddStats(v1HItem, vOHItem, pStatID)
-		
-		if v2HItem[pStatID]
-		and v2HItem[pStatID] > v1HOHTotalStat then
-			pOutfit.Items.MainHandSlot = v2HItem
-			pOutfit.Items.SecondaryHandSlot = nil
-		end
-		
-		pOutfit.Items.TwoHandSlot = nil
-	end
-end
-
-function Outfitter:RemoveOutfitItem(pOutfit, pSlotName)
-	pOutfit.Items[pSlotName] = nil
 end
 
 function Outfitter:GetInventoryOutfit(pName, pOutfit)
@@ -5517,20 +3734,20 @@ function Outfitter:GetInventoryOutfit(pName, pOutfit)
 	if pOutfit then
 		vOutfit = pOutfit
 	else
-		vOutfit = Outfitter:NewEmptyOutfit(pName)
+		vOutfit = self:NewEmptyOutfit(pName)
 	end
 	
 	for _, vInventorySlot in ipairs(Outfitter.cSlotNames) do
-		local vItemInfo = Outfitter:GetInventoryItemInfo(vInventorySlot)
+		local vItemInfo = self:GetInventoryItemInfo(vInventorySlot)
 		
 		-- To avoid extra memory operations, only update the item if it's different
 		
-		local vExistingItem = vOutfit.Items[vInventorySlot]
+		local vExistingItem = vOutfit:GetItem(vInventorySlot)
 		
 		if not vItemInfo then
 			if not vExistingItem
 			or vExistingItem.Code ~= 0 then
-				Outfitter:AddOutfitItem(vOutfit, vInventorySlot, nil)
+				vOutfit:AddItem(vInventorySlot, nil)
 			end
 		else
 			if not vExistingItem
@@ -5540,8 +3757,14 @@ function Outfitter:GetInventoryOutfit(pName, pOutfit)
 			or vExistingItem.JewelCode1 ~= vItemInfo.JewelCode1
 			or vExistingItem.JewelCode2 ~= vItemInfo.JewelCode2
 			or vExistingItem.JewelCode3 ~= vItemInfo.JewelCode3
-			or vExistingItem.JewelCode4 ~= vItemInfo.JewelCode4	then
-				Outfitter:AddOutfitItem(vOutfit, vInventorySlot, vItemInfo)
+			or vExistingItem.JewelCode4 ~= vItemInfo.JewelCode4
+			or vExistingItem.UniqueID ~= vItemInfo.UniqueID
+			or vExistingItem.UpgradeItemID ~= vItemInfo.UpgradeItemID
+			or vExistingItem.InstanceDifficultyID ~= vItemInfo.InstanceDifficultyID
+			or vExistingItem.BonusIDs ~= vItemInfo.BonusIDs
+			or vExistingItem.UpgradeID ~= vItemInfo.UpgradeID
+			or vExistingItem.ReforgeID ~= vItemInfo.ReforgeID then
+				vOutfit:AddItem(vInventorySlot, vItemInfo)
 			end
 		end
 	end
@@ -5554,83 +3777,102 @@ function Outfitter:UpdateOutfitFromInventory(pOutfit, pNewItemsOutfit)
 		return
 	end
 	
-	for vInventorySlot, vItem in pairs(pNewItemsOutfit.Items) do
-		-- Only update slots which aren't in an unknown state
-		
-		local vCheckbox = getglobal("OutfitterEnable"..vInventorySlot)
-		
-		if not vCheckbox:GetChecked()
-		or not vCheckbox.IsUnknown then
-			pOutfit.Items[vInventorySlot] = vItem
-			Outfitter:NoteMessage(format(Outfitter.cAddingItem, vItem.Name, pOutfit.Name))
-		end
-	end
+	local vNewItems = pNewItemsOutfit:GetItems()
 	
-	-- Add the new items to the current compiled outfit
+	pOutfit:AddNewItems(vNewItems)
 	
-	for vInventorySlot, vItem in pairs(pNewItemsOutfit.Items) do
-		Outfitter.ExpectedOutfit.Items[vInventorySlot] = pNewItemsOutfit.Items[vInventorySlot]
-	end
-	
-	Outfitter:OutfitSettingsChanged(pOutfit)
+	self:OutfitSettingsChanged(pOutfit)
 end
 
 function Outfitter:SubtractOutfit(pOutfit1, pOutfit2, pCheckAlternateSlots)
-	local vEquippableItems = Outfitter.ItemList_GetEquippableItems()
+	local vInventoryCache = self:GetInventoryCache()
 	
 	-- Remove items from pOutfit1 if they match the item in pOutfit2
 	
-	for _, vInventorySlot in ipairs(Outfitter.cSlotNames) do
-		local vItem1 = pOutfit1.Items[vInventorySlot]
-		local vItem2 = pOutfit2.Items[vInventorySlot]
+	for _, vInventorySlot in ipairs(self.cSlotNames) do
+		local vItem1 = pOutfit1:GetItem(vInventorySlot)
+		local vItem2 = pOutfit2:GetItem(vInventorySlot)
 		
-		if Outfitter.ItemList_ItemsAreSame(vEquippableItems, vItem1, vItem2) then
-			pOutfit1.Items[vInventorySlot] = nil
+		if vInventoryCache:ItemsAreSame(vItem1, vItem2) then
+			pOutfit1:RemoveItem(vInventorySlot)
 		elseif pCheckAlternateSlots then
-			local vAlternateSlotName = Outfitter.cFullAlternateStatSlot[vInventorySlot]
+			local vAlternateSlotName = self.cFullAlternateStatSlot[vInventorySlot]
 			
-			vItem2 = pOutfit2.Items[vAlternateSlotName]
+			vItem2 = pOutfit2:GetItem(vAlternateSlotName)
 			
-			if Outfitter.ItemList_ItemsAreSame(vEquippableItems, vItem1, vItem2) then
-				pOutfit1.Items[vInventorySlot] = nil
+			if vInventoryCache:ItemsAreSame(vItem1, vItem2) then
+				pOutfit1:RemoveItem(vInventorySlot)
 			end
 		end
 	end
+end
+
+function Outfitter:OutfitItemsAreSame(pOutfit1, pOutfit2, pCheckAlternateSlots, pIgnoreAmmo)
+	local vInventoryCache = self:GetInventoryCache()
+	
+	for _, vInventorySlot in ipairs(Outfitter.cSlotNames) do
+		local vItem1 = pOutfit1:GetItem(vInventorySlot)
+		local vItem2 = pOutfit2:GetItem(vInventorySlot)
+		
+		if vInventoryCache:ItemsAreSame(vItem1, vItem2) then
+			-- do nothing
+		elseif pCheckAlternateSlots then
+			local vAlternateSlotName = self.cFullAlternateStatSlot[vInventorySlot]
+			
+			vItem2 = pOutfit2:GetItem(vAlternateSlotName)
+			
+			if vInventoryCache:ItemsAreSame(vItem1, vItem2) then
+				-- do nothing
+			else
+				return false
+			end
+		else
+			return false
+		end
+	end
+	
+	return true
 end
 
 function Outfitter:GetNewItemsOutfit(pPreviousOutfit)
 	-- Get the current outfit and the list
 	-- of equippable items
 	
-	Outfitter.CurrentInventoryOutfit = Outfitter:GetInventoryOutfit(Outfitter.CurrentInventoryOutfit)
+	self.CurrentInventoryOutfit = self:GetInventoryOutfit(self.CurrentInventoryOutfit)
 	
-	local vEquippableItems = Outfitter.ItemList_GetEquippableItems()
+	local vInventoryCache = self:GetInventoryCache()
 	
 	-- Create a temporary outfit from the differences
 	
-	local vNewItemsOutfit = Outfitter:NewEmptyOutfit()
+	local vNewItemsOutfit = self:NewEmptyOutfit()
 	local vOutfitHasItems = false
 	
-	for _, vInventorySlot in ipairs(Outfitter.cSlotNames) do
-		local vCurrentItem = Outfitter.CurrentInventoryOutfit.Items[vInventorySlot]
-		local vPreviousItem = pPreviousOutfit.Items[vInventorySlot]
+	for _, vInventorySlot in ipairs(self.cSlotNames) do
+		local vCurrentItem = self.CurrentInventoryOutfit:GetItem(vInventorySlot)
+		local vPreviousItem = pPreviousOutfit:GetItem(vInventorySlot)
 		local vSkipSlot = false
 		
 		if vInventorySlot == "SecondaryHandSlot" then
-			local vMainHandItem = pPreviousOutfit.Items["MainHandSlot"]
+			local vMainHandItem = pPreviousOutfit:GetItem("MainHandSlot")
 			
-			if vMainHandItem
-			and vMainHandItem.MetaSlotName == "TwoHandSlot" then
+			if not vMainHandItem then
+				--self:DebugMessage("MainHandItem is nil")
+				--self:DebugTable(pPreviousOutfit:GetItems(), "Items")
+			end
+			
+			if self:ItemUsesBothWeaponSlots(vMainHandItem) then
 				vSkipSlot = true
 			end
-		elseif vInventorySlot == "AmmoSlot"
-		and (not vCurrentItem or vCurrentItem.Code == 0) then
-			vSkipSlot = true
 		end
 		
 		if not vSkipSlot
-		and not Outfitter.ItemList_InventorySlotContainsItem(vEquippableItems, vInventorySlot, vPreviousItem) then
-			vNewItemsOutfit.Items[vInventorySlot] = vCurrentItem
+		and not vInventoryCache:InventorySlotContainsItem(vInventorySlot, vPreviousItem) then
+			if self.Debug.NewItems then
+				self:DebugMessage("New item in slot %s", tostring(vInventorySlot))
+				self:DebugTable(vCurrentItem, "NewItem", 1)
+			end
+			
+			vNewItemsOutfit:SetItem(vInventorySlot, vCurrentItem)
 			vOutfitHasItems = true
 		end
 	end
@@ -5639,7 +3881,7 @@ function Outfitter:GetNewItemsOutfit(pPreviousOutfit)
 		return nil
 	end
 	
-	return vNewItemsOutfit, Outfitter.CurrentInventoryOutfit
+	return vNewItemsOutfit, self.CurrentInventoryOutfit
 end
 
 function Outfitter:UpdateTemporaryOutfit(pNewItemsOutfit)
@@ -5655,9 +3897,10 @@ function Outfitter:UpdateTemporaryOutfit(pNewItemsOutfit)
 	local vUsingExistingTempOutfit = false
 	
 	if vTemporaryOutfit then
-	
-		for vInventorySlot, vItem in pairs(pNewItemsOutfit.Items) do
-			vTemporaryOutfit.Items[vInventorySlot] = vItem
+		local vNewItems = pNewItemsOutfit:GetItems()
+		
+		for vInventorySlot, vItem in pairs(vNewItems) do
+			vTemporaryOutfit:SetItem(vInventorySlot, vItem)
 		end
 		
 		vUsingExistingTempOutfit = true
@@ -5670,13 +3913,13 @@ function Outfitter:UpdateTemporaryOutfit(pNewItemsOutfit)
 	
 	-- Subtract out items which are expected to be in the outfit
 	
-	local vExpectedOutfit = Outfitter:GetExpectedOutfit(vTemporaryOutfit)
+	local vExpectedOutfit = self:GetExpectedOutfit(vTemporaryOutfit)
 	
-	Outfitter:SubtractOutfit(vTemporaryOutfit, vExpectedOutfit)
+	self:SubtractOutfit(vTemporaryOutfit, vExpectedOutfit)
 	
-	if Outfitter:IsEmptyOutfit(vTemporaryOutfit) then
+	if vTemporaryOutfit:IsEmpty() then
 		if vUsingExistingTempOutfit then
-			Outfitter:RemoveOutfit(vTemporaryOutfit)
+			self:RemoveOutfit(vTemporaryOutfit)
 		end
 	else
 		if not vUsingExistingTempOutfit then
@@ -5686,37 +3929,35 @@ function Outfitter:UpdateTemporaryOutfit(pNewItemsOutfit)
 	
 	-- Add the new items to the current compiled outfit
 	
-	for vInventorySlot, vItem in pairs(pNewItemsOutfit.Items) do
-		Outfitter.ExpectedOutfit.Items[vInventorySlot] = vItem
+	local vNewItems = pNewItemsOutfit:GetItems()
+	
+	if self.Debug.EquipmentChanges then
+		self:DebugMessage("Adding new items to temporary outfit")
+		self:DebugTable(vNewItems, "NewItems", 2)
+	end
+	
+	for vInventorySlot, vItem in pairs(vNewItems) do
+		Outfitter.ExpectedOutfit:SetItem(vInventorySlot, vItem)
 	end
 end
 
 function Outfitter:SetSlotEnable(pSlotName, pEnable)
-	if not Outfitter.SelectedOutfit then
+	if not self.SelectedOutfit then
 		return
 	end
 	
 	if pEnable then
-		Outfitter:SetInventoryItem(Outfitter.SelectedOutfit, pSlotName)
+		Outfitter:DebugMessage("Enabling slot "..pSlotName)
+		self.SelectedOutfit:SetInventoryItem(pSlotName)
 	else
-		Outfitter.SelectedOutfit.Items[pSlotName] = nil
+		self.SelectedOutfit:RemoveItem(pSlotName)
 	end
 	
-	Outfitter.DisplayIsDirty = true
-end
-
-function Outfitter:SetInventoryItem(pOutfit, pSlotName)
-	if not pOutfit then
-		return
-	end
-
-	Outfitter:AddOutfitItem(pOutfit, pSlotName, Outfitter:GetInventoryItemInfo(pSlotName))
-	
-	Outfitter.DisplayIsDirty = true
+	self.DisplayIsDirty = true
 end
 
 function Outfitter:GetOutfitByScriptID(pScriptID)
-	for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
 		for _, vOutfit in ipairs(vOutfits) do
 			if vOutfit.ScriptID == pScriptID then
 				return vOutfit
@@ -5727,64 +3968,62 @@ function Outfitter:GetOutfitByScriptID(pScriptID)
 	return nil
 end
 
+function Outfitter:GetOutfitByName(name)
+	for categoryID, outfits in pairs(self.Settings.Outfits) do
+		for _, outfit in ipairs(outfits) do
+			if outfit.Name == name then
+				return outfit
+			end
+		end
+	end
+	return nil
+end
+
+Outfitter.AuraStates =
+{
+	Dining = false,
+	GhostWolf = false,
+	Feigning = false,
+	Evocate = false,
+	Monkey = false,
+	Hawk = false,
+	Cheetah = false,
+	Pack = false,
+	Beast = false,
+	Wild = false,
+	Viper = false,
+	Dragonhawk = false,
+	Prowl = false,
+}
+
 function Outfitter:GetPlayerAuraStates()
-	local vAuraStates =
-	{
-		Dining = false,
-		Shadowform = false,
-		GhostWolf = false,
-		Feigning = false,
-		Evocate = false,
-		Monkey = false,
-		Hawk = false,
-		Cheetah = false,
-		Pack = false,
-		Beast = false,
-		Wild = false,
-		Viper = false,
-		Prowl = false,
-	}
-	
 	local vBuffIndex = 1
 	
+	for vKey, _ in pairs(self.AuraStates) do
+		self.AuraStates[vKey] = false
+	end
+	
 	while true do
-		local vName, _, vTexture = UnitBuff("player", vBuffIndex)
+		local vName, _, vTexture, _, _, _, _, _, _, _, vSpellID = UnitBuff("player", vBuffIndex) 
 		
-		if not vTexture then
-			return vAuraStates
+		if not vName then
+			return self.AuraStates
 		end
-		
-		local vStartIndex, vEndIndex, vTextureName = string.find(vTexture, "([^%\\]*)$")
 		
 		--
 		
 		local vSpecialID = Outfitter.cAuraIconSpecialID[vName]
 		
 		if not vSpecialID then
-			vSpecialID = Outfitter.cAuraIconSpecialID[vTextureName]
+			vSpecialID = Outfitter.cAuraIconSpecialID[vTexture]
 		end
 		
-		if vSpecialID then
-			vAuraStates[vSpecialID] = true
-		
-		--
-		
-		elseif not vAuraStates.Dining
-		and string.find(vTextureName, "INV_Drink") then
-			vAuraStates.Dining = true
-		
-		--
-		
-		else
-			local vTextLine1, vTextLine2 = Outfitter:GetBuffTooltipText(vBuffIndex)
+		if not vSpecialID then
+			vSpecialID = self.cSpellIDToSpecialID[vSpellID]
+		end
 			
-			if vTextLine1 then
-				local vSpecialID = Outfitter.cSpellNameSpecialID[vTextLine1]
-				
-				if vSpecialID then
-					vAuraStates[vSpecialID] = true
-				end
-			end
+		if vSpecialID then
+			self.AuraStates[vSpecialID] = true
 		end
 		
 		vBuffIndex = vBuffIndex + 1
@@ -5792,28 +4031,40 @@ function Outfitter:GetPlayerAuraStates()
 end
 
 function Outfitter:GetBuffTooltipText(pBuffIndex)
-	OutfitterTooltip:SetOwner(OutfitterFrame, "ANCHOR_BOTTOMRIGHT", 0, 0)
-	OutfitterTooltip:SetUnitBuff("player", pBuffIndex)
+	local tooltip = self.TooltipLib:SharedTooltip()
+	tooltip:ClearLines()
+	tooltip:SetUnitBuff("player", pBuffIndex)
 	
-	local vText1, vText2
+	if not tooltip:IsShown() then
+		return
+	end
 	
-	if OutfitterTooltipTextLeft1:IsShown() then
-		vText1 = OutfitterTooltipTextLeft1:GetText()
+	-- Find the first two text lines
+	local tooltipName = tooltip:GetName()
+	local textLeft1 = _G[tooltipName.."TextLeft1"]
+	local textLeft2 = _G[tooltipName.."TextLeft2"]
+
+	-- Retrieve the first line if it's shown
+	local text1
+	if textLeft1:IsShown() then
+		text1 = textLeft1:GetText()
 	end -- if IsShown
 
+	-- Retrieve the second line if it's shown
+	local text2
 	if OutfitterTooltipTextLeft2:IsShown() then
-		vText2 = OutfitterTooltipTextLeft2:GetText()
+		text2 = textLeft2:GetText()
 	end -- if IsShown
 
-	OutfitterTooltip:Hide()
-	
-	return vText1, vText2
+	return text1, text2
 end
 
 function Outfitter:UpdateSwimming()
-	MCEventLib:DispatchEvent("TIMER")
+	self:BeginEquipmentUpdate()
 	
-	Outfitter:UpdateMountedState()
+	self.EventLib:DispatchEvent("TIMER")
+	
+	self:UpdateMountedState()
 	
 	local vSwimming = false
 	
@@ -5821,43 +4072,58 @@ function Outfitter:UpdateSwimming()
 		vSwimming = true
 	end
 	
-	if not Outfitter.SpecialState.Swimming then
-		Outfitter.SpecialState.Swimming = false
+	if not self.SpecialState.Swimming then
+		self.SpecialState.Swimming = false
 	end
 	
-	Outfitter:SetSpecialOutfitEnabled("Swimming", vSwimming)
+	self:SetSpecialOutfitEnabled("Swimming", vSwimming)
+	self:EndEquipmentUpdate()
+end
+
+function Outfitter:UnitAuraChanged(pEvent, pUnitID)
+	if pUnitID ~= "player" then
+		return
+	end
+	
+	if self.InCombat then
+		self.SchedulerLib:ScheduleUniqueTask(2.0, self.UpdateAuraStates, self)
+	else
+		self:UpdateAuraStates()
+	end
 end
 
 function Outfitter:UpdateAuraStates()
-	Outfitter:BeginEquipmentUpdate()
+	self:BeginEquipmentUpdate()
 	
 	-- Check for special aura outfits
 
-	local vAuraStates = Outfitter:GetPlayerAuraStates()
+	local vAuraStates = self:GetPlayerAuraStates()
 	
 	for vSpecialID, vIsActive in pairs(vAuraStates) do
 		if vSpecialID == "Feigning" then
-			Outfitter.IsFeigning = vIsActive
+			self.IsFeigning = vIsActive
 		end
 		
 		if not Outfitter.SpecialState[vSpecialID] then
-			Outfitter.SpecialState[vSpecialID] = false
+			self.SpecialState[vSpecialID] = false
 		end
 		
 		-- Don't equip the dining outfit if health and mana are almost topped up
 
 		if vSpecialID == "Dining"
 		and vIsActive
-		and Outfitter:PlayerIsFull() then
+		and self:PlayerIsFull() then
 			vIsActive = false
 		end
 		
 		-- Update the state
 		
-		Outfitter:SetSpecialOutfitEnabled(vSpecialID, vIsActive)
+		self:SetSpecialOutfitEnabled(vSpecialID, vIsActive)
 	end
 	
-	Outfitter:EndEquipmentUpdate()
+	self:UpdateMountedState()
+	
+	self:EndEquipmentUpdate()
 	
 	-- Update shapeshift state on aura change too
 	-- NOTE: Currently (WoW client 2.3) the shapeshift info isn't
@@ -5865,17 +4131,31 @@ function Outfitter:UpdateAuraStates()
 	-- the shapeshift state after about 1 frame to allow the state to
 	-- synch
 	
-	MCSchedulerLib:ScheduleUniqueTask(0.01, Outfitter.UpdateShapeshiftState, Outfitter)
+	self.SchedulerLib:ScheduleUniqueTask(0.01, self.UpdateShapeshiftState, self)
 end
 
 function Outfitter:UpdateMountedState()
 	local vRiding = IsMounted() and not UnitOnTaxi("player")
 	
-	Outfitter:SetSpecialOutfitEnabled("Riding", vRiding)
+	self:SetSpecialOutfitEnabled("Riding", vRiding)
 end
 
 function Outfitter:UpdateShapeshiftState()
-	Outfitter:BeginEquipmentUpdate()
+	-- During loading screens, shapeshift/DK-Presence auras disappear briefly.
+	-- depending on outfit setup, this may remove some or all the player's gear
+	-- and then put it right back on when aura reappears, but this leaves them
+	-- at low health or mana etc. due to the stat loss of not having their gear on.
+	-- so we defer shapeshift checks until loading screen stuff is completed.
+	if self.Suspended then
+		self.SchedulerLib:ScheduleUniqueTask(0.1, self.UpdateShapeshiftState, self)
+		return
+	end
+
+	self:BeginEquipmentUpdate()
+	
+	if not self.Settings.ShapeshiftIndexInfo then
+		self.Settings.ShapeshiftIndexInfo = {}
+	end
 	
 	local vNumForms = GetNumShapeshiftForms()
 	
@@ -5883,13 +4163,24 @@ function Outfitter:UpdateShapeshiftState()
 	
 	local vActiveForm
 	
+	--self:DebugMessage("Outfitter:UpdateShapeshiftState(): %d forms", vNumForms)
 	for vIndex = 1, vNumForms do
 		local vTexture, vName, vIsActive, vIsCastable = GetShapeshiftFormInfo(vIndex)
-		local vShapeshiftInfo = Outfitter.cShapeshiftInfo[vName]
+		local _
+		
+		--self:DebugMessage("%d: %s texture = %s (%d) %s", vIndex, vName, vTexture, vTexture:len(), vIsActive and "ACTIVE" or "not active")
+		
+		local vShapeshiftInfo = self.cShapeshiftTextureInfo[vTexture]
+		
+		if vShapeshiftInfo then
+			self.Settings.ShapeshiftIndexInfo[vIndex] = vShapeshiftInfo
+		else
+			vShapeshiftInfo = self.Settings.ShapeshiftIndexInfo[vIndex]
+		end
 		
 		if vShapeshiftInfo then
 			if not vIsActive then
-				Outfitter:UpdateShapeshiftInfo(vShapeshiftInfo, false)
+				self:UpdateShapeshiftInfo(vShapeshiftInfo, false)
 			else
 				vActiveForm = vShapeshiftInfo
 			end
@@ -5899,21 +4190,21 @@ function Outfitter:UpdateShapeshiftState()
 	-- Substitute the druid caster pseudo-form if necessary or deactivate it
 	-- if it's not
 	
-	if Outfitter.PlayerClass == "DRUID" then
+	if self.PlayerClass == "DRUID" then
 		if not vActiveForm then
-			vActiveForm = Outfitter.cShapeshiftInfo.CasterForm
+			vActiveForm = self.cShapeshiftTextureInfo.CasterForm
 		else
-			Outfitter:UpdateShapeshiftInfo(Outfitter.cShapeshiftInfo.CasterForm, false)
+			self:UpdateShapeshiftInfo(self.cShapeshiftTextureInfo.CasterForm, false)
 		end
 	end
 	
 	-- Activate the new form
 	
 	if vActiveForm then
-		Outfitter:UpdateShapeshiftInfo(vActiveForm, true)
+		self:UpdateShapeshiftInfo(vActiveForm, true)
 	end
 	
-	Outfitter:EndEquipmentUpdate()
+	self:EndEquipmentUpdate()
 end
 
 function Outfitter:UpdateShapeshiftInfo(pShapeshiftInfo, pIsActive)
@@ -5927,16 +4218,19 @@ function Outfitter:UpdateShapeshiftInfo(pShapeshiftInfo, pIsActive)
 	
 	--
 	
-	if Outfitter.SpecialState[pShapeshiftInfo.ID] == nil then
-		Outfitter.SpecialState[pShapeshiftInfo.ID] = Outfitter:WearingOutfitWithScriptID(pShapeshiftInfo.ID)
+	--Outfitter:DebugMessage("Outfitter:UpdateShapeshiftInfo(%s, %s)", tostring(pShapeshiftInfo.ID), tostring(pIsActive))
+	--Outfitter:DebugStack()
+	
+	if self.SpecialState[pShapeshiftInfo.ID] == nil then
+		self.SpecialState[pShapeshiftInfo.ID] = self:WearingOutfitWithScriptID(pShapeshiftInfo.ID)
 	end
 	
-	if Outfitter.SpecialState[pShapeshiftInfo.ID] ~= pIsActive then
+	if self.SpecialState[pShapeshiftInfo.ID] ~= pIsActive then
 		if pIsActive and pShapeshiftInfo.MaybeInCombat then
-			Outfitter.MaybeInCombat = true
+			self.MaybeInCombat = true
 		end
 		
-		Outfitter:SetSpecialOutfitEnabled(pShapeshiftInfo.ID, pIsActive)
+		self:SetSpecialOutfitEnabled(pShapeshiftInfo.ID, pIsActive)
 	end
 end
 
@@ -5949,7 +4243,7 @@ function Outfitter:SetSpecialOutfitEnabled(pSpecialID, pEnable)
 		pEnable = false
 	end
 	
-	if Outfitter.SpecialState[pSpecialID] == pEnable then
+	if self.SpecialState[pSpecialID] == pEnable then
 		return
 	end
 	
@@ -5957,32 +4251,32 @@ function Outfitter:SetSpecialOutfitEnabled(pSpecialID, pEnable)
 	-- if the dining outfit is being changed
 	
 	if pSpecialID == "Dining" and pEnable then
-		MCEventLib:RegisterEvent("UNIT_HEALTH", Outfitter.UnitHealthOrManaChanged, Outfitter, true) -- Register as a blind event handler
+		self.EventLib:RegisterEvent("UNIT_HEALTH", self.UnitHealthOrManaChanged, self, true) -- Register as a blind event handler
 	else
-		MCEventLib:UnregisterEvent("UNIT_HEALTH", Outfitter.UnitHealthOrManaChanged, Outfitter)
+		self.EventLib:UnregisterEvent("UNIT_HEALTH", self.UnitHealthOrManaChanged, self)
 	end
 	
 	--
 	
-	Outfitter.SpecialState[pSpecialID] = pEnable
+	self.SpecialState[pSpecialID] = pEnable
 	
 	-- Dispatch the special ID events
 	
-	local vEvents = Outfitter.cSpecialIDEvents[pSpecialID]
+	local vEvents = self.cSpecialIDEvents[pSpecialID]
 	
 	if vEvents then
 		if pEnable then
-			MCEventLib:DispatchEvent(vEvents.Equip)
+			self.EventLib:DispatchEvent(vEvents.Equip)
 		else
-			MCEventLib:DispatchEvent(vEvents.Unequip)
+			self.EventLib:DispatchEvent(vEvents.Unequip)
 		end
 	else
-		Outfitter:ErrorMessage("No events found for "..pSpecialID)
+		self:ErrorMessage("No events found for "..pSpecialID)
 	end
 end
 
 function Outfitter:WearingOutfitWithScriptID(pSpecialID)
-	for vIndex, vOutfit in ipairs(Outfitter.OutfitStack.Outfits) do
+	for vIndex, vOutfit in ipairs(self.OutfitStack.Outfits) do
 		if vOutfit.ScriptID == pSpecialID then
 			return true, vIndex
 		end
@@ -5990,44 +4284,62 @@ function Outfitter:WearingOutfitWithScriptID(pSpecialID)
 end
 
 function Outfitter:ScheduleUpdateZone()
-	MCSchedulerLib:RescheduleTask(0.01, self.UpdateZone, self)
+	self.SchedulerLib:RescheduleTask(0.01, self.UpdateZone, self)
 end
 
 function Outfitter:UpdateZone()
 	local vCurrentZone = GetZoneText()
+	local name, instanceType, difficultyID, difficultyName, maxPlayers, dynamicDifficulty, isDynamic, instanceMapID = GetInstanceInfo()
+
+	-- Treat Vault of Archavon as its own zone so
+	-- that it doesn't register as the Wintergrasp
+	-- PvP zone
+	
+	if vCurrentZone == GetMapNameByID(501) then -- Wintergrasp
+		local vMinimapZone = GetMinimapZoneText()
+		
+		if vMinimapZone == GetMapNameByID(532) then -- Vault of Archavon
+			vCurrentZone = vMinimapZone
+		end
+	end
 	
 	-- Just return if the zone isn't changing
 	
-	if vCurrentZone == Outfitter.CurrentZone then
+	if vCurrentZone == self.CurrentZone then
 		return
 	end
 	
-	Outfitter.CurrentZone = vCurrentZone
-	Outfitter.CurrentZoneIDs = Outfitter:GetCurrentZoneIDs(Outfitter.CurrentZoneIDs)
+	self.CurrentZone = vCurrentZone
+	self.CurrentZoneIDs = self:GetCurrentZoneIDs(self.CurrentZoneIDs)
 	
-	Outfitter:BeginEquipmentUpdate()
+	self:BeginEquipmentUpdate()
 	
 	--
 	
-	for _, vSpecialID in ipairs(Outfitter.cZoneSpecialIDs) do
-		local vIsActive = Outfitter.CurrentZoneIDs[vSpecialID] == true
-		local vCurrentIsActive = Outfitter.SpecialState[vSpecialID]
+	for _, vSpecialID in ipairs(self.cZoneSpecialIDs) do
+		local vIsActive = self.CurrentZoneIDs[vSpecialID] == true
+		local vCurrentIsActive = self.SpecialState[vSpecialID]
 		
 		if vCurrentIsActive == nil then
-			vCurrentIsActive = Outfitter:WearingOutfitWithScriptID(vSpecialID)
-			Outfitter.SpecialState[vSpecialID] = vCurrentIsActive
+			vCurrentIsActive = self:WearingOutfitWithScriptID(vSpecialID)
+			self.SpecialState[vSpecialID] = vCurrentIsActive
 		end
 		
-		Outfitter:SetSpecialOutfitEnabled(vSpecialID, vIsActive)
+		self:SetSpecialOutfitEnabled(vSpecialID, vIsActive)
 	end
 	
-	Outfitter:EndEquipmentUpdate()
+	self:EndEquipmentUpdate()
 end
 
 function Outfitter:GetCurrentZoneIDs(pRecycleTable)
-	local vZoneIDs = Outfitter:RecycleTable(pRecycleTable)
+	local vZoneIDs = self:RecycleTable(pRecycleTable)
 	
-	local vZoneSpecialIDMap = Outfitter.cZoneSpecialIDMap[Outfitter.CurrentZone]
+	local vZoneSpecialIDMap = self.cZoneSpecialIDMap[self.CurrentZone]
+	
+	if not vZoneSpecialIDMap then
+		vZoneSpecialIDMap = self.cZoneSpecialIDMap[GetRealZoneText()]
+	end
+	
 	local vPVPType, vIsArena, vFactionName = GetZonePVPInfo()
 	
 	if vZoneSpecialIDMap then
@@ -6038,45 +4350,29 @@ function Outfitter:GetCurrentZoneIDs(pRecycleTable)
 		end
 	end
 	
+	local inInstance, instanceType = IsInInstance()
+	vZoneIDs.Battleground = instanceType == "pvp" or instanceType == "arena"
 	return vZoneIDs
 end
 
 function Outfitter:InZoneType(pZoneType)
-	return Outfitter.CurrentZoneIDs[pZoneType] == true
+	return self.CurrentZoneIDs[pZoneType] == true
 end
 
 function Outfitter:InBattlegroundZone()
-	return Outfitter:InZoneType("Battleground")
+	local name, instanceType, difficultyID, difficultyName, maxPlayers, dynamicDifficulty, isDynamic, instanceMapID = GetInstanceInfo()
+	return instanceType == "pvp" or instanceType == "arena"
 end
 
 function Outfitter:SetAllSlotEnables(pEnable)
-	for _, vInventorySlot in ipairs(Outfitter.cSlotNames) do
-		Outfitter:SetSlotEnable(vInventorySlot, pEnable)
-	end
-	
-	Outfitter:OutfitSettingsChanged(Outfitter.SelectedOutfit)
-	Outfitter:Update(true)
-end
-
-function Outfitter:OutfitIsComplete(pOutfit, pIgnoreAmmoSlot)
-	for _, vInventorySlot in ipairs(Outfitter.cSlotNames) do
-		if not pOutfit.Items[vInventorySlot]
-		and (not pIgnoreAmmoSlot or vInventorySlot ~= "AmmoSlot") then
-			return false
-		end
-	end
-	
-	return true
-end
-
-function Outfitter:CalculateOutfitCategory(pOutfit)
-	local vIgnoreAmmoSlot = UnitHasRelicSlot("player")
-
-	if Outfitter:OutfitIsComplete(pOutfit, vIgnoreAmmoSlot) then
-		return "Complete"
+	if pEnable then
+		self.SelectedOutfit:EnableAllSlots()
 	else
-		return "Accessory"
+		self.SelectedOutfit:DisableAllSlots()
 	end
+	
+	self:OutfitSettingsChanged(self.SelectedOutfit)
+	self:Update(true)
 end
 
 function Outfitter:OutfitSettingsChanged(pOutfit)
@@ -6084,80 +4380,82 @@ function Outfitter:OutfitSettingsChanged(pOutfit)
 		return
 	end
 	
-	local vTargetCategoryID = Outfitter:CalculateOutfitCategory(pOutfit)
+	local vTargetCategoryID = pOutfit:CalculateOutfitCategory()
 	
 	if pOutfit.CategoryID ~= vTargetCategoryID then
-		local vOutfitCategoryID, vOutfitIndex = Outfitter:FindOutfit(pOutfit)
+		local vOutfitCategoryID, vOutfitIndex = self:FindOutfit(pOutfit)
 		
 		if not vOutfitCategoryID then
-			Outfitter:ErrorMessage(pOutfit.Name.." not found in outfit list")
+			self:ErrorMessage(pOutfit:GetName().." not found in outfit list")
 			return
 		end
 		
 		if vOutfitCategoryID ~= pOutfit.CategoryID then
-			Outfitter:DebugMessage("OutfitSettingsChanged: "..pOutfit.Name.." says it's in "..pOutfit.CategoryID.." but it's in "..vOutfitCategoryID)
+			self:DebugMessage("OutfitSettingsChanged: "..pOutfit:GetName().." says it's in "..pOutfit.CategoryID.." but it's in "..vOutfitCategoryID)
 		end
 		
-		table.remove(gOutfitter_Settings.Outfits[vOutfitCategoryID], vOutfitIndex)
+		table.remove(self.Settings.Outfits[vOutfitCategoryID], vOutfitIndex)
 		
-		Outfitter:AddOutfit(pOutfit)
+		self:AddOutfit(pOutfit)
 	end
 	
-	Outfitter.DisplayIsDirty = true
+	self.DisplayIsDirty = true
 	
-	Outfitter:DispatchOutfitEvent("EDIT_OUTFIT", pOutfit.Name, pOutfit)
+	self:DispatchOutfitEvent("EDIT_OUTFIT", pOutfit:GetName(), pOutfit)
 end
 
 function Outfitter:DeleteOutfit(pOutfit)
-	local vWearingOutfit = Outfitter:WearingOutfit(pOutfit)
-	local vOutfitCategoryID, vOutfitIndex = Outfitter:FindOutfit(pOutfit)
+	local vWearingOutfit = self:WearingOutfit(pOutfit)
+	
+	-- Deselect the outfit
+	
+	if pOutfit == self.SelectedOutfit then
+		self:ClearSelection()
+	end
+	
+	-- Remove the outfit if it's being worn
+	
+	self:RemoveOutfit(pOutfit)
+	self:DeactivateScript(pOutfit)
+	
+	local vOutfitCategoryID, vOutfitIndex = self:FindOutfit(pOutfit)
 	
 	if not vOutfitCategoryID then
 		return
 	end
 	
-	Outfitter:DeactivateScript(pOutfit)
-	
 	-- Delete the outfit
 	
-	table.remove(gOutfitter_Settings.Outfits[vOutfitCategoryID], vOutfitIndex)
+	table.remove(self.Settings.Outfits[vOutfitCategoryID], vOutfitIndex)
 	
-	-- Deselect the outfit
-	
-	if pOutfit == Outfitter.SelectedOutfit then
-		Outfitter:ClearSelection()
-	end
-	
-	-- Remove the outfit if it's being worn
-	
-	Outfitter:RemoveOutfit(pOutfit)
-	
+	pOutfit:Delete()
+
 	--
 	
-	Outfitter.DisplayIsDirty = true
+	self.DisplayIsDirty = true
 	
-	Outfitter:DispatchOutfitEvent("DELETE_OUTFIT", pOutfit.Name, pOutfit)
+	self:DispatchOutfitEvent("DELETE_OUTFIT", pOutfit:GetName(), pOutfit)
 end
 
 function Outfitter:AddOutfit(pOutfit)
 	local vCategoryID
 	
-	vCategoryID = Outfitter:CalculateOutfitCategory(pOutfit)
+	vCategoryID = pOutfit:CalculateOutfitCategory()
 	
-	if not gOutfitter_Settings.Outfits then
-		gOutfitter_Settings.Outfits = {}
+	if not self.Settings.Outfits then
+		self.Settings.Outfits = {}
 	end
 	
-	if not gOutfitter_Settings.Outfits[vCategoryID] then
-		gOutfitter_Settings.Outfits[vCategoryID] = {}
+	if not self.Settings.Outfits[vCategoryID] then
+		self.Settings.Outfits[vCategoryID] = {}
 	end
 	
-	table.insert(gOutfitter_Settings.Outfits[vCategoryID], pOutfit)
+	table.insert(self.Settings.Outfits[vCategoryID], pOutfit)
 	pOutfit.CategoryID = vCategoryID
 	
-	Outfitter.DisplayIsDirty = true
+	self.DisplayIsDirty = true
 	
-	Outfitter:DispatchOutfitEvent("ADD_OUTFIT", pOutfit.Name, pOutfit)
+	self:DispatchOutfitEvent("ADD_OUTFIT", pOutfit:GetName(), pOutfit)
 	
 	return vCategoryID
 end
@@ -6166,7 +4464,7 @@ function Outfitter:SlotEnableClicked(pCheckbox, pButton)
 	-- If the user is attempting to drop an item put it in the slot for them
 	
 	if CursorHasItem() then
-		PickupInventoryItem(Outfitter.cSlotIDs[pCheckbox.SlotName])
+		PickupInventoryItem(self.cSlotIDs[pCheckbox.SlotName])
 		return
 	end
 	
@@ -6180,14 +4478,14 @@ function Outfitter:SlotEnableClicked(pCheckbox, pButton)
 		vChecked = true
 	end
 	
-	Outfitter:SetSlotEnable(pCheckbox.SlotName, vChecked)
-	Outfitter:OutfitSettingsChanged(Outfitter.SelectedOutfit)
-	Outfitter:Update(true)
+	self:SetSlotEnable(pCheckbox.SlotName, vChecked)
+	self:OutfitSettingsChanged(self.SelectedOutfit)
+	self:Update(true)
 end
 
-function Outfitter:FindMultipleItemLocation(pItems, pEquippableItems)
+function Outfitter:FindMultipleItemLocation(pItems, pInventoryCache)
 	for vListIndex, vListItem in ipairs(pItems) do
-		local vItem = Outfitter.ItemList_FindItemOrAlt(pEquippableItems, vListItem)
+		local vItem = pInventoryCache:FindItemOrAlt(vListItem)
 		
 		if vItem then
 			return vItem, vListItem
@@ -6197,8 +4495,8 @@ function Outfitter:FindMultipleItemLocation(pItems, pEquippableItems)
 	return nil, nil
 end
 
-function Outfitter:FindAndAddItemsToOutfit(pOutfit, pSlotName, pItems, pEquippableItems)
-	vItemLocation, vItem = Outfitter:FindMultipleItemLocation(pItems, pEquippableItems)
+function Outfitter:FindAndAddItemsToOutfit(pOutfit, pSlotName, pItems, pInventoryCache)
+	vItemLocation, vItem = self:FindMultipleItemLocation(pItems, pInventoryCache)
 	
 	if vItemLocation then
 		local vInventorySlot = pSlotName
@@ -6207,21 +4505,19 @@ function Outfitter:FindAndAddItemsToOutfit(pOutfit, pSlotName, pItems, pEquippab
 			vInventorySlot = vItemLocation.ItemSlotName
 		end
 		
-		Outfitter:AddOutfitItem(pOutfit, vInventorySlot, vItem)
+		pOutfit:AddItem(vInventorySlot, vItem)
 	end
 end
 
 function Outfitter:IsInitialized()
-	return Outfitter.Initialized
+	return self.Initialized
 end
 
 function Outfitter:InitializationCheck()
-	if not gOutfitter_Settings then
-		MCSchedulerLib:RescheduleTask(1, self.Initialize, self) -- First time schedule initialization after a delay
-		return
-	end
-
-	self:Initialize()
+	-- Don't initialize for a short time after WoW comes up to allow
+	-- time for WoW to load inventory, bags, talent trees, etc.
+	
+	self.SchedulerLib:RescheduleTask(1, self.Initialize, self)
 end
 
 function Outfitter:Initialize()
@@ -6229,33 +4525,51 @@ function Outfitter:Initialize()
 		return
 	end
 	
-	-- Makes sure they're not upgrading with a reloadui when there are new files
+	-- Unregister the initialization events
+	for vEventID, _ in pairs(self.cInitializationEvents) do
+		self.EventLib:UnregisterEvent(vEventID, self.InitializationCheck, self)
+	end
 	
-	if not self._QuickSlots
-	or not self._OutfitIterator then
+	-- Make sure they're not upgrading with a reloadui when there are new files
+	if tonumber(GetAddOnMetadata("Outfitter", "X-ReloadTag")) ~= 1 then
 		OutfitterMinimapButton:Hide() -- Remove access to Outfitter so more errors don't start coming up
 		OutfitterButtonFrame:Hide()
 		StaticPopup_Show("OUTFITTER_CANT_RELOADUI")
 		return
 	end
 	
-	-- Unregister the initialization events
-	
-	for vEventID, _ in pairs(self.cInitializationEvents) do
-		MCEventLib:UnregisterEvent(vEventID, self.InitializationCheck, self)
-	end
-	
-	self.MenuManager = self:NewObject(self._MenuManager)
-	-- self.MenuManager:Test()
-	
-	--
-	
+	-- Get the basic player info
+	self.PlayerName = UnitName("player")
+	self.RealmName = GetRealmName()
 	local _, vPlayerClass = UnitClass("player")
-	
 	self.PlayerClass = vPlayerClass
 	
-	-- Initialize the main UI tabs
+	-- Swap in the Horde Lance for the Alliance Lance mapping
+	if UnitFactionGroup("player") == "Horde" then
+		Outfitter.cItemAliases[46106] = 46070 -- Argent Lance -> Horde Lance
+	end
 	
+	-- Initialize the global settings if they didn't get loaded
+	if not gOutfitter_GlobalSettings then
+		self:InitializeGlobalSettings()
+	end
+	
+	-- Refuse to load for select characters
+	if (self.BannedCharacters[self.RealmName]
+	and self.BannedCharacters[self.RealmName][self.PlayerName])
+	or gOutfitter_GlobalSettings.Banned then
+		gOutfitter_GlobalSettings.Banned = true
+		OutfitterMinimapButton:Hide()
+		OutfitterButtonFrame:Hide()
+		self:ErrorMessage("Your character is banned from Outfitter.  Use something else for your gear management.")
+		return
+	end
+	
+	-- Hook onto C_PetJournal.SummonPetByGUID so that the cooldown can be monitored
+	hooksecurefunc(C_PetJournal, "SummonPetByGUID", function () self.SummonPetByGUIDTime = GetTime() end)
+	self.SummonPetByGUIDTime = GetTime()
+	
+	-- Initialize the main UI tabs
 	self._SidebarWindowFrame.Construct(OutfitterFrame)
 	
 	PanelTemplates_SetNumTabs(OutfitterFrame, #self.cPanelFrames)
@@ -6263,8 +4577,7 @@ function Outfitter:Initialize()
 	PanelTemplates_UpdateTabs(OutfitterFrame)
 	
 	-- Install the /outfit command handler
-
-	SlashCmdList.OUTFITTER = self.ExecuteCommand
+	SlashCmdList.OUTFITTER = function (pCommand) Outfitter:ExecuteCommand(pCommand) end
 	SLASH_OUTFITTER1 = "/outfitter"
 	
 	if not SlashCmdList.UNEQUIP then
@@ -6272,41 +4585,34 @@ function Outfitter:Initialize()
 		SLASH_UNEQUIP1 = "/unequip"
 	end
 	
-	-- Patch GameTooltip so we can monitor hide/show events
-	
-	self.HookScript(GameTooltip, "OnShow", self.GameToolTip_OnShow)
-	self.HookScript(GameTooltip, "OnHide", self.GameToolTip_OnHide)
-	
 	-- Initialize the slot ID map
-	
 	self.cSlotIDs = {}
 	self.cSlotIDToInventorySlot = {}
-		
 	for _, vInventorySlot in ipairs(self.cSlotNames) do
 		local vSlotID = GetInventorySlotInfo(vInventorySlot)
-		
 		self.cSlotIDs[vInventorySlot] = vSlotID
 		self.cSlotIDToInventorySlot[vSlotID] = vInventorySlot
 	end
 	
+	-- Initialize the scripts
+	Outfitter:InitializeScripts()
+
 	-- Initialize the settings
-	
 	if not gOutfitter_Settings then
 		self:InitializeSettings()
-	end
-	
-	if not gOutfitter_GlobalSettings then
-		self:InitializeGlobalSettings()
+	else
+		self.Settings = gOutfitter_Settings
 	end
 	
 	-- Initialize the outfits
-	
 	self.CurrentOutfit = self:GetInventoryOutfit()
 	
-	if not gOutfitter_Settings.Outfits then
+	if not self.Settings.Outfits then
 		self:InitializeOutfits()
 	end
 	
+	self:InstallDefaultSpecializationIcons()
+	self:AttachOutfitMethods()
 	self:CheckDatabase()
 	
 	-- Initialize the outfit stack
@@ -6318,12 +4624,12 @@ function Outfitter:Initialize()
 	
 	local vUsedRecentNames = {}
 	
-	for vIndex = #gOutfitter_Settings.RecentCompleteOutfits, 1, -1 do
-		local vName = gOutfitter_Settings.RecentCompleteOutfits[vIndex]
+	for vIndex = #self.Settings.RecentCompleteOutfits, 1, -1 do
+		local vName = self.Settings.RecentCompleteOutfits[vIndex]
 		
 		if not self:FindOutfitByName(vName)
 		or vUsedRecentNames[vName] then
-			table.remove(gOutfitter_Settings.RecentCompleteOutfits, vIndex)
+			table.remove(self.Settings.RecentCompleteOutfits, vIndex)
 		else
 			vUsedRecentNames[vName] = true
 		end
@@ -6331,22 +4637,25 @@ function Outfitter:Initialize()
 	
 	-- Set the minimap button
 	
-	if gOutfitter_Settings.Options.HideMinimapButton then
+	if self.Settings.Options.HideMinimapButton then
 		OutfitterMinimapButton:Hide()
 	else
 		OutfitterMinimapButton:Show()
 	end
 	
-	if not gOutfitter_Settings.Options.MinimapButtonAngle
-	and not gOutfitter_Settings.Options.MinimapButtonX then
-		gOutfitter_Settings.Options.MinimapButtonAngle = -1.5708
+	if not self.Settings.Options.MinimapButtonAngle
+	and not self.Settings.Options.MinimapButtonX then
+		self.Settings.Options.MinimapButtonAngle = -1.5708
 	end
 	
-	if gOutfitter_Settings.Options.MinimapButtonAngle then
-		self.MinimapButton_SetPositionAngle(gOutfitter_Settings.Options.MinimapButtonAngle)
+	if self.Settings.Options.MinimapButtonAngle then
+		OutfitterMinimapButton:SetPositionAngle(self.Settings.Options.MinimapButtonAngle)
 	else
-		self.MinimapButton_SetPosition(gOutfitter_Settings.Options.MinimapButtonX, gOutfitter_Settings.Options.MinimapButtonY)
+		OutfitterMinimapButton:SetPosition(self.Settings.Options.MinimapButtonX, self.Settings.Options.MinimapButtonY)
 	end
+	
+	-- Move the Blizzard UI over a bit
+	PaperDollSidebarTabs:SetPoint("BOTTOMRIGHT", CharacterFrameInsetRight, "TOPRIGHT", -30, -1)
 	
 	-- Initialize player state
 	
@@ -6364,97 +4673,180 @@ function Outfitter:Initialize()
 	
 	-- Start listening for events
 	
-	MCEventLib:RegisterEvent("PLAYER_ENTERING_WORLD", self.SchedulePlayerEnteringWorld, self)
-	MCEventLib:RegisterEvent("PLAYER_LEAVING_WORLD", self.PlayerLeavingWorld, self)
+	self.EventLib:RegisterEvent("PLAYER_ENTERING_WORLD", self.SchedulePlayerEnteringWorld, self)
+	self.EventLib:RegisterEvent("PLAYER_LEAVING_WORLD", self.PlayerLeavingWorld, self)
 	
-	-- For monitoring mounted, dining and shadowform states
+	-- For monitoring mounted and dining states
 	
-	MCEventLib:RegisterEvent("PLAYER_AURAS_CHANGED", self.UpdateAuraStates, self)
-	MCEventLib:RegisterEvent("UPDATE_SHAPESHIFT_FORMS", self.UpdateShapeshiftState, self)
+	self.EventLib:RegisterEvent("UNIT_AURA", self.UnitAuraChanged, self)
+	
+	--hooksecurefunc("ShapeshiftBar_UpdateState", function () Outfitter.SchedulerLib:ScheduleUniqueTask(0.01, self.UpdateShapeshiftState, self) end)
 	
 	-- For monitoring plaguelands and battlegrounds
 	
-	MCEventLib:RegisterEvent("ZONE_CHANGED_NEW_AREA", self.ScheduleUpdateZone, self)
+	self.EventLib:RegisterEvent("ZONE_CHANGED_NEW_AREA", self.ScheduleUpdateZone, self)
+	self.EventLib:RegisterEvent("ZONE_CHANGED", self.ScheduleUpdateZone, self)
+	self.EventLib:RegisterEvent("ZONE_CHANGED_INDOORS", self.ScheduleUpdateZone, self)
 	
 	-- For monitoring player combat state
 	
-	MCEventLib:RegisterEvent("PLAYER_REGEN_ENABLED", self.RegenEnabled, self)
-	MCEventLib:RegisterEvent("PLAYER_REGEN_DISABLED", self.RegenDisabled, self)
+	self.EventLib:RegisterEvent("PLAYER_REGEN_ENABLED", self.RegenEnabled, self)
+	self.EventLib:RegisterEvent("PLAYER_REGEN_DISABLED", self.RegenDisabled, self)
 	
 	-- For monitoring player dead/alive state
 	
-	MCEventLib:RegisterEvent("PLAYER_DEAD", self.PlayerDead, self)
-	MCEventLib:RegisterEvent("PLAYER_ALIVE", self.PlayerAlive, self)
-	MCEventLib:RegisterEvent("PLAYER_UNGHOST", self.PlayerAlive, self)
+	self.EventLib:RegisterEvent("PLAYER_DEAD", self.PlayerDead, self)
+	self.EventLib:RegisterEvent("PLAYER_ALIVE", self.PlayerAlive, self)
+	self.EventLib:RegisterEvent("PLAYER_UNGHOST", self.PlayerAlive, self)
 	
-	MCEventLib:RegisterEvent("UNIT_INVENTORY_CHANGED", self.UnitInventoryChanged, self, true) -- Register as a blind event handler (no event id param)
+	self.EventLib:RegisterEvent("UNIT_INVENTORY_CHANGED", self.UnitInventoryChanged, self, true) -- Register as a blind event handler (no event id param)
+	self.EventLib:RegisterEvent("OUTFITTER_INVENTORY_CHANGED", self.InventoryChanged, self, true) -- Register as a blind event handler (no event id param)
 
 	-- For indicating which outfits are missing items
 	
-	MCEventLib:RegisterEvent("BAG_UPDATE", self.BagUpdate, self)
-	MCEventLib:RegisterEvent("PLAYERBANKSLOTS_CHANGED", self.BankSlotsChanged, self)
+	self.EventLib:RegisterEvent("BAG_UPDATE", self.BagUpdate, self)
+	self.EventLib:RegisterEvent("PLAYERBANKSLOTS_CHANGED", self.BankSlotsChanged, self)
 	
 	-- For monitoring bank bags
 	
-	MCEventLib:RegisterEvent("BANKFRAME_OPENED", self.BankFrameOpened, self)
-	MCEventLib:RegisterEvent("BANKFRAME_CLOSED", self.BankFrameClosed, self)
+	self.EventLib:RegisterEvent("BANKFRAME_OPENED", self.BankFrameOpened, self)
+	self.EventLib:RegisterEvent("BANKFRAME_CLOSED", self.BankFrameClosed, self)
+	
+	-- For monitoring void storage
+	
+	self.EventLib:RegisterEvent("VOID_STORAGE_OPEN", self.VoidStorageFrameOpened, self)
+	self.EventLib:RegisterEvent("VOID_STORAGE_CLOSE", self.VoidStorageFrameClosed, self)
 	
 	-- For unequipping the dining outfit
 	
-	MCEventLib:RegisterEvent("UNIT_MANA", self.UnitHealthOrManaChanged, self, true) -- Register as a blind event handler (no event id param)
+	self.EventLib:RegisterEvent("UNIT_MANA", self.UnitHealthOrManaChanged, self, true) -- Register as a blind event handler (no event id param)
 	
-	-- For monitoring spirit regen
+	-- For monitoring spellcasts
 	
-	MCEventLib:RegisterEvent("UNIT_SPELLCAST_SENT", self.UnitSpellcastSent, self) -- Register as a blind event handler (no event id param)
-	MCEventLib:RegisterEvent("UNIT_SPELLCAST_START", self.UnitSpellcastSent, self) -- Register as a blind event handler (no event id param)
+--[[
+	for _, vEventID in ipairs({
+		"UNIT_SPELLCAST_CHANNEL_START",
+		"UNIT_SPELLCAST_CHANNEL_STOP",
+		"UNIT_SPELLCAST_CHANNEL_UPDATE",
+		"UNIT_SPELLCAST_DELAYED",
+		"UNIT_SPELLCAST_FAILED",
+		"UNIT_SPELLCAST_FAILED_QUIET",
+		"UNIT_SPELLCAST_INTERRUPTED",
+		"UNIT_SPELLCAST_SENT",
+		"UNIT_SPELLCAST_START",
+		"UNIT_SPELLCAST_STOP",
+		"UNIT_SPELLCAST_SUCCEEDED",
+		"UNIT_SPELLMISS"
+	}) do
+		self.EventLib:RegisterEvent(vEventID, self.UnitSpellcastDebug, self)
+	end
+]]
 	
-	MCEventLib:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED", self.UnitSpellcastStop, self) -- Register as a blind event handler (no event id param)
-	MCEventLib:RegisterEvent("UNIT_SPELLCAST_STOP", self.UnitSpellcastStop, self) -- Register as a blind event handler (no event id param)
+	self.EventLib:RegisterEvent("UNIT_SPELLCAST_SENT", self.UnitSpellcastSent, self)
+	self.EventLib:RegisterEvent("UNIT_SPELLCAST_START", self.UnitSpellcastSent, self)
 	
-	MCEventLib:RegisterEvent("UNIT_SPELLCAST_CHANNEL_START", self.UnitSpellcastChannelStart, self) -- Register as a blind event handler (no event id param)
-	MCEventLib:RegisterEvent("UNIT_SPELLCAST_CHANNEL_STOP", self.UnitSpellcastChannelStop, self) -- Register as a blind event handler (no event id param)
+	self.EventLib:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED", self.UnitSpellcastStop, self)
+	self.EventLib:RegisterEvent("UNIT_SPELLCAST_STOP", self.UnitSpellcastStop, self)
 	
-	MCEventLib:RegisterEvent("UNIT_SPELLCAST_FAILED", self.UnitSpellcastStop, self) -- Register as a blind event handler (no event id param)
-	--MCEventLib:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", self.UnitSpellcastStop, self) -- Register as a blind event handler (no event id param)
+	self.EventLib:RegisterEvent("UNIT_SPELLCAST_CHANNEL_START", self.UnitSpellcastChannelStart, self)
+	self.EventLib:RegisterEvent("UNIT_SPELLCAST_CHANNEL_STOP", self.UnitSpellcastChannelStop, self)
 	
+	self.EventLib:RegisterEvent("UNIT_SPELLCAST_FAILED", self.UnitSpellcastStop, self)
+	self.EventLib:RegisterEvent("UNIT_SPELLCAST_FAILED_QUIET", self.UnitSpellcastStop, self)
+	self.EventLib:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", self.UnitSpellcastStop, self)
+	
+	--
+	
+	self.EventLib:RegisterEvent("CHARACTER_POINTS_CHANGED", self.TalentsChanged, self)
+	self.EventLib:RegisterEvent("PLAYER_TALENT_UPDATE", self.TalentsChanged, self)
+	
+	self:TalentsChanged()
+	
+	-- Patch GameTooltip so we can monitor hide/show events
+	
+	self:HookScript(GameTooltip, "OnShow", self.GameToolTip_OnShow)
+	self:HookScript(GameTooltip, "OnHide", self.GameToolTip_OnHide)
+	
+	-- Patch MobInfo tooltip since it replaces the GameToolTip (blech)
+	
+	if MI2_TooltipFrame then
+		self:HookScript(MI2_TooltipFrame, "OnShow", self.GameToolTip_OnShow)
+		self:HookScript(MI2_TooltipFrame, "OnHide", self.GameToolTip_OnHide)
+	end
+	
+	-- Synchronize with the Equipment Manager
+	self:StartMonitoringEM()
+
 	--
 	
 	self:DispatchOutfitEvent("OUTFITTER_INIT")
 	
-	MCSchedulerLib:ScheduleUniqueRepeatingTask(0.5, self.UpdateSwimming, self, nil, "Outfitter:UpdateSwimming")
+	self.SchedulerLib:ScheduleUniqueRepeatingTask(0.5, self.UpdateSwimming, self, nil, "Outfitter:UpdateSwimming")
 	
 	-- Activate all outfit scripts
-	
-	if not gOutfitter_Settings.Options.DisableAutoSwitch then
+	if not self.Settings.Options.DisableAutoSwitch then
 		self:ActivateAllScripts()
 	end
 	
 	-- Install the "Used by outfits" tooltip feature
+	hooksecurefunc(GameTooltip, "SetBagItem", self.GameTooltip_SetBagItem)
+	hooksecurefunc(GameTooltip, "SetInventoryItem", self.GameTooltip_SetInventoryItem)
+	hooksecurefunc(GameTooltip, "SetHyperlink", self.GameTooltip_SetHyperlink)
 	
-	GameTooltip.Outfitter_OrigSetBagItem = GameTooltip.SetBagItem
-	GameTooltip.SetBagItem = self.GameTooltip_SetBagItem
-	
-	GameTooltip.Outfitter_OrigSetInventoryItem = GameTooltip.SetInventoryItem
-	GameTooltip.SetInventoryItem = self.GameTooltip_SetInventoryItem
+	-- Install the item compare tooltips
+	if not self.Settings.Options.DisableItemComparisons then
+		self.ExtendedCompareTooltip = self:New(Outfitter._ExtendedCompareTooltip)
+	end
 	
 	-- Fire things up with a simulated entrance
-	
 	self:SchedulePlayerEnteringWorld()
+end
+
+function Outfitter:StartMonitoringEM()
+	self.EventLib:RegisterEvent("EQUIPMENT_SETS_CHANGED", self.SynchronizeEM, self)
+end
+
+function Outfitter:StopMonitoringEM()
+	self.EventLib:UnregisterEvent("EQUIPMENT_SETS_CHANGED", self.SynchronizeEM, self)
+end
+
+-- Blizzard added icon numbers in patch 6 but no API for mapping between the number and the path, so create a texture to use for doing the mapping
+function Outfitter:ConvertTextureIDToPath(pID)
+	if type(pID) ~= "number" then
+		return pID
+	end
+
+	if not self.IDConversionTexture then
+		self.IDConversionTexture = OutfitterFrame:CreateTexture(nil, "BACKGROUND")
+		self.IDConversionTexture:Hide()
+	end
+
+	self.IDConversionTexture:SetTexture(pID)
+	return self.IDConversionTexture:GetTexture()
+end
+
+function Outfitter:ConvertTextureIDToString(pID)
+	if type(pID) ~= "number" then
+		return pID
+	end
+
+	local vPath = self:ConvertTextureIDToPath(pID)
+	return string.match(vPath, ".-([^\\]-)$")
 end
 
 function Outfitter:InitializeSettings()
 	gOutfitter_Settings =
 	{
-		Version = 16,
+		Version = 22,
 		Options = {},
 		LastOutfitStack = {},
 		LayerIndex = {},
 		RecentCompleteOutfits = {},
 	}
 	
-	self.OutfitBar:InitializeSettings()
+	self.Settings = gOutfitter_Settings
 	
-	Outfitter.Settings = gOutfitter_Settings
+	self.OutfitBar:InitializeSettings()
 end
 
 function Outfitter:InitializeGlobalSettings()
@@ -6465,282 +4857,281 @@ function Outfitter:InitializeGlobalSettings()
 	}
 end
 
-function Outfitter:ActivateAllScripts()
-	for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
-		for vOutfitIndex, vOutfit in ipairs(vOutfits) do
-			vOutfit.LastScriptTime = nil
-			vOutfit.ScriptLockupCount = 0
-			Outfitter:ActivateScript(vOutfit)
+function Outfitter:AttachOutfitMethods()
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
+		for vIndex, vOutfit in ipairs(vOutfits) do
+			if vOutfit.StoredInEM then
+				local equipmentSetID = C_EquipmentSet.GetEquipmentSetID(vOutfit.Name)
+				if equipmentSetID then
+					vOutfit.equipmentSetID = equipmentSetID
+				end
+
+				setmetatable(vOutfit, Outfitter._OutfitMetaTableEM)
+			else
+				setmetatable(vOutfit, Outfitter._OutfitMetaTable)
+			end
 		end
 	end
 end
 
-function Outfitter:DeactivateAllScripts()
-	for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
-		for vOutfitIndex, vOutfit in ipairs(vOutfits) do
-			Outfitter:DeactivateScript(vOutfit)
+function Outfitter:SynchronizeEM()
+	local equipmentSetIDs = C_EquipmentSet.GetEquipmentSetIDs()
+	
+	-- Mark all the EM outfits as unused
+	for vCategoryID, outfits in pairs(self.Settings.Outfits) do
+		for vIndex, outfit in ipairs(outfits) do
+			if outfit.StoredInEM then
+				outfit.Unused = true
+			end
+		end
+	end
+	
+	-- If NumEquipmentSets is zero, assume that the EM is flaking out
+	-- and save the EM-based outfits so they can be restored if the EM
+	-- happens to straighten up later
+	
+	if #equipmentSetIDs == 0 then
+		if not self.Settings.PreservedEMOutfits then
+			self.Settings.PreservedEMOutfits = {}
+		end
+		
+		for vCategoryID, outfits in pairs(self.Settings.Outfits) do
+			for vIndex, outfit in ipairs(outfits) do
+				if outfit.StoredInEM then
+					self.Settings.PreservedEMOutfits[outfit.Name] = outfit
+				end
+			end
+		end
+	end
+	
+	-- Scan the EM outfits
+	
+	for _, equipmentSetID in ipairs(equipmentSetIDs) do
+		local name = C_EquipmentSet.GetEquipmentSetInfo(equipmentSetID)
+		local outfit = self:FindEMOutfitByName(name)
+		
+		-- If the outfit is missing, see if it can be restored from
+		-- the preserved list
+		
+		if not outfit
+		and self.Settings.PreservedEMOutfits then
+			outfit = self.Settings.PreservedEMOutfits[name]
+			
+			if outfit then
+				setmetatable(outfit, Outfitter._OutfitMetaTableEM)
+				outfit.equipmentSetID = equipmentSetID
+
+				self:AddOutfit(outfit)
+				
+				self:ActivateScript(outfit)
+				if not outfit.equipmentSetID then
+					Outfitter:TestMessage("no equipmentsetID 1")
+				end
+			end
+		end
+		
+		if not outfit then
+			outfit =
+			{
+				Name = name,
+				StoredInEM = true,
+				equipmentSetID = equipmentSetID,
+				Items = {},
+			}
+			
+			setmetatable(outfit, Outfitter._OutfitMetaTableEM)
+			self:AddOutfit(outfit)
+
+			if not outfit.equipmentSetID then
+				Outfitter:TestMessage("no equipmentsetID 2")
+			end
+		else
+			outfit.Unused = nil
+		end
+	end
+	
+	-- Delete unused outfits
+	
+	for vCategoryID, outfits in pairs(self.Settings.Outfits) do
+		local vNumOutfits = #outfits
+		local vIndex = 1
+		
+		while vIndex <= vNumOutfits do
+			local outfit = outfits[vIndex]
+			
+			if outfit.StoredInEM and outfit.Unused then
+				self:DeactivateScript(outfit)
+				
+				table.remove(outfits, vIndex)
+				vNumOutfits = vNumOutfits - 1
+			else
+				vIndex = vIndex + 1
+			end
+		end
+	end
+	
+	-- If NumEquipmentSets is not zero, assume that the EM is working correctly
+	-- and get rid of any preserved outfits
+	
+	if #equipmentSetIDs > 0 then
+		self.Settings.PreservedEMOutfits = nil
+	end
+	
+	-- Done
+	
+	self.DisplayIsDirty = true
+end
+
+function Outfitter:FindEMOutfitByName(pName)
+	local vLowerName = pName:lower()
+	
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
+		for vIndex, vOutfit in ipairs(vOutfits) do
+			if vOutfit.StoredInEM
+			and vOutfit.Name:lower() == vLowerName then
+				return vOutfit
+			end
 		end
 	end
 end
 
 function Outfitter:InitializeOutfits()
+	-- Cache the inventory
 	local vOutfit, vItemLocation, vItem
-	local vEquippableItems = Outfitter.ItemList_GetEquippableItems(true)
+	local vInventoryCache = self:GetInventoryCache()
 	
 	-- Create the outfit categories
-	
-	gOutfitter_Settings.Outfits = {}
-	
+	self.Settings.Outfits = {}
 	for vCategoryIndex, vCategoryID in ipairs(Outfitter.cCategoryOrder) do
-		gOutfitter_Settings.Outfits[vCategoryID] = {}
+		self.Settings.Outfits[vCategoryID] = {}
 	end
+
+	-- Load the EM outfits
+	self:SynchronizeEM()
 
 	-- Create the normal outfit using the current
 	-- inventory and set it as the currently equipped outfit
-	
-	vOutfit = Outfitter:GetInventoryOutfit(Outfitter.cNormalOutfit)
-	Outfitter:AddOutfit(vOutfit)
-	gOutfitter_Settings.LastOutfitStack = {{Name = Outfitter.cNormalOutfit}}
+	vOutfit = self:FindOutfitByName(Outfitter.cNormalOutfit)
+	if not vOutfit then
+		vOutfit = self:GetInventoryOutfit(Outfitter.cNormalOutfit)
+		self:AddOutfit(vOutfit)
+	end
+	self.Settings.LastOutfitStack = {{Name = Outfitter.cNormalOutfit}}
 	Outfitter.OutfitStack.Outfits = {vOutfit}
 	
 	-- Create the naked outfit
-	
-	vOutfit = Outfitter:NewNakedOutfit(Outfitter.cNakedOutfit)
-	Outfitter:AddOutfit(vOutfit)
+	vOutfit = self:NewNakedOutfit(Outfitter.cNakedOutfit)
+	self:AddOutfit(vOutfit)
 	
 	-- Generate the smart outfits
-	
 	for vSmartIndex, vSmartOutfit in ipairs(Outfitter.cSmartOutfits) do
-		vOutfit = Outfitter:GenerateSmartOutfit(vSmartOutfit.Name, vSmartOutfit.StatID, vEquippableItems)
+		vOutfit = self:GenerateSmartOutfit(vSmartOutfit.Name, vSmartOutfit.StatID, vInventoryCache)
 		
 		if vOutfit then
 			vOutfit.ScriptID = vSmartOutfit.ScriptID
-			Outfitter:AddOutfit(vOutfit)
+			self:AddOutfit(vOutfit)
 		end
 	end
 	
-	Outfitter:InitializeSpecialOccasionOutfits()
+	self:InitializeSpecialOccasionOutfits()
 end
 
-function Outfitter:CreateEmptySpecialOccasionOutfit(pScriptID, pName)
-	vOutfit = Outfitter:GetOutfitByScriptID(pScriptID)
-	
-	if vOutfit then
-		return
+function Outfitter:CreateEmptySpecialOccasionOutfit(pScriptID, pName, pAllowDuplicates)
+	-- Return the existing outfit if duplicates aren't allowed
+	vOutfit = self:GetOutfitByName(pName)
+	if vOutfit and not pAllowDuplicates then
+		-- Assign the script to the existing outfit if there isn't one already
+		if not vOutfit.ScriptID then
+			vOutfit.ScriptID = pScriptID
+		end
+		return vOutfit
 	end
 	
-	vOutfit = Outfitter:NewEmptyOutfit(pName)
+	-- Create the outfit
+	vOutfit = self:NewEmptyOutfit(pName)
 	vOutfit.ScriptID = pScriptID
+	self:AddOutfit(vOutfit)
 	
-	Outfitter:AddOutfit(vOutfit)
+	-- Done
+	return vOutfit
 end
 
 function Outfitter:InitializeSpecialOccasionOutfits()
-	local vEquippableItems = Outfitter.ItemList_GetEquippableItems(true)
+	local vInventoryCache = self:GetInventoryCache()
 	local vOutfit
 	
-	-- Find an argent dawn trinket and set the argent dawn outfit
-	--[[ Taking this out since post-TBC it's largely irrelevant
-	vOutfit = Outfitter:GetOutfitByScriptID("ArgentDawn")
-	
-	if not vOutfit then
-		vOutfit = Outfitter:GenerateSmartOutfit(Outfitter.cArgentDawnOutfit, "ArgentDawn", vEquippableItems, true)
-		vOutfit.ScriptID = "ArgentDawn"
-		Outfitter:AddOutfit(vOutfit)
-	end
-	]]--
-	-- Find riding items
-	
-	vOutfit = Outfitter:GetOutfitByScriptID("Riding")
-	
-	if not vOutfit then
-		vOutfit = Outfitter:GenerateSmartOutfit(Outfitter.cRidingOutfit, "Riding", vEquippableItems, true)
-		vOutfit.ScriptID = "Riding"
-		vOutfit.ScriptSettings = {}
-		vOutfit.ScriptSettings.DisableBG = true -- Default to disabling in BGs since that appears to be the most popular
-		Outfitter:AddOutfit(vOutfit)
-	end
-	
-	-- Create the Battlegrounds outfits
-	
-	Outfitter:CreateEmptySpecialOccasionOutfit("Battleground", Outfitter.cBattlegroundOutfit)
-	
-	-- Create the swimming outfit
-	
-	Outfitter:CreateEmptySpecialOccasionOutfit("Swimming", Outfitter.cSwimmingOutfit)
-	
+	-- Create talent tree outfits
+	self:InitializeTalentTreeOutfits()
+
 	-- Create class-specific outfits
-	
-	Outfitter:InitializeClassOutfits()
+	self:InitializeClassOutfits()
+end
+
+function Outfitter:InstallDefaultSpecializationIcons()
+	local numSpecs = GetNumSpecializations()
+	for specIndex = 1, numSpecs do
+		local _, specName, _, specIconID = GetSpecializationInfo(specIndex)
+		local scriptID = "SPECIALIZATION_"..specIndex
+		Outfitter.OutfitBar.cDefaultScriptIcons[scriptID] = specIconID
+	end
+end
+
+function Outfitter:InitializeTalentTreeOutfits()
+	local playerClass = UnitClass("player")
+
+	local numSpecs = GetNumSpecializations()
+	for specIndex = 1, numSpecs do
+		local _, specName, _, specIconID = GetSpecializationInfo(specIndex)
+
+		-- Done when the names run out
+		if not specName then
+			return
+		end
+
+		-- Create the outfit
+		local scriptID = "SPECIALIZATION_"..specIndex
+		local outfitName = playerClass..": "..specName
+		local outfit = self:CreateEmptySpecialOccasionOutfit(scriptID, outfitName)
+		outfit:SetIcon(specIconID)
+	end
 end
 
 function Outfitter:InitializeClassOutfits()
-	local vOutfits = Outfitter.cClassSpecialOutfits[Outfitter.PlayerClass]
+	local vOutfits = self.cClassSpecialOutfits[Outfitter.PlayerClass]
 	
 	if not vOutfits then
 		return
 	end
 	
 	for vIndex, vOutfitInfo in ipairs(vOutfits) do
-		Outfitter:CreateEmptySpecialOccasionOutfit(vOutfitInfo.ScriptID, vOutfitInfo.Name)
+		self:CreateEmptySpecialOccasionOutfit(vOutfitInfo.ScriptID, vOutfitInfo.Name)
 	end
 end
 
-function Outfitter:GetTooltipLineStats(pText)
-	-- Remove the trailing period if it's there
+Outfitter.cDeformat =
+{
+	s = "(.-)",
+	d = "(-?[%d]+)",
+	f = "(-?[%d%.]+)",
+	g = "(-?[%d%.]+)",
+	["%"] = "%%",
+}
+
+function Outfitter:ConvertFormatStringToSearchPattern(pFormat)
+	local vFormat = pFormat:gsub(
+			"[%[%]%.]",
+			function (pChar) return "%"..pChar end)
 	
-	if string.sub(pText, -1) == "." then
-		pText = string.sub(pText, 1, -2)
-	end
-	
-	-- Remove any color-code close if it's there
-	
-	if string.sub(pText, -2) == FONT_COLOR_CODE_CLOSE then
-		pText = string.sub(pText, 1, -3)
-	end
-	
-	--
-	
-	-- Outfitter:TestMessage("GetTooltipLineStats: "..pText)
-	
-	for _, vStatInfo in ipairs(Outfitter.cItemStatFormats) do
-		if type(vStatInfo) == "string" then
-			local vResult = {string.find(pText, vStatInfo)}
-			
-			if vResult[1] then
-				local vStatList = {}
-				
-				-- Outfitter:TestMessage("GetTooltipLineStats: Match found: "..vStatInfo.." with "..(#vResult - 2).." matches")
-				
-				for vIndex = 3, #vResult, 2 do
-					local vStatPhrase = vResult[vIndex]
-					local vValue = tonumber(vResult[vIndex + 1])
-					
-					-- Swap them around if the number is first
-					
-					if vValue == nil then
-						vStatPhrase = vResult[vIndex + 1]
-						vValue = tonumber(vResult[vIndex])
-					end
-					
-					if vStatPhrase and vValue then
-						local vTypes = Outfitter.cItemStatPhrases[strlower(vStatPhrase)]
-						
-						if vTypes then
-							-- Outfitter:TestMessage("STAT: "..vStatPhrase.." +"..vValue)
-							
-							if type(vTypes) == "string" then
-								if not vStatList[vTypes] then
-									vStatList[vTypes] = vValue
-								else
-									vStatList[vTypes] = vStatList[vTypes] + vValue
-								end
-							else
-								for _, vStatID in ipairs(vTypes) do
-									if not vStatList[vStatID] then
-										vStatList[vStatID] = vValue
-									else
-										vStatList[vStatID] = vStatList[vStatID] + vValue
-									end
-								end
-							end
-						else
-							-- Outfitter:TestMessage(vStatPhrase.." ("..string.len(vStatPhrase)..") not found in cItemStatPhrases")
-							-- Outfitter:TestMessage("Matched pattern was "..vStatInfo.." with "..(#vResult - 2).." values captured")
-						end
-					end
-				end
-				
-				-- Outfitter:DebugTable("StatList", vStatList)
-				
-				return vStatList
-			end -- if vResult[1]
-		elseif type(vStatInfo) == "table" then
-			local vStartIndex, vEndIndex = string.find(pText, vStatInfo.Format)
-			
-			if vStartIndex then
-				local vStatList = {}
-				
-				for _, vStatID in ipairs(vStatInfo.Types) do
-					if not vStatList[vStatID] then
-						vStatList[vStatID] = vStatInfo.Value
-					else
-						vStatList[vStatID] = vStatList[vStatID] + vStatInfo.Value
-					end
-				end
-				
-				return vStatList
-			end
-		end -- table
-	end -- for
+	return vFormat:gsub(
+			"%%[%-%d%.]-([sdgf%%])",
+			self.cDeformat)
 end
 
-function Outfitter:GetItemStatsFromTooltip(pTooltip, pDistribution)
-	local vStats = {}
-	local vTooltipName = pTooltip:GetName()
-	local vLineCount = pTooltip:NumLines()
-	
-	for vLineIndex = 1, vLineCount do
-		local vLeftTextFrame = getglobal(vTooltipName.."TextLeft"..vLineIndex)
-		
-		if not vLeftTextFrame then
-			break
-		end
-		
-		local vLeftText = vLeftTextFrame:GetText()
-		-- local vRightText = getglobal(vTooltipName.."TextRight"..vLineIndex):GetText()
-		
-		if vLeftText then
-			-- Check for the start of the set bonus section
-			
-			local vStartIndex, vEndIndex, vValue = string.find(vLeftText, "%(%d/%d%)")
-			
-			if vStartIndex then
-				break
-			end
-			
-			--
-			
-			local vLineStats = Outfitter:GetTooltipLineStats(vLeftText)
-			
-			if vLineStats then
-				for vStatID, vValue in pairs(vLineStats) do
-					Outfitter.Stats_AddStatValue(vStats, vStatID, vValue)
-				end
-			end
-		end
-	end -- for vLineIndex
-	
-	return vStats
-end
-
-function Outfitter:ConvertRatingsToStats(pStats)
-	local vRatingDistribution = Outfitter:GetPlayerRatingStatDistribution()
-	
-	for vStatID, vValue in pairs(pStats) do
-		Outfitter.Stats_DistributeValue(pStats, vValue, vRatingDistribution[vStatID])
-	end
-end
-
-function Outfitter:DistributeSecondaryStats(pStats, pDistribution)
-	local vStats = {} -- Have to collect them separately or they'll mess up the iterator
-	
-	for vStatID, vValue in pairs(pStats) do
-		Outfitter.Stats_DistributeValue(vStats, vValue, pDistribution[vStatID])
-	end
-	
-	-- Add the secondary stats back in
-	
-	for vStatID, vValue in pairs(vStats) do
-		Outfitter.Stats_AddStatValue(pStats, vStatID, vValue)
-	end
-end
-
-function Outfitter:TooltipContainsText(pTooltip, pText)
+function Outfitter:FindTooltipLine(pTooltip, pText, pPlain)
 	local vTooltipName = pTooltip:GetName()
 	
 	for vLineIndex = 1, 100 do
-		local vLeftTextFrame = getglobal(vTooltipName.."TextLeft"..vLineIndex)
+		local vLeftTextFrame = _G[vTooltipName.."TextLeft"..vLineIndex]
 		
 		if not vLeftTextFrame then
 			break
@@ -6749,68 +5140,18 @@ function Outfitter:TooltipContainsText(pTooltip, pText)
 		local vLeftText = vLeftTextFrame:GetText()
 		
 		if vLeftText
-		and string.find(vLeftText, pText) then
-			return true
+		and vLeftText:find(pText, nil, pPlain) then
+			return vLineIndex, vLeftTextFrame
 		end
 	end -- for vLineIndex
-	
-	return false
 end
 
 function Outfitter:CanEquipBagItem(pBagIndex, pBagSlotIndex)
-	local vItemInfo = Outfitter:GetBagItemInfo(pBagIndex, pBagSlotIndex)
+	local vItemInvType = self:GetBagItemInvType(pBagIndex, pBagSlotIndex)
 	
-	if vItemInfo
-	and vItemInfo.MinLevel
-	and UnitLevel("player") < vItemInfo.MinLevel then
-		return false
-	end
-	
-	return true
-end
-
-function Outfitter:BagItemWillBind(pBagIndex, pBagSlotIndex)
-	local vItemLink = GetContainerItemLink(pBagIndex, pBagSlotIndex)
-	
-	if not vItemLink then
-		return nil
-	end
-	
-	OutfitterTooltip:SetOwner(OutfitterFrame, "ANCHOR_BOTTOMRIGHT", 0, 0)
-	OutfitterTooltip:SetBagItem(pBagIndex, pBagSlotIndex)
-	
-	local vIsBOE = Outfitter:TooltipContainsText(OutfitterTooltip, ITEM_BIND_ON_EQUIP)
-	
-	OutfitterTooltip:Hide()
-	
-	return vIsBOE
-end
-
-function Outfitter:GenerateSmartOutfit(pName, pStatID, pEquippableItems, pAllowEmptyOutfit)
-	local vOutfit = Outfitter:NewEmptyOutfit(pName)
-	
-	if pStatID == "TANKPOINTS" then
-		return
-	end
-	
-	local vItems = Outfitter.cStatIDItems[pStatID]
-	
-	Outfitter.ItemList_ResetIgnoreItemFlags(pEquippableItems)
-	
-	if vItems then
-		Outfitter:FindAndAddItemsToOutfit(vOutfit, nil, vItems, pEquippableItems)
-	end
-	
-	Outfitter:AddItemsWithStatToOutfit(vOutfit, pStatID, pEquippableItems)
-	
-	if not pAllowEmptyOutfit
-	and Outfitter:IsEmptyOutfit(vOutfit) then
-		return nil
-	end
-	
-	vOutfit.StatID = pStatID
-	
-	return vOutfit
+	-- Disabling minLevel check because new drops pre WoD are showing as minLevel 100 despite only requiring 90
+	return Outfitter.cInvTypeToSlotName[vItemInvType] ~= nil
+--	       and (not vItemMinLevel or UnitLevel("player") >= vItemMinLevel)
 end
 
 function Outfitter:ArrayIsEmpty(pArray)
@@ -6821,128 +5162,340 @@ function Outfitter:ArrayIsEmpty(pArray)
 	return next(pArray) == nil
 end
 
-function Outfitter.NameOutfit_Open(pOutfit)
-	gOutfitter_OutfitToRename = pOutfit
+function Outfitter:GetScreenQuadrantFromCoordinates(x, y)
+	local vertEdge, horizEdge = self:GetNearestFrameEdgesFromCoordinates(UIParent, x, y)
+	return vertEdge..horizEdge
+end
+
+function Outfitter:GetNearestFrameEdgesFromCoordinates(frame, x, y)
+	local horizCenter = 0.5 * (frame:GetLeft() + frame:GetRight())
+	local vertCenter = 0.5 * (frame:GetTop() + frame:GetBottom())
 	
-	if gOutfitter_OutfitToRename then
-		OutfitterNameOutfitDialogTitle:SetText(Outfitter.cRenameOutfit)
-		OutfitterNameOutfitDialog:SetHeight(OutfitterNameOutfitDialog.baseHeight - 70)
+	local isTop = y > vertCenter
+	local isLeft = x < horizCenter
+
+	return isTop and "TOP" or "BOTTOM", isLeft and "LEFT" or "RIGHT", isTop and "BOTTOM" or "TOP", isLeft and "RIGHT" or "LEFT"
+end
+
+----------------------------------------
+Outfitter._NameOutfitDialog = {}
+----------------------------------------
+
+function Outfitter._NameOutfitDialog:New(pParent)
+	return Outfitter:New(Outfitter.UIElementsLib._ModalDialogFrame, pParent, Outfitter._cNewOutfit, 315, 207)
+end
+
+function Outfitter._NameOutfitDialog:Construct(pParent)
+	self:Hide()
+	
+	--self:SetTopLevel(true)
+	self:SetFrameStrata("DIALOG")
+	self:EnableMouse(true)
+	
+	-- Controls
+	
+	self.InfoSection = Outfitter:New(Outfitter.UIElementsLib._Section, self, Outfitter.cInfo)
+	self.BuildSection = Outfitter:New(Outfitter.UIElementsLib._Section, self, Outfitter.cBuild)
+	self.StatsSection = Outfitter:New(Outfitter.UIElementsLib._Section, self, Outfitter.cStats)
+	
+	self.Name = Outfitter:New(Outfitter.UIElementsLib._EditBox, self.InfoSection, Outfitter.cNameLabel, 40, 170)
+	
+	self.ScriptMenu = Outfitter:New(Outfitter.UIElementsLib._TitledDropDownMenuButton, self.InfoSection,
+		function (menu, ...)
+			self:ScriptMenuFunc(menu, ...)
+		end)
+	self.ScriptMenu:SetTitle(Outfitter.cAutomationLabel)
+	
+	self.EmptyOutfitCheckButton = Outfitter:New(Outfitter.UIElementsLib._CheckButton, self.BuildSection, Outfitter.cUseEmptyOutfit, true)
+	self.ExistingOutfitCheckButton = Outfitter:New(Outfitter.UIElementsLib._CheckButton, self.BuildSection, Outfitter.cUseCurrentOutfit, true)
+	self.GenerateOutfitCheckButton = Outfitter:New(Outfitter.UIElementsLib._CheckButton, self.BuildSection, Outfitter.cCreateUsingTitle, true)
+	
+	self.MultiStatConfig = Outfitter:New(Outfitter._MultiStatConfig, self.StatsSection)
+	
+	self.Error = self:CreateFontString(nil, "ARTWORK", "GameFontRed")
+	
+	-- Layout
+	
+	self:SetPoint("TOPLEFT", OutfitterFrame, "TOPLEFT", 20, -40)
+	
+	-- Info section
+	
+	self.InfoSection:SetPoint("TOPLEFT", self, "TOPLEFT", 20, -25)
+	self.InfoSection:SetWidth(295)
+	self.InfoSection:SetHeight(100)
+	
+	self.Name:SetPoint("TOPLEFT", self.InfoSection, "TOPLEFT", 100, -20)
+	
+	self.ScriptMenu:SetPoint("TOPLEFT", self.Name, "TOPLEFT", 0, -35)
+	self.ScriptMenu:SetWidth(170)
+	
+	-- Build section
+	
+	self.BuildSection:SetPoint("TOPLEFT", self.InfoSection, "TOPRIGHT", 10, 0)
+	self.BuildSection:SetPoint("BOTTOM", self.InfoSection, "BOTTOM")
+	self.BuildSection:SetPoint("RIGHT", self, "RIGHT", -20, 0)
+	
+	self.EmptyOutfitCheckButton:SetPoint("TOPLEFT", self.BuildSection, "TOPLEFT", 30, -23)
+	self.ExistingOutfitCheckButton:SetPoint("TOPLEFT", self.EmptyOutfitCheckButton, "TOPLEFT", 0, -25)
+	self.GenerateOutfitCheckButton:SetPoint("TOPLEFT", self.ExistingOutfitCheckButton, "TOPLEFT", 0, -25)
+	
+	-- Stats section
+	
+	self.StatsSection:SetPoint("TOPLEFT", self.InfoSection, "BOTTOMLEFT", 0, -10)
+	self.StatsSection:SetPoint("RIGHT", self.BuildSection, "RIGHT", 0, 0)
+	
+	self.MultiStatConfig:SetPoint("TOPLEFT", self.StatsSection, "TOPLEFT", 25, -15)
+	
+	-- Error message
+	
+	self.Error:Hide()
+	self.Error:SetWidth(280)
+	self.Error:SetPoint("RIGHT", self.DoneButton, "LEFT", -30, 0)
+	
+	-- Events
+	
+	self:SetScript("OnShow", function (self) Outfitter.UIElementsLib:BeginDialog(self) end)
+	self:SetScript("OnHide", function (self) Outfitter.UIElementsLib:EndDialog(self) end)
+	
+	self.Name:SetScript("OnEnterPressed", function () self:Done() end)
+	self.Name:SetScript("OnTextChanged", function () self:Update() end)
+	
+	self.ScriptMenu.ItemClickedFunc = function (pMenu, pValue)
+		self:PresetScriptChanged(pMenu, pValue)
+	end
+	
+	self.EmptyOutfitCheckButton:SetScript("OnClick", function (pCheckButton)
+		self.EmptyOutfitCheckButton:SetChecked(true)
+		self.ExistingOutfitCheckButton:SetChecked(false)
+		self.GenerateOutfitCheckButton:SetChecked(false)
+		self.MultiStatConfig:Hide()
+		self:AdjustSize()
+	end)
+	
+	self.ExistingOutfitCheckButton:SetScript("OnClick", function (pCheckButton)
+		self.EmptyOutfitCheckButton:SetChecked(false)
+		self.ExistingOutfitCheckButton:SetChecked(true)
+		self.GenerateOutfitCheckButton:SetChecked(false)
+		self.MultiStatConfig:Hide()
+		self:AdjustSize()
+	end)
+	
+	self.GenerateOutfitCheckButton:SetScript("OnClick", function (pCheckButton)
+		self.EmptyOutfitCheckButton:SetChecked(false)
+		self.ExistingOutfitCheckButton:SetChecked(false)
+		self.GenerateOutfitCheckButton:SetChecked(true)
+		self.MultiStatConfig:Show()
+		self:AdjustSize()
+	end)
+	
+	self.MultiStatConfig.OnNumLinesChanged = function (pMultiStatConfig, pNumLines)
+		self:AdjustSize()
+	end
+
+	self.MultiStatConfig.OnChange = function ()
+		self:Update(true)
+	end
+end
+
+function Outfitter._NameOutfitDialog:Open(pOutfit)
+	self.OutfitToRename = pOutfit
+	
+	if self.OutfitToRename then
+		self.Title:SetText(Outfitter.cRenameOutfit)
 		
-		OutfitterNameOutfitDialogName:SetText(gOutfitter_OutfitToRename.Name)
+		self.Name:SetText(self.OutfitToRename.Name)
 		
-		OutfitterNameOutfitDialogAutomation:Hide()
-		
-		OutfitterNameOutfitDialogCreateUsing:Hide()
 	else
-		OutfitterNameOutfitDialogTitle:SetText(Outfitter.cNewOutfit)
-		OutfitterNameOutfitDialog:SetHeight(OutfitterNameOutfitDialog.baseHeight)
+		self.Title:SetText(Outfitter.cNewOutfit)
 		
-		OutfitterNameOutfitDialogName:SetText("")
+		self.Name:SetText("")
 		
-		Outfitter.DropDown_SetSelectedValue(OutfitterNameOutfitDialogAutomation, "NONE")
-		OutfitterNameOutfitDialogAutomation:Show()
-		OutfitterNameOutfitDialogAutomation.ChangedValueFunc = Outfitter.NameOutfit_PresetScriptChanged
+		self.ScriptMenu:SetCurrentValueText(Outfitter.cNone)
 		
-		Outfitter.DropDown_SetSelectedValue(OutfitterNameOutfitDialogCreateUsing, "EMPTY")
-		OutfitterNameOutfitDialogCreateUsing:Show()
-		OutfitterNameOutfitDialogCreateUsing.ChangedValueFunc = Outfitter.NameOutfit_CheckForStatOutfit
+		self.EmptyOutfitCheckButton:SetChecked(false)
+		self.ExistingOutfitCheckButton:SetChecked(true)
+		self.GenerateOutfitCheckButton:SetChecked(false)
+		
+		self.MultiStatConfig:SetConfig(nil)
+		self.MultiStatConfig:Hide()
 	end
 	
-	OutfitterNameOutfitDialog:Show()
-	OutfitterNameOutfitDialogName:SetFocus()
+	self:AdjustSize()
+	self:Show()
+	self.Name:SetFocus()
 end
 
-function Outfitter.NameOutfit_PresetScriptChanged(pMenu, pValue)
-	Outfitter.DropDown_SetSelectedValue(pMenu, pValue)
+function Outfitter._NameOutfitDialog:AdjustSize()
+	local vHeight = 78
+	local vWidth = 335
 	
-	-- Set the default name if there isn't one or it's the previous default
-	
-	local vName = OutfitterNameOutfitDialogName:GetText()
-	
-	if pValue ~= "NONE"
-	and (not vName or vName == "" or vName == OutfitterNameOutfitDialog.PreviousDefaultName) then
-		vName = Outfitter:GetPresetScriptByID(pValue).Name
+	if not self.OutfitToRename then
+		self.ScriptMenu:Show()
+		self.InfoSection:SetHeight(100)
 		
-		OutfitterNameOutfitDialogName:SetText(vName)
-		OutfitterNameOutfitDialog.PreviousDefaultName = vName
+		vHeight = vHeight + 100
+		
+		vWidth = vWidth + 200
+		
+		if self.MultiStatConfig:IsShown() then
+			local vStatConfigHeight = self.MultiStatConfig:GetHeight()
+			
+			vHeight = vHeight + vStatConfigHeight + 33
+			
+			local vStatWidth = 20 + self.MultiStatConfig:GetWidth() + 20
+			
+			if vStatWidth > vWidth then
+				vWidth = vStatWidth
+			end
+			
+			self.StatsSection:SetHeight(vStatConfigHeight + 25)
+			self.StatsSection:Show()
+		else
+			self.StatsSection:Hide()
+		end
+		
+		self.BuildSection:Show()
+	else
+		self.ScriptMenu:Hide()
+		self.InfoSection:SetHeight(65)
+		
+		vHeight = vHeight + 65
+		
+		self.BuildSection:Hide()
+		self.StatsSection:Hide()
+	end
+	
+	self:SetWidth(vWidth)
+	self:SetHeight(vHeight)
+end
+
+function Outfitter._NameOutfitDialog:ScriptMenuFunc(menu)
+	local category
+	
+	menu:AddToggle(Outfitter.cNoScript,
+		function ()
+			return self.ScriptID
+		end, function (menu, value)
+			self:PresetScriptChanged(menu, "NONE")
+		end)
+	
+	for _, presetScript in ipairs(Outfitter.PresetScripts) do
+		if not presetScript.Class or presetScript.Class == Outfitter.PlayerClass then
+			local newCategory = presetScript.Category or presetScript.Class or "GENERAL"
+			if category ~= newCategory then
+				category = newCategory
+				Outfitter:AddScriptCategorySubmenu(menu, category,
+					function ()
+						return self.ScriptID
+					end, function (menu, value)
+						self:PresetScriptChanged(menu, value)
+					end)
+			end
+		end
 	end
 end
 
-function Outfitter.NameOutfit_CheckForStatOutfit(pMenu, pValue)
-	Outfitter.NameOutfit_Update(true)
-end
-
-function Outfitter.NameOutfit_Done()
-	local vName = OutfitterNameOutfitDialogName:GetText()
+function Outfitter._NameOutfitDialog:Done()
+	local vName = self.Name:GetText()
 	
 	if vName
 	and vName ~= "" then
-		if gOutfitter_OutfitToRename then
-			local vWearingOutfit = Outfitter:WearingOutfit(gOutfitter_OutfitToRename)
+		if self.OutfitToRename then
+			local vWearingOutfit = Outfitter:WearingOutfit(self.OutfitToRename)
+			local vPreviousName = self.OutfitToRename.Name
+			Outfitter:DispatchOutfitEvent("WILL_RENAME_OUTFIT", self.OutfitToRename, vPreviousName, vName)
 			
 			if vWearingOutfit then
-				Outfitter:DispatchOutfitEvent("UNWEAR_OUTFIT", gOutfitter_OutfitToRename.Name, gOutfitter_OutfitToRename)
+				Outfitter:DispatchOutfitEvent("UNWEAR_OUTFIT", self.OutfitToRename.Name, self.OutfitToRename)
 			end
 			
-			gOutfitter_OutfitToRename.Name = vName
+			self.OutfitToRename:SetName(vName)
 			Outfitter.DisplayIsDirty = true
 
 			if vWearingOutfit then
-				Outfitter:DispatchOutfitEvent("WEAR_OUTFIT", gOutfitter_OutfitToRename.Name, gOutfitter_OutfitToRename)
+				Outfitter:DispatchOutfitEvent("WEAR_OUTFIT", self.OutfitToRename.Name, self.OutfitToRename)
 			end
+			Outfitter:DispatchOutfitEvent("DID_RENAME_OUTFIT", self.OutfitToRename, vPreviousName, vName)
 		else
 			-- Create the new outift
 			
-			local vStatID = UIDropDownMenu_GetSelectedValue(OutfitterNameOutfitDialogCreateUsing)
+			local vScriptID = self.ScriptID
+			
 			local vOutfit
 			
-			if not vStatID
-			or vStatID == 0 then
-				vOutfit = Outfitter:GetInventoryOutfit(vName)
-			elseif vStatID == "EMPTY" then
+			if self.EmptyOutfitCheckButton:GetChecked() then
 				vOutfit = Outfitter:NewEmptyOutfit(vName)
+			elseif self.ExistingOutfitCheckButton:GetChecked() then
+				vOutfit = Outfitter:GetInventoryOutfit(vName)
 			else
-				vOutfit = Outfitter:GenerateSmartOutfit(vName, vStatID, Outfitter.ItemList_GetEquippableItems(true))
+				local vStatConfig = self.MultiStatConfig:GetConfig()
+				
+				vOutfit = Outfitter:GenerateSmartOutfit(vName, vStatConfig, Outfitter:GetInventoryCache(), true, function (pOutfit)
+					if pOutfit and not pOutfit:IsEmpty() then
+						pOutfit.StatConfig = vStatConfig
+						self:AddOutfit(pOutfit, vScriptID)
+					else
+						Outfitter:ErrorMessage(Outfitter.cNoItemsWithStat);
+					end
+				end)
+				
+				self:Hide()
+				return
 			end
 			
 			if not vOutfit then
 				vOutfit = Outfitter:NewEmptyOutfit(vName)
 			end
 			
-			-- Add the outfit
-			
-			local vCategoryID = Outfitter:AddOutfit(vOutfit)
-			
-			-- Set the script
-			
-			local vScriptID = UIDropDownMenu_GetSelectedValue(OutfitterNameOutfitDialogAutomation)
-			
-			if vScriptID ~= "NONE" then
-				Outfitter:SetScriptID(vOutfit, vScriptID)
-			end
-			
-			-- Wear the outfit
-			
-			Outfitter:WearOutfit(vOutfit)
+			self:AddOutfit(vOutfit, vScriptID)
 		end
 	end
 	
-	OutfitterNameOutfitDialog:Hide()
+	self:Hide()
+end
+
+function Outfitter._NameOutfitDialog:PresetScriptChanged(menu, scriptID)
+	-- Change the ID to nil if it's NONE
+	if scriptID == "NONE" then
+		scriptID = nil
+	end
 	
-	Outfitter:Update(true)
+	-- Save the ID
+	self.ScriptID = scriptID
+	
+	-- Get the script
+	local script
+	if scriptID then
+		script = Outfitter:GetPresetScriptByID(scriptID)
+	end
+	
+	-- Update the menu
+	self.ScriptMenu:SetCurrentValueText(script and script.Name or "None")
+
+	-- Set the default name if there isn't one or it's the previous default
+	local name = self.Name:GetText()
+	if scriptID and (not name or name == "" or name == self.PreviousDefaultName) then
+		name = script.Name
+		self.Name:SetText(name)
+		self.PreviousDefaultName = name
+	end
 end
 
-function Outfitter.NameOutfit_Cancel()
-	OutfitterNameOutfitDialog:Hide()
+function Outfitter._NameOutfitDialog:CheckForStatOutfit(pMenu, pValue)
+	self:Update(true)
 end
 
-function Outfitter.NameOutfit_Update(pCheckForStatOutfit)
+function Outfitter._NameOutfitDialog:Cancel()
+	self:Hide()
+end
+
+function Outfitter._NameOutfitDialog:Update(pCheckForStatOutfit)
 	local vEnableDoneButton = true
-	local vErrorMessage = nil
+	local vErrorMessage
 	
 	-- If there's no name entered then disable the okay button
 	
-	local vName = OutfitterNameOutfitDialogName:GetText()
+	local vName = self.Name:GetText()
 	
 	if not vName
 	or vName == "" then
@@ -6951,7 +5504,7 @@ function Outfitter.NameOutfit_Update(pCheckForStatOutfit)
 		local vOutfit = Outfitter:FindOutfitByName(vName)
 		
 		if vOutfit
-		and vOutfit ~= gOutfitter_OutfitToRename then
+		and vOutfit ~= self.OutfitToRename then
 			vErrorMessage = Outfitter.cNameAlreadyUsedError
 			vEnableDoneButton = false
 		end
@@ -6960,79 +5513,238 @@ function Outfitter.NameOutfit_Update(pCheckForStatOutfit)
 	-- 
 	
 	if not vErrorMessage
-	and pCheckForStatOutfit then
-		local vStatID = UIDropDownMenu_GetSelectedValue(OutfitterNameOutfitDialogCreateUsing)
-		
-		if vStatID
-		and vStatID ~= 0
-		and vStatID ~= "EMPTY" then
-			local vOutfit = Outfitter:GenerateSmartOutfit("temp outfit", vStatID, Outfitter.ItemList_GetEquippableItems(true))
-			
+	and pCheckForStatOutfit
+	and self.GenerateOutfitCheckButton:GetChecked() then
+		local vStat = self.MultiStatConfig:GetConfig()
+				
+		if vStat
+		and not vStat.Complex then -- Don't attempt to test for iterative outfits
+			vOutfit = Outfitter:GenerateSmartOutfit("temp outfit", vStat, Outfitter:GetInventoryCache())
 			if not vOutfit
-			or Outfitter:IsEmptyOutfit(vOutfit) then
+			or vOutfit:IsEmpty() then
 				vErrorMessage = Outfitter.cNoItemsWithStatError
 			end
 		end
 	end
 	
 	if vErrorMessage then
-		OutfitterNameOutfitDialogError:SetText(vErrorMessage)
-		OutfitterNameOutfitDialogError:Show()
+		self.Error:SetText(vErrorMessage)
+		self.Error:Show()
 	else
-		OutfitterNameOutfitDialogError:Hide()
+		self.Error:Hide()
 	end
 	
-	Outfitter:SetButtonEnable(OutfitterNameOutfitDialogDoneButton, vEnableDoneButton)
+	self.DoneButton:SetEnabled(vEnableDoneButton)
+	
+	self:AdjustSize()
 end
+
+function Outfitter._NameOutfitDialog:AddOutfit(pOutfit, pScriptID)
+	-- Add the outfit
+
+	local vCategoryID = Outfitter:AddOutfit(pOutfit)
+
+	-- Set the script
+
+	if pScriptID and pScriptID ~= "NONE" then
+		Outfitter:SetScriptID(pOutfit, pScriptID)
+	end
+
+	-- Wear the outfit
+
+	Outfitter:WearOutfit(pOutfit)
+	
+	Outfitter:Update(true)
+end
+
+----------------------------------------
+Outfitter._RebuildOutfitDialog = {}
+----------------------------------------
+
+function Outfitter._RebuildOutfitDialog:New(pParent)
+	return Outfitter:New(Outfitter.UIElementsLib._ModalDialogFrame, pParent, Outfitter.cRebuild, 315, 207)
+end
+
+function Outfitter._RebuildOutfitDialog:Construct(pParent)
+	self:Hide()
+	
+	--self:SetTopLevel(true)
+	self:SetFrameStrata("DIALOG")
+	self:EnableMouse(true)
+	
+	-- Controls
+	
+	self.StatsSection = Outfitter:New(Outfitter.UIElementsLib._Section, self, Outfitter.cStats)
+	self.MultiStatConfig = Outfitter:New(Outfitter._MultiStatConfig, self.StatsSection)
+	
+	-- Layout
+	
+	self:SetPoint("TOPLEFT", OutfitterFrame, "TOPLEFT", 20, -40)
+	
+	-- Stats section
+	
+	self.StatsSection:SetPoint("TOPLEFT", self, "TOPLEFT", 20, -25)
+	self.StatsSection:SetPoint("RIGHT", self, "RIGHT", -20, 0)
+	
+	self.MultiStatConfig:SetPoint("TOPLEFT", self.StatsSection, "TOPLEFT", 25, -15)
+	
+	-- Events
+	
+	self:SetScript("OnShow", function (self) Outfitter.UIElementsLib:BeginDialog(self) end)
+	self:SetScript("OnHide", function (self) Outfitter.UIElementsLib:EndDialog(self) end)
+	
+	self.MultiStatConfig.OnNumLinesChanged = function (pMultiStatConfig, pNumLines)
+		self:AdjustSize()
+	end
+end
+
+function Outfitter._RebuildOutfitDialog:Open(pOutfit)
+	self.Outfit = pOutfit
+	
+	if self.Outfit.StatID
+	and not self.Outfit.StatConfig then
+		self.Outfit.StatConfig = {{StatID = self.Outfit.StatID}}
+	end
+	
+	self.MultiStatConfig:SetConfig(self.Outfit.StatConfig)
+	
+	self:AdjustSize()
+	self:Show()
+end
+
+function Outfitter._RebuildOutfitDialog:AdjustSize()
+	local vStatConfigHeight = self.MultiStatConfig:GetHeight()
+	
+	local vHeight = 51 + vStatConfigHeight + 48
+	local vWidth = 40 + self.MultiStatConfig:GetWidth() + 40
+	
+	self.StatsSection:SetHeight(vStatConfigHeight + 25)
+			
+	self:SetWidth(vWidth)
+	self:SetHeight(vHeight)
+end
+
+function Outfitter._RebuildOutfitDialog:Done()
+	self.Outfit.StatConfig = self.MultiStatConfig:GetConfig()
+	
+	self:Hide()
+	
+	Outfitter:RebuildOutfit(self.Outfit)
+end
+
+function Outfitter._RebuildOutfitDialog:Cancel()
+	self:Hide()
+end
+
+function Outfitter._RebuildOutfitDialog:Update(pCheckForStatOutfit)
+	local vEnableDoneButton = true
+	local vErrorMessage
+	
+	-- If there's no name entered then disable the okay button
+	
+	local vName = self.Name:GetText()
+	
+	if not vName
+	or vName == "" then
+		vEnableDoneButton = false
+	else
+		local vOutfit = Outfitter:FindOutfitByName(vName)
+		
+		if vOutfit
+		and vOutfit ~= self.OutfitToRename then
+			vErrorMessage = Outfitter.cNameAlreadyUsedError
+			vEnableDoneButton = false
+		end
+	end
+	
+	-- 
+	
+	if not vErrorMessage
+	and pCheckForStatOutfit
+	and self.GenerateOutfitCheckButton:GetChecked() then
+		local vStat = self.MultiStatConfig:GetConfig()
+				
+		if vStat
+		and not vStat.Complex then -- Don't attempt to test for iterative outfits
+			vOutfit = Outfitter:GenerateSmartOutfit("temp outfit", vStat, Outfitter:GetInventoryCache())
+			if not vOutfit
+			or vOutfit:IsEmpty() then
+				vErrorMessage = Outfitter.cNoItemsWithStatError
+			end
+		end
+	end
+	
+	if vErrorMessage then
+		self.Error:SetText(vErrorMessage)
+		self.Error:Show()
+	else
+		self.Error:Hide()
+	end
+	
+	self.DoneButton:SetEnabled(vEnableDoneButton)
+	
+	self:AdjustSize()
+end
+
+----------------------------------------
+--
+----------------------------------------
 
 function Outfitter:SetButtonEnable(pButton, pEnabled)
 	if pEnabled then
 		pButton:Enable()
 		pButton:SetAlpha(1.0)
 		pButton:EnableMouse(true)
-		--getglobal(pButton:GetName().."Text"):SetAlpha(1.0)
+		--_G[pButton:GetName().."Text"]:SetAlpha(1.0)
 	else
 		pButton:Disable()
 		pButton:SetAlpha(0.7)
 		pButton:EnableMouse(false)
-		--getglobal(pButton:GetName().."Text"):SetAlpha(0.7)
+		--_G[pButton:GetName().."Text"]:SetAlpha(0.7)
 	end
 end
 
-function Outfitter:GetOutfitFromListItem(pItem)
-	if pItem.isCategory then
-		return nil
+function Outfitter:GetIndexedOutfit(categoryID, index)
+	-- Ensure settings are in place
+	if not self.Settings or not self.Settings.Outfits then
+		return
 	end
 	
-	if not gOutfitter_Settings.Outfits then
-		return nil
+	-- Get the outfits for the category
+	local outfits = self.Settings.Outfits[categoryID]
+	if not outfits then
+		return
 	end
 	
-	local vOutfits = gOutfitter_Settings.Outfits[pItem.categoryID]
-	
-	if not vOutfits then
-		-- Error: outfit category not found
-		return nil
+	-- Get the indexed outfit
+	local outfit = outfits[index]
+	if not outfit then
+		return
 	end
-	
-	return vOutfits[pItem.outfitIndex]
+
+	-- Done
+	return outfit
+end
+
+function Outfitter:GetOutfitFromDropdown(pDropdown)
+	return pDropdown:GetParent():GetParent():GetOutfit()
 end
 
 Outfitter.OutfitMenuActions = {}
 
-function Outfitter.OutfitMenuActions.DELETE(pOutfit)
-	Outfitter:AskDeleteOutfit(pOutfit)
+function Outfitter.OutfitMenuActions:DELETE(pOutfit)
+	self:AskDeleteOutfit(pOutfit)
 end
 
-function Outfitter.OutfitMenuActions.RENAME(pOutfit)
-	Outfitter.NameOutfit_Open(pOutfit)
+function Outfitter.OutfitMenuActions:RENAME(pOutfit)
+	Outfitter:OpenNameOutfitDialog(pOutfit)
 end
 
-function Outfitter.OutfitMenuActions.SCRIPT_SETTINGS(pOutfit)
+function Outfitter.OutfitMenuActions:SCRIPT_SETTINGS(pOutfit)
 	OutfitterEditScriptDialog:Open(pOutfit)
 end
 
-function Outfitter.OutfitMenuActions.EDIT_SCRIPT(pOutfit)
+function Outfitter.OutfitMenuActions:EDIT_SCRIPT(pOutfit)
 	if pOutfit.ScriptID == nil and pOutfit.Script == nil then
 		pOutfit.Script = pOutfit.SavedScript
 		pOutfit.SavedScript = nil
@@ -7041,102 +5753,113 @@ function Outfitter.OutfitMenuActions.EDIT_SCRIPT(pOutfit)
 	OutfitterEditScriptDialog:Open(pOutfit, true)
 end
 
-function Outfitter.OutfitMenuActions.DISABLE(pOutfit)
-	if pOutfit.Disabled then
-		pOutfit.Disabled = nil
-		Outfitter:ActivateScript(pOutfit)
-	else
-		pOutfit.Disabled = true
-		Outfitter:DeactivateScript(pOutfit)
+function Outfitter.OutfitMenuActions:DISABLE(pOutfit)
+	self:SetScriptEnabled(pOutfit, pOutfit.Disabled)
+end
+
+function Outfitter:SetScriptEnabled(pOutfit, pEnable)
+	if (not pEnable) == (pOutfit.Disabled or false) then
+		return
 	end
-	Outfitter:OutfitSettingsChanged(pOutfit)
+	
+	pOutfit.Disabled = not pEnable
+	
+	if pOutfit.Disabled then
+		self:DeactivateScript(pOutfit)
+	else
+		self:ActivateScript(pOutfit)
+	end
+	
+	self:OutfitSettingsChanged(pOutfit)
 end
 
-function Outfitter.OutfitMenuActions.SHOWHELM(pOutfit)
-	pOutfit.ShowHelm = true
-	Outfitter.OutfitStack:UpdateHelmAndCloakVisibility()
-	Outfitter:OutfitSettingsChanged(pOutfit)
+function Outfitter.OutfitMenuActions:IGNORETITLE(pOutfit)
+	pOutfit.ShowTitleID = nil
+	self.OutfitStack:UpdateOutfitDisplay()
+	self:OutfitSettingsChanged(pOutfit)
 end
 
-function Outfitter.OutfitMenuActions.HIDEHELM(pOutfit)
-	pOutfit.ShowHelm = false
-	Outfitter.OutfitStack:UpdateHelmAndCloakVisibility()
-	Outfitter:OutfitSettingsChanged(pOutfit)
-end
-
-function Outfitter.OutfitMenuActions.IGNOREHELM(pOutfit)
-	pOutfit.ShowHelm = nil
-	Outfitter.OutfitStack:UpdateHelmAndCloakVisibility()
-	Outfitter:OutfitSettingsChanged(pOutfit)
-end
-
-function Outfitter.OutfitMenuActions.SHOWCLOAK(pOutfit)
-	pOutfit.ShowCloak = true
-	Outfitter.OutfitStack:UpdateHelmAndCloakVisibility()
-	Outfitter:OutfitSettingsChanged(pOutfit)
-end
-
-function Outfitter.OutfitMenuActions.HIDECLOAK(pOutfit)
-	pOutfit.ShowCloak = false
-	Outfitter.OutfitStack:UpdateHelmAndCloakVisibility()
-	Outfitter:OutfitSettingsChanged(pOutfit)
-end
-
-function Outfitter.OutfitMenuActions.IGNORECLOAK(pOutfit)
-	pOutfit.ShowCloak = nil
-	Outfitter.OutfitStack:UpdateHelmAndCloakVisibility()
-	Outfitter:OutfitSettingsChanged(pOutfit)
-end
-
-function Outfitter.OutfitMenuActions.COMBATDISABLE(pOutfit)
+function Outfitter.OutfitMenuActions:COMBATDISABLE(pOutfit)
 	if pOutfit.CombatDisabled then
 		pOutfit.CombatDisabled = nil
 	else
 		pOutfit.CombatDisabled = true
 	end
 	
-	Outfitter:OutfitSettingsChanged(pOutfit)
+	self:OutfitSettingsChanged(pOutfit)
 end
 
-function Outfitter.OutfitMenuActions.REBUILD(pOutfit)
-	Outfitter:AskRebuildOutfit(pOutfit)
+function Outfitter.OutfitMenuActions:REBUILD(pOutfit)
+	self:AskRebuildOutfit(pOutfit)
 end
 
-function Outfitter.OutfitMenuActions.SET_CURRENT(pOutfit)
-	Outfitter:AskSetCurrent(pOutfit)
+function Outfitter.OutfitMenuActions:REBUILD_FOR(pOutfit)
+	Outfitter:OpenRebuildOutfitDialog(pOutfit)
 end
 
-function Outfitter.OutfitMenuActions.UNEQUIP_OTHERS(pOutfit)
+function Outfitter.OutfitMenuActions:SET_CURRENT(pOutfit)
+	self:AskSetCurrent(pOutfit)
+end
+
+function Outfitter.OutfitMenuActions:UNEQUIP_OTHERS(pOutfit)
 	if pOutfit.UnequipOthers then
 		pOutfit.UnequipOthers = nil
 	else
 		pOutfit.UnequipOthers = true
 	end
-	
-	Outfitter:OutfitSettingsChanged(pOutfit)
+	self:OutfitSettingsChanged(pOutfit)
 end
 
-function Outfitter.OutfitMenuActions.DEPOSIT(pOutfit)
-	Outfitter:DepositOutfit(pOutfit)
+function Outfitter.OutfitMenuActions:IGNORE_COMPARISONS(pOutfit)
+	if pOutfit.IgnoreComparisons then
+		pOutfit.IgnoreComparisons = nil
+	else
+		pOutfit.IgnoreComparisons = true
+	end
+	self:OutfitSettingsChanged(pOutfit)
 end
 
-function Outfitter.OutfitMenuActions.DEPOSITUNIQUE(pOutfit)
-	Outfitter:DepositOutfit(pOutfit, true)
+function Outfitter.OutfitMenuActions:DEPOSIT(pOutfit)
+	self:DepositOutfit(pOutfit)
 end
 
-function Outfitter.OutfitMenuActions.WITHDRAW(pOutfit)
-	Outfitter:WithdrawOutfit(pOutfit)
+function Outfitter.OutfitMenuActions:DEPOSITUNIQUE(pOutfit)
+	self:DepositOutfit(pOutfit, true)
 end
 
-function Outfitter.OutfitMenuActions.OUTFITBAR_SHOW(pOutfit)
-	local vSettings = Outfitter.OutfitBar:GetOutfitSettings(pOutfit)
+function Outfitter.OutfitMenuActions:WITHDRAW(pOutfit)
+	self:WithdrawOutfit(pOutfit)
+end
+
+function Outfitter.OutfitMenuActions:DEPOSITOTHERS(pOutfit)
+	self:DepositOtherOutfits(pOutfit)
+end
+
+function Outfitter.OutfitMenuActions:WITHDRAWOTHERS(pOutfit)
+	self:WithdrawOtherOutfits(pOutfit)
+end
+
+function Outfitter.OutfitMenuActions:DEPOSITVOID(pOutfit)
+	self:DepositOutfitToVoidStorage(pOutfit)
+end
+
+function Outfitter.OutfitMenuActions:DEPOSITUNIQUEVOID(pOutfit)
+	self:DepositOutfitToVoidStorage(pOutfit, true)
+end
+
+function Outfitter.OutfitMenuActions:WITHDRAWVOID(pOutfit)
+	self:WithdrawOutfitFromVoidStorage(pOutfit)
+end
+
+function Outfitter.OutfitMenuActions:OUTFITBAR_SHOW(pOutfit)
+	local vSettings = self.OutfitBar:GetOutfitSettings(pOutfit)
 	
 	vSettings.Hide = not vSettings.Hide
 	
-	Outfitter:OutfitSettingsChanged(pOutfit)
+	self:OutfitSettingsChanged(pOutfit)
 end
 
-function Outfitter.OutfitMenuActions.OUTFITBAR_CHOOSEICON(pOutfit)
+function Outfitter.OutfitMenuActions:OUTFITBAR_CHOOSEICON(pOutfit)
 	OutfitterChooseIconDialog:Open(pOutfit)
 end
 
@@ -7144,7 +5867,7 @@ function Outfitter:PerformAction(pActionID, pOutfit)
 	local vActionFunc = Outfitter.OutfitMenuActions[pActionID]
 	
 	if vActionFunc then
-		vActionFunc(pOutfit)
+		vActionFunc(self, pOutfit)
 	elseif string.sub(pActionID, 1, 8) == "BINDING_" then
 		local vBindingIndex = string.sub(pActionID, 9)
 		
@@ -7177,6 +5900,17 @@ function Outfitter:PerformAction(pActionID, pOutfit)
 		end
 		
 		Outfitter:OutfitSettingsChanged(pOutfit)
+	elseif string.sub(pActionID, 1, 6) == "TITLE_" then
+		local vTitleID = tonumber(string.sub(pActionID, 7))
+		
+		pOutfit.ShowTitleID = vTitleID
+		
+		self.SchedulerLib:ScheduleUniqueTask(0.5, self.OutfitStack.UpdateOutfitDisplay, self.OutfitStack)
+	elseif string.sub(pActionID, 1, 13) == "REBUILD_STAT_" then
+		local vStatID = string.sub(pActionID, 14)
+		
+		pOutfit.StatID = vStatID
+		Outfitter:AskRebuildOutfit(pOutfit)
 	else
 		return
 	end
@@ -7184,703 +5918,65 @@ function Outfitter:PerformAction(pActionID, pOutfit)
 	Outfitter:Update(true)
 end
 
-function Outfitter.OutfitItemSelected(pMenu, pValue)
-	local vItem = pMenu:GetParent():GetParent()
-	local vOutfit = Outfitter:GetOutfitFromListItem(vItem)
+function Outfitter.OutfitItemSelected(dropdown, item)
+	local outfit = Outfitter:GetOutfitFromDropdown(dropdown)
 
-	if not vOutfit then
-		Outfitter:ErrorMessage("Outfit for menu item "..vItem:GetName().." not found")
+	if not outfit then
+		Outfitter:ErrorMessage("Outfit for menu item "..tostring(pItem.name).." not found")
 		return
 	end
 
-	Outfitter:PerformAction(pValue, vOutfit)
-end
-
-function Outfitter:GetPresetScriptByID(pID)
-	for _, vPresetScript in ipairs(Outfitter.PresetScripts) do
-		if vPresetScript.ID == pID then
-			return vPresetScript
+	local value = item
+	if type(value) ~= "string" then
+		value = item.option.value
+		if not value and item[1] then
+			value = item.option.args[item[1]]
 		end
 	end
-end
 
-function Outfitter:FindMatchingPresetScriptID(pScript)
-	for _, vPresetScript in ipairs(Outfitter.PresetScripts) do
-		if vPresetScript.Script == pScript then
-			return vPresetScript.ID
-		end
-	end
-end
-
-function Outfitter.PresetScriptDropdown_OnLoad()
-	UIDropDownMenu_Initialize(this, Outfitter.PresetScriptDropdown_Initialize)
-	UIDropDownMenu_SetWidth(150)
-	UIDropDownMenu_Refresh(this)
-	
-	this.AutoSetValue = true
-	this.ChangedValueFunc = Outfitter.PresetScriptDropdown_ChangedValue
-end
-
-function Outfitter.PresetScriptDropdown_ChangedValue(pFrame, pValue)
-	pFrame.Dialog:SetPresetScriptID(pValue)
-end
-
-function Outfitter.PresetScriptDropdown_Initialize()
-	local vFrame = getglobal(UIDROPDOWNMENU_INIT_MENU)
-	
-	if UIDROPDOWNMENU_MENU_LEVEL == 2 then
-		for _, vPresetScript in ipairs(Outfitter.PresetScripts) do
-			if not vPresetScript.Class
-			or vPresetScript.Class == Outfitter.PlayerClass then
-				local vCategory = vPresetScript.Category or vPresetScript.Class or "GENERAL"
-				
-				if vCategory == UIDROPDOWNMENU_MENU_VALUE then
-					UIDropDownMenu_AddButton({
-						text = vPresetScript.Name,
-						value = vPresetScript.ID,
-						owner = vFrame,
-						func = Outfitter.DropDown_OnClick,
-						tooltipTitle = vPresetScript.Name,
-						tooltipText = Outfitter:GetScriptDescription(vPresetScript.Script),
-						textR = NORMAL_FONT_COLOR.r,
-						textG = NORMAL_FONT_COLOR.g,
-						textB = NORMAL_FONT_COLOR.b,
-					}, UIDROPDOWNMENU_MENU_LEVEL)
-				end
-			end
-		end
-	else
-		local vCategory
-		
-		for _, vPresetScript in ipairs(Outfitter.PresetScripts) do
-			if not vPresetScript.Class
-			or vPresetScript.Class == Outfitter.PlayerClass then
-				-- Start a new category if it's changing
-				
-				local vNewCategory = vPresetScript.Category or vPresetScript.Class or "GENERAL"
-				
-				if vCategory ~= vNewCategory then
-					vCategory = vNewCategory
-					
-					UIDropDownMenu_AddButton({
-						text = Outfitter.cScriptCategoryName[vCategory] or Outfitter.cClassName[vCategory],
-						owner = vFrame,
-						hasArrow = 1,
-						value = vCategory}, UIDROPDOWNMENU_MENU_LEVEL)
-				end
-			end
-		end
-	end
-end
-
-------------------------------------
-Outfitter._EditScriptDialog = {}
-------------------------------------
-
-Outfitter._EditScriptDialog.Widgets =
-{
-	"Title",
-	"Source",
-	"Settings",
-	"SettingsDescription",
-	"SourceScriptEditBox",
-	"SourceStatusMessage",
-	"PresetScript",
-}
-
-function Outfitter._EditScriptDialog:Construct()
-	Outfitter._PortraitWindowFrame.Construct(self)
-	
-	self.Widgets.SourceScriptEditBox.Dialog = self
-	self.Widgets.SourceScriptEditBox.TextChanged = Outfitter.EditorScript_TextChanged
-	
-	self.Widgets.PresetScript.Dialog = self
-	
-	self.CloseButton:SetScript("OnClick", function () this:GetParent():Done() end)
-	
-	-- Tabs
-	
-	PanelTemplates_SetNumTabs(self, 2)
-	self.selectedTab = 1
-	PanelTemplates_UpdateTabs(this)
-	
-	-- Setting frames
-	
-	self.FrameCache = {}
-end
-
-function Outfitter._EditScriptDialog:Open(pOutfit, pShowSource)
-	self.Outfit = pOutfit
-	
-	self.Widgets.Title:SetText(string.format(Outfitter.cEditScriptTitle, pOutfit.Name))
-	
-	local vScript = Outfitter:GetScript(pOutfit)
-	
-	if vScript then
-		self.Widgets.SourceScriptEditBox:SetText(vScript)
-	else
-		self.Widgets.SourceScriptEditBox:SetText("")
-	end
-	
-	-- Copy the script values
-	
-	self.ScriptSettings = {}
-	
-	if self.Outfit.ScriptSettings then
-		for vKey, vValue in pairs(self.Outfit.ScriptSettings) do
-			self.ScriptSettings[vKey] = vValue
-		end
-	end
-	
-	self:SetPresetScriptID(Outfitter:FindMatchingPresetScriptID(vScript))
-	
-	--
-	
-	if pShowSource then
-		self:SetPanelIndex(2) -- Show the source panel
-	else
-		self:SetPanelIndex(1) -- Show the settings panel
-	end
-	
-	self:Show()
-	
-	Outfitter:DialogOpened(self)
-end
-
-function Outfitter._EditScriptDialog:Close()
-	MCSchedulerLib:UnscheduleTask(self.CheckScriptErrors, self)
-	
-	self.Outfit = nil
-	self:Hide()
-	
-	Outfitter:DialogClosed(self)
-end
-
-function Outfitter._EditScriptDialog:Done()
-	-- Save the script
-	
-	local vScript = self.Widgets.SourceScriptEditBox:GetText()
-	local vScriptID = Outfitter:FindMatchingPresetScriptID(vScript)
-	
-	if vScriptID then
-		Outfitter:SetScriptID(self.Outfit, vScriptID)
-	else
-		Outfitter:SetScript(self.Outfit, vScript)
-	end
-	
-	-- Save the settings
-	
-	self.Outfit.ScriptSettings = self:GetScriptSettings()
-	
-	--
-	
-	self:Close()
-end
-
-function Outfitter._EditScriptDialog:CheckScriptErrors()
-	local vScript = self.Widgets.SourceScriptEditBox:GetText()
-	local vScriptFields, vMessage = Outfitter:ParseScriptFields(vScript)
-	
-	if not vMessage then
-		_, vMessage = Outfitter:LoadOutfitScript(vScript)
-	end
-	
-	if vMessage then
-		self.Widgets.SourceStatusMessage:SetText(vMessage)
-	else
-		self.Widgets.SourceStatusMessage:SetText("OK")
-	end
-	
-	self:SetPresetScriptID(Outfitter:FindMatchingPresetScriptID(vScript))
-end
-
-function Outfitter._EditScriptDialog:SetPresetScriptID(pID)
-	local vPresetScript = Outfitter:GetPresetScriptByID(pID)
-	
-	if not vPresetScript then
-		Outfitter.DropDown_SetSelectedValue(self.Widgets.PresetScript, "CUSTOM")
-		return
-	end
-	
-	Outfitter.DropDown_SetSelectedValue(self.Widgets.PresetScript, pID)
-	
-	self.Widgets.SourceScriptEditBox:SetText(vPresetScript.Script)
-
-	local vScriptFields, vMessage = Outfitter:ParseScriptFields(vPresetScript.Script)
-	
-	if vScriptFields then
-		self:ConstructSettingsFields(vScriptFields)
-	end
-end
-
-function Outfitter._EditScriptDialog:SetPanelIndex(pIndex)
-	if pIndex == 1 then
-		local vScript = self.Widgets.SourceScriptEditBox:GetText()
-		local vScriptFields = Outfitter:ParseScriptFields(vScript)
-		
-		if vScriptFields then
-			self:ConstructSettingsFields(vScriptFields)
-		end
-		
-		self.Widgets.Settings:Show()
-		self.Widgets.Source:Hide()
-	else
-		self.ScriptSettings = self:GetScriptSettings()
-		
-		self.Widgets.Settings:Hide()
-		self.Widgets.Source:Show()
-	end
-	
-	PanelTemplates_SetTab(self, pIndex)
-end
-
-function Outfitter._EditScriptDialog:ConstructSettingsFields( pSettings)
-	-- Outfitter:DebugTable("ConstructSettingsFields", pSettings)
-	
-	local vNumFramesUsed = {}
-	
-	self.SettingsFrames = {}
-	
-	-- Hide and de-anchor all frames
-	
-	for vFrameType, vFrames in pairs(self.FrameCache) do
-		for _, vFrame in ipairs(vFrames) do
-			vFrame:ClearAllPoints()
-			vFrame:Hide()
-		end
-		
-		vNumFramesUsed[vFrameType] = 0
-	end
-	
-	--
-	
-	local vPreviousFrame = nil
-	local vPreviousOffsetX = 0
-	
-	if pSettings.Inputs then
-		self.Widgets.SettingsDescription:SetText(pSettings.Description or " ")
-		
-		for _, vDescriptor in ipairs(pSettings.Inputs) do
-			local vType = string.lower(vDescriptor.Type)
-			local vSettingTypeInfo = Outfitter.SettingTypeInfo[vType]
-			
-			if not vSettingTypeInfo then
-				Outiftter:ErrorMessage("Unknown $SETTING type %s in the script, I can't create a control for it", vDescriptor.Type or "nil")
-				break
-			end
-			
-			local vFrameType = vSettingTypeInfo.FrameType
-			
-			if not vNumFramesUsed[vFrameType] then
-				vNumFramesUsed[vFrameType] = 0
-			end
-			
-			local vFrameIndex = vNumFramesUsed[vFrameType] + 1
-			local vFrame
-			
-			-- Create a new frame if needed
-			
-			local vFrameCache = self.FrameCache[vFrameType]
-			
-			if not vFrameCache then
-				vFrameCache = {}
-				self.FrameCache[vFrameType] = vFrameCache
-			end
-			
-			vFrame = vFrameCache[vFrameIndex]
-			
-			if not vFrame then
-				local vFrameName = self.Widgets.Settings:GetName()..vFrameType..vFrameIndex
-				
-				-- Outfitter:TestMessage("Creating frame "..vFrameName)
-				
-				if vFrameType == "ScrollableEditBox" then
-					vFrame = CreateFrame("ScrollFrame", vFrameName, self.Widgets.Settings, "OutfitterScrollableEditBox")
-					vFrame:SetWidth(300)
-					vFrame:SetHeight(80)
-				
-				elseif vFrameType == "EditBox" then
-					vFrame = CreateFrame("EditBox", vFrameName, self.Widgets.Settings, "OutfitterInputBoxTemplate")
-					vFrame:SetAutoFocus(false)
-					vFrame:SetWidth(300)
-					vFrame:SetHeight(18)
-				
-				elseif vFrameType == "ZoneListEditBox" then
-					vFrame = CreateFrame("ScrollFrame", vFrameName, self.Widgets.Settings, "OutfitterZoneListEditBox")
-					vFrame:SetWidth(180)
-					vFrame:SetHeight(80)
-				
-				elseif vFrameType == "Checkbox" then
-					vFrame = CreateFrame("CheckButton", vFrameName, self.Widgets.Settings, "OutfitterCheckboxTemplate")
-					vFrame:SetWidth(24)
-					vFrame:SetHeight(24)
-				end
-				
-				if vFrame then
-					vFrameCache[vFrameIndex] = vFrame
-				end
-			end
-			
-			if vFrame then
-				table.insert(self.SettingsFrames, vFrame)
-				
-				vFrame.Descriptor = vDescriptor
-				
-				-- Position the frame
-				
-				local vOffsetX, vOffsetY = 0, -10
-				
-				if vDescriptor.Type == "Number" then
-					vFrame:SetWidth(100)
-				end
-				
-				if vFrameType == "EditBox" then
-					vOffsetX = 6
-				end
-				
-				if not vPreviousFrame then
-					vFrame:SetPoint("TOPLEFT", self.Widgets.SettingsDescription, "BOTTOMLEFT", vOffsetX - vPreviousOffsetX, vOffsetY)
-				else
-					vFrame:SetPoint("TOPLEFT", vPreviousFrame, "BOTTOMLEFT", vOffsetX - vPreviousOffsetX, vOffsetY)
-				end
-				
-				vPreviousFrame = vFrame
-				vPreviousOffsetX = vOffsetX
-				vNumFramesUsed[vFrameType] = vFrameIndex
-				
-				-- Set the label
-				
-				local vLabelText = getglobal(vFrame:GetName().."Label")
-				
-				if not vLabelText then
-					vLabelText = getglobal(vFrame:GetName().."Text")
-				end
-				
-				vLabelText:SetText(vDescriptor.Label)
-				
-				-- Set the suffix
-				
-				local vSuffixText = getglobal(vFrame:GetName().."Suffix")
-				
-				if vSuffixText then
-					vSuffixText:SetText(vDescriptor.Suffix or "")
-				end
-				
-				-- Set the zone type if it's a zone list
-				
-				if vFrameType == "ZoneListEditBox" then
-					local vType = vDescriptor.ZoneType
-					
-					if not vType then
-						vType = "Zone"
-					end
-					
-					local vZoneButton = getglobal(vFrame:GetName().."ZoneButton")
-					
-					vZoneButton.GetTextFunc = getglobal("Get"..vType.."Text")
-					vZoneButton:SetText(string.format(Outfitter.cInsertFormat, vZoneButton.GetTextFunc()))
-				end
-				
-				-- Show it
-				
-				vFrame:Show()
-			end
-		end
-	else -- if pSettings.Inputs
-		self.Widgets.SettingsDescription:SetText(pSettings.Description or Outfitter.cNoScriptSettings)
-	end
-	
-	self:SetScriptSettings()
-end
-
-function Outfitter._EditScriptDialog:GetScriptSettings()
-	local vSettings = {}
-	
-	if self.SettingsFrames then
-		for _, vFrame in ipairs(self.SettingsFrames) do
-			local vType = string.lower(vFrame.Descriptor.Type)
-			local vValue
-			
-			if vType == "string" then
-				vValue = vFrame:GetText()
-			
-			elseif vType == "number" then
-				vValue = tonumber(vFrame:GetText())
-			
-			elseif vType == "boolean" then
-				vValue = vFrame:GetChecked() == 1
-			
-			elseif vType == "stringtable"
-			or vType == "zonelist" then
-				local vEditBox = getglobal(vFrame:GetName().."EditBox")
-				
-				vValue = {}
-				
-				for vLine in string.gmatch(vEditBox:GetText(), "([^\r\n]*)") do
-					if string.len(vLine) > 0 then
-						table.insert(vValue, vLine)
-					end
-				end
-			else
-				Outfitter:DebugMessage("EditScriptDialog:GetScriptSettings: Unknown type %s", vType or "nil")
-			end
-			
-			vSettings[vFrame.Descriptor.Field] = vValue
-		end
-	end
-	
-	-- Outfitter:DebugTable("GetScriptSettings", vSettings)
-	
-	return vSettings
-end
-
-function Outfitter._EditScriptDialog:SetScriptSettings()
-	if not self.SettingsFrames then
-		return
-	end
-	
-	for _, vFrame in ipairs(self.SettingsFrames) do
-		local vType = string.lower(vFrame.Descriptor.Type)
-		local vValue = self.ScriptSettings[vFrame.Descriptor.Field]
-		
-		if not vValue then
-			local vSettingTypeInfo = Outfitter.SettingTypeInfo[vType]
-			
-			if not vSettingTypeInfo then
-				return
-			end
-			
-			vValue = vSettingTypeInfo.Default
-		end
-		
-		if vType == "string"
-		or vType == "number" then
-			vFrame:SetText(vValue)
-		
-		elseif vType == "boolean" then
-			vFrame:SetChecked(vValue)
-		
-		elseif vType == "stringtable"
-		or vType == "zonelist" then
-			local vEditBox = getglobal(vFrame:GetName().."EditBox")
-			
-			if type(vValue) == "table" then
-				vEditBox:SetText(table.concat(vValue, "\n"))
-			else
-				vEditBox:SetText("")
-			end
-		end
-	end
-end
-
-function Outfitter.EditorScript_TextChanged(pEditBox)
-	local vDialog = pEditBox.Dialog
-	
-	vDialog.Widgets.SourceStatusMessage:SetText(Outfitter.cTyping)
-	
-	MCSchedulerLib:RescheduleTask(1.5, vDialog.CheckScriptErrors, vDialog)
-end
-
-----------------------------------------
--- Outfitter.StatDropDown
-----------------------------------------
-
-function Outfitter.StatDropdown_OnLoad()
-	UIDropDownMenu_Initialize(this, Outfitter.StatDropdown_Initialize)
-	UIDropDownMenu_SetWidth(150)
-	UIDropDownMenu_Refresh(this)
-
-	this.AutoSetValue = true
-end
-
-function Outfitter.StatDropdown_Initialize()
-	local vFrame = getglobal(UIDROPDOWNMENU_INIT_MENU)
-	
-	if UIDROPDOWNMENU_MENU_LEVEL == 2 then
-		for vStatIndex, vStatInfo in ipairs(Outfitter.cItemStatInfo) do
-			if vStatInfo.Category == UIDROPDOWNMENU_MENU_VALUE then
-				UIDropDownMenu_AddButton({text = vStatInfo.Name, value = vStatInfo.ID, owner = vFrame, func = Outfitter.DropDown_OnClick}, UIDROPDOWNMENU_MENU_LEVEL)
-			end
-		end
-	else
-		UIDropDownMenu_AddButton({text = Outfitter.cUseCurrentOutfit, value = 0, owner = vFrame, func = Outfitter.DropDown_OnClick})
-		UIDropDownMenu_AddButton({text = Outfitter.cUseEmptyOutfit, value = "EMPTY", owner = vFrame, func = Outfitter.DropDown_OnClick})
-		
-		UIDropDownMenu_AddButton({text = " ", notCheckable = true, notClickable = true})
-		
-		for vCategoryIndex, vCategoryInfo in ipairs(Outfitter.cStatCategoryInfo) do
-			UIDropDownMenu_AddButton({text = vCategoryInfo.Name, owner = vFrame, hasArrow = 1, value = vCategoryInfo.Category})
-		end
-		
-		if false and IsAddOnLoaded("TankPoints") then
-			UIDropDownMenu_AddButton({text = " ", notCheckable = true, notClickable = true})
-			UIDropDownMenu_AddButton({text = Outfitter.cTankPoints, value="TANKPOINTS", owner = vFrame, func = Outfitter.DropDown_OnClick})
-		end
-	end
-end
-
-----------------------------------------
--- Outfitter.AutomationDropDown
-----------------------------------------
-
-function Outfitter.AutomationDropdown_OnLoad()
-	UIDropDownMenu_Initialize(this, Outfitter.AutomationDropdown_Initialize)
-	UIDropDownMenu_SetWidth(150)
-	UIDropDownMenu_Refresh(this)
-end
-
-function Outfitter.AutomationDropdown_Initialize()
-	local vFrame = getglobal(UIDROPDOWNMENU_INIT_MENU)
-
-	if UIDROPDOWNMENU_MENU_LEVEL == 2 then
-		for _, vPresetScript in ipairs(Outfitter.PresetScripts) do
-			if not vPresetScript.Class
-			or vPresetScript.Class == Outfitter.PlayerClass then
-				local vCategory = vPresetScript.Category or vPresetScript.Class or "GENERAL"
-				
-				if vCategory == UIDROPDOWNMENU_MENU_VALUE then
-					local vName = vPresetScript.Name
-					local vDescription = Outfitter:GetScriptDescription(vPresetScript.Script)
-					
-					Outfitter:AddMenuItem(
-							vFrame,
-							vName,
-							vPresetScript.ID,
-							nil, -- Checked
-							UIDROPDOWNMENU_MENU_LEVEL,
-							nil, -- Color
-							nil, -- Disabled
-							{tooltipTitle = vName, tooltipText = vDescription})
-				end
-			end
-		end
-	else
-		local vCategory
-		
-		Outfitter:AddMenuItem(vFrame, Outfitter.cNoScript, "NONE")
-		
-		local vCategory
-		
-		for _, vPresetScript in ipairs(Outfitter.PresetScripts) do
-			if not vPresetScript.Class
-			or vPresetScript.Class == Outfitter.PlayerClass then
-				-- Start a new category if it's changing
-				
-				local vNewCategory = vPresetScript.Category or vPresetScript.Class or "GENERAL"
-				
-				if vCategory ~= vNewCategory then
-					vCategory = vNewCategory
-					
-					UIDropDownMenu_AddButton({
-						text = Outfitter.cScriptCategoryName[vCategory] or Outfitter.cClassName[vCategory],
-						owner = vFrame,
-						hasArrow = 1,
-						value = vCategory}, UIDROPDOWNMENU_MENU_LEVEL)
-				end
-			end
-		end
-	end
+	Outfitter:PerformAction(value, outfit)
 end
 
 ----------------------------------------
 -- 
 ----------------------------------------
 
-function Outfitter:GetStatIDName(pStatID)
-	for vStatIndex, vStatInfo in ipairs(Outfitter.cItemStatInfo) do
-		if vStatInfo.ID == pStatID then
-			return vStatInfo.Name
-		end
-	end
-	
-	return nil
-end
-
-function Outfitter.DropDown_SetSelectedValue(pDropDown, pValue)
-	UIDropDownMenu_SetText("", pDropDown) -- Set to empty in case the selected value isn't there
-
-	UIDropDownMenu_Initialize(pDropDown, pDropDown.initialize)
-	UIDropDownMenu_SetSelectedValue(pDropDown, pValue)
-	
-	-- All done if the item text got set successfully
-	
-	local vItemText = UIDropDownMenu_GetText(pDropDown)
-	
-	if vItemText and vItemText ~= "" then
-		return
-	end
-	
-	-- Scan for submenus
-	
-	local vRootListFrameName = "DropDownList1"
-	local vRootListFrame = getglobal(vRootListFrameName)
-	local vRootNumItems = vRootListFrame.numButtons
-	
-	for vRootItemIndex = 1, vRootNumItems do
-		local vItem = getglobal(vRootListFrameName.."Button"..vRootItemIndex)
-		
-		if vItem.hasArrow then
-			local vSubMenuFrame = getglobal("DropDownList2")
-			
-			UIDROPDOWNMENU_OPEN_MENU = pDropDown:GetName()
-			UIDROPDOWNMENU_MENU_VALUE = vItem.value
-			UIDROPDOWNMENU_MENU_LEVEL = 2
-			
-			UIDropDownMenu_Initialize(pDropDown, pDropDown.initialize, nil, 2)
-			UIDropDownMenu_SetSelectedValue(pDropDown, pValue)
-			
-			-- All done if the item text got set successfully
-			
-			local vItemText = UIDropDownMenu_GetText(pDropDown)
-			
-			if vItemText and vItemText ~= "" then
-				return
-			end
-			
-			-- Switch back to the root menu
-			
-			UIDROPDOWNMENU_OPEN_MENU = nil
-			UIDropDownMenu_Initialize(pDropDown, pDropDown.initialize, nil, 1)
-		end
-	end
-end
-
 function Outfitter.ScrollbarTrench_SizeChanged(pScrollbarTrench)
 	local vScrollbarTrenchName = pScrollbarTrench:GetName()
-	local vScrollbarTrenchMiddle = getglobal(vScrollbarTrenchName.."Middle")
+	local vScrollbarTrenchMiddle = _G[vScrollbarTrenchName.."Middle"]
 	
 	local vMiddleHeight= pScrollbarTrench:GetHeight() - 51
 	vScrollbarTrenchMiddle:SetHeight(vMiddleHeight)
 end
 
-function Outfitter.InputBox_OnLoad(pChildDepth)
+function Outfitter.InputBox_OnLoad(self, pChildDepth)
 	if not pChildDepth then
 		pChildDepth = 0
 	end
 	
-	local vParent = this:GetParent()
+	local vParent = self:GetParent()
 	
 	for vDepthIndex = 1, pChildDepth do
 		vParent = vParent:GetParent()
 	end
 	
 	if vParent.lastEditBox then
-		this.prevEditBox = vParent.lastEditBox
-		this.nextEditBox = vParent.lastEditBox.nextEditBox
+		self.prevEditBox = vParent.lastEditBox
+		self.nextEditBox = vParent.lastEditBox.nextEditBox
 		
-		this.prevEditBox.nextEditBox = this
-		this.nextEditBox.prevEditBox = this
+		self.prevEditBox.nextEditBox = self
+		self.nextEditBox.prevEditBox = self
 	else
-		this.prevEditBox = this
-		this.nextEditBox = this
+		self.prevEditBox = self
+		self.nextEditBox = self
 	end
 
-	vParent.lastEditBox = this
+	vParent.lastEditBox = self
 end
 
-function Outfitter.InputBox_TabPressed()
+function Outfitter.InputBox_TabPressed(self)
 	local vReverse = IsShiftKeyDown()
-	local vEditBox = this
+	local vEditBox = self
 	
 	for vIndex = 1, 50 do
 		local vNextEditBox
@@ -7901,168 +5997,16 @@ function Outfitter.InputBox_TabPressed()
 	end
 end
 
-function Outfitter:ScheduleEquipmentUpdate()
-	if not self.EquippedNeedsUpdate
-	and not self.WeaponsNeedUpdate then
-		return
-	end
-	
-	local vElapsed = GetTime() - self.LastEquipmentUpdateTime
-	local vDelay = self.cMinEquipmentUpdateInterval - vElapsed
-	
-	 if vDelay < 0.05 then
-		vDelay = 0.05
-	end
-	
-	MCSchedulerLib:ScheduleUniqueTask(vDelay, self.UpdateEquippedItems, self)
-end
-
-function Outfitter.MinimapButton_MouseDown()
-	-- Remember where the cursor was in case the user drags
-	
-	local vCursorX, vCursorY = GetCursorPosition()
-	
-	vCursorX = vCursorX / this:GetEffectiveScale()
-	vCursorY = vCursorY / this:GetEffectiveScale()
-	
-	OutfitterMinimapButton.CursorStartX = vCursorX
-	OutfitterMinimapButton.CursorStartY = vCursorY
-	
-	local vCenterX, vCenterY = OutfitterMinimapButton:GetCenter()
-	local vMinimapCenterX, vMinimapCenterY = Minimap:GetCenter()
-	
-	OutfitterMinimapButton.CenterStartX = vCenterX - vMinimapCenterX
-	OutfitterMinimapButton.CenterStartY = vCenterY - vMinimapCenterY
-	
-	OutfitterMinimapButton.EnableFreeDrag = IsModifierKeyDown()
-end
-
-function Outfitter.MinimapButton_DragStart()
-	MCSchedulerLib:ScheduleUniqueRepeatingTask(0, Outfitter.MinimapButton_UpdateDragPosition)
-end
-
-function Outfitter.MinimapButton_DragEnd()
-	MCSchedulerLib:UnscheduleTask(Outfitter.MinimapButton_UpdateDragPosition)
-end
-
-function Outfitter.MinimapButton_UpdateDragPosition()
-	-- Remember where the cursor was in case the user drags
-	
-	local vCursorX, vCursorY = GetCursorPosition()
-	
-	vCursorX = vCursorX / this:GetEffectiveScale()
-	vCursorY = vCursorY / this:GetEffectiveScale()
-	
-	local vCursorDeltaX = vCursorX - OutfitterMinimapButton.CursorStartX
-	local vCursorDeltaY = vCursorY - OutfitterMinimapButton.CursorStartY
-	
-	--
-	
-	local vCenterX = OutfitterMinimapButton.CenterStartX + vCursorDeltaX
-	local vCenterY = OutfitterMinimapButton.CenterStartY + vCursorDeltaY
-	
-	if OutfitterMinimapButton.EnableFreeDrag then
-		Outfitter.MinimapButton_SetPosition(vCenterX, vCenterY)
-	else
-		-- Calculate the angle and set the new position
+function Outfitter:ToggleUI(pToggleCharWindow)
+	if self:IsOpen() then
+		OutfitterFrame:Hide()
 		
-		local vAngle = math.atan2(vCenterX, vCenterY)
-		
-		Outfitter.MinimapButton_SetPositionAngle(vAngle)
-	end
-end
-
-function Outfitter:RestrictAngle(pAngle, pRestrictStart, pRestrictEnd)
-	if pAngle <= pRestrictStart
-	or pAngle >= pRestrictEnd then
-		return pAngle
-	end
-	
-	local vDistance = (pAngle - pRestrictStart) / (pRestrictEnd - pRestrictStart)
-	
-	if vDistance > 0.5 then
-		return pRestrictEnd
-	else
-		return pRestrictStart
-	end
-end
-
-function Outfitter.MinimapButton_SetPosition(pX, pY)
-	gOutfitter_Settings.Options.MinimapButtonAngle = nil
-	gOutfitter_Settings.Options.MinimapButtonX = pX
-	gOutfitter_Settings.Options.MinimapButtonY = pY
-	
-	OutfitterMinimapButton:SetPoint("CENTER", Minimap, "CENTER", pX, pY)
-end
-
-function Outfitter.MinimapButton_SetPositionAngle(pAngle)
-	local vAngle = pAngle
-	
-	-- Restrict the angle from going over the date/time icon or the zoom in/out icons
-	--[[
-	local vRestrictedStartAngle = nil
-	local vRestrictedEndAngle = nil
-	
-	if GameTimeFrame:IsVisible() then
-		if MinimapZoomIn:IsVisible()
-		or MinimapZoomOut:IsVisible() then
-			vAngle = Outfitter:RestrictAngle(vAngle, 0.4302272732931596, 2.930420793963121)
-		else
-			vAngle = Outfitter:RestrictAngle(vAngle, 0.4302272732931596, 1.720531504573905)
-		end
-		
-	elseif MinimapZoomIn:IsVisible()
-	or MinimapZoomOut:IsVisible() then
-		vAngle = Outfitter:RestrictAngle(vAngle, 1.720531504573905, 2.930420793963121)
-	end
-	
-	-- Restrict it from the tracking icon area
-	
-	vAngle = Outfitter:RestrictAngle(vAngle, -1.290357134304173, -0.4918423429923585)
-	]]--
-	
-	--
-	
-	local vRadius = 80
-	
-	vCenterX = math.sin(vAngle) * vRadius
-	vCenterY = math.cos(vAngle) * vRadius
-	
-	OutfitterMinimapButton:SetPoint("CENTER", Minimap, "CENTER", vCenterX - 1, vCenterY - 1)
-	
-	gOutfitter_Settings.Options.MinimapButtonAngle = vAngle
-end
-
-function Outfitter.MinimapButton_ItemSelected(pMenu, pValue)
-	local vType = type(pValue)
-
-	if vType == "table" then
-		local vCategoryID = pValue.CategoryID
-		local vIndex = pValue.Index
-		local vOutfit = gOutfitter_Settings.Outfits[vCategoryID][vIndex]
-		local vDoToggle = vCategoryID ~= "Complete"
-		
-		if vDoToggle
-		and Outfitter:WearingOutfit(vOutfit) then
-			Outfitter:RemoveOutfit(vOutfit)
-		else
-			Outfitter:WearOutfit(vOutfit)
-		end
-		
-		if vDoToggle then
-			return true
+		if pToggleCharWindow then
+			HideUIPanel(CharacterFrame)
 		end
 	else
-		if pValue == 0 then -- Open Outfitter
-			Outfitter:OpenUI()
-		end
-		if pValue == -1 then -- Change AutoSwitch Value.
-			Outfitter:SetAutoSwitch(gOutfitter_Settings.Options.DisableAutoSwitch)
-			return true
-		end
+		self:OpenUI()
 	end
-
-	return false
 end
 
 function Outfitter:OpenUI()
@@ -8082,260 +6026,114 @@ function Outfitter:WearingOutfit(pOutfit)
 end
 
 function Outfitter:CheckDatabase()
-	local vOutfit
+	-- Just reset if they're running a really old version
+	if self.Settings.Version < 18 then
+		self:Reset()
+	end
 	
-	if not gOutfitter_Settings.Version then
-		local vOutfits = gOutfitter_Settings.Outfits[vCategoryID]
-		
-		if gOutfitter_Settings.Outfits then
-			for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+	-- Remove ranged slot (WoW patch 5)
+	
+	if self.Settings.Version < 19 then
+		if self.Settings.Outfits then
+			for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
 				for vIndex, vOutfit in ipairs(vOutfits) do
-					if self:OutfitIsComplete(vOutfit, true) then
-						self:AddOutfitItem(vOutfit, "AmmoSlot", nil)
+					if vOutfit.Items then
+						vOutfit.Items.RangedSlot = nil
 					end
 				end
 			end
 		end
-		
-		gOutfitter_Settings.Version = 1
+		self.Settings.Version = 19
 	end
 	
-	-- Versions 1 and 2 both simply add class outfits
-	-- so just reinitialize those
-	
-	if gOutfitter_Settings.Version < 3 then
-		self:InitializeClassOutfits()
-		gOutfitter_Settings.Version = 3
-	end
-	
-	-- Version 4 sets the BGDisabled flag for the mounted outfit
-	
-	if gOutfitter_Settings.Version < 4 then
-		local vRidingOutfit = self:GetOutfitByScriptID("Riding")
-		
-		if vRidingOutfit then
-			vRidingOutfit.BGDisabled = true
-		end
-		
-		gOutfitter_Settings.Version = 4
-	end
-	
-	-- Version 5 adds moonkin form, just reinitialize class outfits
+	--[[ Added ID11,12 and 13 for WoW patch 6
 
-	if gOutfitter_Settings.Version < 5 then
-		self:InitializeClassOutfits()
-		gOutfitter_Settings.Version = 5
-	end
-	
-	-- Make sure all outfits have an associated category ID
-	
-	if gOutfitter_Settings.Outfits then
-		for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
-			for vIndex, vOutfit in ipairs(vOutfits) do
-				vOutfit.CategoryID = vCategoryID
-			end
-		end
-	end
-	
-	-- Version 6 and 7 adds item sub-code and enchantment codes
-	-- (7 tries to clean up failed updates from 6)
-	
-	if gOutfitter_Settings.Version < 7 then
-		MCSchedulerLib:ScheduleTask(5, Outfitter.UpdateDatabaseItemCodes, Outfitter)
-		
-		gOutfitter_Settings.Version = 7
-	end
-	
-	-- Version 8 removes the old style cloak/helm settings
-	
-	if gOutfitter_Settings.Version < 8 then
-		gOutfitter_Settings.HideHelm = nil
-		gOutfitter_Settings.HideCloak = nil
-		gOutfitter_Settings.Version = 8
-	end
-	
-	-- Version 9 converts old SpecialIDs to ScriptIDs
-	-- and removes the parial and special categories
-	
-	if gOutfitter_Settings.Version < 9 then
-		local vUpdatedOutfits = {}
-		local vDeletedOutfits = {}
-		
-		local vPreservedOutfits =
-		{
-			Battle = true,
-			Defensive = true,
-			Berserker = true,
-			
-			Bear = true,
-			Cat = true,
-			Aquatic = true,
-			Travel = true,
-			Moonkin = true,
-			Tree = true,
-			Prowl = true,
-			Flight = true,
-
-			Shadowform = true,
-
-			Stealth = true,
-
-			GhostWolf = true,
-
-			Monkey = true,
-			Hawk = true,
-			Cheetah = true,
-			Pack = true,
-			Beast = true,
-			Wild = true,
-			Viper = true,
-			Feigning = true,
-			
-			Evocate = true,
-			
-			ArgentDawn = true,
-
-			Battleground = true,
-		}
-		
-		for _, vOutfit in ipairs(gOutfitter_Settings.Outfits.Special) do
-			if self:IsEmptyOutfit(vOutfit)
-			and not vPreservedOutfits[vOutfit.SpecialID] then
-				table.insert(vDeletedOutfits, vOutfit)
-			else
-				vOutfit.ScriptID = vOutfit.SpecialID
-				vOutfit.SpecialID = nil
-				
-				table.insert(vUpdatedOutfits, vOutfit)
-			end
-		end
-		
-		--
-		
-		for _, vOutfit in ipairs(gOutfitter_Settings.Outfits.Partial) do
-			vOutfit.IsAccessory = nil
-			table.insert(vUpdatedOutfits, vOutfit)
-		end
-		
-		--
-		
-		for _, vOutfit in ipairs(vUpdatedOutfits) do
-			self:OutfitSettingsChanged(vOutfit)
-		end
-		
-		for _, vOutfit in ipairs(vDeletedOutfits) do
-			self:DeleteOutfit(vOutfit)
-		end
-		
-		gOutfitter_Settings.Outfits.Special = nil
-		gOutfitter_Settings.Outfits.Partial = nil
-		
-		gOutfitter_Settings.Version = 9
-	end
-	
-	-- Version 10 eliminates the ScriptEvents field and moves
-	-- it to the source instead
-	
-	if gOutfitter_Settings.Version < 10 then
-		for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
-			for vIndex, vOutfit in ipairs(vOutfits) do
-				if vOutfit.Script and vOutfit.ScriptEvents then
-					vOutfit.Script = "-- $EVENTS "..vOutfit.ScriptEvents.."\n"..vOutfit.Script
+	if self.Settings.Version < 20 then
+		if self.Settings.Outfits then
+			for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
+				for vIndex, vOutfit in ipairs(vOutfits) do
+					for _, vItem in pairs(vOutfit.Items) do
+						vItem.ID11 = 0
+						vItem.ID12 = 0
+						vItem.ID13 = 0
+					end
 				end
-				vOutfit.ScriptEvents = nil
 			end
 		end
-		
-		gOutfitter_Settings.Version = 10
+		self.Settings.Version = 20
 	end
+
+	]]-- superseded below
 	
-	-- Version 11 prevents scripted outfits from being treated as complete outfits
-	
-	if gOutfitter_Settings.Version < 11 then
-		self:CheckOutfitCategories()
-		gOutfitter_Settings.Version = 11
-	end
-	
-	-- Version 12 moves the BGDisabled, AQDisabled and NaxxDisabled flags to
-	-- the script settings for the riding outfiZt
-	
-	if gOutfitter_Settings.Version < 12 then
-		local vRidingOutfit = self:GetOutfitByScriptID("Riding")
-		
-		if vRidingOutfit then
-			if not vRidingOutfit.ScriptSettings then
-				vRidingOutfit.ScriptSettings = {}
+	-- Added InstanceDifficultyID, BonusIDs for WoW patch 6
+	-- Added UpgradeTypeID, UpgradeID for WoW patch 6.2
+
+	if self.Settings.Version < 21 then
+		if self.Settings.Outfits then
+			for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
+				for vIndex, vOutfit in ipairs(vOutfits) do
+					for _, vItem in pairs(vOutfit.Items) do
+						vItem.UpgradeTypeID = 0
+						vItem.InstanceDifficultyID = 0
+						vItem.BonusIDs = "0"
+						vItem.UpgradeID = 0
+						vItem.ReforgeID = nil
+						vItem.ID11 = nil
+						vItem.ID12 = nil
+						vItem.ID13 = nil
+					end
+				end
 			end
-			
-			vRidingOutfit.ScriptSettings.DisableAQ40 = vRidingOutfit.AQDisabled
-			vRidingOutfit.ScriptSettings.DisableBG = vRidingOutfit.BGDisabled
-			vRidingOutfit.ScriptSettings.DisableNaxx = vRidingOutfit.NaxxDisabled
-			
-			vRidingOutfit.AQDisabled = nil
-			vRidingOutfit.BGDisabled = nil
-			vRidingOutfit.NaxxDisabled = nil
 		end
-		
-		gOutfitter_Settings.Version = 12
+		self.Settings.Version = 21
+	end
+
+	-- Normalized BonusIDs
+	if self.Settings.Version < 22 then
+		if self.Settings.Outfits then
+			for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
+				for vIndex, vOutfit in ipairs(vOutfits) do
+					for _, vItem in pairs(vOutfit.Items) do
+						if not vItem.BonusIDs
+						or vItem.BonusIDs == "0"
+						or vItem.BonusIDs == "0:0:0" then
+							vItem.BonusIDs = "::"
+						end
+					end
+				end
+			end
+		end
+		self.Settings.Version = 22
+	end
+
+	-- Repair missing settings
+	
+	if not self.Settings.RecentCompleteOutfits then
+		self.Settings.RecentCompleteOutfits = {}
 	end
 	
-	-- Version 13 adds the LayerIndex table
-	
-	if gOutfitter_Settings.Version < 13 then
-		gOutfitter_Settings.LayerIndex = {}
-		gOutfitter_Settings.Version = 13
+	if not self.Settings.LayerIndex then
+		self.Settings.LayerIndex = {}
 	end
 	
-	-- Version 14 updates all outfits with InvType fields
-	
-	if gOutfitter_Settings.Version < 14 then
-		MCSchedulerLib:ScheduleTask(5, Outfitter.UpdateInvTypes, Outfitter)
-		
-		gOutfitter_Settings.Version = 14
+	if not self.Settings.LastOutfitStack then
+		self.Settings.LastOutfitStack = {}
 	end
 	
-	-- Version 15 allows scripted outfits to be complete outfits
-	
-	if gOutfitter_Settings.Version < 15 then
-		self:CheckOutfitCategories()
-		gOutfitter_Settings.Version = 15
+	if not self.Settings.RecentCompleteOutfits then
+		self.Settings.RecentCompleteOutfits = {}
 	end
 	
-	-- Version 16 adds the RecentCompleteOutfits list to the settings
-	
-	if gOutfitter_Settings.Version < 16 then
-		gOutfitter_Settings.RecentCompleteOutfits = {}
-		gOutfitter_Settings.Version = 16
-	end
-	
-	if not gOutfitter_Settings.RecentCompleteOutfits then
-		gOutfitter_Settings.RecentCompleteOutfits = {}
-	end
-	
-	-- Fix up any missing settings
-	
-	if not gOutfitter_Settings.LayerIndex then
-		gOutfitter_Settings.LayerIndex = {}
-	end
-	
-	if not gOutfitter_Settings.LastOutfitStack then
-		gOutfitter_Settings.LastOutfitStack = {}
-	end
-	
-	if not gOutfitter_Settings.RecentCompleteOutfits then
-		gOutfitter_Settings.RecentCompleteOutfits = {}
-	end
-	
-	if not gOutfitter_Settings.OutfitBar then
-		gOutfitter_Settings.OutfitBar = {}
-		gOutfitter_Settings.OutfitBar.ShowOutfitBar = true
+	if not self.Settings.OutfitBar then
+		self.Settings.OutfitBar = {}
+		self.Settings.OutfitBar.ShowOutfitBar = true
 	end
 	
 	-- Scan the outfits and make sure everything is in order
 	
-	for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
 		for vIndex, vOutfit in ipairs(vOutfits) do
-			self:CheckOutfit(vOutfit, vCategoryID)
+			vOutfit:CheckOutfit(vCategoryID)
 		end
 	end
 end
@@ -8343,7 +6141,7 @@ end
 function Outfitter:CheckOutfitCategories()
 	local vAllOutfits = {}
 	
-	for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
 		for _, vOutfit in ipairs(vOutfits) do
 			table.insert(vAllOutfits, vOutfit)
 		end
@@ -8354,56 +6152,29 @@ function Outfitter:CheckOutfitCategories()
 	end
 end
 
-Outfitter.DefaultRepairValues =
-{
-	Code = 0,
-	SubCode = 0,
-	Name = "",
-	EnchantCode = 0,
-	JewelCode1 = 0,
-	JewelCode2 = 0,
-	JewelCode3 = 0,
-	JewelCode4 = 0,
-}
-
-function Outfitter:CheckOutfit(pOutfit, pCategoryID)
-	if not pOutfit.Name then
-		pOutfit.Name = "Damaged outfit"
-	end
+function Outfitter:UpdateInvTypes()
+	local vInventoryCache = self:GetInventoryCache()
+	local vResult = true
 	
-	if pOutfit.CategoryID ~= pCategoryID then
-		pOutfit.CategoryID = pCategoryID
-	end
-	
-	if not pOutfit.Items then
-		pOutfit.Items = {}
-	end
-	
-	for vInventorySlot, vItem in pairs(pOutfit.Items) do
-		for vField, vDefaultValue in pairs(Outfitter.DefaultRepairValues) do
-			if not vItem[vField] then
-				vItem[vField] = vDefaultValue
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
+		for vIndex, vOutfit in ipairs(vOutfits) do
+			if not vOutfit:UpdateInvTypes(vInventoryCache) then
+				vResult = false
 			end
 		end
 	end
+	
+	return vResult
 end
 
-function Outfitter:UpdateInvTypes()
-	local vEquippableItems = Outfitter.ItemList_GetEquippableItems()
+function Outfitter:UpdateSubTypes()
+	local vInventoryCache = self:GetInventoryCache()
 	local vResult = true
 	
-	for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
 		for vIndex, vOutfit in ipairs(vOutfits) do
-			for vInventorySlot, vOutfitItem in pairs(vOutfit.Items) do
-				if vOutfitItem.Code ~= 0 then
-					local vItem = Outfitter.ItemList_FindItemOrAlt(vEquippableItems, vOutfitItem, false, true)
-					
-					if vItem then
-						vOutfitItem.InvType = vItem.InvType
-					else
-						vResult = false
-					end
-				end
+			if not vOutfit:UpdateSubTypes(vInventoryCache) then
+				vResult = false
 			end
 		end
 	end
@@ -8412,892 +6183,18 @@ function Outfitter:UpdateInvTypes()
 end
 
 function Outfitter:UpdateDatabaseItemCodes()
-	local vEquippableItems = Outfitter.ItemList_GetEquippableItems()
+	local vInventoryCache = self:GetInventoryCache()
 	local vResult = true
 	
-	for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
 		for vIndex, vOutfit in ipairs(vOutfits) do
-			for vInventorySlot, vOutfitItem in pairs(vOutfit.Items) do
-				if vOutfitItem.Code ~= 0 then
-					local vItem = Outfitter.ItemList_FindItemOrAlt(vEquippableItems, vOutfitItem, false, true)
-					
-					if vItem then
-						vOutfitItem.SubCode = vItem.SubCode
-						vOutfitItem.Name = vItem.Name
-						vOutfitItem.EnchantCode = vItem.EnchantCode
-						vOutfitItem.JewelCode1 = vItem.JewelCode1
-						vOutfitItem.JewelCode2 = vItem.JewelCode2
-						vOutfitItem.JewelCode3 = vItem.JewelCode3
-						vOutfitItem.JewelCode4 = vItem.JewelCode4
-						vOutfitItem.Checksum = nil
-					else
-						vResult = false
-					end
-				end
+			if not vOutfit:UpdateDatabaseItemCodes(vInventoryCache) then
+				vResult = false
 			end
 		end
 	end
 	
 	return vResult
-end
-
-function Outfitter.ItemList_AddItem(pItemList, pItem)
-	-- Add the item to the code list
-
-	local vItemFamily = pItemList.ItemsByCode[pItem.Code]
-
-	if not vItemFamily then
-		vItemFamily = {}
-		pItemList.ItemsByCode[pItem.Code] = vItemFamily
-	end
-	
-	table.insert(vItemFamily, pItem)
-	
-	-- Add the item to the slot list
-	
-	local vItemSlot = pItemList.ItemsBySlot[pItem.ItemSlotName]
-	
-	if not vItemSlot then
-		vItemSlot = {}
-		pItemList.ItemsBySlot[pItem.ItemSlotName] = vItemSlot
-	end
-	
-	table.insert(vItemSlot, pItem)
-	
-	-- Add the item to the bags
-	
-	if pItem.Location.BagIndex then
-		local vBagItems = pItemList.BagItems[pItem.Location.BagIndex]
-		
-		if not vBagItems then
-			vBagItems = {}
-			pItemList.BagItems[pItem.Location.BagIndex] = vBagItems
-		end
-		
-		vBagItems[pItem.Location.BagSlotIndex] = pItem
-		
-	-- Add the item to the inventory
-	
-	elseif pItem.Location.SlotName then
-		pItemList.InventoryItems[pItem.Location.SlotName] = pItem
-	end
-end
-
-function Outfitter:GetNumBags()
-	if Outfitter.BankFrameOpened then
-		return NUM_BAG_SLOTS + NUM_BANKBAGSLOTS, -1
-	else
-		return NUM_BAG_SLOTS, 0
-	end
-end
-
-function Outfitter:GetInventorySlotIDLink(pSlotID)
-	if pSlotID == 0 then -- AmmoSlot
-		return Outfitter:GetAmmotSlotItemLink()
-	else
-		return GetInventoryItemLink("player", pSlotID)
-	end
-end
-
-Outfitter.LinkCache =
-{
-	Inventory = {},
-	FirstBagIndex = 0,
-	NumBags = 0,
-	Bags = {},
-}
-
-function Outfitter:Synchronize()
-	local vBagsChanged, vInventoryChanged = false, false
-
-	-- Synchronize bag links
-	
-	local vNumBags, vFirstBagIndex = Outfitter:GetNumBags()
-	
-	-- Outfitter:TestMessage(vFirstBagIndex.." - "..vNumBags)
-	
-	if Outfitter.LinkCache.FirstBagIndex ~= vFirstBagIndex
-	or Outfitter.LinkCache.NumBags ~= vNumBags then
-		
-		Outfitter.LinkCache.FirstBagIndex = vFirstBagIndex
-		Outfitter.LinkCache.NumBags = vNumBags
-		
-		vBagsChanged = true
-	end
-	
-	for vBagIndex = vFirstBagIndex, vNumBags do
-		local vBag = Outfitter.LinkCache.Bags[vBagIndex]
-		local vBagChanged = false
-		
-		if not vBag then
-			vBag = {}
-			Outfitter.LinkCache.Bags[vBagIndex] = vBag
-		end
-		
-		local vNumBagSlots = GetContainerNumSlots(vBagIndex)
-		
-		if #vBag ~= vNumBagSlots then
-			Outfitter:EraseTable(vBag)
-			vBagChanged = true
-		end
-		
-		for vSlotIndex = 1, vNumBagSlots do
-			local vItemLink = GetContainerItemLink(vBagIndex, vSlotIndex) or ""
-			
-			if vBag[vSlotIndex] ~= vItemLink then
-				vBag[vSlotIndex] = vItemLink
-				vBagChanged = true
-			end
-		end
-		
-		if vBagChanged then
-			Outfitter.ItemList_FlushBagFromEquippableItems(vBagIndex)
-			vBagsChanged = true
-		end
-	end
-	
-	-- Synchronize inventory links
-	
-	for _, vInventorySlot in ipairs(Outfitter.cSlotNames) do
-		local vItemLink
-		
-		if vInventorySlot == "AmmoSlot" then
-			local vName, vTexture = Outfitter:GetAmmotSlotItemName()
-			
-			if vName then
-				vItemLink = vName.."|"..(vTexture or "") -- Not an item link, just a unique reference to the contents
-			end
-		else
-			vItemLink = GetInventoryItemLink("player", Outfitter.cSlotIDs[vInventorySlot])
-		end
-		
-		if Outfitter.LinkCache.Inventory[vInventorySlot] ~= vItemLink then
-			Outfitter.LinkCache.Inventory[vInventorySlot] = vItemLink
-			vInventoryChanged = true
-		end
-	end
-	
-	if vInventoryChanged then
-		Outfitter.ItemList_FlushInventoryFromEquippableItems()
-		Outfitter:InventoryChanged()
-	end
-	
-	-- Done
-	
-	if vBagsChanged or vInventoryChanged then
-		Outfitter.DisplayIsDirty = true
-		Outfitter:Update(false)
-	end
-	
-	return vBagsChanged or vInventoryChanged, vInventoryChanged, vBagsChanged
-end
-
-function Outfitter:GetInventorySlotItemInfo(pInventorySlot)
-	local vItemLink = Outfitter:GetInventorySlotIDLink(Outfitter.cSlotIDs[pInventorySlot])
-
-	if not vItemLink then
-		return
-	end
-	
-	local vStartIndex, vEndIndex,
-			vLinkColor,
-			vItemCode,
-			vItemEnchantCode,
-			vItemJewelCode1,
-			vItemJewelCode2,
-			vItemJewelCode3,
-			vItemJewelCode4,
-			vItemSubCode,
-			vUnknownCode5,
-			vItemName = strfind(vItemLink, Outfitter.cItemLinkFormat)
-	
-	--if vItemName then
-	--	Outfitter:TestMessage(string.format("Item %s:%d:%d:%d:%d:%d:%d:%d:%d", vItemName, vItemCode, vItemEnchantCode, vItemSubCode, vUnknownCode1, vUnknownCode2, vUnknownCode3, vUnknownCode4, vUnknownCode5))
-	--end
-	
-	return
-	{
-		Code = tonumber(vItemCode),
-		SubCode = tonumber(vItemSubCode),
-		EnchantCode = tonumber(vItemEnchantCode),
-		JewelCode1 = tonumber(vItemJewelCode1),
-		JewelCode2 = tonumber(vItemJewelCode2),
-		JewelCode3 = tonumber(vItemJewelCode3),
-		JewelCode4 = tonumber(vItemJewelCode4),	
-	}
-end
-
-function Outfitter.ItemList_FlushChangedItems()
-	if not Outfitter.EquippableItems then
-		return
-	end
-	
-	-- Check inventory
-	
-	local vFlushInventory = false
-
-	for _, vInventorySlot in ipairs(Outfitter.cSlotNames) do
-		local vEquippedItemInfo = Outfitter:GetInventorySlotItemInfo(vInventorySlot)
-		local vItemInfo = Outfitter.EquippableItems.InventoryItems[vInventorySlot]
-		
-		if (vEquippedItemInfo ~= nil) ~= (vItemInfo ~= nil) then
-			vFlushInventory = true
-			break
-		end
-		
-		if vItemInfo
-		and (vItemInfo.Code ~= vEquippedItemInfo.Code
-		  or vItemInfo.SubCode ~= vEquippedItemInfo.SubCode
-		  or vItemInfo.EnchantCode ~= vEquippedItemInfo.EnchantCode 
-		  or vItemInfo.JewelCode1 ~= vEquippedItemInfo.JewelCode1 
-		  or vItemInfo.JewelCode2 ~= vEquippedItemInfo.JewelCode2 
-		  or vItemInfo.JewelCode3 ~= vEquippedItemInfo.JewelCode3 
-		  or vItemInfo.JewelCode4 ~= vEquippedItemInfo.JewelCode4) then
-			vFlushInventory = true
-			break
-		end
-	end
-	
-	-- Have to flush bags too since inventory event changes probably
-	-- also have bag event changes.  Not flushing the bag can result
-	-- in a strange state where an item appears to be in two places at once.
-	
-	if vFlushInventory then
-		Outfitter.ItemList_FlushEquippableItems()
-	end
-end
-
-function Outfitter.ItemList_FindItemInfoByCode(pItemList, pItemInfo)
-	local vItems = pItemList.ItemsByCode[pItemInfo.Code]
-	
-	for _, vItemInfo in ipairs(vItems) do
-		if pItemInfo == vItemInfo then
-			return true
-		end
-	end
-	
-	return false
-end
-
-function Outfitter.ItemList_FindItemInfoBySlot(pItemList, pItemInfo)
-	local vItems = pItemList.ItemsBySlot[pItemInfo.ItemSlotName]
-
-	for _, vItemInfo in ipairs(vItems) do
-		if pItemInfo == vItemInfo then
-			return true
-		end
-	end
-	
-	return false
-end
-
-function Outfitter.ItemList_VerifyItems(pItemList)
-	-- Check that all the inventory items are accounted for
-	
-	for vInventorySlot, vItemInfo in pairs(pItemList.InventoryItems) do
-		-- Verify the item in the code list
-		
-		if not Outfitter.ItemList_FindItemInfoByCode(pItemList, vItemInfo) then
-			Outfitter:TestMessage("Didn't find item "..vItemInfo.Name.." by code")
-		end
-		
-		-- Check the item in the slot list
-		
-		if not Outfitter.ItemList_FindItemInfoBySlot(pItemList, vItemInfo) then
-			Outfitter:TestMessage("Didn't find item "..vItemInfo.Name.." by slot")
-		end
-	end
-	
-	-- Check that all bag items are accounted for
-	
-	for _, vBagItems in pairs(pItemList.BagItems) do
-		for _, vItemInfo in pairs(vBagItems) do
-			-- Verify the item in the code list
-			
-			if not Outfitter.ItemList_FindItemInfoByCode(pItemList, vItemInfo) then
-				Outfitter:TestMessage("Didn't find item "..vItemInfo.Name.." by code")
-			end
-			
-			-- Check the item in the slot list
-			
-			if not Outfitter.ItemList_FindItemInfoBySlot(pItemList, vItemInfo) then
-				Outfitter:TestMessage("Didn't find item "..vItemInfo.Name.." by slot")
-			end
-		end
-	end
-end
-
-function Outfitter.ItemList_FlushEquippableItems()
-	-- Outfitter:TestMessage("Outfitter.ItemList_FlushEquippableItems")
-	Outfitter.EquippableItems = nil
-end
-
-function Outfitter.ItemList_FlushBagFromEquippableItems(pBagIndex)
-	-- Outfitter:TestMessage("Outfitter.ItemList_FlushBagFromEquippableItems: "..pBagIndex)
-	
-	if Outfitter.EquippableItems
-	and Outfitter.EquippableItems.BagItems[pBagIndex] then
-		for vBagSlotIndex, vItem in pairs(Outfitter.EquippableItems.BagItems[pBagIndex]) do
-			Outfitter.ItemList_RemoveItem(Outfitter.EquippableItems, vItem)
-		end
-		
-		Outfitter.EquippableItems.NeedsUpdate = true
-		Outfitter.EquippableItems.BagItems[pBagIndex] = nil
-	end
-end
-
-function Outfitter.ItemList_FlushInventoryFromEquippableItems()
-	if Outfitter.EquippableItems then
-		for vInventorySlot, vItem in pairs(Outfitter.EquippableItems.InventoryItems) do
-			Outfitter.ItemList_RemoveItem(Outfitter.EquippableItems, vItem)
-		end
-		
-		Outfitter.EquippableItems.NeedsUpdate = true
-		Outfitter.EquippableItems.InventoryItems = nil
-	end
-end
-
-function Outfitter.ItemList_New()
-	return {ItemsByCode = {}, ItemsBySlot = {}, InventoryItems = nil, BagItems = {}}
-end
-
-function Outfitter.ItemList_RemoveItem(pItemList, pItem)
-	-- Remove the item from the code list
-	
-	local vItems = pItemList.ItemsByCode[pItem.Code]
-	
-	for vIndex, vItem in ipairs(vItems) do
-		if vItem == pItem then
-			table.remove(vItems, vIndex)
-			break
-		end
-	end
-
-	-- Remove the item from the slot list
-	
-	local vItemSlot = pItemList.ItemsBySlot[pItem.ItemSlotName]
-	
-	if vItemSlot then
-		for vIndex, vItem in ipairs(vItemSlot) do
-			if vItem == pItem then
-				table.remove(vItemSlot, vIndex)
-				break
-			end
-		end
-	end
-	
-	-- Remove the item from the bags list
-	
-	if pItem.Location.BagIndex then
-		local vBagItems = pItemList.BagItems[pItem.Location.BagIndex]
-		
-		if vBagItems then
-			vBagItems[pItem.Location.BagSlotIndex] = nil
-		end
-		
-	-- Remove the item from the inventory list
-	
-	elseif pItem.Location.SlotName then
-		pItemList.InventoryItems[pItem.Location.SlotName] = nil
-	end
-end
-
-function Outfitter.ItemList_GetInventoryOutfit(pEquippableItems)
-	return pEquippableItems.InventoryItems
-end
-
-function Outfitter.ItemList_ResetIgnoreItemFlags(pItemList)
-	for vItemCode, vItemFamily in pairs(pItemList.ItemsByCode) do
-		for _, vItem in ipairs(vItemFamily) do
-			vItem.IgnoreItem = nil
-		end
-	end
-end
-
-function Outfitter.ItemList_GetEquippableItems(pIncludeItemStats)
-	-- Check for a change in the number of bags
-	
-	local vNumBags, vFirstBagIndex = Outfitter:GetNumBags()
-	
-	if Outfitter.EquippableItems
-	and (Outfitter.EquippableItems.FirstBagIndex ~= vFirstBagIndex
-	or Outfitter.EquippableItems.NumBags ~= vNumBags) then
-		for vBagIndex = Outfitter.EquippableItems.FirstBagIndex, vFirstBagIndex - 1 do
-			Outfitter.ItemList_FlushBagFromEquippableItems(vBagIndex)
-		end
-		
-		for vBagIndex = vNumBags + 1, Outfitter.EquippableItems.NumBags do
-			Outfitter.ItemList_FlushBagFromEquippableItems(vBagIndex)
-		end
-		
-		Outfitter.EquippableItems.NeedsUpdate = true
-	end
-	
-	-- If there's a cached copy just clear the IgnoreItem flags and return it
-	-- (never use the cached copy if the caller wants stats)
-	
-	if Outfitter.EquippableItems
-	and not Outfitter.EquippableItems.NeedsUpdate
-	and not pIncludeItemStats then
-		-- Outfitter:TestMessage("Outfitter.ItemList_GetEquippableItems: Using cached list")
-		Outfitter.ItemList_ResetIgnoreItemFlags(Outfitter.EquippableItems)
-		
-		return Outfitter.EquippableItems
-	end
-	
-	if not Outfitter.EquippableItems
-	or pIncludeItemStats then
-		Outfitter.EquippableItems = Outfitter.ItemList_New()
-	end
-	
-	local vStatDistribution = Outfitter:GetPlayerStatDistribution()
-	
-	if not Outfitter.EquippableItems.InventoryItems
-	or pIncludeItemStats then
-		-- Outfitter:TestMessage("Outfitter.ItemList_GetEquippableItems: Rebuilding inventory items")
-		
-		Outfitter.EquippableItems.InventoryItems = {}
-		
-		for _, vInventorySlot in ipairs(Outfitter.cSlotNames) do
-			local vItemInfo = Outfitter:GetInventoryItemInfo(vInventorySlot)
-			
-			if vItemInfo
-			and vItemInfo.ItemSlotName
-			and vItemInfo.Code ~= 0 then
-				vItemInfo.SlotName = vInventorySlot
-				vItemInfo.Location = {SlotName = vInventorySlot}
-				
-				if pIncludeItemStats then	
-					Outfitter.ItemList_GetItemStats(vItemInfo, vStatDistribution)
-				end
-				
-				Outfitter.ItemList_AddItem(Outfitter.EquippableItems, vItemInfo)
-			end
-		end
-	else
-		for vInventorySlot, vItem in pairs(Outfitter.EquippableItems.InventoryItems) do
-			vItem.IgnoreItem = nil
-		end
-	end
-	
-	for vBagIndex = vFirstBagIndex, vNumBags do
-		local vBagItems = Outfitter.EquippableItems.BagItems[vBagIndex]
-		
-		if not vBagItems
-		or pIncludeItemStats then
-			Outfitter.EquippableItems.BagItems[vBagIndex] = {}
-			
-			local vNumBagSlots = GetContainerNumSlots(vBagIndex)
-			
-			if vNumBagSlots > 0 then
-				-- Outfitter:TestMessage("Outfitter.ItemList_GetEquippableItems: Rebuilding bag "..vBagIndex)
-				
-				for vBagSlotIndex = 1, vNumBagSlots do
-					local vItemInfo = Outfitter:GetBagItemInfo(vBagIndex, vBagSlotIndex)
-					
-					if vItemInfo
-					and vItemInfo.Code ~= 0
-					and vItemInfo.ItemSlotName
-					and Outfitter:CanEquipBagItem(vBagIndex, vBagSlotIndex)
-					and not Outfitter:BagItemWillBind(vBagIndex, vBagSlotIndex) then
-						vItemInfo.BagIndex = vBagIndex
-						vItemInfo.BagSlotIndex = vBagSlotIndex
-						vItemInfo.Location = {BagIndex = vBagIndex, BagSlotIndex = vBagSlotIndex}
-						
-						if pIncludeItemStats then	
-							Outfitter.ItemList_GetItemStats(vItemInfo, vStatDistribution)
-						end
-						
-						Outfitter.ItemList_AddItem(Outfitter.EquippableItems, vItemInfo)
-					end
-				end -- for vBagSlotIndex
-			end -- if vNumBagSlots > 0
-		else -- if not BagItems
-			for vBagSlotIndex, vItem in pairs(vBagItems) do
-				vItem.IgnoreItem = nil
-			end
-		end -- if not BagItems
-	end -- for vBagIndex
-	
-	Outfitter.EquippableItems.FirstBagIndex = vFirstBagIndex
-	Outfitter.EquippableItems.NumBags = vNumBags
-	
-	Outfitter.EquippableItems.NeedsUpdate = false
-	
-	return Outfitter.EquippableItems
-end
-
-function Outfitter.ItemList_SwapLocations(pItemList, pLocation1, pLocation2)
-	-- if pLocation1.BagIndex then
-	-- 	Outfitter:TestMessage("Outfitter.ItemList_SwapLocations: Swapping bag "..pLocation1.BagIndex..", "..pLocation1.BagSlotIndex)
-	-- elseif pLocation1.SlotName then
-	-- 	Outfitter:TestMessage("Outfitter.ItemList_SwapLocations: Swapping slot "..pLocation1.SlotName)
-	-- end
-	-- if pLocation2.BagIndex then
-	-- 	Outfitter:TestMessage("Outfitter.ItemList_SwapLocations: with bag "..pLocation2.BagIndex..", "..pLocation2.BagSlotIndex)
-	-- elseif pLocation2.SlotName then
-	-- 	Outfitter:TestMessage("Outfitter.ItemList_SwapLocations: with slot "..pLocation2.SlotName)
-	-- end
-end
-
-function Outfitter.ItemList_SwapLocationWithInventorySlot(pItemList, pLocation, pSlotName)
-	-- if pLocation.BagIndex then
-	-- 	Outfitter:TestMessage("Outfitter.ItemList_SwapLocationWithInventorySlot: Swapping bag "..pLocation.BagIndex..", "..pLocation.BagSlotIndex.." with slot "..pSlotName)
-	-- elseif pLocation.SlotName then
-	-- 	Outfitter:TestMessage("Outfitter.ItemList_SwapLocationWithInventorySlot: Swapping slot "..pLocation.SlotName.." with slot "..pSlotName)
-	-- end
-end
-
-function Outfitter.ItemList_SwapBagSlotWithInventorySlot(pItemList, pBagIndex, pBagSlotIndex, pSlotName)
-	-- Outfitter:TestMessage("Outfitter.ItemList_SwapBagSlotWithInventorySlot: Swapping bag "..pBagIndex..", "..pBagSlotIndex.." with slot "..pSlotName)
-end
-
-function Outfitter.ItemList_FindItemOrAlt(pItemList, pOutfitItem, pMarkAsInUse, pAllowSubCodeWildcard)
-	local vItem, vIgnoredItem = Outfitter.ItemList_FindItem(pItemList, pOutfitItem, pMarkAsInUse, pAllowSubCodeWildcard)
-	
-	if vItem then
-		return vItem
-	end
-	
-	-- See if there's an alias for the item if it wasn't found
-	
-	local vAltCode = Outfitter.cItemAliases[pOutfitItem.Code]
-	
-	if not vAltCode then
-		return nil, vIgnoredItem
-	end
-	
-	return Outfitter.ItemList_FindItem(pItemList, {Code = vAltCode}, pMarkAsInUse, true)
-end
-
-function Outfitter.ItemList_FindItem(pItemList, pOutfitItem, pMarkAsInUse, pAllowSubCodeWildcard)
-	local vItem, vIndex, vItemFamily, vIgnoredItem = Outfitter.ItemList_FindItemIndex(pItemList, pOutfitItem, pAllowSubCodeWildcard)
-	
-	if not vItem then
-		return nil, vIgnoredItem
-	end
-	
-	if pMarkAsInUse then
-		vItem.IgnoreItem = true
-	end
-	
-	return vItem
-end
-
-function Outfitter.ItemList_FindAllItemsOrAlt(pItemList, pOutfitItem, pAllowSubCodeWildcard, rItems)
-	local vNumItems = Outfitter.ItemList_FindAllItems(pItemList, pOutfitItem, pAllowSubCodeWildcard, rItems)
-	local vAltCode = Outfitter.cItemAliases[pOutfitItem.Code]
-	
-	if vAltCode then
-		vNumItems = vNumItems + Outfitter.ItemList_FindAllItems(pItemList, {Code = vAltCode}, true, rItems)
-	end
-	
-	return vNumItems
-end
-
-function Outfitter.ItemList_FindAllItems(pItemList, pOutfitItem, pAllowSubCodeWildcard, rItems)
-	if not pItemList then
-		return 0
-	end
-	
-	local vItemFamily = pItemList.ItemsByCode[pOutfitItem.Code]
-	
-	if not vItemFamily then
-		return 0
-	end
-	
-	local vNumItemsFound = 0
-	
-	for vIndex, vItem in ipairs(vItemFamily) do
-		if (pAllowSubCodeWildcard and not pOutfitItem.SubCode)
-		or vItem.SubCode == pOutfitItem.SubCode then
-			table.insert(rItems, vItem)
-			vNumItemsFound = vNumItemsFound + 1
-		end
-	end
-	
-	return vNumItemsFound
-end
-
-function Outfitter.ItemList_FindItemIndex(pItemList, pOutfitItem, pAllowSubCodeWildcard)
-	if not pItemList then
-		return
-	end
-	
-	local vItemFamily = pItemList.ItemsByCode[pOutfitItem.Code]
-	
-	if not vItemFamily then
-		return
-	end
-	
-	local vBestMatch = nil
-	local vBestMatchIndex = nil
-	local vNumItemsFound = 0
-	local vFoundIgnoredItem = nil
-	
-	for vIndex, vItem in ipairs(vItemFamily) do
-		-- All done if the caller doesn't care about the SubCode
-		
-		if pAllowSubCodeWildcard
-		and not pOutfitItem.SubCode then
-			if vItem.IgnoreItem then
-				vFoundIgnoredItem = vItem
-			else
-				return vItem, vIndex, vItemFamily, nil
-			end
-		
-		-- If the subcode matches then check for an enchant match
-		
-		elseif vItem.SubCode == pOutfitItem.SubCode then
-			-- If the enchant matches then we're all done
-			
-			if vItem.EnchantCode == pOutfitItem.EnchantCode 
-			and vItem.JewelCode1 == pOutfitItem.JewelCode1 
-			and vItem.JewelCode2 == pOutfitItem.JewelCode2
-			and vItem.JewelCode3 == pOutfitItem.JewelCode3 
-			and vItem.JewelCode4 == pOutfitItem.JewelCode4	then
-				if vItem.IgnoreItem then
-					vFoundIgnoredItem = vItem
-				else
-					return vItem, vIndex, vItemFamily
-				end
-			
-			-- Otherwise save the match in case a better one can
-			-- be found
-			
-			else
-				if vItem.IgnoreItem then
-					if not vFoundIgnoredItem then
-						vFoundIgnoredItem = vItem
-					end
-				else
-					vBestMatch = vItem
-					vBestMatchIndex = vIndex
-					vNumItemsFound = vNumItemsFound + 1
-				end
-			end
-		end
-	end
-	
-	-- Return the match if only one item was found
-	
-	if vNumItemsFound == 1
-	and not vBestMatch.IgnoreItem then
-		return vBestMatch, vBestMatchIndex, vItemFamily, nil
-	end
-	
-	return nil, nil, nil, vFoundIgnoredItem
-end
-		
-function Outfitter.ItemList_GetItemStats(pItem, pDistribution)
-	if pItem.Stats then
-		return pItem.Stats
-	end
-	
-	OutfitterTooltip:SetOwner(OutfitterFrame, "ANCHOR_BOTTOMRIGHT", 0, 0)
-	
-	if pItem.SlotName then
-		local vHasItem = OutfitterTooltip:SetInventoryItem("player", Outfitter.cSlotIDs[pItem.SlotName])
-		
-		if not vHasItem then
-			OutfitterTooltip:Hide()
-			return nil
-		end
-	elseif pItem.BagIndex == -1 then
-		OutfitterTooltip:SetInventoryItem("player", BankButtonIDToInvSlotID(pItem.BagSlotIndex))
-	else
-		OutfitterTooltip:SetBagItem(pItem.BagIndex, pItem.BagSlotIndex)
-	end
-	
-	local vStats = Outfitter:GetItemStatsFromTooltip(OutfitterTooltip)
-	
-	OutfitterTooltip:Hide()
-	
-	if not vStats then
-		return nil
-	end
-	
-	pItem.Stats = vStats
-	
-	if pDistribution then
-		Outfitter:ConvertRatingsToStats(vStats)
-		Outfitter:DistributeSecondaryStats(vStats, pDistribution)
-	end
-
-	return vStats
-end
-
-function Outfitter.ItemList_GetItemLinkStats(pItemLink, pDistribution)
-	OutfitterTooltip:SetOwner(OutfitterFrame, "ANCHOR_BOTTOMRIGHT", 0, 0)
-	OutfitterTooltip:SetHyperlink(pItemLink)
-	
-	local vStats = Outfitter:GetItemStatsFromTooltip(OutfitterTooltip)
-	
-	OutfitterTooltip:Hide()
-	
-	return vStats
-end
-
-function Outfitter:IsBankBagIndex(pBagIndex)
-	return pBagIndex and (pBagIndex > NUM_BAG_SLOTS or pBagIndex < 0)
-end
-
-function Outfitter.ItemList_GetMissingItems(pEquippableItems, pOutfit)
-	if not pOutfit then
-		Outfitter:DebugMessage("ItemList_GetMissingItems: pOutfit is nil")
-		Outfitter:DebugStack()
-		return
-	end
-	
-	local vMissingItems = nil
-	local vBankedItems = nil
-	
-	for vInventorySlot, vOutfitItem in pairs(pOutfit.Items) do
-		if vOutfitItem.Code ~= 0 then
-			local vItem = Outfitter.ItemList_FindItemOrAlt(pEquippableItems, vOutfitItem)
-			
-			if not vItem then
-				if not vMissingItems then
-					vMissingItems = {}
-				end
-				
-				table.insert(vMissingItems, vOutfitItem)
-			elseif Outfitter:IsBankBagIndex(vItem.Location.BagIndex) then
-				if not vBankedItems then
-					vBankedItems = {}
-				end
-				
-				table.insert(vBankedItems, vOutfitItem)
-			end
-		end
-	end
-	
-	return vMissingItems, vBankedItems
-end
-
-function Outfitter.ItemList_CompiledUnusedItemsList(pEquippableItems)
-	Outfitter.ItemList_ResetIgnoreItemFlags(pEquippableItems)
-	
-	for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
-		for vOutfitIndex, vOutfit in ipairs(vOutfits) do
-			for vInventorySlot, vOutfitItem in pairs(vOutfit.Items) do
-				if vOutfitItem.Code ~= 0 then
-					local vItem = Outfitter.ItemList_FindItemOrAlt(pEquippableItems, vOutfitItem, true)
-					
-					if vItem then
-						vItem.UsedInOutfit = true
-					end
-				end
-			end
-		end
-	end
-	
-	local vUnusedItems = nil
-	
-	for vCode, vFamilyItems in pairs(pEquippableItems.ItemsByCode) do
-		for vIndex, vOutfitItem in ipairs(vFamilyItems) do
-			if not vOutfitItem.UsedInOutfit
-			and vOutfitItem.ItemSlotName ~= "AmmoSlot"
-			and Outfitter.cIgnoredUnusedItems[vOutfitItem.Code] == nil then
-				if not vUnusedItems then
-					vUnusedItems = {}
-				end
-				
-				table.insert(vUnusedItems, vOutfitItem)
-			end
-		end
-	end
-	
-	pEquippableItems.UnusedItems = vUnusedItems
-end
-
-function Outfitter.ItemList_ItemsAreSame(pEquippableItems, pItem1, pItem2)
-	if not pItem1 then
-		return pItem2 == nil
-	end
-	
-	if not pItem2 then
-		return false
-	end
-	
-	if pItem1.Code == 0 then
-		return pItem2.Code == 0
-	end
-	
-	if pItem1.Code ~= pItem2.Code
-	or pItem1.SubCode ~= pItem2.SubCode then
-		return false
-	end
-	
-	local vItems = {}
-	local vNumItems = Outfitter.ItemList_FindAllItemsOrAlt(pEquippableItems, pItem1, nil, vItems)
-	
-	if vNumItems == 0 then
-		-- Shouldn't ever get here
-		
-		Outfitter:DebugMessage("Outfitter.ItemList_ItemsAreSame: Item not found")
-		Outfitter:DebugTable("Item", pItem1)
-		
-		return false
-	elseif vNumItems == 1 then
-		-- If there's only one of that item then the enchant code
-		-- is disregarded so just make sure it's the same
-		
-		return true
-	else
-		return pItem1.EnchantCode == pItem2.EnchantCode
-		   and pItem1.JewelCode1 == pItem2.JewelCode1
-		   and pItem1.JewelCode2 == pItem2.JewelCode2
-		   and pItem1.JewelCode3 == pItem2.JewelCode3
-		   and pItem1.JewelCode4 == pItem2.JewelCode4
-	end
-end
-
-function Outfitter.ItemList_InventorySlotContainsItem(pEquippableItems, pInventorySlot, pOutfitItem)
-	-- Nil items are supposed to be ignored, so never claim the slot contains them
-	
-	if pOutfitItem == nil then
-		return false, nil
-	end
-	
-	-- If the item specifies an empty slot check to see if the slot is actually empty
-	
-	if pOutfitItem.Code == 0 then
-		return pEquippableItems.InventoryItems[pInventorySlot] == nil
-	end
-	
-	local vItems = {}
-	local vNumItems = Outfitter.ItemList_FindAllItemsOrAlt(pEquippableItems, pOutfitItem, nil, vItems)
-	
-	if vNumItems == 0 then
-		return false
-	elseif vNumItems == 1 then
-		-- If there's only one of that item then the enchant code
-		-- is disregarded so just make sure it's in the slot
-		
-		return vItems[1].SlotName == pInventorySlot, vItems[1]
-	else
-		-- See if one of the items is in the slot
-		
-		for vIndex, vItem in ipairs(vItems) do
-			if vItem.SlotName == pInventorySlot then
-				-- Must match the enchant and jewel codes if there are multiple items
-				-- in order to be considered a perfect match
-				
-				local vCodesMatch = vItem.EnchantCode == pOutfitItem.EnchantCode
-				                and vItem.JewelCode1 == pOutfitItem.JewelCode1
-				                and vItem.JewelCode2 == pOutfitItem.JewelCode2
-				                and vItem.JewelCode3 == pOutfitItem.JewelCode3
-				                and vItem.JewelCode4 == pOutfitItem.JewelCode4
-				
-				return vCodesMatch, vItem
-			end
-		end
-		
-		-- No items in the slot
-		
-		return false, nil
-	end
 end
 
 function Outfitter:GetPlayerStat(pStatIndex)
@@ -9306,53 +6203,57 @@ function Outfitter:GetPlayerStat(pStatIndex)
 	return vEffectiveValue - vPosValue - vNegValue, vPosValue + vNegValue
 end
 
-function Outfitter:DepositOutfit(pOutfit, pUniqueItemsOnly)
+function Outfitter:GetDepositList(pOutfit, pUniqueItemsOnly)
 	-- Deselect any outfits to avoid them from being updated when
 	-- items get put away
 	
-	Outfitter:ClearSelection()
+	self:ClearSelection()
 	
 	-- Build a list of items for the outfit
 	
-	local vEquippableItems = Outfitter.ItemList_GetEquippableItems()
+	local vInventoryCache = self:GetInventoryCache()
 	
-	Outfitter.ItemList_ResetIgnoreItemFlags(vEquippableItems)
+	vInventoryCache:ResetIgnoreItemFlags()
 	
 	-- Make a copy of the outfit
 	
-	local vUnequipOutfit = Outfitter:NewEmptyOutfit()
+	local vUnequipOutfit = self:NewEmptyOutfit()
+	local vItems = pOutfit:GetItems()
 	
-	for vInventorySlot, vItem in pairs(pOutfit.Items) do
-		vUnequipOutfit.Items[vInventorySlot] = vItem
+	for vInventorySlot, vItem in pairs(vItems) do
+		vUnequipOutfit:SetItem(vInventorySlot, vItem)
 	end
 	
 	-- Subtract out items from other outfits if unique is specified
 	
 	if pUniqueItemsOnly then
-		for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+		for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
 			for vOutfitIndex, vOutfit in ipairs(vOutfits) do
 				if vOutfit ~= pOutfit then
-					local vMissingItems, vBankedItems = Outfitter.ItemList_GetMissingItems(vEquippableItems, vOutfit)
+					local vMissingItems, vBankedItems = vInventoryCache:GetMissingItems(vOutfit)
 					
 					-- Only subtract out items from outfits which aren't themselves partialy banked
 					
 					if vBankedItems == nil then
-						Outfitter:SubtractOutfit(vUnequipOutfit, vOutfit, true)
+						self:SubtractOutfit(vUnequipOutfit, vOutfit, true)
 					end
 				end -- if vOutfit
 			end -- for vOutfitIndex
 		end -- for vCategoryID
 	end -- if pUniqueItemsOnly
 	
+	return vUnequipOutfit, vInventoryCache
+end
+
+function Outfitter:DepositOutfit(pOutfit, pUniqueItemsOnly)
+	local vUnequipOutfit, vInventoryCache = self:GetDepositList(pOutfit, pUniqueItemsOnly)
+	
 	-- Build the change list
 	
-	Outfitter.ItemList_ResetIgnoreItemFlags(vEquippableItems)
+	vInventoryCache:ResetIgnoreItemFlags()
 	
-	local vEquipmentChangeList = Outfitter:BuildUnequipChangeList(vUnequipOutfit, vEquippableItems)
-	
-	if not vEquipmentChangeList then
-		return
-	end
+	local vEquipmentChangeList = Outfitter:New(Outfitter._EquipmentChanges)
+	vEquipmentChangeList:addUnequipChangesForOutfit(vUnequipOutfit, vInventoryCache) 
 	
 	-- Eliminate items which are already banked
 	
@@ -9362,7 +6263,7 @@ function Outfitter:DepositOutfit(pOutfit, pUniqueItemsOnly)
 	while vChangeIndex <= vNumChanges do
 		vEquipmentChange = vEquipmentChangeList[vChangeIndex]
 		
-		if Outfitter:IsBankBagIndex(vEquipmentChange.FromLocation.BagIndex) then
+		if self:IsBankBagIndex(vEquipmentChange.FromLocation.BagIndex) then
 			table.remove(vEquipmentChangeList, vChangeIndex)
 			vNumChanges = vNumChanges - 1
 		else
@@ -9372,23 +6273,80 @@ function Outfitter:DepositOutfit(pOutfit, pUniqueItemsOnly)
 	
 	-- Get the list of empty bank slots
 	
-	local vEmptyBankSlots = Outfitter:GetEmptyBankSlotList()
+	local vEmptyBankSlots = self:GetEmptyBankSlotList()
 	
 	-- Execute the changes
+	vEquipmentChangeList:execute(vEmptyBankSlots, vExpectedInventoryCache)
 	
-	Outfitter:ExecuteEquipmentChangeList2(vEquipmentChangeList, vEmptyBankSlots, Outfitter.cDepositBagsFullError, vExpectedEquippableItems)
+	self:DispatchOutfitEvent("EDIT_OUTFIT", pOutfit:GetName(), pOutfit)
+end
+
+function Outfitter:DepositOtherOutfits(pOutfit)
+	-- Deselect any outfits to avoid them from being updated when
+	-- items get put away
 	
-	Outfitter:DispatchOutfitEvent("EDIT_OUTFIT", pOutfit.Name, pOutfit)
+	self:ClearSelection()
+	
+	-- Get a list of equippable items
+	
+	local vInventoryCache = self:GetInventoryCache()
+	
+	vInventoryCache:ResetIgnoreItemFlags()
+	
+	-- Mark all items in the current outfit so they won't be deposited
+	
+	local vItems = pOutfit:GetItems()
+	
+	for vInventorySlot, vOutfitItem in pairs(vItems) do
+		local vItem, vIgnoredItem = vInventoryCache:FindItemOrAlt(vOutfitItem, true)
+		
+		-- Nothing more to do, the find command marks the item
+	end -- for
+	
+	-- Build a list of items in all outfits
+	
+	local vEquipmentChangeList = {}
+	
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
+		for vOutfitIndex, vOutfit in ipairs(vOutfits) do
+			if vOutfit ~= pOutfit then
+				local vItems = vOutfit:GetItems()
+				
+				for vInventorySlot, vOutfitItem in pairs(vItems) do
+					local vItem, vIgnoredItem = vInventoryCache:FindItemOrAlt(vOutfitItem, true)
+					
+					if vItem
+					and not self:IsBankBagIndex(vItem.Location.BagIndex) then
+						vEquipmentChangeList:addChange({FromLocation = vItem.Location, Item = vItem, ToLocation = nil})
+					end
+				end -- for
+			end -- if vOutfit
+		end -- for vOutfitIndex
+	end -- for vCategoryID
+	
+	if #vEquipmentChangeList == 0 then
+		return
+	end
+	
+	-- Get the list of empty bank slots
+	
+	local vEmptyBankSlots = self:GetEmptyBankSlotList()
+	
+	-- Execute the changes
+	vEquipmentChangeList:execute(vEmptyBankSlots, vExpectedInventoryCache)
+	
+	self:DispatchOutfitEvent("EDIT_OUTFIT", pOutfit:GetName(), pOutfit)
 end
 
 function Outfitter:WithdrawOutfit(pOutfit)
-	local vEquippableItems = Outfitter.ItemList_GetEquippableItems()
+	local vInventoryCache = self:GetInventoryCache()
 	
 	-- Build a list of items for the outfit
 	
-	Outfitter.ItemList_ResetIgnoreItemFlags(vEquippableItems)
+	vInventoryCache:ResetIgnoreItemFlags()
 	
-	local vEquipmentChangeList = Outfitter:BuildUnequipChangeList(pOutfit, vEquippableItems)
+	local vEquipmentChangeList = Outfitter:New(Outfitter._EquipmentChanges)
+	vEquipmentChangeList:addUnequipChangesForOutfit(pOutfit, vInventoryCache)
 	
 	if not vEquipmentChangeList then
 		return
@@ -9402,7 +6360,7 @@ function Outfitter:WithdrawOutfit(pOutfit)
 	while vChangeIndex <= vNumChanges do
 		vEquipmentChange = vEquipmentChangeList[vChangeIndex]
 		
-		if not Outfitter:IsBankBagIndex(vEquipmentChange.FromLocation.BagIndex) then
+		if not self:IsBankBagIndex(vEquipmentChange.FromLocation.BagIndex) then
 			table.remove(vEquipmentChangeList, vChangeIndex)
 			vNumChanges = vNumChanges - 1
 		else
@@ -9412,293 +6370,129 @@ function Outfitter:WithdrawOutfit(pOutfit)
 	
 	-- Get the list of empty bag slots
 
-	local vEmptyBagSlots = Outfitter:GetEmptyBagSlotList()
+	local vEmptyBagSlots = self:GetEmptyBagSlotList()
 	
 	-- Execute the changes
 	
-	Outfitter:ExecuteEquipmentChangeList2(vEquipmentChangeList, vEmptyBagSlots, Outfitter.cWithdrawBagsFullError, vExpectedEquippableItems)
+	vEquipmentChangeList:execute(vEmptyBagSlots, vExpectedInventoryCache)
 	
-	Outfitter:DispatchOutfitEvent("EDIT_OUTFIT", pOutfit.Name, pOutfit)
+	self:DispatchOutfitEvent("EDIT_OUTFIT", pOutfit:GetName(), pOutfit)
 end
 
-function Outfitter.Stats_DistributeValue(pStats, pValue, pDistribution)
-	if not pDistribution then
+function Outfitter:WithdrawOtherOutfits(pOutfit)
+	local vInventoryCache = self:GetInventoryCache()
+	
+	-- Build a list of items in all other outfits
+	
+	local vEquipmentChangeList = {}
+	
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
+		for vOutfitIndex, vOutfit in ipairs(vOutfits) do
+			if vOutfit ~= pOutfit then
+				local vItems = vOutfit:GetItems()
+				
+				for vInventorySlot, vOutfitItem in pairs(vItems) do
+					local vItem, vIgnoredItem = vInventoryCache:FindItemOrAlt(vOutfitItem, true)
+					
+					if vItem
+					and self:IsBankBagIndex(vItem.Location.BagIndex) then
+						table.insert(vEquipmentChangeList, {FromLocation = vItem.Location, Item = vItem, ToLocation = nil})
+					end
+				end -- for
+			end -- if vOutfit
+		end -- for vOutfitIndex
+	end -- for vCategoryID
+	
+	if #vEquipmentChangeList == 0 then
 		return
 	end
 	
-	for vSecondaryStat, vFactors in pairs(pDistribution) do
-		local vSecondaryValue = pValue * vFactors.Coeff
-		
-		if vFactors.Const then
-			vSecondaryValue = vSecondaryValue + vFactors.Const
-		end
-		
-		Outfitter.Stats_AddStatValue(pStats, vSecondaryStat, vSecondaryValue)
-	end
-end
+	-- Get the list of empty bag slots
 
-function Outfitter.Stats_AddStatValue(pStats, pStat, pValue)
-	if not pStats[pStat] then
-		pStats[pStat] = pValue
-	else
-		pStats[pStat] = pStats[pStat] + pValue
-	end
+	local vEmptyBagSlots = self:GetEmptyBagSlotList()
 	
-	-- Outfitter:TestMessage("Stats_AddStatValue: "..pStat.." +"..pValue.." now "..pStats[pStat])
+	-- Execute the changes
+	
+	self:ExecuteEquipmentChangeList2(vEquipmentChangeList, vEmptyBagSlots, self.cWithdrawBagsFullError, vExpectedInventoryCache)
+	
+	self:DispatchOutfitEvent("EDIT_OUTFIT", pOutfit:GetName(), pOutfit)
 end
 
-function Outfitter.Stats_SubtractStats(pStats, pStats2)
-	for vStat, vValue in pairs(pStats2) do
-		if pStats[vStat] then
-			pStats[vStat] = pStats[vStat] - vValue
-		end
-	end
-end
+local VOID_DEPOSIT_MAX = 8
 
-function Outfitter.Stats_AddStats(pStats, pStats2)
-	for vStat, vValue in pairs(pStats2) do
-		if pStats[vStat] then
-			pStats[vStat] = pStats[vStat] + vValue
-		else
-			pStats[vStat] = vValue
+function Outfitter:DepositOutfitToVoidStorage(pOutfit, pUniqueItemsOnly)
+	local vUnequipOutfit, vInventoryCache = self:GetDepositList(pOutfit, pUniqueItemsOnly)
+	
+	-- Get a list of the deposit slot contents
+	
+	local vItemIDByDepositSlot = {}
+	local vDepositSlotByItemID = {}
+	for vIndex = 1, VOID_DEPOSIT_MAX do
+		local vItemID, vTextureName = GetVoidTransferDepositInfo(vIndex)
+		if vItemID then
+			vItemIDByDepositSlot[vIndex] = vItemID
+			vDepositSlotByItemID[vItemID] = vIndex
 		end
 	end
-end
-
-function Outfitter.TankPoints_New()
-	local vTankPointData = {}
-	local vStatDistribution = Outfitter:GetPlayerStatDistribution()
 	
-	if not vStatDistribution then
-		Outfitter:ErrorMessage("Missing stat distribution data for "..Outfitter.PlayerClass)
-		return
+	-- Eliminate items which are already in the deposit area
+	
+	local vItems = vUnequipOutfit:GetItems()
+	for vInventorySlot, vOutfitItem in pairs(vItems) do
+		if vDepositSlotByItemID[vOutfitItem.Code] then
+			vItems[vInventorySlot] = nil
+		end
 	end
 	
-	vTankPointData.PlayerLevel = UnitLevel("player")
-	vTankPointData.StaminaFactor = 1.0 -- Warlocks with demonic embrace = 1.15
+	-- Get a list of items which are available to move
 	
-	-- Get the base stats
+	vInventoryCache:ResetIgnoreItemFlags()
+	local vEquipmentChangeList = Outfitter:New(Outfitter._EquipmentChanges)
+	vEquipmentChangeList:addUnequipChangesForOutfit(vUnequipOutfit, vInventoryCache) 
 	
-	vTankPointData.BaseStats = {}
+	-- Move the items to the deposit slots
 	
-	Outfitter.Stats_AddStatValue(vTankPointData.BaseStats, "Strength", UnitStat("player", 1))
-	Outfitter.Stats_AddStatValue(vTankPointData.BaseStats, "Agility", UnitStat("player", 2))
-	Outfitter.Stats_AddStatValue(vTankPointData.BaseStats, "Stamina", UnitStat("player", 3))
-	Outfitter.Stats_AddStatValue(vTankPointData.BaseStats, "Intellect", UnitStat("player", 4))
-	Outfitter.Stats_AddStatValue(vTankPointData.BaseStats, "Spirit", UnitStat("player", 5))
-	
-	Outfitter.Stats_AddStatValue(vTankPointData.BaseStats, "Health", UnitHealthMax("player"))
-	
-	vTankPointData.BaseStats.Health = vTankPointData.BaseStats.Health - vTankPointData.BaseStats.Stamina * 10
-	
-	vTankPointData.BaseStats.Dodge = GetDodgeChance()
-	vTankPointData.BaseStats.Parry = GetParryChance()
-	vTankPointData.BaseStats.Block = GetBlockChance()
-	
-	local vBaseDefense, vBuffDefense = UnitDefense("player")
-	Outfitter.Stats_AddStatValue(vTankPointData.BaseStats, "Defense", vBaseDefense + vBuffDefense)
-	
-	-- Replace the armor with the current value since that already includes various factors
-	
-	local vBaseArmor, vEffectiveArmor, vArmor, vArmorPosBuff, vArmorNegBuff = UnitArmor("player")
-	vTankPointData.BaseStats.Armor = vEffectiveArmor
-	
-	Outfitter:TestMessage("------------------------------------------")
-	Outfitter:DebugTable("vTankPointData", vTankPointData)
-	
-	-- Subtract out the current outfit
-	
-	local vCurrentOutfitStats = Outfitter.TankPoints_GetCurrentOutfitStats(vStatDistribution)
-	
-	Outfitter:TestMessage("------------------------------------------")
-	Outfitter:DebugTable("vCurrentOutfitStats", vCurrentOutfitStats)
-	
-	Outfitter.Stats_SubtractStats(vTankPointData.BaseStats, vCurrentOutfitStats)
-	
-	-- Calculate the buff stats (stuff from auras/spell buffs/whatever)
-	
-	vTankPointData.BuffStats = {}
-	
-	-- Reset the cumulative values
-	
-	Outfitter.TankPoints_Reset(vTankPointData)
-	
-	Outfitter:TestMessage("------------------------------------------")
-	Outfitter:DebugTable("vTankPointData", vTankPointData)
-	
-	Outfitter:TestMessage("------------------------------------------")
-	return vTankPointData
-end
-
-function Outfitter.TankPoints_Reset(pTankPointData)
-	pTankPointData.AdditionalStats = {}
-end
-
-function Outfitter.TankPoints_GetTotalStat(pTankPointData, pStat)
-	local vTotalStat = pTankPointData.BaseStats[pStat]
-	
-	if not vTotalStat then
-		vTotalStat = 0
-	end
-	
-	local vAdditionalStat = pTankPointData.AdditionalStats[pStat]
-	
-	if vAdditionalStat then
-		vTotalStat = vTotalStat + vAdditionalStat
-	end
-	
-	local vBuffStat = pTankPointData.BuffStats[pStat]
-	
-	if vBuffStat then
-		vTotalStat = vTotalStat + vBuffStat
-	end
-	
-	--
-	
-	return vTotalStat
-end
-
-function Outfitter.TankPoints_CalcTankPoints(pTankPointData, pStanceModifier)
-	if not pStanceModifier then
-		pStanceModifier = 1
-	end
-	
-	Outfitter:DebugTable("pTankPointData", pTankPointData)
-	
-	local vEffectiveArmor = Outfitter.TankPoints_GetTotalStat(pTankPointData, "Armor")
-	
-	Outfitter:TestMessage("Armor: "..vEffectiveArmor)
-	
-	local vArmorReduction = vEffectiveArmor / ((85 * pTankPointData.PlayerLevel) + 400)
-	
-	vArmorReduction = vArmorReduction / (vArmorReduction + 1)
-	
-	local vEffectiveHealth = Outfitter.TankPoints_GetTotalStat(pTankPointData, "Health")
-	
-	Outfitter:TestMessage("Health: "..vEffectiveHealth)
-	
-	Outfitter:TestMessage("Stamina: "..Outfitter.TankPoints_GetTotalStat(pTankPointData, "Stamina"))
-	
-	--
-	
-	local vEffectiveDodge = Outfitter.TankPoints_GetTotalStat(pTankPointData, "Dodge") * 0.01
-	local vEffectiveParry = Outfitter.TankPoints_GetTotalStat(pTankPointData, "Parry") * 0.01
-	local vEffectiveBlock = Outfitter.TankPoints_GetTotalStat(pTankPointData, "Block") * 0.01
-	local vEffectiveDefense = Outfitter.TankPoints_GetTotalStat(pTankPointData, "Defense")
-	
-	-- Add agility and defense to dodge
-	
-	-- defenseInputBox:GetNumber() * 0.04 + agiInputBox:GetNumber() * 0.05
-
-	Outfitter:TestMessage("Dodge: "..vEffectiveDodge)
-	Outfitter:TestMessage("Parry: "..vEffectiveParry)
-	Outfitter:TestMessage("Block: "..vEffectiveBlock)
-	Outfitter:TestMessage("Defense: "..vEffectiveDefense)
-	
-	local vDefenseModifier = (vEffectiveDefense - pTankPointData.PlayerLevel * 5) * 0.04 * 0.01
-	
-	Outfitter:TestMessage("Crit reduction: "..vDefenseModifier)
-	
-	local vMobCrit = max(0, 0.05 - vDefenseModifier)
-	local vMobMiss = 0.05 + vDefenseModifier
-	local vMobDPS = 1
-	
-	local vTotalReduction = 1 - (vMobCrit * 2 + (1 - vMobCrit - vMobMiss - vEffectiveDodge - vEffectiveParry)) * (1 - vArmorReduction) * pStanceModifier
-	
-	Outfitter:TestMessage("Total reduction: "..vTotalReduction)
-	
-	local vTankPoints = vEffectiveHealth / (vMobDPS * (1 - vTotalReduction))
-	
-	return vTankPoints
-	
-	--[[
-	Stats used in TankPoints calculation:
-		Health
-		Dodge
-		Parry
-		Block
-		Defense
-		Armor
-	]]--
-end
-
-function Outfitter.TankPoints_GetCurrentOutfitStats(pStatDistribution)
-	local vTotalStats = {}
-	
-	for _, vSlotName in ipairs(Outfitter.cSlotNames) do
-		local vStats = Outfitter.ItemList_GetItemStats({SlotName = vSlotName})
-		
-		if vStats then
-			Outfitter:TestMessage("--------- "..vSlotName)
-			
-			for vStat, vValue in pairs(vStats) do
-				Outfitter.Stats_AddStatValue(vTotalStats, vStat, vValue)
+	for _, vEquipmentChange in ipairs(vEquipmentChangeList) do
+		-- Find an empty slot
+		local vDepositIndex
+		for vIndex = 1, VOID_DEPOSIT_MAX do
+			if not vItemIDByDepositSlot[vIndex] then
+				vDepositIndex = vIndex
+				break
 			end
 		end
+		
+		-- No more slots
+		if not vDepositIndex then
+			Outfitter:DebugMessage("No empty void storage slots")
+			break
+		end
+		
+		-- Move the item
+		Outfitter:DebugMessage("Moving item to deposit slot %s", tostring(vDepositIndex))
+		self:PickupItemLocation(vEquipmentChange.FromLocation)
+		ClickVoidTransferDepositSlot(vDepositIndex, false)
+		vItemIDByDepositSlot[vDepositIndex] = vEquipmentChange.Item.Code
+		vDepositSlotByItemID[vEquipmentChange.Item.Code] = vDepositIndex
 	end
 	
-	return vTotalStats
-end
-
-function Outfitter.TankPoints_Test()
-	local vStatDistribution = Outfitter:GetPlayerStatDistribution()
-	
-	local vTankPointData = Outfitter.TankPoints_New()
-	local vStats = Outfitter.TankPoints_GetCurrentOutfitStats(vStatDistribution)
-	
-	Outfitter.Stats_AddStats(vTankPointData.AdditionalStats, vStats)
-	
-	local vTankPoints = Outfitter.TankPoints_CalcTankPoints(vTankPointData)
-	
-	Outfitter:TestMessage("TankPoints = "..vTankPoints)
-end
-
-function Outfitter:TestAmmoSlot()
-	local vItemInfo = Outfitter:GetInventoryItemInfo("AmmoSlot")
-	local vSlotID = Outfitter.cSlotIDs.AmmoSlot
-	local vItemLink = GetInventoryItemLink("player", vSlotID)
-	
-	Outfitter:DebugTable("vItemInfo", vItemInfo)
-	
-	Outfitter:TestMessage("SlotID: "..vSlotID)
-	Outfitter:TestMessage("ItemLink: "..vItemLink)
+	self:DispatchOutfitEvent("EDIT_OUTFIT", pOutfit:GetName(), pOutfit)
 end
 
 function Outfitter.GameToolTip_OnShow(...)
-	MCEventLib:DispatchEvent("GAMETOOLTIP_SHOW")
+	Outfitter.EventLib:DispatchEvent("GAMETOOLTIP_SHOW")
 end
 
 function Outfitter.GameToolTip_OnHide(...)
-	MCEventLib:DispatchEvent("GAMETOOLTIP_HIDE")
-end
-
-function Outfitter:OutfitUsesItem(pOutfit, pItemInfo)
-	local vEquippableItems = Outfitter.ItemList_GetEquippableItems(false)
-	local vItemInfo, vItemInfo2
-	
-	if pItemInfo.ItemSlotName == "Finger0Slot" then
-		vItemInfo = pOutfit.Items.Finger0Slot
-		vItemInfo2 = pOutfit.Items.Finger1Slot
-	elseif pItemInfo.ItemSlotName == "Trinket0Slot" then
-		vItemInfo = pOutfit.Items.Trinket0Slot
-		vItemInfo2 = pOutfit.Items.Trinket1Slot
-	elseif pItemInfo.MetaSlotName == "Weapon0Slot" then
-		vItemInfo = pOutfit.Items.MainHandSlot
-		vItemInfo2 = pOutfit.Items.SecondaryHandSlot
-	else
-		vItemInfo = pOutfit.Items[pItemInfo.ItemSlotName]
-	end
-	
-	return (vItemInfo and Outfitter.ItemList_ItemsAreSame(vEquippableItems, vItemInfo, pItemInfo))
-	    or (vItemInfo2 and Outfitter.ItemList_ItemsAreSame(vEquippableItems, vItemInfo2, pItemInfo))
+	Outfitter.EventLib:DispatchEvent("GAMETOOLTIP_HIDE")
 end
 
 function Outfitter:GetOutfitsUsingItem(pItemInfo)
 	local vFoundOutfits
 	
-	for vCategoryID, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+	for vCategoryID, vOutfits in pairs(self.Settings.Outfits) do
 		for _, vOutfit in ipairs(vOutfits) do
-			if Outfitter:OutfitUsesItem(vOutfit, pItemInfo) then
+			if vOutfit:OutfitUsesItem(pItemInfo) then
 				if not vFoundOutfits then
 					vFoundOutfits = {}
 				end
@@ -9717,11 +6511,11 @@ function Outfitter:GetOutfitsListAsText(pOutfits)
 		return
 	end
 	
-	local vEquippableItems = Outfitter.ItemList_GetEquippableItems()
+	local vInventoryCache = self:GetInventoryCache()
 	local vNames = nil
 	
 	for _, vOutfit in ipairs(pOutfits) do
-		local vMissingItems, vBankedItems = Outfitter.ItemList_GetMissingItems(vEquippableItems, vOutfit)
+		local vMissingItems, vBankedItems = vInventoryCache:GetMissingItems(vOutfit)
 		local vName
 		
 		if vOutfit.Disabled then
@@ -9729,12 +6523,12 @@ function Outfitter:GetOutfitsListAsText(pOutfits)
 		elseif vMissingItems then
 			vName = RED_FONT_COLOR_CODE
 		elseif vBankedItems then
-			vName = Outfitter.BANKED_FONT_COLOR_CODE
+			vName = self.BANKED_FONT_COLOR_CODE
 		else
-			vName = NORMAL_FONT_COLOR_CODE
+			vName = HIGHLIGHT_FONT_COLOR_CODE
 		end
 
-		 vName = vName..vOutfit.Name..FONT_COLOR_CODE_CLOSE
+		 vName = vName..vOutfit:GetName()..FONT_COLOR_CODE_CLOSE
 		
 		if vNames then
 			vNames = vNames..", "..vName
@@ -9746,70 +6540,88 @@ function Outfitter:GetOutfitsListAsText(pOutfits)
 	return vNames
 end
 
-function Outfitter:AddOutfitsUsingItemToTooltip(pTooltip, pPrefix, pItemInfo)
+function Outfitter:AddOutfitsUsingItemToTooltip(pTooltip, pItemInfo)
 	local vOutfitListString
 	
-	if Outfitter.OutfitInfoCache.OutfitsUsingItem
-	and Outfitter.OutfitInfoCache.OutfitsUsingItem.Link
-	and Outfitter.OutfitInfoCache.OutfitsUsingItem.Link == pItemInfo.Link then
-		vOutfitListString = Outfitter.OutfitInfoCache.OutfitsUsingItem.String
+	if self.OutfitInfoCache.OutfitsUsingItem
+	and self.OutfitInfoCache.OutfitsUsingItem.Link
+	and self.OutfitInfoCache.OutfitsUsingItem.Link == pItemInfo.Link then
+		vOutfitListString = self.OutfitInfoCache.OutfitsUsingItem.String
 	else
-		local vOutfits = Outfitter:GetOutfitsUsingItem(pItemInfo)
+		local vOutfits = self:GetOutfitsUsingItem(pItemInfo)
 		
 		if vOutfits then
-			vOutfitListString = Outfitter:GetOutfitsListAsText(vOutfits)
+			vOutfitListString = self:GetOutfitsListAsText(vOutfits)
 		end
 		
 		-- Update the cache
 		
 		if pItemInfo.Link then
-			if not Outfitter.OutfitInfoCache.OutfitsUsingItem then
-				Outfitter.OutfitInfoCache.OutfitsUsingItem = {}
+			if not self.OutfitInfoCache.OutfitsUsingItem then
+				self.OutfitInfoCache.OutfitsUsingItem = {}
 			end
 			
-			Outfitter.OutfitInfoCache.OutfitsUsingItem.Link = pItemInfo.Link
-			Outfitter.OutfitInfoCache.OutfitsUsingItem.String = vOutfitListString
+			self.OutfitInfoCache.OutfitsUsingItem.Link = pItemInfo.Link
+			self.OutfitInfoCache.OutfitsUsingItem.String = vOutfitListString
 		end
 	end
 	
 	--
 	
 	if vOutfitListString then
-		GameTooltip:AddLine(pPrefix..vOutfitListString, HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b, true)
-		GameTooltip:Show()
+		local vEquipmentSetsPattern = Outfitter:ConvertFormatStringToSearchPattern(EQUIPMENT_SETS)
+		
+		local vTooltipListString = EQUIPMENT_SETS:format(vOutfitListString)
+		local vLineIndex, vLineFrame = Outfitter:FindTooltipLine(pTooltip, vEquipmentSetsPattern)
+		
+		-- Found an existing EQUIPMENT_SETS line
+		
+		if vLineIndex then
+			vLineFrame:SetText(vTooltipListString)
+		
+		-- Add a new line
+		
+		else
+			pTooltip:AddLine(vTooltipListString, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, true)
+			pTooltip:Show()
+		end
 	end
 end
 
 function Outfitter.GameTooltip_SetBagItem(pTooltip, pBag, pSlot, ...)
-	local vResult = {pTooltip:Outfitter_OrigSetBagItem(pBag, pSlot, ...)}
-	
-	if not gOutfitter_Settings.Options.DisableToolTipInfo then
+	if not Outfitter.Settings.Options.DisableToolTipInfo then
 		local vItemInfo = Outfitter:GetBagItemInfo(pBag, pSlot)
 		
 		if vItemInfo then
-			Outfitter:AddOutfitsUsingItemToTooltip(pTooltip, Outfitter.cUsedByPrefix, vItemInfo)
+			Outfitter:AddOutfitsUsingItemToTooltip(pTooltip, vItemInfo)
 		end
 	end
-	
-	return unpack(vResult)
 end
 
-function Outfitter.GameTooltip_SetInventoryItem(pTooltip, pUnit, pSlot, pNameOnly, ...)
-	local vResult = {pTooltip:Outfitter_OrigSetInventoryItem(pUnit, pSlot, pNameOnly, ...)}
-	
+function Outfitter.GameTooltip_SetInventoryItem(pTooltip, pUnit, pSlotID, pNameOnly, ...)
 	-- Add the list of outfits the item is used by
-	
-	if not gOutfitter_Settings.Options.DisableToolTipInfo
+	if not Outfitter.Settings.Options.DisableToolTipInfo
 	and UnitIsUnit(pUnit, "player") then
-		local vItemLink = Outfitter:GetInventorySlotIDLink(pSlot)
-		local vItemInfo = Outfitter:GetItemInfoFromLink(vItemLink)
+		local vInventorySlot = Outfitter.cSlotIDToInventorySlot[pSlotID]
+		local vItemInfo = Outfitter:GetSlotIDItemInfo(pSlotID)
 		
 		if vItemInfo then
-			Outfitter:AddOutfitsUsingItemToTooltip(pTooltip, Outfitter.cUsedByPrefix, vItemInfo)
+			vItemInfo.Location = {SlotName = vInventorySlot}
+			
+			Outfitter:AddOutfitsUsingItemToTooltip(pTooltip, vItemInfo)
 		end
 	end
-	
-	return unpack(vResult)
+end
+
+function Outfitter.GameTooltip_SetHyperlink(pTooltip, pLink, ...)
+	-- Add the list of outfits the item is used by
+	if not Outfitter.Settings.Options.DisableToolTipInfo then
+		local vItemInfo = Outfitter:GetItemInfoFromLink(pLink)
+		
+		if vItemInfo then
+			Outfitter:AddOutfitsUsingItemToTooltip(pTooltip, vItemInfo)
+		end
+	end
 end
 
 function Outfitter:InitializeFrameMethods(pFrame, pMethods)
@@ -9826,14 +6638,14 @@ function Outfitter:InitializeFrameWidgets(pFrame, pWidgets)
 		
 		for _, vWidgetName in pairs(pWidgets) do
 			if string.sub(vWidgetName, -1) == "*" then
-				vWidgetName = string.sub(vWidgetName, 1, -2)
+				vWidgetName = vWidgetName:sub(1, -2)
 				
-				pFrame[vWidgetName] = {ParentFrame = getglobal(vFrameName..vWidgetName)}
+				pFrame[vWidgetName] = {ParentFrame = _G[vFrameName..vWidgetName]}
 				
 				local vIndex = 1
 				
 				while true do
-					local vWidget = getglobal(vFrameName..vWidgetName..vIndex)
+					local vWidget = _G[vFrameName..vWidgetName..vIndex]
 					
 					if not vWidget then
 						break
@@ -9845,55 +6657,17 @@ function Outfitter:InitializeFrameWidgets(pFrame, pWidgets)
 					vIndex = vIndex + 1
 				end
 			else
-				pFrame[vWidgetName] = getglobal(vFrameName..vWidgetName)
+				pFrame[vWidgetName] = _G[vFrameName..vWidgetName]
 			end
 		end
 	end
-end
-
-Outfitter.OpenDialogs = {}
-
-function Outfitter:DialogOpened(pDialog)
-	-- Make sure it isn't already open
-	
-	for _, vDialog in ipairs(self.OpenDialogs) do
-		if vDialog == pDialog then
-			return
-		end
-	end
-	
-	table.insert(self.OpenDialogs, pDialog)
-end
-
-function Outfitter:DialogClosed(pDialog)
-	for vIndex, vDialog in ipairs(self.OpenDialogs) do
-		if vDialog == pDialog then
-			table.remove(self.OpenDialogs, vIndex)
-			return
-		end
-	end
-	
-	Outfitter:ErrorMessage("DialogClosed called on an unknown dialog: "..pDialog:GetName())
-end
-
-function Outfitter.StaticPopup_EscapePressed()
-	local vClosed = Outfitter.OriginalStaticPopup_EscapePressed()
-	local vNumDialogs = #self.OpenDialogs
-	
-	for vIndex = 1, vNumDialogs do
-		local vDialog = self.OpenDialogs[1]
-		vDialog:Cancel()
-		vClosed = 1
-	end
-	
-	return vClosed
 end
 
 function Outfitter:TooltipContainsLine(pTooltip, pText)
 	local vTooltipName = pTooltip:GetName()
 	
 	for vLine = 1, 30 do
-		local vText = getglobal(vTooltipName.."TextLeft"..vLine)
+		local vText = _G[vTooltipName.."TextLeft"..vLine]
 		
 		if not vText then
 			return false
@@ -9905,30 +6679,12 @@ function Outfitter:TooltipContainsLine(pTooltip, pText)
 			return false
 		end
 		
-		if string.find(vTextString, pText) then
+		if vTextString:find(pText) then
 			local vColor = {}
-			
 			vColor.r, vColor.g, vColor.b = vText:GetTextColor()
-			
 			local vHSVColor = Outfitter:RGBToHSV(vColor)
-			
 			return true, vHSVColor.s > 0.2 and vHSVColor.v > 0.2 and (vHSVColor.h < 50 or vHSVColor.h > 150)
 		end
-	end
-end
-
-function Outfitter:RecycleTable(pTable)
-	if not pTable then
-		return {}
-	else
-		Outfitter:EraseTable(pTable)
-		return pTable
-	end
-end
-
-function Outfitter:EraseTable(pTable)
-	for vKey in pairs(pTable) do
-		pTable[vKey] = nil
 	end
 end
 
@@ -10028,26 +6784,6 @@ function Outfitter:FrameEditBox(pEditBox)
 	vMiddleTexture:SetTexCoord(0.09375, 0.90625, 0, 1)
 end
 
-function Outfitter:NewObject(pMethods, ...)
-	local vObject
-	
-	if pMethods.New then
-		vObject = pMethods:New(...)
-	else
-		vObject = {}
-	end
-	
-	for vIndex, vValue in pairs(pMethods) do
-		vObject[vIndex] = vValue
-	end
-	
-	if vObject.Construct then
-		vObject:Construct(...)
-	end
-	
-	return vObject
-end
-
 function Outfitter:ConstructFrame(pFrame, pMethods, ...)
 	for vKey, vValue in pairs(pMethods) do
 		if vKey == "Widgets" and type(vValue) == "table" then
@@ -10065,7 +6801,7 @@ function Outfitter:ConstructFrame(pFrame, pMethods, ...)
 			
 			if vNamePrefix then
 				for _, vName in ipairs(vValue) do
-					local vWidget = getglobal(vNamePrefix..vName)
+					local vWidget = _G[vNamePrefix..vName]
 					
 					if vWidget == nil then
 						self:ErrorMessage("Couldn't find global "..vNamePrefix..vName)
@@ -10116,7 +6852,7 @@ function Outfitter.InitializeFrame(pObject, ...)
 				end
 				
 				for _, vName in ipairs(vFunction) do
-					local vValue = getglobal(vNamePrefix..vName)
+					local vValue = _G[vNamePrefix..vName]
 					
 					if vValue == nil then
 						self:ErrorMessage("Couldn't find global "..vNamePrefix..vName)
@@ -10131,1010 +6867,8 @@ function Outfitter.InitializeFrame(pObject, ...)
 	end
 end
 
-function Outfitter.HookScript(pFrame, pScriptID, pFunction)
-	if not pFrame:GetScript(pScriptID) then
-		pFrame:SetScript(pScriptID, pFunction)
-	else
-		pFrame:HookScript(pScriptID, pFunction)
-	end
-end
-
-function Outfitter.SetFrameLevel(pFrame, pLevel)
-	pFrame:SetFrameLevel(pLevel)
-	
-	local	vChildren = {pFrame:GetChildren()}
-	
-	for _, vChildFrame in pairs(vChildren) do
-		Outfitter.SetFrameLevel(vChildFrame, pLevel + 1)
-	end
-end
-
-function Outfitter.SetFrameStrata(pFrame, pStrata)
-	pFrame:SetFrameStrata(pStrata)
-	
-	local vChildren = {pFrame:GetChildren()}
-	
-	for _, vChildFrame in pairs(vChildren) do
-		Outfitter.SetFrameStrata(vChildFrame, pStrata)
-	end
-end
-
-function Outfitter:BeginMenu(pMenu)
-	table.insert(UIMenus, pMenu:GetName())
-end
-
-function Outfitter:EndMenu(pMenu)
-	local vName = pMenu:GetName()
-	
-	for vIndex = #UIMenus, 1, -1 do
-		if vName == UIMenus[vIndex] then
-			table.remove(UIMenus, vIndex)
-			break
-		end
-	end
-end
-
-function Outfitter:FrameMouseDown(pFrame)
-	-- Note the position in case the user decides to drag
-	
-	if not pFrame.DraggingInfo then
-		pFrame.DraggingInfo = {}
-	end
-	
-	pFrame.DraggingInfo.CursorStartX, pFrame.DraggingInfo.CursorStartY = GetCursorPosition()
-end
-	
-function Outfitter:StartMovingFrame(pFrame)
-	if not pFrame.DraggingInfo then
-		return
-	end
-	
-	pFrame.DraggingInfo.StartX = pFrame:GetLeft() * pFrame:GetEffectiveScale()
-	pFrame.DraggingInfo.StartY = pFrame:GetTop() * pFrame:GetEffectiveScale() - UIParent:GetTop() * UIParent:GetEffectiveScale()
-
-	MCSchedulerLib:ScheduleRepeatingTask(0, self.UpdateMovingFrame, pFrame)
-end
-
-function Outfitter.UpdateMovingFrame(pFrame) -- Note this is not a method, just a function
-	if not pFrame.DraggingInfo then
-		Outfitter:FrameStopDragging(pFrame)
-		return
-	end
-	
-	-- Move the frame being dragged
-	
-	local vCursorX, vCursorY = GetCursorPosition()
-	
-	local vCursorDeltaX = vCursorX - pFrame.DraggingInfo.CursorStartX
-	local vCursorDeltaY = vCursorY - pFrame.DraggingInfo.CursorStartY
-	
-	--
-	
-	local vPositionX = pFrame.DraggingInfo.StartX + vCursorDeltaX
-	local vPositionY = pFrame.DraggingInfo.StartY + vCursorDeltaY
-	
-	if pFrame.DraggingInfo.PositionX ~= vPositionX
-	or pFrame.DraggingInfo.PositionY ~= vPositionY then
-		
-		pFrame.DraggingInfo.PositionX = vPositionX
-		pFrame.DraggingInfo.PositionY = vPositionY
-		
-		pFrame:ClearAllPoints()
-		pFrame:SetPoint("TOPLEFT", "UIParent", "TOPLEFT", vPositionX / pFrame:GetEffectiveScale(), vPositionY / pFrame:GetEffectiveScale())
-	end
-end
-
-function Outfitter:StopMovingFrame(pFrame)
-	MCSchedulerLib:UnscheduleTask(self.UpdateMovingFrame, pFrame)
-end
-
 function Outfitter:GetCurrentOutfitInfo()
 	return self.OutfitStack:GetCurrentOutfitInfo()
-end
-
-----------------------------------------
--- Outfitter.OutfitStack
-----------------------------------------
-
-function Outfitter.OutfitStack:Initialize()
-	self:RestoreSavedStack()
-end
-
-function Outfitter.OutfitStack:RestoreSavedStack()
-	if not gOutfitter_Settings.LastOutfitStack then
-		gOutfitter_Settings.LastOutfitStack = {}
-	end
-	
-	for vIndex, vOutfit in ipairs(gOutfitter_Settings.LastOutfitStack) do
-		if vOutfit.Name then
-			vOutfit = Outfitter:FindOutfitByName(vOutfit.Name)
-		end
-		
-		if vOutfit then
-			table.insert(self.Outfits, vOutfit)
-		end
-	end
-	
-	Outfitter.ExpectedOutfit = Outfitter:GetCompiledOutfit()
-	
-	Outfitter:UpdateTemporaryOutfit(Outfitter:GetNewItemsOutfit(Outfitter.ExpectedOutfit))
-	
-	if gOutfitter_Settings.Options.ShowStackContents then
-		self:DebugOutfitStack("Restore saved stack")
-	end
-end
-
-function Outfitter.OutfitStack:AddOutfit(pOutfit, pLayerID)
-	local vFound, vIndex = self:FindOutfit(pOutfit)
-	
-	-- If it's already on then remove it from the stack
-	-- so it can be added to the end
-	
-	if vFound then
-		table.remove(self.Outfits, vIndex)
-		table.remove(gOutfitter_Settings.LastOutfitStack, vIndex)
-		
-		for vLayerID, vLayerIndex in pairs(gOutfitter_Settings.LayerIndex) do
-			if vIndex < vLayerIndex then
-				gOutfitter_Settings.LayerIndex[vLayerID] = vLayerIndex - 1
-			end
-		end
-		
-		Outfitter:DispatchOutfitEvent("UNWEAR_OUTFIT", pOutfit.Name, pOutfit)
-	end
-	
-	-- Figure out the position to insert at
-	
-	local vStackLength = #self.Outfits
-	local vInsertIndex = vStackLength + 1
-	
-	local vLayerIndex = gOutfitter_Settings.LayerIndex[pLayerID]
-	
-	if vLayerIndex then
-		vInsertIndex = vLayerIndex
-	end
-	
-	if pLayerID then
-		gOutfitter_Settings.LayerIndex[pLayerID] = vInsertIndex
-	end
-	
-	-- Adjust the layer indices
-	
-	for vLayerID, vLayerIndex in pairs(gOutfitter_Settings.LayerIndex) do
-		if vInsertIndex < vLayerIndex then
-			gOutfitter_Settings.LayerIndex[vLayerID] = vLayerIndex + 1
-		end
-	end
-	
-	-- Add the outfit
-	
-	table.insert(self.Outfits, vInsertIndex, pOutfit)
-	
-	if pOutfit.Name then
-		table.insert(gOutfitter_Settings.LastOutfitStack, vInsertIndex, {Name = pOutfit.Name})
-	else
-		table.insert(gOutfitter_Settings.LastOutfitStack, vInsertIndex, pOutfit)
-	end
-	
-	Outfitter.DisplayIsDirty = true
-	
-	if gOutfitter_Settings.Options.ShowStackContents then
-		self:DebugOutfitStack("Add outfit")
-	end
-	
-	if vFound then
-		self:CollapseTemporaryOutfits()
-	end
-	
-	Outfitter:DispatchOutfitEvent("WEAR_OUTFIT", pOutfit.Name, pOutfit)
-end
-
-function Outfitter.OutfitStack:RemoveOutfit(pOutfit)
-	local vFound, vIndex = self:FindOutfit(pOutfit)
-	
-	if not vFound then
-		return false
-	end
-	
-	-- Remove the outfit
-	
-	table.remove(self.Outfits, vIndex)
-	table.remove(gOutfitter_Settings.LastOutfitStack, vIndex)
-	
-	self:CollapseTemporaryOutfits()
-			
-	for vLayerID, vLayerIndex in pairs(gOutfitter_Settings.LayerIndex) do
-		if vIndex < vLayerIndex then
-			gOutfitter_Settings.LayerIndex[vLayerID] = vLayerIndex - 1
-		end
-	end
-	
-	Outfitter.DisplayIsDirty = true
-	
-	if gOutfitter_Settings.Options.ShowStackContents then
-		self:DebugOutfitStack("Remove outfit")
-	end
-	
-	return true
-end
-
-function Outfitter.OutfitStack:FindOutfit(pOutfit)
-	for vIndex, vOutfit in ipairs(self.Outfits) do
-		if vOutfit == pOutfit then
-			return true, vIndex
-		end
-	end
-	
-	return false, nil
-end
-
-function Outfitter.OutfitStack:FindOutfitByCategory(pCategoryID)
-	for vIndex, vOutfit in ipairs(self.Outfits) do
-		if vOutfit.CategoryID == pCategoryID then
-			return true, vIndex
-		end
-	end
-	
-	return false, nil
-end
-
-function Outfitter.OutfitStack:Clear()
-	for vIndex, vOutfit in ipairs(self.Outfits) do
-		Outfitter:DispatchOutfitEvent("UNWEAR_OUTFIT", vOutfit.Name, vOutfit)
-	end
-	
-	Outfitter:EraseTable(self.Outfits)
-	
-	gOutfitter_Settings.LastOutfitStack = Outfitter:RecycleTable(gOutfitter_Settings.LastOutfitStack)
-	gOutfitter_Settings.LayerIndex = Outfitter:RecycleTable(gOutfitter_Settings.LayerIndex)
-	Outfitter.DisplayIsDirty = true
-	
-	if gOutfitter_Settings.Options.ShowStackContents then
-		Outfitter:DebugMessage("Outfitter stack cleared")
-	end
-end
-
-function Outfitter.OutfitStack:ClearCategory(pCategoryID)
-	local vIndex = 1
-	local vStackLength = #self.Outfits
-	local vChanged = false
-	
-	while vIndex <= vStackLength do
-		local vOutfit = self.Outfits[vIndex]
-		
-		if vOutfit
-		and vOutfit.CategoryID == pCategoryID then
-			-- Remove the outfit from the stack
-			
-			table.remove(self.Outfits, vIndex)
-			table.remove(gOutfitter_Settings.LastOutfitStack, vIndex)
-			
-			vStackLength = vStackLength - 1
-			vChanged = true
-			
-			-- Adjust the layer indices
-			
-			for vLayerID, vLayerIndex in pairs(gOutfitter_Settings.LayerIndex) do
-				if vIndex < vLayerIndex then
-					gOutfitter_Settings.LayerIndex[vLayerID] = vLayerIndex - 1
-				end
-			end
-			
-			Outfitter:DispatchOutfitEvent("UNWEAR_OUTFIT", vOutfit.Name, vOutfit)
-		else
-			vIndex = vIndex + 1
-		end
-	end
-	
-	self:CollapseTemporaryOutfits()
-	
-	if vChanged then
-		if gOutfitter_Settings.Options.ShowStackContents then
-			self:DebugOutfitStack("Clear category "..pCategoryID)
-		end
-		
-		Outfitter.DisplayIsDirty = true
-	end
-end
-
-function Outfitter.OutfitStack:GetTemporaryOutfit()
-	local vStackSize = #self.Outfits
-	
-	if vStackSize == 0 then
-		return nil
-	end
-	
-	local vOutfit = self.Outfits[vStackSize]
-	
-	if vOutfit.Name then
-		return nil
-	end
-	
-	return vOutfit
-end
-
-function Outfitter.OutfitStack:CollapseTemporaryOutfits()
-	local vIndex = 1
-	local vStackLength = #self.Outfits
-	local vTemporaryOutfit1 = nil
-	
-	while vIndex <= vStackLength do
-		local vOutfit = self.Outfits[vIndex]
-		
-		if vOutfit
-		and vOutfit.Name == nil then
-			if vTemporaryOutfit1 then
-				-- Copy the items up
-				
-				for vInventorySlot, vItem in pairs(vTemporaryOutfit1.Items) do
-					if not vOutfit.Items[vInventorySlot] then
-						vOutfit.Items[vInventorySlot] = vItem
-					end
-				end
-				
-				-- Remove the lower temp outfit
-				
-				table.remove(self.Outfits, vIndex - 1)
-				vStackLength = vStackLength - 1
-			else
-				vIndex = vIndex + 1
-			end
-			
-			vTemporaryOutfit1 = vOutfit
-		else
-			vTemporaryOutfit1 = nil
-			vIndex = vIndex + 1
-		end
-	end
-end
-
-function Outfitter.OutfitStack:IsTopmostOutfit(pOutfit)
-	local vStackLength = #self.Outfits
-	
-	if vStackLength == 0 then
-		return false
-	end
-	
-	return self.Outfits[vStackLength] == pOutfit
-end
-
-function Outfitter.OutfitStack:UpdateHelmAndCloakVisibility()
-	local vShowHelm, vShowCloak
-	
-	for vIndex, vOutfit in ipairs(self.Outfits) do
-		if vOutfit.ShowHelm ~= nil then
-			vShowHelm = vOutfit.ShowHelm
-		end
-		if vOutfit.ShowCloak ~= nil then
-			vShowCloak = vOutfit.ShowCloak
-		end
-	end -- for
-	
-	if vShowHelm == true then
-		ShowHelm("1")
-	elseif vShowHelm == false then
-		ShowHelm("0")
-	end
-	
-	if vShowCloak == true then
-		ShowCloak("1")
-	elseif vShowCloak == false then
-		ShowCloak("0")
-	end
-end
-
-function Outfitter:TagOutfitLayer(pOutfit, pLayerID)
-	local vFound, vIndex = Outfitter.OutfitStack:FindOutfit(pOutfit)
-	
-	if not vFound then
-		return
-	end
-	
-	gOutfitter_Settings.LayerIndex[pLayerID] = vIndex
-end
-
-function Outfitter.OutfitStack:DebugOutfitStack(pOperation)
-	Outfitter:DebugMessage("Outfitter Stack Contents: "..pOperation)
-	
-	for vIndex, vOutfit in ipairs(self.Outfits) do
-		if vOutfit.Name then
-			Outfitter:DebugMessage("Slot "..vIndex..": "..vOutfit.Name)
-		else
-			Outfitter:DebugMessage("Slot "..vIndex..": Temporaray outfit")
-		end
-	end
-	
-	Outfitter:DebugTable("LayerIndex", gOutfitter_Settings.LayerIndex)
-end
-
-function Outfitter.OutfitStack:GetCurrentOutfitInfo()
-	local vStackLength = #self.Outfits
-	
-	if vStackLength == 0 then
-		return "", nil
-	end
-	
-	local vOutfit = self.Outfits[vStackLength]
-	
-	if vOutfit and vOutfit.Name then
-		return vOutfit.Name, vOutfit
-	else
-		return Outfitter.cCustom, vOutfit
-	end
-end
-
-----------------------------------------
-Outfitter._ButtonBar = {}
-----------------------------------------
-
-function Outfitter._ButtonBar:Construct(pName, pNumColumns, pNumRows, pButtonMethods, pButtonTemplate)
-	self.Name = pName
-	self.NumColumns = 0
-	self.NumRows = 0
-	self.Buttons = {}
-	self.BackgroundTextures = {}
-	self.ButtonMethods = pButtonMethods
-	self.ButtonTemplate = pButtonTemplate or "ItemButtonTemplate"
-	
-	self:SetFrameStrata("DIALOG")
-	Outfitter.SetFrameLevel(self, 1)
-	self:EnableMouse(true)
-	
-	self:SetDimensions(pNumColumns, pNumRows)
-	self:SetParent(UIParent)
-end
-
-function Outfitter._ButtonBar:SetDimensions(pNumColumns, pNumRows)
-	self.NumColumns = pNumColumns
-	self.NumRows = pNumRows
-	
-	-- Allocate additional buttons if needed
-	
-	local vTotalButtons = pNumColumns * pNumRows
-	
-	for vIndex = #self.Buttons, vTotalButtons do
-		local vButtonName = self.Name.."Button"..vIndex
-		local vButton = CreateFrame("Button", vButtonName, self, self.ButtonTemplate)
-		
-		Outfitter.InitializeFrame(vButton, self.ButtonMethods)
-		vButton:Construct()
-		
-		Outfitter.SetFrameLevel(vButton, self:GetFrameLevel() + 1)
-		
-		table.insert(self.Buttons, vButton)
-	end
-	
-	-- Allocate additional textures if needed
-	
-	local vNumTexRows = self.NumRows + 1
-	local vNumTexColumns = self.NumColumns + 1
-	local vTotalTextures = vNumTexRows * vNumTexColumns
-	
-	for vIndex = #self.BackgroundTextures, vTotalTextures do
-		local vTexture = self:CreateTexture(nil, "BACKGROUND")
-		
-		vTexture:SetTexture("Interface\\Addons\\Outfitter\\Textures\\QuickSlotsBackground")
-		vTexture:SetHeight(Outfitter.Style.ButtonBar.BackgroundHeight)
-		vTexture:Hide()
-		
-		table.insert(self.BackgroundTextures, vTexture)
-	end
-	
-	self.NumTextures = vTotalTextures
-	
-	-- Link the buttons together
-	
-	local vButtonFrameLevel = self:GetFrameLevel() + 1
-	
-	local vButtonIndex = 1
-	local vPrevRowFirstButton
-	local vRowFirstButton
-	
-	for vRow = 1, self.NumRows do
-		local vPrevButton
-		local vRowFirstButton = self.Buttons[vButtonIndex]
-		
-		for vColumn = 1, self.NumColumns do
-			local vButton = self.Buttons[vButtonIndex]
-			
-			vButton:ClearAllPoints()
-			
-			if vPrevButton then
-				vButton:SetPoint("LEFT", vPrevButton, "LEFT", Outfitter.Style.ButtonBar.BackgroundWidth, 0)
-			elseif vPrevRowFirstButton then
-				vButton:SetPoint("TOP", vPrevRowFirstButton, "TOP", 0, -Outfitter.Style.ButtonBar.BackgroundHeight)
-			else
-				vButton:SetPoint("TOPLEFT", self, "TOPLEFT", 7, -6)
-			end
-			
-			vButton:EnableMouse(true)
-			vButton:SetFrameLevel(vButtonFrameLevel)
-			vButton:Enable()
-			
-			vButton:Show()
-			
-			vPrevButton = vButton
-			vButtonIndex = vButtonIndex + 1
-		end
-		
-		vPrevRowFirstButton = vRowFirstButton
-	end
-	
-	-- Hide unused buttons
-	
-	for vIndex = vButtonIndex, #self.Buttons do
-		local vButton = self.Buttons[vIndex]
-		
-		vButton.Outfit = nil
-		
-		vButton:EnableMouse(false)
-		vButton:Disable()
-		vButton:Hide()
-	end
-	
-	-- Set the textures and link them together
-	
-	local vTextureIndex = 1
-	local vPrevRowFirstTexture
-	local vRowFirstTexture
-	
-	local vTexVertCoord1 = Outfitter.Style.ButtonBar.BackgroundHeight0 / Outfitter.Style.ButtonBar.BackgroundTextureHeight
-	local vTexVertCoord2 = (Outfitter.Style.ButtonBar.BackgroundHeight0 + Outfitter.Style.ButtonBar.BackgroundHeight) / Outfitter.Style.ButtonBar.BackgroundTextureHeight
-	local vTexVertCoord3 = (Outfitter.Style.ButtonBar.BackgroundHeight0 + Outfitter.Style.ButtonBar.BackgroundHeight + Outfitter.Style.ButtonBar.BackgroundHeightN) / Outfitter.Style.ButtonBar.BackgroundTextureHeight
-	
-	local vTexHorizCoord1 = Outfitter.Style.ButtonBar.BackgroundWidth0 / Outfitter.Style.ButtonBar.BackgroundTextureWidth
-	local vTexHorizCoord2 = (Outfitter.Style.ButtonBar.BackgroundWidth0 + Outfitter.Style.ButtonBar.BackgroundWidth) / Outfitter.Style.ButtonBar.BackgroundTextureWidth
-	local vTexHorizCoord3 = (Outfitter.Style.ButtonBar.BackgroundWidth0 + Outfitter.Style.ButtonBar.BackgroundWidth + Outfitter.Style.ButtonBar.BackgroundWidthN) / Outfitter.Style.ButtonBar.BackgroundTextureWidth
-	
-	for vRow = 1, vNumTexRows do
-		local vPrevTexture
-		local vRowFirstTexture = self.BackgroundTextures[vTextureIndex]
-		local vHeight, vTexTop, vTexBottom
-		
-		if vRow == 1 then
-			vHeight = Outfitter.Style.ButtonBar.BackgroundHeight0
-			vTexTop = 0
-			vTexBottom = vTexVertCoord1
-		elseif vRow == vNumTexRows then
-			vHeight = Outfitter.Style.ButtonBar.BackgroundHeightN
-			vTexTop = vTexVertCoord2
-			vTexBottom = vTexVertCoord3
-		else
-			vHeight = Outfitter.Style.ButtonBar.BackgroundHeight
-			vTexTop = vTexVertCoord1
-			vTexBottom = vTexVertCoord2
-		end
-		
-		for vColumn = 1, vNumTexColumns do
-			local vTexture = self.BackgroundTextures[vTextureIndex]
-			local vWidth, vTexLeft, vTexRight
-			
-			if vColumn == 1 then
-				vWidth = Outfitter.Style.ButtonBar.BackgroundWidth0
-				vTexLeft = 0
-				vTexRight = vTexHorizCoord1
-			elseif vColumn == vNumTexColumns then
-				vWidth = Outfitter.Style.ButtonBar.BackgroundWidthN
-				vTexLeft = vTexHorizCoord2
-				vTexRight = vTexHorizCoord3
-			else
-				vWidth = Outfitter.Style.ButtonBar.BackgroundWidth
-				vTexLeft = vTexHorizCoord1
-				vTexRight = vTexHorizCoord2
-			end
-			
-			vTexture:SetTexCoord(vTexLeft, vTexRight, vTexTop, vTexBottom)
-			vTexture:SetHeight(vHeight)
-			vTexture:SetWidth(vWidth)
-			vTexture:ClearAllPoints()
-			
-			if vPrevTexture then
-				vTexture:SetPoint("LEFT", vPrevTexture, "RIGHT")
-			elseif vPrevRowFirstTexture then
-				vTexture:SetPoint("TOP", vPrevRowFirstTexture, "BOTTOM")
-			else
-				vTexture:SetPoint("TOPLEFT", self, "TOPLEFT")
-			end
-			
-			if not self.HideBackground then
-				vTexture:Show()
-			end
-			
-			vPrevTexture = vTexture
-			vTextureIndex = vTextureIndex + 1
-		end
-		
-		vPrevRowFirstTexture = vRowFirstTexture
-	end
-	
-	-- Hide unused textures
-	
-	for vIndex = vTextureIndex, #self.BackgroundTextures do
-		local vTexture = self.BackgroundTextures[vIndex]
-		
-		vTexture:ClearAllPoints()
-		vTexture:Hide()
-	end
-	
-	-- Resize the bar
-	
-	self:SetWidth(Outfitter.Style.ButtonBar.BackgroundWidth * (pNumColumns - 1) + Outfitter.Style.ButtonBar.BackgroundWidth0 + Outfitter.Style.ButtonBar.BackgroundWidthN)
-	self:SetHeight(Outfitter.Style.ButtonBar.BackgroundHeight * (pNumRows - 1) + Outfitter.Style.ButtonBar.BackgroundHeight0 + Outfitter.Style.ButtonBar.BackgroundHeightN)
-end
-
-function Outfitter._ButtonBar:GetIndexedButton(pButtonIndex)
-	local vNumButtons = self.NumColumns * self.NumRows
-	
-	if not pButtonIndex or pButtonIndex < 1 or pButtonIndex > vNumButtons then
-		return
-	end
-	
-	return self.Buttons[pButtonIndex]
-end
-
-function Outfitter._ButtonBar:ShowBackground(pShow)
-	self.HideBackground = not pShow
-	
-	if self.HideBackground then
-		for vIndex, vTexture in ipairs(self.BackgroundTextures) do
-			if vIndex > self.NumTextures then
-				break
-			end
-			
-			vTexture:Hide()
-		end
-	else
-		for vIndex, vTexture in ipairs(self.BackgroundTextures) do
-			if vIndex > self.NumTextures then
-				break
-			end
-			
-			vTexture:Show()
-		end
-	end
-end
-
-----------------------------------------
-Outfitter._SidebarWindowFrame = {}
-----------------------------------------
-
-function Outfitter._SidebarWindowFrame:Construct()
-	-- Create the textures
-	
-	self.TopHeight = 80
-	self.LeftWidth = 80
-	self.BottomHeight = 183
-	self.RightWidth = 94
-	
-	self.TopMargin = 13
-	self.LeftMargin = 0
-	self.BottomMargin = 3
-	self.RightMargin = 1
-	
-	self.TextureWidth1 = 256
-	self.TextureWidth2 = 128
-	self.TextureUsedWidth2 = 94
-	
-	self.TextureHeight1 = 256
-	self.TextureHeight2 = 256
-	self.TextureUsedHeight2 = 183
-	
-	self.MiddleWidth1 = self.TextureWidth1 - self.LeftWidth
-	self.MiddleWidth2 = 60
-	
-	self.TexCoordX1 = self.LeftWidth / self.TextureWidth1
-	self.TexCoordX2 = (self.TextureUsedWidth2 - self.RightWidth) / self.TextureWidth2
-	self.TexCoordX3 = self.TextureUsedWidth2 / self.TextureWidth2
-	
-	self.TexCoordY1 = self.TopHeight / self.TextureHeight1
-	self.TexCoordY2 = (self.TextureUsedHeight2 - self.BottomHeight) / self.TextureHeight2
-	self.TexCoordY3 = self.TextureUsedHeight2 / self.TextureHeight2
-	
-	self.Background = {}
-	
-	self.Background.TopRight = self:CreateTexture(nil, "BORDER")
-	self.Background.TopRight:SetWidth(self.RightWidth)
-	self.Background.TopRight:SetHeight(self.TopHeight)
-	self.Background.TopRight:SetPoint("TOPRIGHT", self, "TOPRIGHT", self.RightMargin, self.TopMargin)
-	self.Background.TopRight:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-TopRight")
-	self.Background.TopRight:SetTexCoord(self.TexCoordX2, self.TexCoordX3, 0, self.TexCoordY1)
-	
-	self.Background.TopLeft = self:CreateTexture(nil, "BORDER")
-	self.Background.TopLeft:SetHeight(self.TopHeight)
-	self.Background.TopLeft:SetPoint("TOPLEFT", self, "TOPLEFT", -self.LeftMargin, self.TopMargin)
-	self.Background.TopLeft:SetPoint("TOPRIGHT", self.Background.TopRight, "TOPLEFT")
-	self.Background.TopLeft:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-TopLeft")
-	self.Background.TopLeft:SetTexCoord(self.TexCoordX1, 1, 0, self.TexCoordY1)
-	
-	self.Background.BottomRight = self:CreateTexture(nil, "BORDER")
-	self.Background.BottomRight:SetWidth(self.RightWidth)
-	self.Background.BottomRight:SetHeight(self.BottomHeight)
-	self.Background.BottomRight:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", self.RightMargin, -self.BottomMargin)
-	self.Background.BottomRight:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-BottomRight")
-	self.Background.BottomRight:SetTexCoord(self.TexCoordX2, self.TexCoordX3, self.TexCoordY2, self.TexCoordY3)
-	
-	self.Background.BottomLeft = self:CreateTexture(nil, "BORDER")
-	self.Background.BottomLeft:SetHeight(self.BottomHeight)
-	self.Background.BottomLeft:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", -self.LeftMargin, -self.BottomMargin)
-	self.Background.BottomLeft:SetPoint("BOTTOMRIGHT", self.Background.BottomRight, "BOTTOMLEFT")
-	self.Background.BottomLeft:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-BottomLeft")
-	self.Background.BottomLeft:SetTexCoord(self.TexCoordX1, 1, self.TexCoordY2, self.TexCoordY3)
-	
-	self.Background.RightMiddle = self:CreateTexture(nil, "BORDER")
-	self.Background.RightMiddle:SetWidth(self.RightWidth)
-	self.Background.RightMiddle:SetPoint("TOPRIGHT", self.Background.TopRight, "BOTTOMRIGHT")
-	self.Background.RightMiddle:SetPoint("BOTTOMRIGHT", self.Background.BottomRight, "TOPRIGHT")
-	self.Background.RightMiddle:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-TopRight")
-	self.Background.RightMiddle:SetTexCoord(self.TexCoordX2, self.TexCoordX3, self.TexCoordY1, 1)
-	
-	self.Background.LeftMiddle = self:CreateTexture(nil, "BORDER")
-	self.Background.LeftMiddle:SetPoint("TOPLEFT", self.Background.TopLeft, "BOTTOMLEFT")
-	self.Background.LeftMiddle:SetPoint("BOTTOMLEFT", self.Background.BottomLeft, "TOPLEFT")
-	self.Background.LeftMiddle:SetPoint("TOPRIGHT", self.Background.TopRight, "BOTTOMLEFT")
-	self.Background.LeftMiddle:SetPoint("BOTTOMRIGHT", self.Background.BottomRight, "TOPLEFT")
-	self.Background.LeftMiddle:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-TopLeft")
-	self.Background.LeftMiddle:SetTexCoord(self.TexCoordX1, 1, self.TexCoordY1, 1)
-	
-	self.Background.ShadowFrame = CreateFrame("Frame", nil, self)
-	self.Background.ShadowFrame:SetWidth(16)
-	self.Background.ShadowFrame:SetPoint("TOPLEFT", self, "TOPLEFT")
-	self.Background.ShadowFrame:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT")
-	self.Background.ShadowFrame:SetFrameLevel(self:GetFrameLevel() + 20)
-	
-	self.Background.Shadow = self.Background.ShadowFrame:CreateTexture(nil, "OVERLAY")
-	self.Background.Shadow:SetAllPoints()
-	self.Background.Shadow:SetTexture(0, 0, 0, 1)
-	self.Background.Shadow:SetGradientAlpha(
-			"HORIZONTAL",
-			1, 1, 1, 1,
-			1, 1, 1, 0)
-end
-
-----------------------------------------
-Outfitter._PortraitWindowFrame = {}
-----------------------------------------
-
-function Outfitter._PortraitWindowFrame:Construct()
-	-- Create the textures
-	
-	self.TopHeight = 80
-	self.LeftWidth = 80
-	self.BottomHeight = 183
-	self.RightWidth = 94
-	
-	self.TopMargin = 13
-	self.LeftMargin = 12
-	self.BottomMargin = 3
-	self.RightMargin = 1
-	
-	self.TextureWidth1 = 256
-	self.TextureWidth2 = 128
-	self.TextureUsedWidth2 = 94
-	
-	self.TextureHeight1 = 256
-	self.TextureHeight2 = 256
-	self.TextureUsedHeight2 = 183
-	
-	self.MiddleWidth1 = self.TextureWidth1 - self.LeftWidth
-	self.MiddleWidth2 = 60
-	
-	self.TexCoordX1 = self.LeftWidth / self.TextureWidth1
-	self.TexCoordX2 = (self.TextureUsedWidth2 - self.RightWidth) / self.TextureWidth2
-	self.TexCoordX3 = self.TextureUsedWidth2 / self.TextureWidth2
-	
-	self.TexCoordY1 = self.TopHeight / self.TextureHeight1
-	self.TexCoordY2 = (self.TextureUsedHeight2 - self.BottomHeight) / self.TextureHeight2
-	self.TexCoordY3 = self.TextureUsedHeight2 / self.TextureHeight2
-	
-	self.Background = {}
-	
-	-- Create the four corners first
-	
-	self.Background.TopLeft = self:CreateTexture(nil, "BORDER")
-	self.Background.TopLeft:SetWidth(self.LeftWidth)
-	self.Background.TopLeft:SetHeight(self.TopHeight)
-	self.Background.TopLeft:SetPoint("TOPLEFT", self, "TOPLEFT", -self.LeftMargin, self.TopMargin)
-	self.Background.TopLeft:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-TopLeft")
-	self.Background.TopLeft:SetTexCoord(0, self.TexCoordX1, 0, self.TexCoordY1)
-	
-	self.Background.TopRight = self:CreateTexture(nil, "BORDER")
-	self.Background.TopRight:SetWidth(self.RightWidth)
-	self.Background.TopRight:SetHeight(self.TopHeight)
-	self.Background.TopRight:SetPoint("TOPRIGHT", self, "TOPRIGHT", self.RightMargin, self.TopMargin)
-	self.Background.TopRight:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-TopRight")
-	self.Background.TopRight:SetTexCoord(self.TexCoordX2, self.TexCoordX3, 0, self.TexCoordY1)
-	
-	self.Background.BottomLeft = self:CreateTexture(nil, "BORDER")
-	self.Background.BottomLeft:SetWidth(self.LeftWidth)
-	self.Background.BottomLeft:SetHeight(self.BottomHeight)
-	self.Background.BottomLeft:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", -self.LeftMargin, -self.BottomMargin)
-	self.Background.BottomLeft:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-BottomLeft")
-	self.Background.BottomLeft:SetTexCoord(0, self.TexCoordX1, self.TexCoordY2, self.TexCoordY3)
-	
-	self.Background.BottomRight = self:CreateTexture(nil, "BORDER")
-	self.Background.BottomRight:SetWidth(self.RightWidth)
-	self.Background.BottomRight:SetHeight(self.BottomHeight)
-	self.Background.BottomRight:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", self.RightMargin, -self.BottomMargin)
-	self.Background.BottomRight:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-BottomRight")
-	self.Background.BottomRight:SetTexCoord(self.TexCoordX2, self.TexCoordX3, self.TexCoordY2, self.TexCoordY3)
-	
-	self.Background.TopMiddle = self:CreateTexture(nil, "BORDER")
-	self.Background.TopMiddle:SetHeight(self.TopHeight)
-	self.Background.TopMiddle:SetPoint("TOPLEFT", self.Background.TopLeft, "TOPRIGHT")
-	self.Background.TopMiddle:SetPoint("TOPRIGHT", self.Background.TopRight, "TOPLEFT")
-	self.Background.TopMiddle:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-TopLeft")
-	self.Background.TopMiddle:SetTexCoord(self.TexCoordX1, 1, 0, self.TexCoordY1)
-	
-	self.Background.BottomMiddle = self:CreateTexture(nil, "BORDER")
-	self.Background.BottomMiddle:SetHeight(self.BottomHeight)
-	self.Background.BottomMiddle:SetPoint("TOPLEFT", self.Background.BottomLeft, "TOPRIGHT")
-	self.Background.BottomMiddle:SetPoint("TOPRIGHT", self.Background.BottomRight, "TOPLEFT")
-	self.Background.BottomMiddle:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-BottomLeft")
-	self.Background.BottomMiddle:SetTexCoord(self.TexCoordX1, 1, self.TexCoordY2, self.TexCoordY3)
-	
-	self.Background.LeftMiddle = self:CreateTexture(nil, "BORDER")
-	self.Background.LeftMiddle:SetWidth(self.LeftWidth)
-	self.Background.LeftMiddle:SetPoint("TOPLEFT", self.Background.TopLeft, "BOTTOMLEFT")
-	self.Background.LeftMiddle:SetPoint("BOTTOMLEFT", self.Background.BottomLeft, "TOPLEFT")
-	self.Background.LeftMiddle:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-TopLeft")
-	self.Background.LeftMiddle:SetTexCoord(0, self.TexCoordX1, self.TexCoordY1, 1)
-	
-	self.Background.RightMiddle = self:CreateTexture(nil, "BORDER")
-	self.Background.RightMiddle:SetWidth(self.RightWidth)
-	self.Background.RightMiddle:SetPoint("TOPRIGHT", self.Background.TopRight, "BOTTOMRIGHT")
-	self.Background.RightMiddle:SetPoint("BOTTOMRIGHT", self.Background.BottomRight, "TOPRIGHT")
-	self.Background.RightMiddle:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-TopRight")
-	self.Background.RightMiddle:SetTexCoord(self.TexCoordX2, self.TexCoordX3, self.TexCoordY1, 1)
-	
-	self.Background.Middle = self:CreateTexture(nil, "BORDER")
-	self.Background.Middle:SetPoint("TOPLEFT", self.Background.TopLeft, "BOTTOMRIGHT")
-	self.Background.Middle:SetPoint("TOPRIGHT", self.Background.TopRight, "BOTTOMLEFT")
-	self.Background.Middle:SetPoint("BOTTOMLEFT", self.Background.BottomLeft, "TOPRIGHT")
-	self.Background.Middle:SetPoint("BOTTOMRIGHT", self.Background.BottomRight, "TOPLEFT")
-	self.Background.Middle:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-TopLeft")
-	self.Background.Middle:SetTexCoord(self.TexCoordX1, 1, self.TexCoordY1, 1)
-	
-	self.CloseButton = Outfitter:NewCloseButton(self)
-	self.CloseButton:SetPoint("TOPRIGHT", self, "TOPRIGHT", -3, -3)
-end
-
-function Outfitter:NewCloseButton(pParent)
-	local vButton = CreateFrame("Button", nil, pParent)
-	local vTexture
-	
-	vButton:SetWidth(17)
-	vButton:SetHeight(17)
-	
-	local vTexture
-	
-	vButton:SetNormalTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Up")
-	vTexture = vButton:GetNormalTexture()
-	vTexture:SetTexCoord(0.1875, 0.78125, 0.21875, 0.78125)
-	
-	vButton:SetPushedTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Down")
-	vTexture = vButton:GetPushedTexture()
-	vTexture:SetTexCoord(0.1875, 0.78125, 0.21875, 0.78125)
-	
-	vButton:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight")
-	vTexture = vButton:GetHighlightTexture()
-	vTexture:SetTexCoord(0.1875, 0.78125, 0.21875, 0.78125)
-	vTexture:SetBlendMode("ADD")
-	
-	return vButton
-end
-
-----------------------------------------
-Outfitter._ScriptContext = {}
-----------------------------------------
-
-function Outfitter._ScriptContext:NewContext(pOutfit, pScript)
-	local vFunction, vMessage = Outfitter:LoadOutfitScript(pScript)
-	
-	if not vFunction then
-		return nil, vMessage
-	end
-	
-	return Outfitter:NewObject(self, pOutfit, vFunction)
-end
-
-function Outfitter._ScriptContext:Construct(pOutfit, pFunction)
-	self.Outfit = pOutfit
-	self.Function = pFunction
-	
-	if not pFunction then
-		Outfitter:ErrorMessage("Internal error: Attempting to create a script context with a nil function")
-	end
-end
-
-function Outfitter._ScriptContext:RegisterEvent(pEventID)
-	if pEventID == "OUTFIT_EQUIPPED"
-	or pEventID == "OUTFIT_UNEQUIPPED" then
-		if not Outfitter.OutfitScriptEvents[pEventID] then
-			Outfitter.OutfitScriptEvents[pEventID] = {}
-		end
-		
-		Outfitter.OutfitScriptEvents[pEventID][self.Outfit] = self
-	else
-		MCEventLib:RegisterEvent(pEventID, self.Function, self)
-	end
-end
-
-function Outfitter._ScriptContext:UnregisterEvent(pEventID)
-	if pEventID == "OUTFIT_EQUIPPED"
-	or pEventID == "OUTFIT_UNEQUIPPED" then
-		Outfitter.OutfitScriptEvents[pEventID][self.Outfit] = nil
-	else
-		MCEventLib:UnregisterEvent(pEventID, self.Function, self)
-	end
-end
-
-function Outfitter._ScriptContext:UnregisterAllEvents(pEventID)
-	for vEventID, vOutfits in pairs(Outfitter.OutfitScriptEvents) do
-		vOutfits[self.Outfit] = nil
-	end
-	
-	MCEventLib:UnregisterAllEvents(self.Function, self)
-end
-
-function Outfitter._ScriptContext:Debug(pFormat, ...)
-	Outfitter:NoteMessage("["..self.Outfit.Name.."] "..pFormat, ...)
-end
-
-function Outfitter._ScriptContext:PostProcess(pEquip, pLayer, pDelay, pStartTime)
-	-- If the script took a long time to run and it hasn't been very long since
-	-- the last time we'll increment a counter.  If that counters gets too high
-	-- we can assume the script is misbehaving and shut it down
-	
-	local vTime = GetTime()
-	
-	if vTime - pStartTime > 0.1
-	and self.Outfit.LastScriptTime
-	and pStartTime - self.LastScriptTime < 0.5 then
-		if not self.ScriptLockupCount then
-			self.ScriptLockupCount = 1
-		else
-			self.ScriptLockupCount = self.ScriptLockupCount + 1
-			
-			if self.ScriptLockupCount > 20 then
-				Outfitter:ErrorMessage("Excessive CPU time in script for %s, script deactivated.", self.Outfit.Name or "<unnamed>")
-				Outfitter:DeactivateScript(self.Outfit)
-			end
-		end
-	else
-		self.ScriptLockupCount = 0
-	end
-	
-	self.LastScriptTime = pStartTime
-	
-	--
-	
-	if pEquip ~= nil then
-		local vChanged
-		
-		Outfitter:BeginEquipmentUpdate()
-		
-		if pEquip then
-			if not Outfitter:WearingOutfit(self.Outfit) then
-				Outfitter:WearOutfit(self.Outfit, pLayer, true)
-				vChanged = true
-			end
-		else
-			if Outfitter:WearingOutfit(self.Outfit) then
-				Outfitter:RemoveOutfit(self.Outfit, true)
-				vChanged = true
-			end
-		end
-		
-		-- Adjust the last equipped time to cause a delay if requested
-		
-		if vChanged and pDelay then
-			Outfitter:SetUpdateDelay(pStartTime, pDelay)
-		end
-		
-		Outfitter:EndEquipmentUpdate()
-	elseif pLayer then
-		Outfitter:TagOutfitLayer(self.Outfit, pLayer)
-	end
 end
 
 function Outfitter:SetUpdateDelay(pTime, pDelay)
@@ -11145,53 +6879,114 @@ function Outfitter:SetUpdateDelay(pTime, pDelay)
 	end
 end
 
-function Outfitter:GetItemUseDuration(pInventorySlot)
-	-- Set the tooltip
-	
-	OutfitterTooltip:SetOwner(OutfitterFrame, "ANCHOR_BOTTOMRIGHT", 0, 0)
-	
-	if not OutfitterTooltip:SetInventoryItem("player", Outfitter.cSlotIDs[pInventorySlot]) then
-		OutfitterTooltip:Hide()
+function Outfitter:CalcItemHasUseFeature(pItemLink)
+	-- Grab a tooltip
+	local tooltip = self.TooltipLib:SharedTooltip()
+	tooltip:ClearLines()
+
+	-- Set it to the link
+	if not tooltip:SetHyperlink(pItemLink) then
 		return false
 	end
 	
 	-- Scan for a "Use:" line
-	
+	local tooltipName = tooltip:GetName()
 	for vLineIndex = 1, 100 do
-		local vLeftTextFrame = getglobal("OutfitterTooltipTextLeft"..vLineIndex)
-		
+		local vLeftTextFrame = _G[tooltipName.."TextLeft"..vLineIndex]
 		if not vLeftTextFrame then
 			break
 		end
 		
 		local vLeftText = vLeftTextFrame:GetText()
-		
 		if vLeftText then
-			local vStartIndex, vEndIndex, vSeconds = string.find(vLeftText, Outfitter.cUseDurationTooltipLineFormat)
+			local vStartIndex, vEndIndex = vLeftText:find(Outfitter.cUseTooltipLineFormat)
+			
+			if vStartIndex then
+				return true
+			end
+		end
+	end -- for vLineIndex
+	
+	return false
+end
+
+function Outfitter:CalcItemUseDuration(pItemLink)
+	-- Grab a tooltip
+	local tooltip = self.TooltipLib:SharedTooltip()
+	tooltip:ClearLines()
+
+	-- Set it to the link
+	tooltip:SetHyperlink(pItemLink)
+	
+	-- Scan for a "Use:" line
+	local tooltipName = tooltip:GetName()
+	for vLineIndex = 1, 100 do
+		local vLeftTextFrame = _G[tooltipName.."TextLeft"..vLineIndex]
+		if not vLeftTextFrame then
+			break
+		end
+		
+		local vLeftText = vLeftTextFrame:GetText()
+		if vLeftText then
+			local vStartIndex, vEndIndex, vSeconds = vLeftText:find(Outfitter.cUseDurationTooltipLineFormat)
 			
 			if not vSeconds then
-				vStartIndex, vEndIndex, vSeconds = string.find(vLeftText, Outfitter.cUseDurationTooltipLineFormat2)
+				vStartIndex, vEndIndex, vSeconds = vLeftText:find(Outfitter.cUseDurationTooltipLineFormat2)
 			end
-			
+		
 			if vSeconds then
-				OutfitterTooltip:Hide()
 				return tonumber(vSeconds)
 			end
 		end
 	end -- for vLineIndex
 	
-	OutfitterTooltip:Hide()
 	return 0
 end
 
+Outfitter.cItemHasUseFeature = {}
 Outfitter.cItemUseDuration = {}
+
+function Outfitter:ItemHasUseFeature(pItemLink)
+	local vItemCode = self:ParseItemLink2(pItemLink)[1]
+	local vHasUseFeature
+	
+	if self.cItemHasUseFeature[vItemCode] ~= nil then
+		vHasUseFeature = self.cItemHasUseFeature[vItemCode]
+	else
+		vHasUseFeature = self:CalcItemHasUseFeature(pItemLink)
+		
+		self.cItemHasUseFeature[vItemCode] = vHasUseFeature
+	end
+	
+	return vHasUseFeature
+end
+
+function Outfitter:GetItemUseDuration(pItemLink)
+	local vItemCode = self:ParseItemLink2(pItemLink)[1]
+	local vUseDuration
+	
+	if self.cItemUseDuration[vItemCode] then
+		vUseDuration  = self.cItemUseDuration[vItemCode]
+	else
+		vUseDuration = self:CalcItemUseDuration(pItemLink)
+		
+		if not vUseDuration then
+			vUseDuration = 0
+		end
+		
+		self.cItemUseDuration[vItemCode] = vUseDuration
+	end
+	
+	return vUseDuration
+end
 
 function Outfitter:InventoryItemIsActive(pInventorySlot)
 	-- See if the item is on cooldown at all
 	
-	local vSlotID = Outfitter.cSlotIDs[pInventorySlot]
-	local vItemLink = Outfitter:GetInventorySlotIDLink(vSlotID)
-	local vStartTime, vDuration, vEnable = GetItemCooldown(vItemLink)
+	local vSlotID = self.cSlotIDs[pInventorySlot]
+	local vItemLink = self:GetInventorySlotIDLink(vSlotID)
+	local vItemCode = self:GetSlotIDLinkInfo(vSlotID)[1]
+	local vStartTime, vDuration, vEnable = GetItemCooldown(vItemCode)
 	
 	if not vStartTime or vStartTime == 0 then
 		return false
@@ -11199,20 +6994,7 @@ function Outfitter:InventoryItemIsActive(pInventorySlot)
 	
 	-- Determine if there's an activity period for the item
 	
-	local vItemInfo = Outfitter:GetItemInfoFromLink(vItemLink)
-	local vUseDuration
-	
-	if Outfitter.cItemUseDuration[vItemInfo.Code] then
-		vUseDuration  = Outfitter.cItemUseDuration[vItemInfo.Code]
-	else
-		vUseDuration = Outfitter:GetItemUseDuration(pInventorySlot)
-		
-		if not vUseDuration then
-			vUseDuration = 0
-		end
-		
-		Outfitter.cItemUseDuration[vItemInfo.Code] = vUseDuration
-	end
+	local vUseDuration = self:GetItemUseDuration(vItemLink)
 	
 	-- If the time since started is less than the use duration the item is still active
 	-- and shouldn't be unequipped
@@ -11220,21 +7002,24 @@ function Outfitter:InventoryItemIsActive(pInventorySlot)
 	return GetTime() < vStartTime + vUseDuration
 end
 
-function Outfitter_Hook()
-	Outfitter_HookTable(_G, "_G")
+-- Some diagnostic code for finding functions that take a long time to
+-- execute.  This isn't installed automatically and must be manually called
+
+function Outfitter:Hook()
+	self:HookTable(Outfitter, "Outfitter")
 end
 
-function Outfitter_HookTable(pTable, pPrefix)
+function Outfitter:HookTable(pTable, pPrefix)
 	for vKey, vValue in pairs(pTable) do
 		if type(vKey) == "string"
 		and type(vValue) == "function"
-		and not string.find(vKey, "Outfitter") then
+		and not vKey:find("Outfitter") then
 			pTable[vKey] = function (...)
 				local vStartTime = GetTime()
 				local vResult = {vValue(...)}
 				local vEndTime = GetTime()
 				if vEndTime - vStartTime > 0.1 then
-					Outfitter:DebugMessage("Function %s.%s took %f seconds", pPrefix, vKey, vEndTime - vStartTime)
+					self:DebugMessage("Function %s.%s took %f seconds", pPrefix, vKey, vEndTime - vStartTime)
 				end
 				
 				return unpack(vResult)
@@ -11244,11 +7029,13 @@ function Outfitter_HookTable(pTable, pPrefix)
 end
 
 function Outfitter:ShowAllLinks()
-	for vCategory, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+	for vCategory, vOutfits in pairs(self.Settings.Outfits) do
 		for _, vOutfit in ipairs(vOutfits) do
-			for _, vItem in pairs(vOutfit.Items) do
+			local vItems = vOutfit:GetItems()
+			
+			for _, vItem in pairs(vItems) do
 				if vItem.Code ~= 0 then
-					Outfitter:NoteMessage(Outfitter:GenerateItemLink(vItem))
+					self:NoteMessage(self:GenerateItemLink(vItem))
 				end
 			end
 		end
@@ -11257,10 +7044,14 @@ end
 
 function Outfitter:GenerateItemLink(pItem)
 	if not pItem or pItem.Code == 0 then
-		return nil
+		return
 	end
 	
-	return string.format("|Hitem:%d:%d:%d:%d:%d:%d:%d:%d|h[%s]|h|r", pItem.Code, pItem.EnchantCode, pItem.JewelCode1, pItem.JewelCode2, pItem.JewelCode3, pItem.JewelCode4, pItem.SubCode, 0, pItem.Name)
+	local _, _, vQuality = GetItemInfo(pItem.Code)
+	if pItem.Quality then vQuality = pItem.Quality end
+	local _, _, _, vQualityColorCode = GetItemQualityColor(vQuality or 1)
+	
+	return string.format("|c%s|Hitem:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%s%s|h[%s]|h|r", vQualityColorCode, pItem.Code, pItem.EnchantCode or 0, pItem.JewelCode1 or 0, pItem.JewelCode2 or 0, pItem.JewelCode3 or 0, pItem.JewelCode4 or 0, pItem.SubCode or 0, pItem.UniqueID or 0, pItem.LinkLevel or 0, 0, pItem.UpgradeTypeID or 0, pItem.InstanceDifficultyID or 0, pItem.BonusIDs or "::", (pItem.UpgradeItemType and pItem.UpgradeItemType ~= 0) and (":"..pItem.UpgradeID) or "", pItem.Name or "unknown"), vQuality or 1
 end
 
 function Outfitter:ShowMissingItems()
@@ -11269,12 +7060,12 @@ function Outfitter:ShowMissingItems()
 		return
 	end
 	
-	local vEquippableItems = Outfitter.ItemList_GetEquippableItems()
+	local vInventoryCache = Outfitter:GetInventoryCache()
 	local vFoundItems
 	
-	for vCategory, vOutfits in pairs(gOutfitter_Settings.Outfits) do
+	for vCategory, vOutfits in pairs(self.Settings.Outfits) do
 		for _, vOutfit in ipairs(vOutfits) do
-			local vMissingItems = Outfitter.ItemList_GetMissingItems(vEquippableItems, vOutfit)
+			local vMissingItems = vInventoryCache:GetMissingItems(vOutfit)
 			
 			if vMissingItems then
 				for _, vItem in pairs(vMissingItems) do
@@ -11294,472 +7085,1007 @@ function Outfitter:ShowMissingItems()
 	end
 end
 
-function Outfitter.CursorInFrame(pFrame)
-	local vCursorX, vCursorY = GetCursorPosition()
+function Outfitter:CallCompanionByName(pName)
+	local vNumCompanions = GetNumCompanions("CRITTER")
+	local vLowerName = pName:lower()
 	
-	return Outfitter.PointInFrame(pFrame, vCursorX, vCursorY)
-end
-
-function Outfitter.PointInFrame(pFrame, pPointX, pPointY)
-	local vLeft, vRight, vTop, vBottom = Outfitter.GetFrameEffectiveBounds(pFrame)
-	
-	return pPointX >= vLeft
-	   and pPointX < vRight
-	   and pPointY <= vTop
-	   and pPointY > vBottom
-end
-
-function Outfitter.GetFrameEffectiveBounds(pFrame)
-	local vEffectiveScale = pFrame:GetEffectiveScale()
-	
-	return pFrame:GetLeft() * vEffectiveScale,
-	       pFrame:GetRight() * vEffectiveScale,
-	       pFrame:GetTop() * vEffectiveScale,
-	       pFrame:GetBottom() * vEffectiveScale
-end
-
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
-
-local cSortedSlotNames = {
-	"HeadSlot",
-	"NeckSlot",
-	"ShoulderSlot",
-	"BackSlot",
-	"ChestSlot",
-	"ShirtSlot",
-	"TabardSlot",
-	"WristSlot",
-	"HandsSlot",
-	"WaistSlot",
-	"LegsSlot",
-	"FeetSlot",
-	"Finger0Slot",
-	"Finger1Slot",
-	"Trinket0Slot",
-	"Trinket1Slot",
-	"MainHandSlot",
-	"SecondaryHandSlot",
-	"RangedSlot",
-	"AmmoSlot",
-}
-
-local function MangleSlotNames(sSlot)
-	local class = UnitClass("player")
-	local str = sSlot
-
-	str = string.gsub(str, "Slot", "")
-	str = string.gsub(str, "Secondary", "Off")
-	str = string.gsub(str, "1", "2")
-	str = string.gsub(str, "0", "1")
-
-	if class == "Shaman" then
-		str = string.gsub(str, "Ranged", "Totem")
-	elseif class == "Paladin" then
-		str = string.gsub(str, "Ranged", "Libram")
-	elseif class == "Druid" then
-		str = string.gsub(str, "Ranged", "Idol")
+	for vIndex = 1, vNumCompanions do
+		if GetCompanionInfo("CRITTER", vIndex):lower() == vLowerName then
+			CallCompanion("CRITTER", vIndex)
+			return
+		end
 	end
-
-	return str
-end
-
-local function OutfitExportFrame()
-	local frame = getglobal("Outfitter_ExportFrame")
-
-	if frame and frame:IsFrameType("frame") then
-		frame.eb:SetText("")
-		frame.textbackup = nil
-		return frame
-	end
-
-	frame = CreateFrame("Frame", "Outfitter_ExportFrame")
-	frame:EnableMouse(true)
-	frame:EnableKeyboard(false)
-	frame:SetMovable(true)
-	frame:RegisterForDrag("LeftButton")
-	frame:SetClampedToScreen(true)
-	frame:SetFrameStrata("MEDIUM")
-	frame:SetWidth(640)
-	frame:SetHeight(304)
-	frame:SetPoint("CENTER", UIParent, "CENTER", 0, 150)
-
-	frame:SetBackdrop( {
-		bgFile = "Interface\\ChatFrame\\ChatFrameBackground",
-		edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
-		edgeSize = 32,
-		insets = { left = 10, right = 10, top = 10, bottom = 10 }
-	});
-	frame:SetBackdropColor(.01, .01, .01, .31)
-
-	local fs_title = frame:CreateFontString(nil, "ARTWORK")
-	fs_title:SetPoint("TOPLEFT", frame, "TOPLEFT", 26, -16)
-	fs_title:SetFontObject("ChatFontNormal")
-	fs_title:SetTextColor(1, 1, 1, .71)
-	fs_title:SetText("Outfitter Export Frame")
-
-	frame.fs_title = fs_title
-
-	local btn_close = CreateFrame("Button", nil, frame)
-	local btn_close = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
-	btn_close:SetWidth(24)
-	btn_close:SetHeight(24)
-	btn_close:SetPoint("CENTER", frame, "TOPRIGHT", -24, -24)
 	
-	btn_close:SetScript("OnClick", function()
-		if arg1 == "LeftButton" then
-			local frame = this:GetParent()
-			if frame:IsVisible() then
-				this:SetButtonState("NORMAL")
-				frame:Hide()
-			end
-		end
-	end)
+	self:ErrorMessage("CallCompanionByName: couldn't find a pet named %s", tostring(pName))
+end
+
+function Outfitter:PlayerIsOnQuestID(pQuestID)
+	local vNumQuests = GetNumQuestLogEntries()
 	
-	frame.btn_close = btn_close
-
-	local eb = CreateFrame("EditBox", nil, frame)
-	eb:SetPoint("TOPLEFT", frame, "TOPLEFT", 16, -36)
-	eb:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -16, 14)
-	eb:EnableKeyboard(true)
-	eb:SetAutoFocus(false)
-	eb:SetMultiLine(true)
-	eb:SetFontObject("ChatFontSmall")
-	eb:SetBackdrop( {
-		bgFile = "Interface\\ChatFrame\\ChatFrameBackground"
-	});
-	eb:SetBackdropColor(.07, .07, .07, .77)
-	eb:SetTextColor(.91, .91, .91, .71)
-	eb:SetText("")
-	eb:ClearFocus()
-
-	frame.eb = eb
-
-	--
-	-- Frame Events
-	--
-	frame:SetScript("OnMouseDown", function()
-		if arg1 == "LeftButton" and not this.isMoving then
-			if this:IsMovable() then
-				this:SetFrameStrata("FULLSCREEN_DIALOG")
-				this:SetBackdropColor(.17, .01, .01, .31 + .17)
-				this:StartMoving()
-				this.isMoving = true
-			end
-		end
-	end)
-
-	frame:SetScript("OnMouseUp", function()
-		if arg1 == "LeftButton" and this.isMoving then
-			this:StopMovingOrSizing()
-			this:SetFrameStrata("MEDIUM")
-			this:SetBackdropColor(.01, .01, .01, .31)
-			this.isMoving = false
-		end
-	end)
-
-	frame:SetScript("OnHide", function()
-		if this.isMoving then
-			this:StopMovingOrSizing()
-			this:SetFrameStrata("MEDIUM")
-			this:SetBackdropColor(.01, .01, .01, .31)
-			this.isMoving = false
-			this.textbackup = nil
-		end
-	end)
-
-	frame.eb:SetScript("OnEscapePressed", function()
-		this:ClearFocus()
-	end)
-
-	frame.eb:SetScript("OnChar", function(self, text)
-		local backup = self:GetParent().textbackup
-
-		if text and backup then
-			self:SetText(backup)
-			self:ClearFocus()
-		end
-	end)
-
-	return frame
-end
-
-function Outfitter:ExportCurrent(pOutfit)
-	local ret = {}
-
-	for k, v in pairs( pOutfit.Items ) do
-		local item = v
-		local slot = k
-		local link = Outfitter:GenerateItemLink(item)
-		local itemstr = ""
-		if link then
-			local _, _, quality = GetItemInfo(item.Code)
-			local _, _, _, hex = GetItemQualityColor(quality)
-			itemstr = hex..link
-		else
-			itemstr = "Empty"
-		end
-
-		ret[slot] = itemstr
-	end
-
-	return ret
-end
-
-function Outfitter.OutfitMenuActions.EXPORT_SIMPLE(pOutfit)
-	local name = pOutfit.Name
-	local outfit = Outfitter:ExportCurrent(pOutfit)
-	local frame = OutfitExportFrame()
-	
-	local maxwidth = 0
-	local tmpfs = frame:CreateFontString(nil, nil, nil)
-	tmpfs:SetFontObject("ChatFontSmall")
-
-	local txtcol = tmpfs:GetTextColor()
-
-	frame.eb:Insert("Outfit: '" .. name .."'\n")
-	for _, v in pairs( cSortedSlotNames ) do
-		local slot = MangleSlotNames(v)
-		local item = outfit[v]
-
-		tmpfs:SetText(slot..":  "..item.."   ")
-		local width = tmpfs:GetWidth()
-		if width > maxwidth then maxwidth = width end
-
-		frame.eb:Insert(slot..":  "..item.."\n")
-	end
-
-	frame.textbackup = frame.eb:GetText()
-	frame:SetWidth(maxwidth+24)
-	frame:Show()
-end
-
-function Outfitter.OutfitMenuActions.EXPORT_URLS(pOutfit)
-	local name = pOutfit.Name
-	local outfit = Outfitter:ExportCurrent(pOutfit)
-	--local url = "https://www.burning-crusade.com/database/?item="
-	local url = gOutfitter_Settings.Options.ExportURL and gOutfitter_Settings.Options.ExportURL or ""
-	local frame = OutfitExportFrame()
-	
-
-	local maxwidth = 0
-	local tmpfs = frame:CreateFontString(nil, nil, nil)
-	tmpfs:SetFontObject("ChatFontSmall")
-
-	frame.eb:Insert("Outfit: '" .. name .."'\n")
-	for _, v in pairs( cSortedSlotNames ) do
-		local slot = MangleSlotNames(v)
-		local item = outfit[v]
-		local url_id = ""
-
-		if not (item == "Empty") then 
-			url_id = url..string.match(outfit[v], "|?Hitem:?(%d+)")
-		end
-
-		tmpfs:SetText(slot..":  "..item.."     "..url_id.."   ")
-		local width = tmpfs:GetWidth()
-		if width > maxwidth then maxwidth = width end
-
-		frame.eb:Insert(slot..":  "..item.."    "..url_id.."\n")
-	end
-
-	frame.textbackup = frame.eb:GetText()
-	frame:SetWidth(maxwidth+24)
-	frame:Show()
-end
-
-local function OutfitToChannel(pOutfit, sChanType, sChannel)
-	local chanType = strupper(sChanType)
-	local channel = sChannel
-	local name = pOutfit.Name
-	local outfit = Outfitter:ExportCurrent(pOutfit)
-
-	local randommark = "{rt"..math.random(1,8).."}"
-	local str = " "..randommark.." [ExportOutfit '"..pOutfit.Name.."'] "..randommark.."  "
-
-	local c = false
-	for _, v in pairs( cSortedSlotNames ) do
-		local slot = MangleSlotNames(v)
-		local item = outfit[v]
+	for vQuestIndex = 1, vNumQuests do
+		local vQuestLink = GetQuestLink(vQuestIndex)
 		
-		str = str..slot..": "..item.."   "
-		if c then
-			if chanType == "SELF" then
-				DEFAULT_CHAT_FRAME:AddMessage(str)
-			else
-				SendChatMessage(str, chanType, nil, channel)
+		if vQuestLink then
+			local _, _, vQuestID = vQuestLink:find("|Hquest:(%d+)")
+			
+			if tonumber(vQuestID) == pQuestID then
+				local _, _, vComplete = GetQuestLogLeaderBoard(1, vQuestIndex)
+				
+				return true, vComplete
 			end
-			c = false
-			str = ""
-		else
-			c = true
+		end
+	end
+	
+	return false
+end
+
+function Outfitter:GetTrackingEnabled(pTexture)
+	local vNumTypes = GetNumTrackingTypes()
+	
+	for vIndex = 1, vNumTypes do
+		local vName, vTexture, vActive = GetTrackingInfo(vIndex)
+		if vTexture == pTexture then
+			return vActive, vIndex
 		end
 	end
 end
 
-
-function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_SELF(pOutfit)
-	local chanType = "SELF"
-	local channel = nil
-
-	OutfitToChannel(pOutfit, chanType, channel)
+function Outfitter:SetTrackingEnabled(pTexture, pEnabled)
+	local vActive, vIndex = self:GetTrackingEnabled(pTexture)
+	if vActive ~= pEnabled then
+		SetTracking(vIndex, pEnabled == true or pEnabled == 1)
+	end
 end
 
+----------------------------------------
+Outfitter._ExtendedCompareTooltip = {}
+----------------------------------------
 
-function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_SAY(pOutfit)
-	local chanType = "SAY"
-	local channel = nil
+function Outfitter._ExtendedCompareTooltip:Construct()
+	hooksecurefunc("GameTooltip_ShowCompareItem", function (pShift)
+		if not Outfitter.Settings.Options.DisableItemComparisons then
+			self:ShowCompareItem(pShift)
+		end
+	end)
+	
+	GameTooltip:HookScript("OnHide", function ()
+		self:HideCompareItems()
+	end)
+	
+	GameTooltip:HookScript("OnTooltipSetItem", function ()
+		if not IsModifiedClick("COMPAREITEMS") then
+			self:HideCompareItems()
+		end
+	end)
 
-	OutfitToChannel(pOutfit, chanType, channel)
+	self.Tooltips = {}
+	self.NumTooltipsShown = 0
+	self.MaxTooltipsShown = 5
 end
 
-function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_PARTY(pOutfit)
-	local chanType = "PARTY"
-	local channel = nil
+function Outfitter._ExtendedCompareTooltip:ShowCompareItem()
+	self:HideCompareItems()
+	
+	local _, vLink = GameTooltip:GetItem()
+	
+	if not vLink then
+		return
+	end
+	
+	local vTooltipItemCodes, vTooltipItemName = Outfitter:ParseItemLink2(vLink)
+	
+	if not vTooltipItemCodes then
+		return
+	end
+	
+	local vTooltipItemFamilyName,
+	      vTooltipItemLink,
+	      vTooltipItemQuality,
+	      vTooltipItemLevel,
+	      vTooltipItemMinLevel,
+	      vTooltipItemType,
+	      vTooltipItemSubType,
+	      vTooltipItemCount,
+	      vTooltipItemInvType = GetItemInfo(vTooltipItemCodes[1])
 
-	if GetNumPartyMembers() > 0 then
-		OutfitToChannel(pOutfit, chanType, channel)	
-	else
-		if GetNumRaidMembers() > 0 then
-			Outfitter:ErrorMessage("There are no players in your party.")
-		else
-			Outfitter:ErrorMessage("You are not in a party/raid")
+	if not vTooltipItemInvType then
+		return
+	end
+	
+	-- Figure out which direction to stack in
+	
+	local vLeftDist = GameTooltip:GetLeft() or 0
+	local vRightDist = GetScreenWidth() - (GameTooltip:GetRight() or 0)
+	
+	self.LeftToRight = vLeftDist < vRightDist
+	
+	-- Figure out which tooltip to attach to and
+	-- append the 'used by' info on shopping tooltips
+	
+	self.AnchorToTooltip = nil
+	
+	for vIndex, vShoppingTooltip in ipairs(GameTooltip.shoppingTooltips) do
+		local _, vShoppingLink = vShoppingTooltip:GetItem()
+		local vShoppingItemInfo = Outfitter:GetItemInfoFromLink(vShoppingLink)
+		
+		if vShoppingItemInfo then
+			Outfitter:AddOutfitsUsingItemToTooltip(vShoppingTooltip, vShoppingItemInfo)
+			vShoppingTooltip:Show()
+		end
+		
+		-- Keep the first shopping tooltip for an anchor since it's the one Blizzard positions at the end
+		if not self.AnchorToTooltip then
+			self.AnchorToTooltip = vShoppingTooltip
+		end
+	end
+	
+	if not self.AnchorToTooltip then
+		self.AnchorToTooltip = GameTooltip
+	end
+
+	-- Determine which slots need to be examined
+	
+	local vInvSlotInfo = Outfitter.cInvTypeToSlotName[vTooltipItemInvType]
+	if not vInvSlotInfo then
+		return
+	end
+	
+	local vInventorySlots = {}
+	
+	table.insert(vInventorySlots, vInvSlotInfo.SlotName)
+	
+	local vMetaSlotName = vInvSlotInfo.MetaSlotName or vInvSlotInfo.SlotName
+	
+	if vMetaSlotName == "Weapon0Slot" then
+		table.insert(vInventorySlots, "SecondaryHandSlot")
+	elseif vMetaSlotName == "Finger0Slot" then
+		table.insert(vInventorySlots, "Finger1Slot")
+	elseif vMetaSlotName == "Trinket0Slot" then
+		table.insert(vInventorySlots, "Trinket1Slot")
+	end
+	
+	-- Search outfits for items which can go in the same slot but which aren't
+	-- listed in any of the currently shown tooltips
+	
+	local vShoppingItems = {}
+	
+	for vCategoryID, vOutfits in pairs(Outfitter.Settings.Outfits) do
+		for vOutfitIndex, vOutfit in ipairs(vOutfits) do
+			if not vOutfit.IgnoreComparisons then
+				for _, vInventorySlot in ipairs(vInventorySlots) do
+					local vItem = vOutfit:GetItem(vInventorySlot)
+					
+					if vItem then
+						local vItemLink, vItemQuality = Outfitter:GenerateItemLink(vItem)
+						
+						if vItemLink
+						and vItemQuality >= 2 then
+							table.insert(vShoppingItems, {Item = vItem, OutfitName = vOutfit:GetName(), Link = vItemLink})
+						end
+					end
+				end
+			end
+		end
+	end
+	
+	table.sort(vShoppingItems, function (pItem1, pItem2)
+		return (pItem1.Item.Level or 0) > (pItem2.Item.Level or 0)
+	end)
+	
+	for _, vItem in ipairs(vShoppingItems) do
+		if self.NumTooltipsShown >= self.MaxTooltipsShown then
+			break
+		end
+		
+		if not self:ShoppingItemIsShown(vItem.Item) then
+			self:AddShoppingLink(vItem.OutfitName, vItem.Item.Name, vItem.Link)
 		end
 	end
 end
 
-function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_RAID(pOutfit)
-	local chanType = "RAID"
-	local channel = nil
+function Outfitter._ExtendedCompareTooltip:HideCompareItems()
+	for _, vTooltip in ipairs(self.Tooltips) do
+		vTooltip:ClearAllPoints()
+		vTooltip:Hide()
+	end
+	
+	self.NumTooltipsShown = 0
+	self.MaxTooltipsShown = 5
+end
 
-	if GetNumRaidMembers() > 0 then
-		OutfitToChannel(pOutfit, chanType, channel)	
+function Outfitter._ExtendedCompareTooltip:ItemsAreEquivalent(pItemInfo1, pItemInfo2)
+	if not pItemInfo1 or not pItemInfo2 then
+		return false
+	end
+
+	return pItemInfo1.Code == pItemInfo2.Code
+	and pItemInfo1.SubCode == pItemInfo2.SubCode
+	and (pItemInfo1.UniqueID == pItemInfo2.UniqueID or pItemInfo1.InvType == "INVTYPE_AMMO" or pItemInfo2.InvType == "INVTYPE_AMMO")
+end
+
+function Outfitter._ExtendedCompareTooltip:ShoppingItemIsShown(pItemInfo)
+	local _, vTooltipLink = GameTooltip:GetItem()
+	local vTooltipItemInfo = Outfitter:GetItemInfoFromLink(vTooltipLink)
+	
+	if not vTooltipItemInfo then
+		return false
+	end
+	
+	--Outfitter:DebugMessage("ShoppingLinkIsShown: Comparing GameTooltip %s to %s", tostring(vTooltipLink):gsub("|", "||"), tostring(vLink):gsub("|", "||"))
+	
+	if self:ItemsAreEquivalent(pItemInfo, vTooltipItemInfo) then
+		return true
+	end
+	
+	for vIndex = 1, 100 do
+		local vTooltip = _G["ShoppingTooltip"..vIndex]
+		
+		if not vTooltip then
+			break
+		end
+		
+		if not vTooltip:IsVisible() then
+			break
+		end
+		
+		local _, vTooltipLink = vTooltip:GetItem()
+		local vTooltipItemInfo = Outfitter:GetItemInfoFromLink(vTooltipLink)
+		
+		--Outfitter:DebugMessage("ShoppingLinkIsShown: Comparing ShoppingTooltip%d %s to %s", vIndex, tostring(vTooltipLink):gsub("|", "||"), tostring(vLink):gsub("|", "||"))
+		--Outfitter:DebugTable(vTooltipItemInfo, "ItemInfo")
+		
+		if self:ItemsAreEquivalent(pItemInfo, vTooltipItemInfo) then
+			return true
+		end
+	end
+	
+	for vIndex, vTooltip in ipairs(self.Tooltips) do
+		if vIndex > self.NumTooltipsShown then
+			break
+		end
+		
+		local _, vTooltipLink = vTooltip:GetItem()
+		local vTooltipItemInfo = Outfitter:GetItemInfoFromLink(vTooltipLink)
+		
+		--Outfitter:DebugMessage("ShoppingLinkIsShown: Comparing OutfitterShoppingTooltip%d %s to %s", vIndex, tostring(vTooltipLink):gsub("|", "||"), tostring(vLink):gsub("|", "||"))
+		
+		if self:ItemsAreEquivalent(pItemInfo, vTooltipItemInfo) then
+			return true
+		end
+	end
+	
+	return false
+end
+
+function Outfitter._ExtendedCompareTooltip:AddShoppingLink(pTitle, pItemName, pLink)
+	self.NumTooltipsShown = self.NumTooltipsShown + 1
+	
+	local vTooltip = self.Tooltips[self.NumTooltipsShown]
+	
+	if not vTooltip then
+		vTooltip = CreateFrame("GameTooltip", "OutfitterCompareTooltip"..self.NumTooltipsShown, UIParent, "ShoppingTooltipTemplate")
+		vTooltip:SetOwner(UIParent, "ANCHOR_NONE")
+		vTooltip:Hide()
+		
+		self.Tooltips[self.NumTooltipsShown] = vTooltip
 	else
-		Outfitter:ErrorMessage("You are not in a party/raid")
+		local vTooltipName = vTooltip:GetName()
+		local vLine = 2
+		
+		while true do
+			local vTextLeft = _G[vTooltipName.."TextLeft"..vLine]
+			
+			if not vTextLeft then
+				break
+			end
+			
+			local vPoint, vRelativeTo, vRelativePoint, vOffsetX, vOffsetY = vTextLeft:GetPoint(1)
+			
+			if not vPoint then
+				break
+			end
+
+			vTextLeft:SetPoint(vPoint, vRelativeTo, vRelativePoint, 0, vOffsetY)
+			
+			vLine = vLine + 1
+		end
 	end
-end
-
-function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_GUILD(pOutfit)
-	local chanType = "GUILD"
-	local channel = nil
-
-	if IsInGuild() then
-		OutfitToChannel(pOutfit, chanType, channel)	
+	
+	local vTooltipName = vTooltip:GetName()
+	
+	vTooltip:SetOwner(self.AnchorToTooltip, "ANCHOR_NONE")
+	
+	if self.LeftToRight then
+		vTooltip:SetPoint("TOPLEFT", self.AnchorToTooltip, "TOPRIGHT", 0, 0)
 	else
-		Outfitter:ErrorMessage("You are not in a guild")
+		vTooltip:SetPoint("TOPRIGHT", self.AnchorToTooltip, "TOPLEFT", 0, 0)
 	end
-
+	
+	vTooltip:SetHyperlink(pLink)
+	
+	-- Shift all lines down by one
+	
+	self:ShiftTooltipDown(vTooltip)
+	
+	-- Set the first line to the outfit name and Outfitter label
+	
+	local vTextLeft, vTextRight = _G[vTooltipName.."TextLeft1"], _G[vTooltipName.."TextRight1"]
+	
+	vTextLeft:SetText(pTitle)
+	vTextLeft:SetTextColor(0.5, 0.5, 0.5)
+	
+	vTextRight:SetText(Outfitter.cTitle)
+	vTextRight:SetTextColor(0.5, 0.5, 0.5)
+	vTextRight:Show()
+	
+	-- Call LibTipHooker clients so they can add extra info
+	
+	if Outfitter.LibTipHooker.HandlerList.item then
+		for vHandler in pairs(Outfitter.LibTipHooker.HandlerList.item) do
+			vHandler(vTooltip, pItemName, pLink)
+		end
+	end
+	
+	-- Add "Used by:" info (should integrate this with LibTipHooker)
+		
+	local vItemInfo = Outfitter:GetItemInfoFromLink(pLink)
+	
+	if vItemInfo then
+		Outfitter:AddOutfitsUsingItemToTooltip(vTooltip, vItemInfo)
+	end
+	
+	vTooltip:Show()
+	
+	self.AnchorToTooltip = vTooltip
 end
 
-function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_OTHERS(pOutfit, pChannel)
-	local chanType = "CHANNEL"
-	local channel = nil
+function Outfitter._ExtendedCompareTooltip:ShiftTooltipDown(tooltip)
+	local name = tooltip:GetName()
+	local origNumLines = tooltip:NumLines()
+	
+	-- Make room for the last line
+	tooltip:AddLine("Test", NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1)
 
-	if pChannel then
-		channel = pChannel
+	-- Shift all lines down, starting from the bottom and going up
+	for line = origNumLines, 1, -1 do
+		local textLeft, textRight = _G[name.."TextLeft"..line], _G[name.."TextRight"..line]
+		local nextTextLeft, nextTextRight = _G[name.."TextLeft"..(line + 1)], _G[name.."TextRight"..(line + 1)]
+		
+		self:CopyFontString(textLeft, nextTextLeft, line > 3)
+		self:CopyFontString(textRight, nextTextRight, false)
+	end
+
+	-- Re-position any textures being used
+	for line = 1, tooltip:NumLines() do
+		local texture = _G[name.."Texture"..line]
+		
+		if not texture then
+			break
+		end
+		
+		if texture:IsVisible() then
+			local point, relativeTo, relativePoint, offsetX, offsetY = texture:GetPoint(1)
+			
+			relativeTo = relativeTo:GetName():gsub("(%d+)$", function (index) return tonumber(index) + 1 end)
+			
+			texture:ClearAllPoints()
+			texture:SetPoint(point, relativeTo, relativePoint, offsetX, offsetY)
+		end
+	end
+end
+
+function Outfitter._ExtendedCompareTooltip:CopyFontString(from, to, copyWidth)
+	-- to:SetFont(from:GetFont())
+	-- to:SetJustifyH(from:GetJustifyH())
+	-- to:SetJustifyV(from:GetJustifyV())
+	-- to:SetShadowColor(from:GetShadowColor())
+	-- to:SetShadowOffset(from:GetShadowOffset())
+	-- to:SetSpacing(from:GetSpacing())
+	to:SetTextColor(from:GetTextColor())
+	to:SetText(from:GetText())
+	if copyWidth and from:GetWidth() then
+		to:SetWidth(from:GetWidth())
+	end
+end
+
+function Outfitter:NewEmptyOutfit(pName)
+	local vOutfit =
+	{
+		Name = pName,
+		Items = {},
+	}
+	
+	setmetatable(vOutfit, Outfitter._OutfitMetaTable)
+	
+	return vOutfit
+end
+
+function Outfitter:GetIconIndex(pTexture)
+	if not pTexture then
+		return
+	end
+	if type(pTexture) == "number" then
+		return pTexture
+	end
+	
+	local _, _, vTexture = pTexture:find("([^\\]*)$")
+	vTexture = vTexture:lower()
+
+	for vIndex = INVSLOT_FIRST_EQUIPPED, INVSLOT_LAST_EQUIPPED do
+		local vTexture2 = GetInventoryItemTexture("player", vIndex)
+		
+		if vTexture2 then
+			_, _, vTexture2 = vTexture2:find("([^\\]*)$")
+			
+			if vTexture2:lower() == vTexture then
+				return -vIndex
+			end
+		end
+	end
+	
+	local vMacroIcons = {INV_MISC_QUESTIONMARK}
+	GetMacroItemIcons(vMacroIcons)
+	GetMacroIcons(vMacroIcons)
+	local vNumIcons = #vMacroIcons
+	
+	for vIndex = 1, vNumIcons do
+		local vTexture2 = vMacroIcons[vIndex]
+		_, _, vTexture2 = vTexture2:find("([^\\]*)$")
+		if vTexture2:lower() == vTexture then
+			return vIndex
+		end
+	end
+end
+
+function Outfitter:GetMountIDByName(name)
+	local lowerName = name:lower()
+	local mountIDs = C_MountJournal.GetMountIDs()
+	for _, mountID in ipairs(mountIDs) do
+		local mountName = C_MountJournal.GetMountInfoByID(mountID)
+		if mountName:lower() == lowerName then
+			return mountID
+		end
+	end
+end
+
+function Outfitter:GetCompanionIDByName(pName)
+	local vNumPets = C_PetJournal.GetNumPets(false)
+	local vLowerName = pName:lower()
+	for vIndex = 1, vNumPets do
+		local vPetID, vSpeciesID, vIsOwned, vCustomName, vLevel, vFavorite, vIsRevoked, vName = C_PetJournal.GetPetInfoByIndex(vIndex, false)
+		if vName:lower() == vLowerName then
+			return vPetID
+		end
+	end
+	Outfitter:DebugMessage("GetCompanionByName(%s): Not found", tostring(pName))
+end
+
+function Outfitter:GetSummonedCompanionID()
+	return C_PetJournal.GetSummonedPetGUID()
+end
+
+function Outfitter:SummonCompanionByGUID(pID, pDelay)
+	Outfitter:DebugMessage("SummonCompanionByGUID: %s delay =%s", tostring(pID), tostring(pDelay))
+	if not pID then return end
+	self.SummonPetID = pID
+	self.DismissPetID = nil
+	if pDelay then
+		Outfitter.SchedulerLib:ScheduleTask(pDelay or 2, self.SynchronizeCompanionState, self)
 	else
-		channel = string.match(UIDropDownMenuButton_GetName(self), "(%d+)")
+		self:SynchronizeCompanionState()
+	end
+end
+
+function Outfitter:SummonCompanionByName(pName, pDelay)
+	Outfitter:DebugMessage("SummonCompanionByName(%s, %s)", tostring(pName), tostring(pDelay))
+	local vPetID = self:GetCompanionIDByName(pName)
+	if not vPetID then return false end
+	self:SummonCompanionByGUID(vPetID, pDelay)
+	return true
+end
+
+function Outfitter:DismissCompanionByGUID(pID, pDelay)
+	Outfitter:DebugMessage("DismissCompanionByGUID: %s delay =%s", tostring(pID), tostring(pDelay))
+	if not pID then return end
+	
+	-- Cancel an existing summon request if possible
+	if pID == self.SummonPetID then
+		self.SummonPetID = nil
+		return
 	end
 	
-	if channel then
-		OutfitToChannel(pOutfit, chanType, channel)
+	-- Save the desired state
+	self.DismissPetID = pID
+	self.SummonPetID = nil
+	
+	-- Synchronize the state or schedule synchronization if desired
+	if pDelay then
+		Outfitter.SchedulerLib:ScheduleTask(pDelay or 2, self.SynchronizeCompanionState, self)
 	else
-		Outfitter:ErrorMessage("Could not retrieve channel's index")
+		self:SynchronizeCompanionState()
 	end
 end
 
+function Outfitter:DismissCompanionByName(pName)
+	Outfitter:DebugMessage("DismissCompanionByName(%s)", tostring(pName))
+	local vPetID = self:GetCompanionIDByName(pName)
+	if not vPetID then return false end
+	self:DismissCompanionByGUID(vPetID)
+	return true
+end
 
-StaticPopupDialogs.OUTFITTER_CHOOSE_EXPORT_TARGET =
-{
-	text = TEXT(Outfitter.cExportChannelWhisperMsg),
-	button1 = TEXT(WHISPER),
-	button2 = TEXT(CANCEL),
-	
-	OnShow = function()
-		getglobal(this:GetName().."Button1"):Disable()
-		getglobal(this:GetName().."EditBox"):SetText("")
-		getglobal(this:GetName().."Button1"):Disable()
-	end,
-	
-	OnAccept = function(data)
-		local content = getglobal(this:GetParent():GetName().."EditBox"):GetText()
-		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_WHISPER_TARGET(data, content)
-	end,
-	
-	EditBoxOnEscapePressed = function()
-		StaticPopup_Hide("OUTFITTER_CHOOSE_EXPORT_TARGET")
-	end,
+function Outfitter:CanSummonOrDismissCompanion()
+	if IsFlying()
+	or self.InCombat
+	or self.IsDead
+	or self.IsFeigning
+	or self.IsCasting
+	or self.IsChanneling
+	or (GetTime() - self.SummonPetByGUIDTime < 3) then
+		return false
+	end
+	return true
+end
 
-	EditBoxOnTextChanged = function()
-		getglobal(this:GetParent():GetName().."Button1"):Enable()
-	end,
-
-	timeout = 0,
-	whileDead = true,
-	hideOnEscape = true,
-	hasEditBox = true,
-}
-
-function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_WHISPER_TO(pOutfit)
-	local chanType = "WHISPER"
+function Outfitter:SynchronizeCompanionState()
+	-- Just return if we're not trying to summon or dismiss a pet
+	if not self.SummonPetID and not self.DismissPetID then
+		Outfitter:DebugMessage("SynchronizeCompanionState: no pet ID to summon/dismiss. Canceling.")
+		return
+	end
 	
-	local dialog = StaticPopup_Show("OUTFITTER_CHOOSE_EXPORT_TARGET", pOutfit.Name)
-	if dialog then
-		dialog.data = pOutfit
+	-- If the state can't be adjusted right now (ie, flying or channeling/casting)
+	-- then reschedule
+	if not self:CanSummonOrDismissCompanion() then
+		Outfitter.SchedulerLib:ScheduleTask(1, function() self:SynchronizeCompanionState() end)
+		return
+	end
+	
+	local vSummonedPetID = C_PetJournal.GetSummonedPetGUID()
+	Outfitter:DebugMessage("SynchronizeCompanionState: SummonedPetID = %s", tostring(vSummonedPetID))
+	
+	-- If there's not a pet summoned but there's a pet to be dismissed
+	-- then reschedule in order to watch for the pet getting auto-summoned
+	-- by the game.  For example, if you summon Ragnaros upon opening the
+	-- cooking window, then mount up and fly off without closing the window,
+	-- there will no longer be a pet summoned.  If you then close the cooking
+	-- window it will try to dismiss Ragnaros but won't see anything currently
+	-- summoned (the game auto-dismissed Ragnaros when you started flying).
+	-- We want to watch for a pet to be auto-summoned by the game and then dismiss
+	-- it if it's the one we were trying to get rid of
+	
+	if self.DismissPetID then
+		if not vSummonedPetID then
+			Outfitter:DebugMessage("SynchronizeCompanionState: Rescheduling dismissal of %s because no pet is summoned", tostring(self.DismissPetID))
+			Outfitter.SchedulerLib:ScheduleTask(1, function() self:SynchronizeCompanionState() end)
+		else
+			if vSummonedPetID == self.DismissPetID then
+				C_PetJournal.SummonPetByGUID(self.DismissPetID)
+			end
+			-- Clear the ID since the pet has now been dismissed or some other pet was summoned
+			Outfitter:DebugMessage("Finished dismissing pet %s", tostring(self.DismissPetID))
+			self.DismissPetID = nil
+			return
+		end
+	end
+	
+	if self.SummonPetID then
+		if vSummonedPetID ~= self.SummonPetID then
+			Outfitter:DebugMessage("SynchronizeCompanionState: Summoning %s", tostring(self.SummonPetID))
+			C_PetJournal.SummonPetByGUID(self.SummonPetID)
+		end
+		-- Clear the ID since the desired pet is the summoned pet
+		Outfitter:DebugMessage("Finished summoning pet %s", tostring(self.SummonPetID))
+		self.SummonPetID = nil
+		return
 	end
 end
 
-function Outfitter.OutfitMenuActions.EXPORT_CHANNEL_WHISPER_TARGET(pOutfit, pTarget)
-	local chanType = "WHISPER"
-	local channel = pTarget and pTarget or UnitName("target")
-	
-	OutfitToChannel(pOutfit, chanType, channel)
+function Outfitter:GetTalentTreeName(pIndex)
+	local _, vName = GetSpecializationInfo(pIndex)
+	return vName
 end
 
+function Outfitter:Run(pText)
+	local vCommand = pText:match("^(/[^%s]+)") or ""
+	local vMessage
 
-function Outfitter:CommandPlaceholder(pOutfit, pCat, pPar1, pPar2, pPar3)
-	DEFAULT_CHAT_FRAME:AddMessage("Outfitter CommandPlaceholder")
-	DEFAULT_CHAT_FRAME:AddMessage("  pOutfit: " .. (pOutfit		and "'" .. pOutfit.Name	.."'" or "nil"))
-	DEFAULT_CHAT_FRAME:AddMessage("     pCat: " .. (pCat		and "'" .. pCat			.."'" or "nil"))
-	DEFAULT_CHAT_FRAME:AddMessage("    pPar1: " .. (pPar1		and "'" .. pPar1		.."'" or "nil"))
-	DEFAULT_CHAT_FRAME:AddMessage("    pPar2: " .. (pPar2		and "'" .. pPar2		.."'" or "nil"))
-	DEFAULT_CHAT_FRAME:AddMessage("    pPar3: " .. (pPar3		and "'" .. pPar3		.."'" or "nil"))
-end
-
-function Outfitter:CommandExport(pOutfit, pCat, pPar1, pPar2, pPar3)
-	local outfit = pOutfit
-	local exptype = strupper(pPar1)
-	local channel = pPar2
-
-	if exptype == "SELF" then
-		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_SELF(outfit)
-	elseif exptype == "SAY" then
-		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_SAY(outfit)
-	elseif exptype == "PARTY" then
-		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_PARTY(outfit)
-	elseif exptype == "RAID" then
-		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_RAID(outfit)
-	elseif exptype == "GUILD" then
-		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_GUILD(outfit)
-	elseif exptype == "WHISPERTARGET" then
-		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_WHISPER_TARGET(outfit, nil)
-	elseif exptype == "WHISPER" then
-		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_WHISPER_TARGET(outfit, channel)
-	elseif exptype == "CHANNEL" then
-		Outfitter.OutfitMenuActions.EXPORT_CHANNEL_OTHERS(outfit, channel)
-	end
-end
-
-function Outfitter:CommandGUIExport(pOutfit, pCat, pPar1, pPar2, pPar3)
-	local exptype = pPar1
-
-	exptype = strlower(exptype)
-	if exptype == "simple" then
-		Outfitter.OutfitMenuActions.EXPORT_SIMPLE(pOutfit)
-	elseif exptype == "urls" then
-		Outfitter.OutfitMenuActions.EXPORT_URLS(pOutfit)
+	if vCommand ~= pText then
+		vMessage = pText:sub(vCommand:len() + 2);
 	else
-		Outfitter:ErrorMessage("Could not recognize the subcommand '%s'", pPar1)
+		vMessage = ""
 	end
+
+	vCommand = vCommand:upper()
+	
+	for vCommandID, vCommandFunc in pairs(SlashCmdList) do
+		local vIndex = 1
+		local vString = _G["SLASH_"..vCommandID..vIndex]
+		
+		while vString do
+			if vString:upper() == vCommand then
+				vCommandFunc(pText)
+				return
+			end
+			vIndex = vIndex + 1
+			vString = _G["SLASH_"..vCommandID..vIndex]
+		end
+	end
+	
+end
+
+function Outfitter:LookupZoneID(name)
+	for i = 1, 2000 do
+		local idName = GetMapNameByID(i)
+		if idName and idName == name then
+			return i
+		end
+	end
+end
+
+----------------------------------------
+Outfitter._ListItem = {}
+----------------------------------------
+
+function Outfitter._ListItem:construct()
+	self.OutfitMenu = _G[self:GetName().."OutfitMenu"]
+	self.OutfitMenu.ParentItem = self
+	self.UpdateTooltip = self.OnEnter
+	self.SecureAction = _G[self:GetName().."SecureAction"]
+
+	self.SecureAction:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+	self.SecureAction:HookScript("PreClick", function (frame, ...)
+		self:PreClick(...)
+	end)
+	self.SecureAction:HookScript("PostClick", function (frame, ...)
+		self:OnClick(...)
+	end)
+	self:HookScript("PreClick", self.PreClick)
+	self:HookScript("PostClick", self.OnClick)
+	self.SecureAction:HookScript("OnEnter", function (frame, ...)
+		self:OnEnter(...)
+	end)
+	self.SecureAction:HookScript("OnLeave", function (frame, ...)
+		self:OnLeave(...)
+	end)
+	self:disableSecureActions()
+end
+
+function Outfitter._ListItem:disableSecureActions()
+	if InCombatLockdown() then
+		return
+	end
+
+	self.SecureAction:Hide()
+	self.SecureAction:SetParent(UIParent)
+	self.SecureAction:ClearAllPoints()
+end
+
+function Outfitter._ListItem:enableSecureActions()
+	if InCombatLockdown() then
+		return
+	end
+
+	self.SecureAction:Show()
+	self.SecureAction:SetParent(self)
+	self.SecureAction:SetAllPoints()
+
+	-- Configure the secure button
+	if self.isOutfitItem then
+		self.SecureAction:SetAttribute("type", nil)
+		self.SecureAction:SetAttribute("target-bag", self.outfitItem.Location.BagIndex)
+		self.SecureAction:SetAttribute("target-slot", self.outfitItem.Location.BagSlotIndex)
+	else
+		self.SecureAction:SetAttribute("type", nil)
+		self.SecureAction:SetAttribute("target-bag", nil)
+		self.SecureAction:SetAttribute("target-slot", nil)
+	end
+end
+
+function Outfitter._ListItem:suspendSecureActions()
+	if self.isOutfitItem then
+		self:disableSecureActions()
+		self.suspendDidDisableActions = true
+	else
+		self.suspendDidDisableActions = nil
+	end
+end
+
+function Outfitter._ListItem:resumeSecureActions()
+	if self.suspendDidDisableActions then
+		self:enableSecureActions()
+		self.suspendDidDisableActions = nil
+	end
+end
+
+function Outfitter._ListItem:SetToOutfit(pOutfit, pCategoryID, pOutfitIndex, pInventoryCache)
+	local vItemName = self:GetName()
+	local vOutfitFrameName = vItemName.."Outfit"
+	local vOutfitFrame = _G[vOutfitFrameName]
+	local vItemFrame = _G[vItemName.."Item"]
+	local vCategoryFrame = _G[vItemName.."Category"]
+	local vMissingItems, vBankedItems = pInventoryCache:GetMissingItems(pOutfit)
+	
+	vOutfitFrame:Show()
+	vCategoryFrame:Hide()
+	vItemFrame:Hide()
+
+	local vItemSelectedCheckmark = _G[vOutfitFrameName.."Selected"]
+	local vItemNameField = _G[vOutfitFrameName.."Name"]
+	local vItemMenu = _G[vOutfitFrameName.."Menu"]
+	local vItemServerButton = _G[vOutfitFrameName.."ServerButton"]
+	
+	vItemSelectedCheckmark:Show()
+	
+	if Outfitter:WearingOutfit(pOutfit) then
+		vItemSelectedCheckmark:SetChecked(true)
+	else
+		vItemSelectedCheckmark:SetChecked(nil)
+	end
+	
+	vItemServerButton:SetChecked(pOutfit.StoredInEM)
+	
+	self.MissingItems = vMissingItems
+	self.BankedItems = vBankedItems
+	
+	if pOutfit.Disabled then
+		vItemNameField:SetText(format(Outfitter.cDisabledOutfitName, pOutfit:GetName()))
+		self.DefaultColor = GRAY_FONT_COLOR
+	else
+		vItemNameField:SetText(pOutfit:GetName())
+		if vMissingItems then
+			self.DefaultColor = RED_FONT_COLOR
+		elseif vBankedItems then
+			self.DefaultColor = Outfitter.BANKED_FONT_COLOR
+		else
+			self.DefaultColor = NORMAL_FONT_COLOR
+		end
+	end
+	
+	vItemNameField:SetTextColor(self.DefaultColor.r, self.DefaultColor.g, self.DefaultColor.b)
+	
+	vItemMenu:Show()
+	
+	self.isCategory = false
+	self.isOutfitItem = false
+	self.outfitItem = nil
+	self.categoryID = pOutfit.CategoryID
+	self.outfitIndex = pOutfitIndex
+	
+	self:Show()
+	
+	-- Show the script icon if there's one attached
+	
+	local vScriptIcon = _G[vOutfitFrameName.."ScriptIcon"]
+	
+	if pOutfit.ScriptID or pOutfit.Script then
+		vScriptIcon:SetTexture("Interface\\Addons\\Outfitter\\Textures\\Gear")
+		
+		if Outfitter.Settings.Options.DisableAutoSwitch or pOutfit.Disabled then
+			vScriptIcon:SetVertexColor(0.4, 0.4, 0.4)
+		else
+			vScriptIcon:SetVertexColor(1, 1, 1)
+		end
+
+		vScriptIcon:Show()
+	else
+		vScriptIcon:Hide()
+	end
+	
+	-- Update the highlighting
+	
+	if Outfitter.SelectedOutfit == pOutfit then
+		OutfitterMainFrameHighlight:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0)
+		OutfitterMainFrameHighlight:Show()
+	end
+
+	-- Configure the secure button
+	self:disableSecureActions()
+end
+
+function Outfitter._ListItem:SetToItem(pOutfitItem)
+	local vItemName = self:GetName()
+	local vCategoryFrameName = vItemName.."Category"
+	local vItemFrameName = vItemName.."Item"
+	local vItemFrame = _G[vItemFrameName]
+	local vOutfitFrame = _G[vItemName.."Outfit"]
+	local vCategoryFrame = _G[vCategoryFrameName]
+	
+	self.isOutfitItem = true
+	self.isCategory = false
+	self.outfitItem = pOutfitItem
+	
+	vItemFrame:Show()
+	vOutfitFrame:Hide()
+	vCategoryFrame:Hide()
+
+	local vItemNameField = _G[vItemFrameName.."Name"]
+	local vItemIcon = _G[vItemFrameName.."Icon"]
+	
+	vItemNameField:SetText(pOutfitItem.Name)
+	
+	if pOutfitItem.Quality then
+		self.DefaultColor = ITEM_QUALITY_COLORS[(pOutfitItem.Quality ~= 7 and pOutfitItem.Quality) or 6]
+	else
+		self.DefaultColor = GRAY_FONT_COLOR
+	end
+	
+	if pOutfitItem.Texture then
+		vItemIcon:SetTexture(pOutfitItem.Texture)
+		vItemIcon:Show()
+	else
+		vItemIcon:Hide()
+	end
+	
+	vItemNameField:SetTextColor(self.DefaultColor.r, self.DefaultColor.g, self.DefaultColor.b)
+	
+	-- Configure the secure button
+	self:enableSecureActions()
+
+	self:Show()
+end
+
+function Outfitter._ListItem:SetToCategory(pCategoryID)
+	local vCategoryName = Outfitter["c"..pCategoryID.."Outfits"]
+	local vItemName = self:GetName()
+	local vCategoryFrameName = vItemName.."Category"
+	local vOutfitFrame = _G[vItemName.."Outfit"]
+	local vItemFrame = _G[vItemName.."Item"]
+	local vCategoryFrame = _G[vCategoryFrameName]
+	
+	vOutfitFrame:Hide()
+	vCategoryFrame:Show()
+	vItemFrame:Hide()
+	
+	local vItemNameField = _G[vCategoryFrameName.."Name"]
+	local vExpandButton = _G[vCategoryFrameName.."Expand"]
+	
+	self.MissingItems = nil
+	self.BankedItems = nil
+	
+	if Outfitter.Collapsed[pCategoryID] then
+		vExpandButton:SetNormalTexture("Interface\\Buttons\\UI-PlusButton-Up")
+	else
+		vExpandButton:SetNormalTexture("Interface\\Buttons\\UI-MinusButton-Up")
+	end
+	
+	vItemNameField:SetText(vCategoryName)
+	
+	self.isCategory = true
+	self.isOutfitItem = false
+	self.outfitItem = nil
+	self.categoryID = pCategoryID
+
+	-- Configure the secure button
+	self:disableSecureActions()
+
+	self:Show()
+end
+
+function Outfitter._ListItem:SetTextColor(r, g, b)
+	local nameField
+	
+	if self.isCategory then
+		nameField = _G[self:GetName().."CategoryName"]
+	else
+		nameField = _G[self:GetName().."OutfitName"]
+	end
+	
+	nameField:SetTextColor(r, g, b)
+end
+
+function Outfitter._ListItem:PreClick(button, down)
+	self.usingSpell = SpellCanTargetItem() or SpellCanTargetItemID()
+end
+
+function Outfitter._ListItem:OnClick(button, down)
+	if down or self.usingSpell then
+		return
+	end
+
+	if self.isCategory then
+		local vCategoryOutfits = Outfitter.Settings.Outfits[self.categoryID]
+		
+		Outfitter.Collapsed[self.categoryID] = not Outfitter.Collapsed[self.categoryID]
+		Outfitter.DisplayIsDirty = true
+	elseif self.isOutfitItem then
+		if button == "LeftButton" then
+			Outfitter:PickupItemLocation(self.outfitItem.Location)
+			StackSplitFrame:Hide()
+		else
+			if MerchantFrame:IsShown() and MerchantFrame.selectedTab == 2 then
+				-- Don't sell the item if the buyback tab is selected
+				return
+			else
+				if self.outfitItem.Location.BagIndex then
+					UseContainerItem(self.outfitItem.Location.BagIndex, self.outfitItem.Location.BagSlotIndex)
+					StackSplitFrame:Hide()
+				end
+			end
+		end
+	else
+		local outfit = self:GetOutfit()
+		if not outfit then
+			Outfitter:TestMessage("outfit not found")
+			-- Error: outfit not found
+			return
+		end
+		
+		if button == "LeftButton" then
+			outfit.Disabled = nil
+			Outfitter:WearOutfit(outfit)
+		else
+			Outfitter:ToggleOutfitMenuAtCursor(outfit)
+		end
+	end
+	
+	Outfitter:Update(true)
+end
+
+function Outfitter._ListItem:OnEnter()
+	self:SetTextColor(HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b)
+	
+	if self.isCategory then
+		local vDescription = Outfitter.cCategoryDescriptions[self.categoryID]
+		
+		if vDescription then
+			local vCategoryName = Outfitter["c"..self.categoryID.."Outfits"]
+			Outfitter.AddNewbieTip(self, vCategoryName, 1.0, 1.0, 1.0, vDescription, 1)
+		end
+		
+		ResetCursor()
+	elseif self.isOutfitItem then
+		local vHasCooldown, vRepairCost
+		
+		GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+		
+		if self.outfitItem.Location.SlotName
+		or self.outfitItem.Location.SlotID then
+			if not self.outfitItem.Location.SlotID then
+				self.outfitItem.Location.SlotID = Outfitter.cSlotIDs[self.outfitItem.Location.SlotName]
+			end
+			
+			GameTooltip:SetInventoryItem("player", self.outfitItem.Location.SlotID)
+		elseif self.outfitItem.Location.BagIndex == -1 then
+			GameTooltip:SetInventoryItem("player", BankButtonIDToInvSlotID(self.outfitItem.Location.BagSlotIndex))
+		else
+			vHasCooldown, vRepairCost = GameTooltip:SetBagItem(self.outfitItem.Location.BagIndex, self.outfitItem.Location.BagSlotIndex)
+		end
+		
+		GameTooltip:Show()
+
+		if InRepairMode() and (vRepairCost and vRepairCost > 0) then
+			GameTooltip:AddLine(TEXT(REPAIR_COST), "", 1, 1, 1)
+			SetTooltipMoney(GameTooltip, vRepairCost)
+			GameTooltip:Show()
+		elseif MerchantFrame:IsShown() and MerchantFrame.selectedTab == 1 then
+			if self.outfitItem.Location.BagIndex then
+				ShowContainerSellCursor(self.outfitItem.Location.BagIndex, self.outfitItem.Location.BagSlotIndex)
+			end
+		else
+			ResetCursor()
+		end
+	else
+		local vOutfit = self:GetOutfit()
+		
+		Outfitter:ShowOutfitTooltip(vOutfit, self, self.MissingItems, self.BankedItems)
+	end
+end
+
+function Outfitter._ListItem:OnLeave()
+	if self.isCategory then
+		self:SetTextColor(1, 1, 1)
+	else
+		self:SetTextColor(self.DefaultColor.r, self.DefaultColor.g, self.DefaultColor.b)
+	end
+	
+	GameTooltip:Hide()
+end
+
+function Outfitter._ListItem:GetOutfit()
+	if self.isCategory then
+		return nil
+	end
+	
+	return Outfitter:GetIndexedOutfit(self.categoryID, self.outfitIndex)
 end
