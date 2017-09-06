@@ -3,7 +3,7 @@ Outfitter._MenuManager = {}
 ----------------------------------------
 
 function Outfitter._MenuManager:Construct()
-	self.DropDownList = Outfitter:NewObject(Outfitter._DropDownList, nil, 1)
+	self.DropDownList = Outfitter:New(Outfitter._DropDownList, nil, 1)
 end
 
 function Outfitter._MenuManager:Test()
@@ -668,7 +668,7 @@ info.menuTable = [TABLE] -- This contains an array of info tables to be displaye
 ]]
 
 function Outfitter._DropDownList:New(pParentList, pLevel)
-	return CreateFrame("Button", nil, tern(pParentList ~= nil, pParentList, UIParent))
+	return CreateFrame("Button", nil, pParentList or UIParent)
 end
 
 function Outfitter._DropDownList:Construct(pParentList, pLevel)
@@ -746,7 +746,7 @@ end
 
 function Outfitter._DropDownList:ShowChildList(pPoint, pRelativeTo, pRelativePoint, pXOffset, pYOffset, pItemList)
 	if not self.child then
-		self.child = Outfitter:NewObject(Outfitter._DropDownList, self, self.level + 1)
+		self.child = Outfitter:New(Outfitter._DropDownList, self, self.level + 1)
 	end
 	
 	self.child:ShowList(pPoint, pRelativeTo, pRelativePoint, pXOffset, pYOffset, pItemList)
@@ -848,7 +848,7 @@ end
 
 function Outfitter._DropDownList:SetMaxItems(pMaxItems)
 	while pMaxItems > #self.Items do
-		local vItem = Outfitter:NewObject(Outfitter._DropDownListItem, self)
+		local vItem = Outfitter:New(Outfitter._DropDownListItem, self)
 		table.insert(self.Items, vItem)
 		vItem:SetID(#self.Items)
 	end
@@ -905,9 +905,9 @@ function Outfitter._DropDownListItem:Construct(...)
 	self.Icon:SetHeight(16)
 	self.Icon:SetPoint("RIGHT", self, "RIGHT", 0, 0)
 	
-	self.ColorSwatch = Outfitter:NewObject(Outfitter._DropDownListItemColorSwatch, self)
-	self.ExpandArrow = Outfitter:NewObject(Outfitter._DropDownListItemExpandArrow, self)
-	self.InvisibleButton = Outfitter:NewObject(Outfitter._DropDownListItemInvisibleButton, self)
+	self.ColorSwatch = Outfitter:New(Outfitter._DropDownListItemColorSwatch, self)
+	self.ExpandArrow = Outfitter:New(Outfitter._DropDownListItemExpandArrow, self)
+	self.InvisibleButton = Outfitter:New(Outfitter._DropDownListItemInvisibleButton, self)
 	
 	self:SetScript("OnClick", self.OnClick)
 	self:SetScript("OnEnter", self.OnEnter)
@@ -959,7 +959,7 @@ function Outfitter._DropDownListItem:OnClick(...)
 	
 	vFunc(self.arg1, self.arg2, vChecked)
 	
-	PlaySound("UChatScrollButton")
+	PlaySound("1115")
 end
 
 function Outfitter._DropDownListItem:OnEnter(...)
@@ -975,7 +975,7 @@ function Outfitter._DropDownListItem:OnEnter(...)
 	vList:StopCounting()
 	
 	if self.tooltipTitle then
-		GameTooltip_AddNewbieTip(self.tooltipTitle, 1.0, 1.0, 1.0, self.tooltipText, 1)
+		Outfitter.AddNewbieTip(self, self.tooltipTitle, 1.0, 1.0, 1.0, self.tooltipText, 1)
 	end
 end
 

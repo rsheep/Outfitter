@@ -42,6 +42,9 @@
 	Outfitter.cRidingOutfit = "Reiten"
 	Outfitter.cDiningOutfit = "Ausruhen"
 	Outfitter.cBattlegroundOutfit = "Schlachtfeld"
+	Outfitter.cArgentTournamentOutfit = "Argent Tournament"
+	Outfitter.cMultiphaseSurveyOutfit = "The Multiphase Survey"
+	Outfitter.cSpellcastOutfit = "Spellcast"
 	
 	Outfitter.cABOutfit = "Schlachtfeld: Arathibecken"
 	Outfitter.cAVOutfit = "Schlachtfeld: Alteractal"
@@ -66,166 +69,12 @@
 	Outfitter.cConfirmRebuildMsg = "Bist du sicher dass du das %s Outfit verändern willst?"
 	Outfitter.cRebuild = "Verändern"
 
-	Outfitter.cWesternPlaguelands = "Westliche Pestländer"
-	Outfitter.cEasternPlaguelands = "Östliche Pestländer"
-	Outfitter.cStratholme = "Stratholme"
-	Outfitter.cScholomance = "Scholomance"
-	Outfitter.cNaxxramas = "Naxxramas"
-	Outfitter.cAlteracValley = "Alteractal"
-	Outfitter.cArathiBasin = "Arathibecken"
-	Outfitter.cWarsongGulch = "Kriegshymnenschlucht"
-	Outfitter.cEotS = "Auge des Sturms"
-	Outfitter.cIronforge = "Eisenschmiede"
-	Outfitter.cDarnassus = "Darnassus"
-	Outfitter.cStormwind = "Sturmwind"
-	Outfitter.cOrgrimmar = "Orgrimmar"
-	Outfitter.cThunderBluff = "Donnerfels"
-	Outfitter.cUndercity = "Unterstadt"
-	Outfitter.cSilvermoon = "Silbermond"
-	Outfitter.cExodar = "Die Exodar"
-	Outfitter.cShattrath = "Shattrath"
-	Outfitter.cAQ40 = "Tempel von Ahn'Qiraj"
-	Outfitter.cBladesEdgeArena = "Arena des Schergrats"
-	Outfitter.cNagrandArena = "Arena von Nagrand"
-	Outfitter.cRuinsOfLordaeron = "Ruinen von Lordaeron"
+	Outfitter.cSilverwingHold = "Silverwing Hold"
+	Outfitter.cWarsongLumberMill = "Warsong Lumber Mill"
 
-	Outfitter.cItemStatFormats =
-	{
-		{Format = "Schwache Reittemposteigerung", Value = 3, Types = {"Riding"}},
-		{Format = "Mithrilsporen", Value = 3, Types = {"Riding"}},
-		
-		"Erhöht durch (.+) um bis zu (%d+)",
-		
-		"Increases damage done by (.+) spells and effects by up to (%d+)",
-		"Increases (.+) done by up to (%d+) and (healing) done by up to (%d+)",
-		"Increases (healing) done by up to (%d+) and damage done by up to (%d+) for all (magical spells and effects)",
-		"Increases the (.+) of your .+ by (%d+)",
-		"Increases your (.+) by (%d+)",
-		"Increases (.+) by up to (%d+)",
-		"Increases (.+) by (%d+)",
-		"%+(%d+) (.+) and %+(%d+) (.+)", -- Multi-stat items like secondary-color gems
-		"%+(%d+) (.+)/%+(%d+) (.+)/%+(%d+) (.+)", -- Multi-stat enchants from ZG
-		"%+(%d+) (.+)/%+(%d+) (.+)", -- Multi-stat enchants from ZG
-		
-		"Increased (.+) %+(%d+)",
-		"Improves (.+) by (%d+)",
-		
-		"Restores (%d+) (.+)",
-		
-		"(%d+) (.+)",
-		"(.+) %+(%d+)",
-	}
-
-	Outfitter.cItemStatPhrases =
-	{
-		["ausdauer"] = "Stamina",
-		["intelligenz"] = "Intellect",
-		["beweglichkeit"] = "Agility",
-		["stärke"] = "Stength",
-		["willenskraft"] = "Spirit",
-		["all stats"] = {"Stamina", "Intellect", "Agility", "Strength", "Spirit"},
-		
-		["rüstung"] = "Armor",
-		
-		["mana"] = "Mana",
-		["gesundheit"] = "Health",
-		
-		["feuerwiderstand"] = "FireResist",
-		["naturwiderstand"] = "NatureResist",
-		["frostwiderstand"] = "FrostResist",
-		["schattenwiderstand"] = "ShadowResist",
-		["arkanwiderstand"] = "ArcaneResist",
-		["alle widerstände"] = {"FireResist", "NatureResist", "FrostResist", "ShadowResist", "ArcaneResist"},
-		
-		["defense rating"] = "DefenseRating",
-		["resilience rating"] = "ResilienceRating",
-		["angriffskraft"] = {"Attack", "RangedAttack"},
-		["ranged attack power"] = "RangedAttack",
-		["critical strike rating"] = "MeleeCritRating",
-		["hit rating"] = "MeleeHitRating",
-		["dodge rating"] = "DodgeRating",
-		["parry rating"] = "ParryRating",
-		["block"] = "Block",
-		["block value"] = "Block",
-		["waffenschaden"] = "MeleeDmg",
-		["schaden"] = "MeleeDmg",
-		
-		["spell critical rating"] = "SpellCritRating",
-		["spell critical strike rating"] = "SpellCritRating",
-		["spell hit rating"] = "SpellHitRating",
-		["spell penetration"] = "SpellPen",
-		
-		["zauber und magische effekte verursachten schaden und heilung"] = {"SpellDmg", "ShadowDmg", "FireDmg", "FrostDmg", "ArcaneDmg", "NatureDmg", "Healing"},
-		["spell damage"] = {"SpellDmg", "ShadowDmg", "FireDmg", "FrostDmg", "ArcaneDmg", "NatureDmg"},
-		["magical spells and effects"] = {"SpellDmg", "ShadowDmg", "FireDmg", "FrostDmg", "ArcaneDmg", "NatureDmg"},
-		
-		["feuerzauberschaden"] = "FireDmg",
-		["schattenzauberschaden"] = "ShadowDmg",
-		["frostzauberschaden"] = "FrostDmg",
-		["arkanzauberschaden"] = "ArcaneDmg",
-		["naturzauberschaden"] = "NatureDmg",
-		["feuerzauber und feuereffekte zugefügten schaden"] = "FireDmg",
-		["schattenzauber und schatteneffekte zugefügten schaden"] = "ShadowDmg",
-		["frostzauber und frosteffekte zugefügten schaden"] = "FrostDmg",
-		["arkanzauber und arkaneffekte zugefügten schaden"] = "ArcaneDmg",
-		["naturzauber und natureffekte zugefügten schaden"] = "NatureDmg",
-		
-		["zauber und effekte verursachte heilung"] = "Healing",
-		["heilzauber"] = "Healing",
-		
-		["erhöht angeln"] = "Fishing",
-		["angeln"] = "Fishing",
-		["kräuterkunde"] = "Herbalism",
-		["bergbau"] = "Mining",
-		["kürschnerei"] = "Skinning",
-		["mount speed"] = "Riding",
-		
-		["mana alle 5 sek"] = {"ManaRegen", "CombatManaRegen"},
-		["mana regen"] = {"ManaRegen", "CombatManaRegen"},
-		["gesundheit alle 5 sek"] = {"HealthRegen", "CombatHealthRegen"},
-		["health regen"] = {"HealthRegen", "CombatHealthRegen"},
-	}
+	Outfitter.cTotalStatsName = "Gesamt	werte"
+	Outfitter.cItemLevelName = "Item Level"
 	
-	Outfitter.cAgilityStatName = "Beweglichkeit"
-	Outfitter.cArmorStatName = "Rüstung"
-	Outfitter.cDefenseStatName = "Verteidigung"
-	Outfitter.cIntellectStatName = "Intelligenz"
-	Outfitter.cSpiritStatName = "Willenskraft"
-	Outfitter.cStaminaStatName = "Ausdauer"
-	Outfitter.cStrengthStatName = "Stärke"
-	Outfitter.cTotalStatsName = "Gesamtwerte"
-	
-	Outfitter.cManaRegenStatName = "Manaregeneration"
-	Outfitter.cHealthRegenStatName = "Gesundheitsregeneration"
-
-	Outfitter.cSpellCritStatName = "Zauberkritisch"
-	Outfitter.cSpellHitStatName = "Trefferchance für Zauber"
-	Outfitter.cSpellDmgStatName = "Zauberschaden"
-	Outfitter.cFrostDmgStatName = "Frostzauberschaden"
-	Outfitter.cFireDmgStatName = "Feuerzauberschaden"
-	Outfitter.cArcaneDmgStatName = "Arkanzauberschaden"
-	Outfitter.cShadowDmgStatName = "Schattenzauberschaden"
-	Outfitter.cNatureDmgStatName = "Naturzauberschaden"
-	Outfitter.cHealingStatName = "Heilung"
-
-	Outfitter.cMeleeCritStatName = "Kampfkritisch"
-	Outfitter.cMeleeHitStatName = "Kampftrefferchance"
-	Outfitter.cMeleeDmgStatName = "Kampfschaden"
-	Outfitter.cAttackStatName = "Angriffskraft"
-	Outfitter.cRangedAttackStatName = "Distanzangriffskraft"
-	Outfitter.cDodgeStatName = "Ausweichen"
-
-	Outfitter.cArcaneResistStatName = "Arkanwiderstand"
-	Outfitter.cFireResistStatName = "Feuerwiderstand"
-	Outfitter.cFrostResistStatName = "Frostwiderstand"
-	Outfitter.cNatureResistStatName = "Naturwiderstand"
-	Outfitter.cShadowResistStatName = "Schattenwiderstand"
-
-	Outfitter.cFishingStatName = "Angeln"
-	Outfitter.cHerbalismStatName = "Kräuterkunde"
-	Outfitter.cMiningStatName = "Bergbau"
-	Outfitter.cSkinningStatName = "Kürschnerei"
-
 	Outfitter.cOptionsTitle = "Outfitter Einstellungen"
 	Outfitter.cShowMinimapButton = "Zeige Minimapbutton"
 	Outfitter.cShowMinimapButtonOnDescription = "Deaktivieren, um den Minimapbutton von Outfitter zu verstecken."
@@ -237,13 +86,11 @@
  	Outfitter.cTooltipInfo = "Tooltips anzeigen"
 	Outfitter.cTooltipInfoOnDescription = "Abschalten, um 'Benutzt von:' in Tooltips zu verstecken. (Verbessert die Frame-Rate geringfügig)"
 	Outfitter.cTooltipInfoOffDescription = "Einschalten, um 'Benutzt von:' in Tooltips anzuzeigen."
-	Outfitter.cRememberVisibility = "Umhang- und Helm-Einstellungen merken"
-	Outfitter.cRememberVisibilityOnDescription = "Abschalten, um die Anzeige von Umhängen und Helmen allgemein festzulegen"
-	Outfitter.cRememberVisibilityOffDescription = "Einschalten, um die Anzeige für jeden Helm und Umhang individuell zu regeln"
+	Outfitter.cOutfitDisplay = "Outfit display"
 
 	Outfitter.cAboutTitle = "über Outfitter"
-	Outfitter.cAuthor = "Designed and written by John Stephen and Bruce Quinton with contributions by %s"
-	Outfitter.cTestersTitle = "Outfitter 4.1 testers"
+	Outfitter.cAuthor = "Designed and written by John Stephen with contributions by %s"
+	Outfitter.cTestersTitle = "Outfitter testers"
 	Outfitter.cTestersNames = "%s"
 	Outfitter.cSpecialThanksTitle = "Besonderen Dank für ihre Unterstützung geht an"
 	Outfitter.cSpecialThanksNames = "%s"
@@ -276,11 +123,16 @@
 	BINDING_NAME_OUTFITTER_OUTFIT8  = "Outfit 8"
 	BINDING_NAME_OUTFITTER_OUTFIT9  = "Outfit 9"
 	BINDING_NAME_OUTFITTER_OUTFIT10 = "Outfit 10"
+	
+	Outfitter.cShow = "Anzeigen"
+	Outfitter.cHide = "Verstecken"
+	Outfitter.cDontChange = "Don't change"
+	
+	Outfitter.cPlayerTitle = "Title"
 
-	Outfitter.cShowHelm = "Helm anzeigen"
-	Outfitter.cShowCloak = "Umhang anzeigen"
-	Outfitter.cHideHelm = "Helm verstecken"
-	Outfitter.cHideCloak = "Umhang verstecken"
+	Outfitter.cMore = "More"
+	
+	Outfitter.cAutomation = "Automation"
 	
 	Outfitter.cDisableOutfit = "Outfit abschalten"
 	Outfitter.cDisableOutfitInBG = "Outfit beim Betreten eines Schlachtfeldes abschalten."
@@ -293,16 +145,6 @@
 	Outfitter.cMinimapButtonTitle = "Outfitter Minimapbutton"
 	Outfitter.cMinimapButtonDescription = "Klicken für eine Auswahl an Outfits oder gedrückt halten zum Bewegen des Buttons."
 
-	Outfitter.cClassName.DRUID = "Druide"
-	Outfitter.cClassName.HUNTER = "Jäger"
-	Outfitter.cClassName.MAGE = "Magier"
-	Outfitter.cClassName.PALADIN = "Paladin"
-	Outfitter.cClassName.PRIEST = "Priester"
-	Outfitter.cClassName.ROGUE = "Schurke"
-	Outfitter.cClassName.SHAMAN = "Schamane"
-	Outfitter.cClassName.WARLOCK = "Hexenmeister"
-	Outfitter.cClassName.WARRIOR = "Krieger"
-
 	Outfitter.cBattleStance = "Kampfhaltung"
 	Outfitter.cDefensiveStance = "Verteidigungshaltung"
 	Outfitter.cBerserkerStance = "Berserkerhaltung"
@@ -310,19 +152,6 @@
 	Outfitter.cWarriorBattleStance = "Krieger: Kampfhaltung"
 	Outfitter.cWarriorDefensiveStance = "Krieger: Verteidigungshaltung"
 	Outfitter.cWarriorBerserkerStance = "Krieger: Berserkerhaltung"
-
-	Outfitter.cBearForm = "Bärengestalt"
-	Outfitter.cCatForm = "Katzengestalt"
-	Outfitter.cAquaticForm = "Wassergestalt"
-	Outfitter.cTravelForm = "Reisegestalt"
-	Outfitter.cDireBearForm = "Terrorbärengestalt"
-	Outfitter.cMoonkinForm = "Mondkingestalt"
-	Outfitter.cTreeOfLifeForm = "Baum des Lebens"
-	Outfitter.cGhostWolfForm = "Geisterwolf"
-	Outfitter.cFlightForm = "Fluggestalt"
-	Outfitter.cSwiftFlightForm = "Schnelle Fluggestalt"
-  
-	Outfitter.cStealth = "Verstohlenheit"
 
 	Outfitter.cDruidBearForm = "Druide: Bärengestalt"
 	Outfitter.cDruidCatForm = "Druide: Katzengestalt"
@@ -350,11 +179,13 @@
 
 	Outfitter.cMageEvocate = "Magier: Hervorrufung"
 
-	Outfitter.cAspectOfTheCheetah = "Aspekt des Geparden"
-	Outfitter.cAspectOfThePack = "Aspekt des Rudels"
-	Outfitter.cAspectOfTheBeast = "Aspekt des Wildtiers"
-	Outfitter.cAspectOfTheWild = "Aspekt der Wildnis"
-	Outfitter.cEvocate = "Hervorrufung"
+	Outfitter.cDeathknightBlood = "Deathknight: Blood Presence"
+	Outfitter.cDeathknightFrost = "Deathknight: Frost Presence"
+	Outfitter.cDeathknightUnholy = "Deathknight: Unholy Presence"
+
+	Outfitter.cMonkTiger = "Monk: Tiger stance"
+	Outfitter.cMonkSerpent = "Monk: Serpent stance"
+	Outfitter.cMonkOx = "Monk: Ox stance"
 
 	Outfitter.cCompleteCategoryDescription = "Vollständige Outfits haben für jeden Inventarslot festgelegte Gegenstände, die alles andere ersetzen wenn sie getragen werden."
 	Outfitter.cPartialCategoryDescription = "Bei Mix-n-match Outfits sind nur einige Gegenstände festgelegt, jedoch nicht alle.  Werden diese Outfits ausgewählt bleibt das vorherige Outfit erhalten, nur die neuen Gegenstände werden geändert."
@@ -377,15 +208,13 @@
 	Outfitter.cBankCategoryTitle = "Bank"
 	Outfitter.cDepositToBank = "Gegenstände im Bankfach ablegen"
 	Outfitter.cDepositUniqueToBank = "Einzigartige Gegenstände im Bankfach ablegen"
+	Outfitter.cDepositOthersToBank = "Deposit other outfits to bank"
 	Outfitter.cWithdrawFromBank = "Gegenstände vom Bankfach aufnehmen"
+	Outfitter.cWithdrawOthersFromBank = "Withdraw other outfits from bank"
 	
 	Outfitter.cMissingItemsLabel = "Fehlende Gegenstände: "
 	Outfitter.cBankedItemsLabel = "Gegenstände auf der Bank: "
 
-	Outfitter.cStatsCategory = "Werte"
-	Outfitter.cMeleeCategory = "Nahkampf"
-	Outfitter.cSpellsCategory = "Heilung und Zauber"
-	Outfitter.cRegenCategory = "Regeneration"
 	Outfitter.cResistCategory = "Widerstände"
 	Outfitter.cTradeCategory = "Fähigkeiten"
 	
@@ -407,14 +236,35 @@
 	Outfitter.cSource = "Quellcode"
 	Outfitter.cInsertFormat = "<- %s"
 	
-	Outfitter.cContainerBagSubType = "Behälter"
-	Outfitter.cUsedByPrefix = "Benutzt von Outfits: "
-
 	Outfitter.cNone = "Keins"
 	
+	Outfitter.cUseTooltipLineFormat = "^Benutzen:.*"
 	Outfitter.cUseDurationTooltipLineFormat = "^Benutzen:.*(%d+) Sek%. lang"
 	Outfitter.cUseDurationTooltipLineFormat2 = "^Benutzen:.*(%d+) Sek%. lang"
 	
 	Outfitter.cAutoChangesDisabled = "Automated changes are now disabled"
 	Outfitter.cAutoChangesEnabled = "Automated changes are now enabled"
+	
+	-- OutfitterFu strings
+
+	Outfitter.cFuHint = "Left-click to toggle Outfitter window."
+	Outfitter.cFuHideMissing = "Hide missing"
+	Outfitter.cFuHideMissingDesc = "Hide outfits with missing items."
+	Outfitter.cFuRemovePrefixes = "Remove prefixes"
+	Outfitter.cFuRemovePrefixesDesc = "Remove outfit name prefixes to shorten the text displayed in FuBar."
+	Outfitter.cFuMaxTextLength = "Max text length"
+	Outfitter.cFuMaxTextLengthDesc = "The maximum length of the text displayed in FuBar."
+	Outfitter.cFuHideMinimapButton = "Hide minimap button"
+	Outfitter.cFuHideMinimapButtonDesc = "Hide Outfitter's minimap button."
+	Outfitter.cFuInitializing = "Initializing"
+
+	Outfitter.cStoreOnServer = "Store outfit on server"
+	Outfitter.cStoreOnServerOnDescription = "Turn off to remove this outfit from the server and store it locally instead.  It will no longer be available from other computers."
+	Outfitter.cStoreOnServerOffDescription = "Turn on to store this outfit on the server so that it's available from any computer.  You may only store 10 outfits on the server."
+	Outfitter.cTooManyServerOutfits = "You cannot store more than %d outfits on the server."
+	
+	Outfitter.cNoItemsWithStat = "Couldn't generate an outfit because no items with that stat were found"
+	
+	Outfitter.cRequiresPrefix = "Benötigt:"
+	Outfitter.cUniqueEquippedSearchPattern = "^Einzigartig angelegt: (.*) %((%d+)%)$"
 end

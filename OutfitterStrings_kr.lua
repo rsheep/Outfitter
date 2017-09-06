@@ -48,8 +48,15 @@
 	Outfitter.cWSGOutfit = "전장: 전쟁노래 협곡"
 	Outfitter.cArenaOutfit = "전장: 투기장"
 	Outfitter.cEotSOutfit = "전장: 폭풍의 눈"
+	Outfitter.cWintergraspOutfit = "전장: Wintergrasp"
+	Outfitter.cSewersOutfit = "전장: Dalaran Sewers"
+	Outfitter.cGilneasOutfit = "전장: Battle for Gilneas"
+	Outfitter.cTwinPeaksOutfit = "전장: Twin Peaks"
 	Outfitter.cCityOutfit = "마을 주변"
 	Outfitter.cSwimmingOutfit = "수영"
+	Outfitter.cArgentTournamentOutfit = "Argent Tournament"
+	Outfitter.cMultiphaseSurveyOutfit = "The Multiphase Survey"
+	Outfitter.cSpellcastOutfit = "Spellcast"
 
 	Outfitter.cMountSpeedFormat = "이동 속도 (%d+)%%만큼 증가"; -- For detecting when mounted
 	Outfitter.cFlyingMountSpeedFormat = "비행 속도 (%d+)%%만큼 증가"; -- For detecting when mounted
@@ -70,161 +77,11 @@
 	Outfitter.cConfirmRebuildMsg = "%s 세트를 재구성 하시겠습니까?"
 	Outfitter.cRebuild = "재구성"
 
-	Outfitter.cWesternPlaguelands = "서부 역병지대"
-	Outfitter.cEasternPlaguelands = "동부 역병지대"
-	Outfitter.cStratholme = "스트라솔름"
-	Outfitter.cScholomance = "스칼로맨스"
-	Outfitter.cNaxxramas = "낙스라마스"
-	Outfitter.cAlteracValley = "알터랙 계곡"
-	Outfitter.cArathiBasin = "아라시 분지"
-	Outfitter.cWarsongGulch = "전쟁노래 협곡"
-	Outfitter.cEotS = "폭풍의 눈"
-	Outfitter.cIronforge = "아이언포지"
-	Outfitter.cCityOfIronforge = "아이언포지"
-	Outfitter.cDarnassus = "다르나서스"
-	Outfitter.cStormwind = "스톰윈드"
-	Outfitter.cOrgrimmar = "오그리마"
-	Outfitter.cThunderBluff = "썬더 블러프"
-	Outfitter.cUndercity = "언더시티"
-	Outfitter.cSilvermoon = "실버문"
-	Outfitter.cExodar = "엑소다르"
-	Outfitter.cShattrath = "샤트라스"
-	Outfitter.cAQ40 = "안퀴라즈 사원"
-	Outfitter.cBladesEdgeArena = "칼날 투기장"
-	Outfitter.cNagrandArena = "나그란드 투기장"
-	Outfitter.cRuinsOfLordaeron = "로데론의 폐허"
+	Outfitter.cSilverwingHold = "Silverwing Hold"
+	Outfitter.cWarsongLumberMill = "Warsong Lumber Mill"
 
-	Outfitter.cItemStatFormats =
-	{
-		{Format = "Minor Mount Speed Increase", Value = 3, Types = {"Riding"}},
-		{Format = "Mithril Spurs", Value = 3, Types = {"Riding"}},
-		
-		"Increases damage done by (.+) spells and effects by up to (%d+)",
-		"Increases (.+) done by up to (%d+) and (healing) done by up to (%d+)",
-		"Increases (healing) done by up to (%d+) and damage done by up to (%d+) for all (magical spells and effects)",
-		"Increases the (.+) of your .+ by (%d+)",
-		"Increases your (.+) by (%d+)",
-		"Increases (.+) by up to (%d+)",
-		"Increases (.+) by (%d+)",
-		"%+(%d+) (.+) and %+(%d+) (.+)", -- Multi-stat items like secondary-color gems
-		"%+(%d+) (.+)/%+(%d+) (.+)/%+(%d+) (.+)", -- Multi-stat enchants from ZG
-		"%+(%d+) (.+)/%+(%d+) (.+)", -- Multi-stat enchants from ZG
-		
-		"Increased (.+) %+(%d+)",
-		"Improves (.+) by (%d+)",
-		
-		"Restores (%d+) (.+)",
-		
-		"%+(%d+) (%w+) Spell Damage",
-		
-		"(%d+) (.+)",
-		"(.+) %+(%d+)",
-	}
-
-	Outfitter.cItemStatPhrases =
-	{
-		["stamina"] = "Stamina",
-		["intellect"] = "Intellect",
-		["agility"] = "Agility",
-		["strength"] = "Stength",
-		["spirit"] = "Spirit",
-		["all stats"] = {"Stamina", "Intellect", "Agility", "Strength", "Spirit"},
-		
-		["armor"] = "Armor",
-		
-		["mana"] = "Mana",
-		["health"] = "Health",
-		
-		["fire resistance"] = "FireResist",
-		["nature resistance"] = "NatureResist",
-		["frost resistance"] = "FrostResist",
-		["shadow resistance"] = "ShadowResist",
-		["arcane resistance"] = "ArcaneResist",
-		["all resistances"] = {"FireResist", "NatureResist", "FrostResist", "ShadowResist", "ArcaneResist"},
-		
-		["defense rating"] = "DefenseRating",
-		["resilience rating"] = "ResilienceRating",
-		["attack power"] = {"Attack", "RangedAttack"},
-		["ranged attack power"] = "RangedAttack",
-		["critical strike rating"] = "MeleeCritRating",
-		["hit rating"] = "MeleeHitRating",
-		["dodge rating"] = "DodgeRating",
-		["parry rating"] = "ParryRating",
-		["block"] = "Block",
-		["block value"] = "Block",
-		["weapon damage"] = "MeleeDmg",
-		["damage"] = "MeleeDmg",
-		
-		["spell critical rating"] = "SpellCritRating",
-		["spell critical strike rating"] = "SpellCritRating",
-		["spell hit rating"] = "SpellHitRating",
-		["spell penetration"] = "SpellPen",
-		
-		["damage and healing done by magical spells and effects"] = {"SpellDmg", "ShadowDmg", "FireDmg", "FrostDmg", "ArcaneDmg", "NatureDmg", "Healing"},
-		["spell damage"] = {"SpellDmg", "ShadowDmg", "FireDmg", "FrostDmg", "ArcaneDmg", "NatureDmg"},
-		["magical spells and effects"] = {"SpellDmg", "ShadowDmg", "FireDmg", "FrostDmg", "ArcaneDmg", "NatureDmg"},
-		
-		["fire"] = "FireDmg",
-		["shadow"] = "ShadowDmg",
-		["frost"] = "FrostDmg",
-		["arcane"] = "ArcaneDmg",
-		["nature"] = "NatureDmg",
-		
-		["healing done by spells and effects"] = "Healing",
-		["healing"] = "Healing",
-		["healing spells"] = "Healing",
-		
-		["fishing"] = "Fishing",
-		["herbalism"] = "Herbalism",
-		["mining"] = "Mining",
-		["skinning"] = "Skinning",
-		["mount speed"] = "Riding",
-		
-		["mana per 5 sec"] = {"ManaRegen", "CombatManaRegen"},
-		["mana regen"] = {"ManaRegen", "CombatManaRegen"},
-		["health per 5 sec"] = {"HealthRegen", "CombatHealthRegen"},
-		["health regen"] = {"HealthRegen", "CombatHealthRegen"},
-	}
-
-	Outfitter.cAgilityStatName = "민첩성"
-	Outfitter.cArmorStatName = "방어도"
-	Outfitter.cDefenseStatName = "방어 숙련도"
-	Outfitter.cIntellectStatName = "지능"
-	Outfitter.cSpiritStatName = "정신력"
-	Outfitter.cStaminaStatName = "체력"
-	Outfitter.cStrengthStatName = "힘"
 	Outfitter.cTotalStatsName = "모든 능력치"
-
-	Outfitter.cManaRegenStatName = "마나 회복"
-	Outfitter.cHealthRegenStatName = "생명력 회복"
-
-	Outfitter.cSpellCritStatName = "주문 극대화"
-	Outfitter.cSpellHitStatName = "주문 적중도"
-	Outfitter.cSpellDmgStatName = "주문 공격력"
-	Outfitter.cFrostDmgStatName = "냉기 주문 공격력"
-	Outfitter.cFireDmgStatName = "화염 주문 공격력"
-	Outfitter.cArcaneDmgStatName = "비전 주문 공격력"
-	Outfitter.cShadowDmgStatName = "암흑 주문 공격력"
-	Outfitter.cNatureDmgStatName = "자연 주문 공격력"
-	Outfitter.cHealingStatName = "치유량"
-
-	Outfitter.cMeleeCritStatName = "근접 치명타"
-	Outfitter.cMeleeHitStatName = "근접 적중도"
-	Outfitter.cMeleeDmgStatName = "근접 공격력"
-	Outfitter.cAttackStatName = "전투력"
-	Outfitter.cRangedAttackStatName = "원거리 전투력"
-	Outfitter.cDodgeStatName = "회피"
-
-	Outfitter.cArcaneResistStatName = "비전 저항력"
-	Outfitter.cFireResistStatName = "화염 저항력"
-	Outfitter.cFrostResistStatName = "냉기 저항력"
-	Outfitter.cNatureResistStatName = "자연 저항력"
-	Outfitter.cShadowResistStatName = "암흑 저항력"
-
-	Outfitter.cFishingStatName = "낚시"
-	Outfitter.cHerbalismStatName = "약초 채집"
-	Outfitter.cMiningStatName = "채광"
-	Outfitter.cSkinningStatName = "무두질"
+	Outfitter.cItemLevelName = "Item Level"
 
 	Outfitter.cOptionsTitle = "Outfitter 옵션"
 	Outfitter.cShowMinimapButton = "미니맵 버튼 표시"
@@ -236,9 +93,7 @@
 	Outfitter.cTooltipInfo = "툴팁 표시"
 	Outfitter.cTooltipInfoOnDescription = "툴팁에 '사용처:' 정보를 표시하지 않으려면 이 설정을 끄십시오. (착용장비에 마우스을 올렸을 때 프레임율을 향상 시킵니다.)"
 	Outfitter.cTooltipInfoOffDescription = "툴팁에 '사용처:' 정보를 표시하려면 이 설정을 켜십시오."
-	Outfitter.cRememberVisibility = "망토와 투구 설정 기억"
-	Outfitter.cRememberVisibilityOnDescription = "모든 망토와 투구에 대해서 동일한 설정을 하려면 이 설정을 끄십시오."
-	Outfitter.cRememberVisibilityOffDescription = "각각의 망토와 투구에 대한 설정을 기억하려면 이 설정을 켜십시오."
+	Outfitter.cOutfitDisplay = "Outfit display"
 	Outfitter.cShowHotkeyMessages = "단축키로 변경할때 보여주기"
 	Outfitter.cShowHotkeyMessagesOnDescription = "단축키로 세트를 변경할때 메시지를 보지 않으려면 이 설정을 끄십시오."
 	Outfitter.cShowHotkeyMessagesOffDescription = "단축키로 세트를 변경할때 메시지를 보려면 이 설정을 켜십시오."
@@ -249,7 +104,7 @@
 	Outfitter.cURL = "wobbleworks.com"
 	Outfitter.cAboutTitle = "Outfitter 정보"
 	Outfitter.cAuthor = "Designed and written by John Stephen and Bruce Quinton with contributions by %s"
-	Outfitter.cTestersTitle = "Outfitter 4.1 testers"
+	Outfitter.cTestersTitle = "Outfitter testers"
 	Outfitter.cSpecialThanksTitle = "Special thanks to"
 	Outfitter.cTranslationCredit = "Translations by %s"
 	Outfitter.cURL = "wobbleworks.com"
@@ -282,12 +137,17 @@
 	BINDING_NAME_OUTFITTER_OUTFIT8  = "세트 8"
 	BINDING_NAME_OUTFITTER_OUTFIT9  = "세트 9"
 	BINDING_NAME_OUTFITTER_OUTFIT10 = "세트 10"
+	
+	Outfitter.cShow = "보이기"
+	Outfitter.cHide = "숨기기"
+	Outfitter.cDontChange = "Don't change"
+	
+	Outfitter.cPlayerTitle = "Title"
 
-	Outfitter.cShowHelm = "투구 보이기"
-	Outfitter.cShowCloak = "망토 보이기"
-	Outfitter.cHideHelm = "투구 숨기기"
-	Outfitter.cHideCloak = "망토 숨기기"
-
+	Outfitter.cMore = "More"
+	
+	Outfitter.cAutomation = "Automation"
+	
 	Outfitter.cDisableOutfit = "세트 사용 안함"
 	Outfitter.cDisableOutfitInBG = "전장에서 사용 안함"
 	Outfitter.cDisableOutfitInCombat = "전투중 사용 안함"
@@ -302,16 +162,6 @@
 	Outfitter.cMinimapButtonTitle = "미니맵 버튼"
 	Outfitter.cMinimapButtonDescription = "클릭 : 세트 선택, 드래그 : 미니맵 버튼 이동"
 
-	Outfitter.cClassName.DRUID = "드루이드"
-	Outfitter.cClassName.HUNTER = "사냥꾼"
-	Outfitter.cClassName.MAGE = "마법사"
-	Outfitter.cClassName.PALADIN = "성기사"
-	Outfitter.cClassName.PRIEST = "사제"
-	Outfitter.cClassName.ROGUE = "도적"
-	Outfitter.cClassName.SHAMAN = "주술사"
-	Outfitter.cClassName.WARLOCK = "흑마법사"
-	Outfitter.cClassName.WARRIOR = "전사"
-	
 	Outfitter.cBattleStance = "전투 태세"
 	Outfitter.cDefensiveStance = "방어 태세"
 	Outfitter.cBerserkerStance = "광폭 태세"
@@ -319,20 +169,6 @@
 	Outfitter.cWarriorBattleStance = "전사: 전투 태세"
 	Outfitter.cWarriorDefensiveStance = "전사: 방어 태세"
 	Outfitter.cWarriorBerserkerStance = "전사: 광폭 태세"
-
-	Outfitter.cBearForm = "곰 변신"
-	Outfitter.cFlightForm = "폭풍까마귀 변신"
-	Outfitter.cSwiftFlightForm = "빠른 폭풍까마귀 변신"
-	Outfitter.cCatForm = "표범 변신"
-	Outfitter.cAquaticForm = "바다표범 변신"
-	Outfitter.cTravelForm = "치타 변신"
-	Outfitter.cDireBearForm = "광포한 곰 변신"
-	Outfitter.cMoonkinForm = "달빛야수 변신"
-	Outfitter.cTreeOfLifeForm = "생명의 나무"
-
-	Outfitter.cGhostWolfForm = "늑대 정령"
-
-	Outfitter.cStealth = "은신"
 
 	Outfitter.cDruidBearForm = "드루이드: 곰 변신"
 	Outfitter.cDruidCatForm = "드루이드: 표범 변신"
@@ -361,12 +197,13 @@
 
 	Outfitter.cMageEvocate = "마법사: 환기"
 
-	Outfitter.cAspectOfTheCheetah = "치타의 상"
-	Outfitter.cAspectOfThePack = "치타 무리의 상"
-	Outfitter.cAspectOfTheBeast = "야수의 상"
-	Outfitter.cAspectOfTheWild = "야생의 상"
-	Outfitter.cAspectOfTheViper = "독사의 상"
-	Outfitter.cEvocate = "환기"
+	Outfitter.cDeathknightBlood = "Deathknight: Blood Presence"
+	Outfitter.cDeathknightFrost = "Deathknight: Frost Presence"
+	Outfitter.cDeathknightUnholy = "Deathknight: Unholy Presence"
+
+	Outfitter.cMonkTiger = "Monk: Tiger stance"
+	Outfitter.cMonkSerpent = "Monk: Serpent stance"
+	Outfitter.cMonkOx = "Monk: Ox stance"
 
 	Outfitter.cCompleteCategoryDescription = "모든 슬롯의 아이템에 관한 설정이 들어있는 완전한 장비 세트입니다."
 	Outfitter.cPartialCategoryDescription = "Mix-n-match의 장비 세트는 전부가 아닌 일부 슬롯만 가집니다. 장비 세트가 선택되면 이전에 선택되었던 보조 장비 세트 또는 Mix-n-match 세트를 대체하면서, 완비 세트에서 해당 아이템만을 교체합니다."
@@ -389,15 +226,13 @@
 	Outfitter.cBankCategoryTitle = "은행"
 	Outfitter.cDepositToBank = "모든 아이템을 은행으로"
 	Outfitter.cDepositUniqueToBank = "특정 아이템을 은행으로"
+	Outfitter.cDepositOthersToBank = "Deposit other outfits to bank"
 	Outfitter.cWithdrawFromBank = "은행으로부터 아이템 회수"
-
+	Outfitter.cWithdrawOthersFromBank = "Withdraw other outfits from bank"
+	
 	Outfitter.cMissingItemsLabel = "찾을 수 없는 아이템: "
 	Outfitter.cBankedItemsLabel = "은행에 있는 아이템: "
 
-	Outfitter.cStatsCategory = "능력치"
-	Outfitter.cMeleeCategory = "근접"
-	Outfitter.cSpellsCategory = "주문과 치유"
-	Outfitter.cRegenCategory = "회복"
 	Outfitter.cResistCategory = "저항"
 	Outfitter.cTradeCategory = "전문기술"
 
@@ -422,12 +257,33 @@
 	Outfitter.cSource = "원본"
 	Outfitter.cInsertFormat = "<- %s"
 
-	Outfitter.cContainerBagSubType = "가방"
-	Outfitter.cUsedByPrefix = "장비 세트: "
-
 	Outfitter.cNone = "없음"
+	Outfitter.cUseTooltipLineFormat = "^사용 효과:.*"
 	Outfitter.cUseDurationTooltipLineFormat = "^사용 효과: (%d+) seconds"
 
 	Outfitter.cAutoChangesDisabled = "Automated changes are now disabled"
 	Outfitter.cAutoChangesEnabled = "Automated changes are now enabled"
+	
+	-- OutfitterFu strings
+	
+	Outfitter.cFuHint = "Outfitter 창을 열려면 좌-클릭하세요."
+	Outfitter.cFuHideMissing = "불일치 숨기기"
+	Outfitter.cFuHideMissingDesc = "일치 하지 않는 아이템을 숨깁니다."
+	Outfitter.cFuRemovePrefixes = "접두사 제거"
+	Outfitter.cFuRemovePrefixesDesc = "FuBar에 짧은 글자를 표시하기 위해 세트 이름의 접두사를 제거합니다."
+	Outfitter.cFuMaxTextLength = "최대 글자 길이"
+	Outfitter.cFuMaxTextLengthDesc = "FuBar에 표시할 글자의 최대 길이입니다."
+	Outfitter.cFuHideMinimapButton = "Hide minimap button"
+	Outfitter.cFuHideMinimapButtonDesc = "Hide Outfitter's minimap button."
+	Outfitter.cFuInitializing = "초기화"
+
+	Outfitter.cStoreOnServer = "Store outfit on server"
+	Outfitter.cStoreOnServerOnDescription = "Turn off to remove this outfit from the server and store it locally instead.  It will no longer be available from other computers."
+	Outfitter.cStoreOnServerOffDescription = "Turn on to store this outfit on the server so that it's available from any computer.  You may only store 10 outfits on the server."
+	Outfitter.cTooManyServerOutfits = "You cannot store more than %d outfits on the server."
+	
+	Outfitter.cNoItemsWithStat = "Couldn't generate an outfit because no items with that stat were found"
+
+	Outfitter.cRequiresPrefix = "요구 사항:"
+    Outfitter.cUniqueEquippedSearchPattern = "^고유 장착 아이템: (.*) %((%d+)%)$"
 end
